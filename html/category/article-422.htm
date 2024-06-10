@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-422.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>3.7&#8211;Kotlin 课堂：标准函数和静态方法 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        3.7&#8211;Kotlin 课堂：标准函数和静态方法                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>3.7.1 标准函数 with、run和apply</p> <p style="text-indent:33px;">Kotlin 的标准函数指的是 Standara.kt 文件中定义的函数，任何Kotlin&nbsp; 代码都可以自由调用所有的标准函数。我们已经学习了let 标准函数 ，let 标准函数的主要作用就是配合.? 进行辅助判空处理。</p> <p style="text-indent:33px;"><span style="color:#7c79e5;">下面我们学习新的 标准函数with。with 函数接收两个参数，第一个参数可以是一个任意类型的对象，第二个参数是Lambda表达式。with 函数会在Lambda 表达式中提供第一个参数对象的上下文，并使用Lambda 表达式的最后一行代码作为返回值返回。</span></p> <pre><code class="language-Kotlin">with(obj){             // 这里是 ojb 的上下文             "value" // with 函数的返回值         }</code></pre> <p>这个函数可以让连续调用同一个对象的多个方法时让代码变得更加精简！</p> <p style="text-indent:33px;">我们举个例子，例如创建一个水果列表，将水果列表全部打印出来：</p> <pre><code class="language-Kotlin">fun printFruits(){         val list = listOf("Apple", "Banana", "Orange", "Pear", "Grape")         val buffer = StringBuilder()         buffer.append("Start eating fruits. \n")         for (fruit in list) {             buffer.append(fruit).append("\n")         }         buffer.append("Ate all fruits.")         val result = buffer.toString()         println(result)     }</code></pre> <p>我们会得到的打印结果为</p> <p><img fetchpriority="high" decoding="async" alt="" height="220" src="http://img.555519.xyz/uploads/20221230/da7e470a657d5f926bd0155455782a38.jpg"></p> <p>观察上面的代码我们可以看到多次调用了builder 对象的方法，其实这个时候就可以使用with 函数来让代码变得更加简单</p> <pre><code class="language-Kotlin">fun printFruits(){     val list = listOf("Apple", "Banana", "Orange", "Pear", "Grape")     val result = with(StringBuilder()) {         append("Start eating fruits. \n")         for (fruit in list) {             append(fruit).append("\n")         }         append("Ate all fruits.")         toString()     }     println(result) }</code></pre> <p>代码乍一看有点迷，这个append 方法怎么来的？ 我们在上面介绍了，with 第一个参数传入的是任意对象也就是StringBuilder ，而第二个参数是一个Lambda 表达式，<span style="color:#7c79e5;">with 函数会在Lambda 表达式中提供第一个参数对象的上下文&nbsp;</span>，&nbsp;这个上下文就是环境的意思，我们就可以调用这个上下文对象内置的方法函数了。也就是说我们在第一个参数传入了什么对象，那么Lambda 表达式内就会拥有这个对象的所有变量和函数，就相当于在对象内部调用函数，所以我们直接调用了StringBuilder&nbsp;对象的append 函数。</p> <p style="text-indent:33px;">接下来我们继续学习另外一个常用的标准函数 run 函数，这个函数和with 作用几乎是一模一样的，就是结构不同，<span style="color:#7c79e5;">with 函数是内置函数形式调用with(obj){} ，run 函数是 obj.run{} ，一个是通过传入对象，一个是通过对象调用，作用相同，也是Lambda表达式内包含上下文环境，最后一句代码为返回值，run 函数只有一个参数就是Lambda 表达式。我们来修改一下上面的代码：</span></p> <pre><code class="language-Kotlin">fun printFruits(){     val list = listOf("Apple", "Banana", "Orange", "Pear", "Grape")     val result = StringBuilder().run {         append("Start eating fruits. \n")         for (fruit in list) {             append(fruit).append("\n")         }         append("Ate all fruits.")         toString()     }     println(result) }</code></pre> <p style="text-indent:33px;"><span style="color:#7c79e5;">接下来学习本小节的最后一个函数 apply 函数，apply 函数和 run 函数基本相同，不同的地方在于，apply 会返回对象本身，Lambda 表达式内不存在返回值，也是在Lambda 表达式中提供对象的上下文，结构为 obj.apply{}。我们来修改一下代码：</span></p> <pre><code class="language-Kotlin">fun printFruits(){     val list = listOf("Apple", "Banana", "Orange", "Pear", "Grape")     val result = StringBuilder().apply {         append("Start eating fruits. \n")         for (fruit in list) {             append(fruit).append("\n")         }         append("Ate all fruits.")     }     println(result.toString()) }</code></pre> <p>可以看出来我们删掉了otString() 而在输出的时候 调用了 result.toString()，因为返回的是StringBuilder 对象的本身。</p> <p>这里我们就可以修改一下之前我们启动Activity 的代码了！</p> <pre><code class="language-Kotlin">companion object{         fun actionStart(context:Context,data1:String,data2:String){             val intent = Intent(context,SecondActivity::class.java).apply {                 putExtra("param1",data1)                 putExtra("param2",data2)             }             context.startActivity(intent)         }     } </code></pre> <p>怎么样？是不是又精简了很多。</p> <p>3.7.2 定义静态方法</p> <p style="text-indent:33px;">Java 中定义静态方法很简单，只需要在方法 返回值关键字前添加static 修饰符即可，通过类名.方法名调用。例如：</p> <pre><code class="language-java">public class Util {     public static void doAction(){         System.out.println("do action");     } } </code></pre> <p>我们在Kotlin 中是没有这个static 修饰符的，Kotlin 极度弱化了静态方法的概念，我们想要在一个类中定义一个静态方法反倒是一件麻烦的事，因为Kotlin 提供了一个更好的语法特性，单例类。</p> <pre><code class="language-Kotlin">object Util {     fun doAction(){         println("do action")     } }</code></pre> <p>单例类的特性是在第一次调用的时候会创建这个类，其调用函数的方式和调用静态类中的调用方式相同。但是如果我们想要在一个非单例类中调用一个静态方法怎么办？就类似之前我们写的启动Activity 方式，这就运用到了<span style="color:#3399ea;"><strong>companion object</strong></span>了，由于之前都已经使用过了，这里直接解释原理。</p> <p style="text-indent:33px;"><span style="color:#3399ea;"><strong>companion object&nbsp;</strong></span><span style="color:#7c79e5;"> 会代码块内的函数和变量会直接被编译成静态的，但是一个类 使用了</span><span style="color:#3399ea;"><strong>companion object&nbsp;</strong></span><span style="color:#7c79e5;">关键字后，那么这个类就会创建一个伴生类，类似于</span><span style="color:#3399ea;"><strong> 匿名内部类&nbsp;</strong></span><span style="color:#7c79e5;">，既然类似于</span><span style="color:#3399ea;"><strong>匿名内部类</strong></span><span style="color:#7c79e5;">&nbsp;，那么就可以去继承其他的类：</span></p> <pre><code class="language-Kotlin">class Util {     fun doAction(){         println("do action1")     }     companion object:Father(){         fun doAction1(){             println("do action2")         }     } }</code></pre> <p>但是如果在Java 中以静态方法的形式调用，会发现这个方法并不存在，因为在伴生类中所以编译会有差异，如果我们在<span style="color:#3399ea;"><strong>companion object&nbsp;</strong></span>内部函数上添加<strong><span style="color:#3399ea;">@jvmStatic</span></strong> 注解，那么Kotlin 编译器就会将这个方法编译成真正的静态方法！</p> <pre><code class="language-Kotlin">class Util {     fun doAction(){         println("do action1")     }     companion object:Father(){         @JvmStatic         fun doAction1(){             println("do action2")         }     } }</code></pre> <p>这样添加注解后使用Java 代码也可以调用了。</p> <p style="text-indent:33px;"><span style="color:#7c79e5;">另外我们定义的顶层方法也是会被编译成静态方法的，什么是顶层方法呢？就是在 类外面定义的方法，就如同我们在Kotlin 中间中定义的main 方法一样，只要定义了这种函数，我们在Kotlin 中的任意类或者文件都是直接可以调用的，不用管包名，不用管路径，也不用创建实例 ，直接键入 函数即可。</span>但是在Java 中不存在顶层函数的概念，会找不到这个函数的，Java 需要通过文件名Kt.函数名的方式调用。</p> <pre><code class="language-java">public void quote(){         KotlinKt.printFruits();     }</code></pre> <p style="text-indent:33px;">任何有顶层函数的class 文件&nbsp;都会变成.kt 文件哦。</p> <p>&nbsp;</p> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-421.htm">Web前端：JavaScript和Nodejs有什么不同?</a></p>
+                                                        <p>下一个：<a href="/html/category/article-423.htm">python代码抒写开kerberos安全的kafka生产者消费</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-500.htm" title="SpringBoot动态定时任务的实现">SpringBoot动态定时任务的实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-468.htm" title="C语言井字棋游戏">C语言井字棋游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-489.htm" title="CSS中文本居中显示">CSS中文本居中显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-476.htm" title="JavaScript查找数组中的第一个冗余元素方法详解">JavaScript查找数组中的第一个冗余元素方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-477.htm" title="win11系统hosts文件无法保存怎么办">win11系统hosts文件无法保存怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-480.htm" title="JAVA基础小细节——equals()与hashCode()">JAVA基础小细节——equals()与hashCode()</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

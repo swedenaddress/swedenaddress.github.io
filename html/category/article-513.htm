@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-513.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>springboot整合log4j的踩坑实战记录_java - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        springboot整合log4j的踩坑实战记录_java                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">1、依赖添加</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_0_0" rel="nofollow"> 1.1、添加依赖</a></li> <li><a href="#_lab2_0_1" rel="nofollow"> 1.2、剔除依赖</a></li> </ul> <li><a href="#_label1" rel="nofollow">2、配置日志</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_2" rel="nofollow"> 2.1、日志打印记录</a></li> <li><a href="#_lab2_1_3" rel="nofollow"> 2.2、指定配置文件</a></li> </ul> <li><a href="#_label2" rel="nofollow">补充：log4j调优和注意事项</a></li> <ul class="second_class_ul"></ul> <li><a href="#_label3" rel="nofollow">总结</a></li> <ul class="second_class_ul"></ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>1、依赖添加</h2> <p class="maodian"><a name="_lab2_0_0" rel="nofollow"></a></p> <h3> 1.1、添加依赖</h3> <p>需要引入 log4j 的依赖支持，推荐自己确定使用的版本。</p> <div class="ay1code"> <pre class="brush:xml;">&lt;dependency&gt;          &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;          &lt;artifactId&gt;log4j-to-slf4j&lt;/artifactId&gt;          &lt;version&gt;2.11.2&lt;/version&gt;  &lt;/dependency&gt;</pre> </div> <p class="maodian"><a name="_lab2_0_1" rel="nofollow"></a></p> <h3> 1.2、剔除依赖</h3> <p>springboot 默认自己内部添加了对日志的支持，需要将其全部剔除掉，不然会影响 log4j 的依赖使用。</p> <div class="ay1code"> <pre class="brush:xml;">&lt;dependency&gt;          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;          &lt;artifactId&gt;spring-boot-starter-logging&lt;/artifactId&gt;          &lt;exclusions&gt;              &lt;exclusion&gt;                 &lt;groupId&gt;*&lt;/groupId&gt;                  &lt;artifactId&gt;*&lt;/artifactId&gt;              &lt;/exclusion&gt;          &lt;/exclusions&gt;  &lt;/dependency&gt;</pre> </div> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>2、配置日志</h2> <p class="maodian"><a name="_lab2_1_2" rel="nofollow"></a></p> <h3> 2.1、日志打印记录</h3> <p> 根据自己的需求进行相关的配置，这里需要注意的是使用 xml 文件进行配置，使用 properties 有坑没爬起来，文件名自定义，没有啥要求，都会在配置文件中进行指定的。</p> <div class="ay1code"> <pre class="brush:xml;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;  &lt;configuration  scan="true" scanPeriod="10 seconds"&gt;      &lt;contextName&gt;beordie&lt;/contextName&gt;      &lt;property name="path" value="E:\file\javalearn\blog\src\main\resources\logs" /&gt;      &lt;conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" /&gt;      &lt;conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" /&gt;      &lt;conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" /&gt;      &lt;property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/&gt;        &lt;appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender"&gt;          &lt;filter class="ch.qos.logback.classic.filter.ThresholdFilter"&gt;              &lt;level&gt;info&lt;/level&gt;          &lt;/filter&gt;          &lt;encoder&gt;              &lt;Pattern&gt;${CONSOLE_LOG_PATTERN}&lt;/Pattern&gt;              &lt;charset&gt;UTF-8&lt;/charset&gt;          &lt;/encoder&gt;      &lt;/appender&gt;        &lt;appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"&gt;          &lt;file&gt;${path}/debug.log&lt;/file&gt;          &lt;encoder&gt;              &lt;pattern&gt;%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n&lt;/pattern&gt;              &lt;charset&gt;UTF-8&lt;/charset&gt;          &lt;/encoder&gt;          &lt;rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"&gt;              &lt;fileNamePattern&gt;${log}/debug/log-debug-%d{yyyy-MM-dd}.%i.log&lt;/fileNamePattern&gt;              &lt;timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"&gt;                  &lt;maxFileSize&gt;100MB&lt;/maxFileSize&gt;              &lt;/timeBasedFileNamingAndTriggeringPolicy&gt;              &lt;maxHistory&gt;15&lt;/maxHistory&gt;          &lt;/rollingPolicy&gt;          &lt;filter class="ch.qos.logback.classic.filter.LevelFilter"&gt;              &lt;level&gt;debug&lt;/level&gt;              &lt;onMatch&gt;ACCEPT&lt;/onMatch&gt;              &lt;onMismatch&gt;DENY&lt;/onMismatch&gt;          &lt;/filter&gt;      &lt;/appender&gt;        &lt;appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"&gt;          &lt;file&gt;${log}/info.log&lt;/file&gt;          &lt;encoder&gt;              &lt;pattern&gt;%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n&lt;/pattern&gt;              &lt;charset&gt;UTF-8&lt;/charset&gt;          &lt;/encoder&gt;          &lt;rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"&gt;              &lt;fileNamePattern&gt;${log}/info/log-info-%d{yyyy-MM-dd}.%i.log&lt;/fileNamePattern&gt;              &lt;timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"&gt;                  &lt;maxFileSize&gt;100MB&lt;/maxFileSize&gt;              &lt;/timeBasedFileNamingAndTriggeringPolicy&gt;              &lt;maxHistory&gt;15&lt;/maxHistory&gt;          &lt;/rollingPolicy&gt;          &lt;filter class="ch.qos.logback.classic.filter.LevelFilter"&gt;              &lt;level&gt;info&lt;/level&gt;              &lt;onMatch&gt;ACCEPT&lt;/onMatch&gt;              &lt;onMismatch&gt;DENY&lt;/onMismatch&gt;          &lt;/filter&gt;      &lt;/appender&gt;        &lt;appender name="WARN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"&gt;          &lt;file&gt;${log}/warn.log&lt;/file&gt;          &lt;encoder&gt;              &lt;pattern&gt;%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n&lt;/pattern&gt;              &lt;charset&gt;UTF-8&lt;/charset&gt;          &lt;/encoder&gt;          &lt;rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"&gt;              &lt;fileNamePattern&gt;${log}/warn/log-warn-%d{yyyy-MM-dd}.%i.log&lt;/fileNamePattern&gt;              &lt;timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"&gt;                  &lt;maxFileSize&gt;100MB&lt;/maxFileSize&gt;              &lt;/timeBasedFileNamingAndTriggeringPolicy&gt;              &lt;maxHistory&gt;15&lt;/maxHistory&gt;          &lt;/rollingPolicy&gt;          &lt;filter class="ch.qos.logback.classic.filter.LevelFilter"&gt;              &lt;level&gt;warn&lt;/level&gt;              &lt;onMatch&gt;ACCEPT&lt;/onMatch&gt;              &lt;onMismatch&gt;DENY&lt;/onMismatch&gt;          &lt;/filter&gt;      &lt;/appender&gt;        &lt;appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"&gt;          &lt;file&gt;${log}/error.log&lt;/file&gt;          &lt;encoder&gt;              &lt;pattern&gt;%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n&lt;/pattern&gt;              &lt;charset&gt;UTF-8&lt;/charset&gt;          &lt;/encoder&gt;          &lt;rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"&gt;              &lt;fileNamePattern&gt;${log}/error/log-error-%d{yyyy-MM-dd}.%i.log&lt;/fileNamePattern&gt;              &lt;timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"&gt;                  &lt;maxFileSize&gt;100MB&lt;/maxFileSize&gt;              &lt;/timeBasedFileNamingAndTriggeringPolicy&gt;              &lt;maxHistory&gt;15&lt;/maxHistory&gt;          &lt;/rollingPolicy&gt;          &lt;filter class="ch.qos.logback.classic.filter.LevelFilter"&gt;              &lt;level&gt;ERROR&lt;/level&gt;              &lt;onMatch&gt;ACCEPT&lt;/onMatch&gt;              &lt;onMismatch&gt;DENY&lt;/onMismatch&gt;          &lt;/filter&gt;      &lt;/appender&gt;        &lt;springProfile name="dev"&gt;          &lt;logger name="com.beordie" level="debug"/&gt;      &lt;/springProfile&gt;        &lt;root level="info"&gt;          &lt;appender-ref ref="CONSOLE" /&gt;          &lt;appender-ref ref="DEBUG_FILE" /&gt;          &lt;appender-ref ref="INFO_FILE" /&gt;          &lt;appender-ref ref="WARN_FILE" /&gt;          &lt;appender-ref ref="ERROR_FILE" /&gt;      &lt;/root&gt;  &lt;/configuration&gt;</pre> </div> <p class="maodian"><a name="_lab2_1_3" rel="nofollow"></a></p> <h3> 2.2、指定配置文件</h3> <p>还需要在 spring boot 的项目配置文件中进行配置的指定。</p> <div class="ay1code"> <pre class="brush:java;">logging:    config: classpath:log4j.xml</pre> </div> <p>到这里完成对日志的整体配置，启动项目通过下面语句拿到日志对象即可进行日志的打印输出。</p> <div class="ay1code"> <pre class="brush:xhtml;">private final Logger LOGGING = LoggerFactory.getLogger(ArticleController.class);</pre> </div> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>补充：log4j调优和注意事项</h2> <p><strong>日志模式-同步/异步</strong></p> <p>log4j2提供了AsyncAppender和AsyncLogger以及全局异步，开启方式如下:</p> <ul> <li>同步模式：默认配置即为同步模式，即没有使用任何AsyncAppender和AsyncLogger。</li> <li>全局异步：配置按照同步方式配，通过添加jvm启动参数即可开启全局异步，无需修改配置和应用。</li> <li>混合异步：使用异步Logger和同步Logger的混合配置，且不开启全局异步，即Logger配置中部分AsyncLogger，部分Logger。</li> </ul> <p><strong>日志模式使用注意事项:</strong></p> <ul> <li>如果使用异步，建议使用AsyncLogger实现而不是AsyncAppender。</li> <li>如果使用同步，AsyncLogger、AsyncAppender和全局异步只能使用一种，不可以同时配置AsyncAppender和AsyncLogger，或者配置了异步的情况下启用了全局异步。</li> </ul> <p><strong>日志滚动和清除策略</strong></p> <p>log4j2提供了基于文件大小的滚动策略和基于时间的滚动策略，也可以二者并用，这里给出基于大小的滚动策略配置和基于大小/时间双滚动策略配置:</p> <ul> <li>基于大小的滚动策略:按照大小滚动，启用压缩，并最多保留N个文件</li> <li>基于大小/时间双滚动滚动策略:按照大小和时间滚动，启用压缩，单位时间内控制最多保留日志个数并控制总的日志留存时间。</li> </ul> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>总结</h2> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-512.htm">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></p>
+                                                        <p>下一个：<a href="/html/category/article-514.htm">Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-493.htm" title="JavaScript动态操作select下拉框_javascript技巧_">JavaScript动态操作select下拉框_javascript技巧_</a></li>
+                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/html/category/article-522.htm" title="用字符串中的ASCII值替换所有特殊字符-JavaScript">用字符串中的ASCII值替换所有特殊字符-JavaScript</a></li>
+                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-475.htm" title="redis持久化概述">redis持久化概述</a></li>
+                        <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

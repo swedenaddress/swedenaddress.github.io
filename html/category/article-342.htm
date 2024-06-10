@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-342.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>微信小程序开发JAVA后端解析小程序json数组对象 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        微信小程序开发JAVA后端解析小程序json数组对象                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>在用JAVA与小程序联合开发项目能很好的进行前后端开发，</p> <ul> <li><strong>小程序端</strong>负责页面的逻辑，交互以及跳转等，</li> <li><strong>JAVA后台</strong>负责数据的处理，接口的编写，业务的封装等。</li> </ul> <p>在项目中数据主要以JSON的格式进行传输，因此JAVA在后台处理时常常需要对JSON对象进行解析来获取特定数据</p> <p><strong>在小程序中的JSON数据转换</strong></p> <ul> <li>1.JSON.stingify()可以将json对象转换为json格式字符串</li> <li>2.JSON.parse()可以将json格式的字符串转换为json对象</li> </ul> <pre><code class="prism language-java">var a1<span class="token operator">=</span><span class="token string">"aa"</span><span class="token punctuation">;</span>     var a2<span class="token operator">=</span><span class="token number">22</span><span class="token punctuation">;</span>     var a3<span class="token operator">=</span><span class="token number">33</span><span class="token punctuation">;</span>     var arr<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token string">"01"</span><span class="token operator">:</span> a1<span class="token punctuation">,</span><span class="token string">"02"</span><span class="token operator">:</span> a2<span class="token punctuation">,</span><span class="token string">"03"</span><span class="token operator">:</span> a3<span class="token punctuation">}</span><span class="token punctuation">;</span>     var arrJosn<span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//json对象转换为json格式的字符串</span>     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arrJosn<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//json格式的字符串转化为json格式</span>     var jsonObject<span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>arrJosn<span class="token punctuation">)</span><span class="token punctuation">;</span>     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>jsonObject<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre> <p>控制台输出结果为<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220608/a9a47114b30c8b3bb61256689e41746e.jpg" alt="微信小程序开发JAVA后端解析小程序json数组对象"><br /><strong>在JAVA后端解析JSON数据</strong><br /> 在后台一般需要取特定数据或进行数据库的CRUD操作，因此需要对数据进行解析</p> <ul> <li> <p><strong>List转JSONArray</strong> :JSONArray ja = JSONArray.fromObject(list)</p> </li> <li> <p><strong>Map转JSONArray</strong>：JSONArray ja = JSONArray.fromObject(list)</p> </li> <li> <p><strong>JavaBean转JSONArray</strong>：JSONObject jo =<br /> JSONObject.fromObject(newJavaBean())</p> </li> <li> <p><strong>String转JSONObejct</strong>：JSONObject jo =JSONObject.fromObject(str)</p> </li> <li> <p><strong>String转JSONArray</strong>:JSONArray ja = JSONArray.fromObject(str)</p> </li> </ul> <p>例子：后台解析小程序传入的json对象数组<br /><strong>小程序代码</strong></p> <pre><code class="prism language-java">var that<span class="token operator">=</span><span class="token keyword">this</span> var address<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token string">"city"</span><span class="token operator">:</span><span class="token string">"GuangZhou"</span><span class="token punctuation">,</span><span class="token string">"Province"</span><span class="token operator">:</span><span class="token string">"GuangDong"</span><span class="token punctuation">,</span><span class="token string">"Country"</span><span class="token operator">:</span><span class="token string">"China"</span><span class="token punctuation">}</span>  var ordersArray<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span><span class="token string">"id"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"name"</span><span class="token operator">:</span><span class="token string">"user1"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span><span class="token string">"id"</span><span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">"name"</span><span class="token operator">:</span><span class="token string">"user2"</span><span class="token punctuation">}</span><span class="token punctuation">]</span>     that<span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span> address<span class="token operator">:</span> address<span class="token punctuation">,</span> ordersArray<span class="token operator">:</span> ordersArray<span class="token punctuation">}</span><span class="token punctuation">)</span>     wx<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>       url<span class="token operator">:</span><span class="token string">'http://localhost:8080/orders/getOrder'</span><span class="token punctuation">,</span>       data<span class="token operator">:</span><span class="token punctuation">{<!-- --></span>         openid<span class="token operator">:</span><span class="token string">"test1"</span><span class="token punctuation">,</span>         address<span class="token operator">:</span> that<span class="token punctuation">.</span>data<span class="token punctuation">.</span>address<span class="token punctuation">,</span>         ordersArray<span class="token operator">:</span> that<span class="token punctuation">.</span>data<span class="token punctuation">.</span>ordersArray<span class="token punctuation">}</span><span class="token punctuation">,</span>       method<span class="token operator">:</span><span class="token string">"GET"</span><span class="token punctuation">,</span>       success<span class="token operator">:</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span>         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre> <p><strong>后台代码为</strong></p> <pre><code class="prism language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/getOrder"</span><span class="token punctuation">)</span><span class="token annotation punctuation">@ResponseBody</span><span class="token keyword">public</span> String<span class="token function">getOrder</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">"openid"</span><span class="token punctuation">)</span> String openid<span class="token punctuation">,</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">"address"</span><span class="token punctuation">)</span> String address<span class="token punctuation">,</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">"ordersArray"</span><span class="token punctuation">)</span> String ordersArray<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>openid<span class="token punctuation">)</span><span class="token punctuation">;</span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>address<span class="token punctuation">)</span><span class="token punctuation">;</span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>address<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//把json对象数组转换为普通数组</span>         JSONArray ja<span class="token operator">=</span> JSONArray<span class="token punctuation">.</span><span class="token function">parseArray</span><span class="token punctuation">(</span>ordersArray<span class="token punctuation">)</span><span class="token punctuation">;</span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>ja<span class="token punctuation">)</span><span class="token punctuation">;</span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>ja<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//取该数组第一个对象</span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>ja<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//把json对象转换为普通对象</span>         JSONObject jo<span class="token operator">=</span> JSONObject<span class="token punctuation">.</span><span class="token function">parseObject</span><span class="token punctuation">(</span>address<span class="token punctuation">)</span><span class="token punctuation">;</span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>jo<span class="token punctuation">)</span><span class="token punctuation">;</span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>jo<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//根据key值为city取其值</span>         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>jo<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"city"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span><span class="token string">"success"</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <p>通过上面例子可把json对象数组转换为普通数组，把json对象转换为普通对象来获取到我们需要值，实现起来也很简单啦</p> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-341.htm">数据库基础知识详解五：MySQL中的索引和其两种引擎、主从复制以及关系型/非关系型数据库</a></p>
+                                                        <p>下一个：<a href="/html/category/article-343.htm">Python 图_系列之基于&lt;链接表&gt;实现无向图最短路径搜索</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-472.htm" title="Java 实现选择排序">Java 实现选择排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-485.htm" title="mysql索引失效的常见9种原因详解">mysql索引失效的常见9种原因详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
+                        <li class="py-2"><a href="/html/category/article-483.htm" title="vue变更v-for列表多个项目的颜色和选择项目">vue变更v-for列表多个项目的颜色和选择项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-493.htm" title="JavaScript动态操作select下拉框_javascript技巧_">JavaScript动态操作select下拉框_javascript技巧_</a></li>
+                        <li class="py-2"><a href="/html/category/article-490.htm" title="vue实现简单无缝滚动效果_vue.js">vue实现简单无缝滚动效果_vue.js</a></li>
+                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

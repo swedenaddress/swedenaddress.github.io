@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-404.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>字符串逆序(递归实现) - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        字符串逆序(递归实现)                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-kimbie-light"> <h2> <a id="_0" rel="nofollow"></a>题目即要求</h2> <blockquote> <p>字符串逆序(递归实现),不能使用C函数库中的字符串操作函数。 char arr [] =“abedef” 逆序之后数组的内容变成: fedcba</p> </blockquote> <p>先分析题目,如果不用递归如何实现?</p> <p><strong>双指针,一个从头走,一个从尾走,交换两个元素,直接贴代码</strong></p> <pre><code class="prism language-c"><span class="token keyword">void</span> <span class="token function">reverse_string2</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">int</span> len<span class="token operator">=</span><span class="token function">strlen</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span> 	<span class="token keyword">int</span> left<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>right<span class="token operator">=</span>len<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> 	 	<span class="token keyword">while</span><span class="token punctuation">(</span>left<span class="token operator">&lt;</span>right<span class="token punctuation">)</span><span class="token comment">//&lt;=都可,因为当left&gt;right或是=right时,一个元素或者小于一个元素的交换都一样  </span> 	<span class="token punctuation">{<!-- --></span> 		<span class="token comment">//交换左右变量 </span> 		<span class="token keyword">int</span> temp<span class="token operator">=</span>arr<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">;</span> 		arr<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token operator">=</span>arr<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">;</span> 		arr<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token operator">=</span>temp<span class="token punctuation">;</span> 		 		left<span class="token operator">++</span><span class="token punctuation">;</span> 		right<span class="token operator">--</span><span class="token punctuation">;</span> 	<span class="token punctuation">}</span>  <span class="token punctuation">}</span> </code></pre> <p><strong>那么,问题来了,用递归怎么实现呢.先来看下我画的粗略图:(</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230223/28d175a76931dd14d95039fb0983c56c.jpg" alt="字符串逆序(递归实现)"></p> <p><strong>依次解释下操作</strong></p> <ol> <li> <strong>将第一个元素存放在临时变量中</strong>.</li> <li><strong>将最后一个元素放在首位</strong></li> <li><strong>将最后一个元素的位置置为\0,表明字符串结束位置</strong></li> <li><strong>开始递归,将当前指针向后指一位,如图,a-b</strong></li> <li><strong>从后一位开始递归,重复上述操作,因为表明了字符串结束位置,所以是从b-e的遍历</strong></li> <li><strong>此时将最后一个元素,也就是\0,替换成临时变量中的第一个元素</strong></li> </ol> <h2> <a id="_39" rel="nofollow"></a>注意</h2> <ul> <li><strong>第三步和第五步不能反,必须是第三步在第五步前,否则就会变成b-a(a已经同f交换过),而达不到我们想要的效果</strong></li> <li><strong>接着,因为此处是递归,递归的两个基本条件,只满足了一个逐渐逼近条件,却没有写结束递归的条件</strong></li> </ul> <p><strong>这里递归的结束条件就是数组的长度要大于等于2,因为小于2的逆序没有意义.</strong></p> <p><strong>下面是代码</strong></p> <pre><code class="prism language-c"><span class="token keyword">void</span> <span class="token function">reverse_string</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">char</span> temp<span class="token operator">=</span><span class="token operator">*</span>arr<span class="token punctuation">;</span><span class="token comment">//首元素存放好 </span> 	<span class="token keyword">int</span> len<span class="token operator">=</span><span class="token function">strlen</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span> 	<span class="token operator">*</span>arr<span class="token operator">=</span><span class="token operator">*</span><span class="token punctuation">(</span>arr<span class="token operator">+</span>len<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//最后一个元素到首位 </span> 	<span class="token operator">*</span><span class="token punctuation">(</span>arr<span class="token operator">+</span>len<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token string">'\0'</span><span class="token punctuation">;</span><span class="token comment">//最后一个元素等于\0,给定下次遍历的右范围 </span> 	<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">strlen</span><span class="token punctuation">(</span>arr<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">&gt;=</span><span class="token number">2</span><span class="token punctuation">)</span> 	<span class="token punctuation">{<!-- --></span> 		<span class="token function">reverse_string</span><span class="token punctuation">(</span>arr<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//给定下次遍历的左范围 </span> 	<span class="token punctuation">}</span>	 	 	<span class="token operator">*</span><span class="token punctuation">(</span>arr<span class="token operator">+</span>len<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">=</span>temp<span class="token punctuation">;</span><span class="token comment">//把当前的最后元素,也就是\0,替换成首元素 </span> <span class="token punctuation">}</span> </code></pre> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-403.htm">vue3引入element-plus的各种方式</a></p>
+                                                        <p>下一个：<a href="/html/category/article-405.htm">.Net中字符串不变性与相等判断的特殊场景</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-483.htm" title="vue变更v-for列表多个项目的颜色和选择项目">vue变更v-for列表多个项目的颜色和选择项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-500.htm" title="SpringBoot动态定时任务的实现">SpringBoot动态定时任务的实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
+                        <li class="py-2"><a href="/html/category/article-480.htm" title="JAVA基础小细节——equals()与hashCode()">JAVA基础小细节——equals()与hashCode()</a></li>
+                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
+                        <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
+                        <li class="py-2"><a href="/html/category/article-475.htm" title="redis持久化概述">redis持久化概述</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

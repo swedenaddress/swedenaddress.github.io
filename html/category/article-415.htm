@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-415.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>加载、链接和初始化（java高级编程1.2.5） - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        加载、链接和初始化（java高级编程1.2.5）                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p class="MsoNormal" align="center"><strong><span lang="EN-US">JVM</span></strong><strong>：加载、链接和初始化</strong><strong><span lang="EN-US"></span></strong></p> <p class="MsoNormal" align="left"><span lang="EN-US">JVM</span>要解释<span lang="EN-US">Java</span>字节码，就必须对所需的类和接口执行如下<span lang="EN-US">3</span>步操作：<span lang="EN-US"></span></p> <p class="MsoNormal" align="left"><span lang="EN-US">(1)</span>加载：<span lang="EN-US">JVM</span>在加载类时，会查找该类或该接口的二进制表示，并根据找到的二进制表示<span lang="EN-US">(</span>通常是由<span lang="EN-US">Java</span>编译器创建的类文件<span lang="EN-US">)</span>创建一个<span lang="EN-US">Class</span>对象。该<span lang="EN-US">Class</span>对象中封装了类或接口的运行时状态。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left"><span lang="EN-US">(2)</span>链接：链接这一过程是指取得已加载的类或接口、结合<span lang="EN-US">JVM</span>运行时环境、准备执行该类或该接口。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left"><span lang="EN-US">(3)</span>初始化：初始化是指<span lang="EN-US">JVM</span>调用该类或该接口的初始化方法。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left"><strong><span lang="EN-US">1.</span></strong><strong>第一步</strong><strong><span lang="EN-US"></span></strong></p> <p class="MsoNormal" align="left">启动一个单机<span lang="EN-US">Java</span>程序时，<span lang="EN-US">JVM</span>首先做的是另外创建一个<span lang="EN-US">Class</span>对象，用于表示包含<span lang="EN-US">public static void main(String [ ] args)</span>方法的<span lang="EN-US">Java</span>类。然后<span lang="EN-US">JVM</span>会链接并初始化该<span lang="EN-US">Java</span>类，调用<span lang="EN-US">main()</span>方法，并用<span lang="EN-US">main()</span>方法驱动所引用的其他类和接口的加载、链接和初始化过程。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left"><strong><span lang="EN-US">2.</span></strong><strong>加载</strong><strong><span lang="EN-US"></span></strong></p> <p class="MsoNormal" align="left">加载过程是由类加载器完成的，该加载器是<span lang="EN-US">ClassLoader</span>的子类，并且该类加载器会对所加载的类或接口进行一些校验检查。当表示已编译类或接口的二进制数据有错，则类或接口使用的类文件格式版本不被支持，类加载器找不到类或接口的定义，或者如果出现类循环，都会抛出异常。类循环是指类或接口的父类是其自身的情况。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left">类加载器一般有两种类型：由<span lang="EN-US">JVM</span>提供的引导类加载器<span lang="EN-US">(bootstrap class loader)</span>和用户定义的类加载器。用户定义的类加载器也是<span lang="EN-US">Java</span>的<span lang="EN-US">ClassLoader</span>类的子类，用于从非标准的、用户定义的源创建<span lang="EN-US">Class</span>对象，以便提高安全性。例如，从加密文件中提取<span lang="EN-US">Class</span>对象。一个加载器可以将部分甚至整个加载过程委托给另一个加载器。最终生成<span lang="EN-US">Class</span>对象的加载器称为定义加载器<span lang="EN-US">(defining loader)</span>，而开始该加载过程的加载器称为启动加载器<span lang="EN-US">(initiating loader)</span>。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left">使用默认引导类加载器的加载过程如下：根据所要加载的类文件，引导类加载器会判断自身是否已经成为该类的启动加载器。如果是，则<span lang="EN-US">Class</span>对象存在，加载器停止<span lang="EN-US">(</span>注意，加载一个类并不等于创建该类的一个实例，这一步骤仅仅是在<span lang="EN-US">JVM</span>中加入该类<span lang="EN-US">)</span>。如果类还没有加载，则加载器会搜索对应的类文件，并在找到后根据该类文件创建<span lang="EN-US">Class</span>对象。如果找不到类文件，那么就会产生<span lang="EN-US">NoClassDefFoundError</span>异常。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left">使用用户定义类加载器时，整个加载过程稍有不同。与引导加载器一样，用户定义的加载器首先判断自身是否已经成为目标类文件的启动加载器。如果是，则<span lang="EN-US">Class</span>对象已经存在，加载器停止，而如果不是，用户定义的加载器会调用<span lang="EN-US">loadClass()</span>方法。<span lang="EN-US">loadClass()</span>方法返回所需的类文件并将表示类的二进制字节装配成<span lang="EN-US">ClassFile</span>结构，然后调用<span lang="EN-US">defineClass()</span>方法，由该方法从<span lang="EN-US">ClassFile</span>结构创建<span lang="EN-US">Class</span>对象。另外，<span lang="EN-US">loadClass()</span>方法也可以将加载过程委托给另一个类加载器。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left"><strong><span lang="EN-US">3.</span></strong><strong>链接</strong><strong><span lang="EN-US"></span></strong></p> <p class="MsoNormal" align="left">链接过程的第一步是校验需要链接的类文件。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left"><span lang="EN-US">Java</span>类文件校验<span lang="EN-US"></span></p> <p class="MsoNormal" align="left">由于<span lang="EN-US">JVM</span>与<span lang="EN-US">Java</span>编译器是完全分离的，因此，用来解释类文件的<span lang="EN-US">JVM</span>无法保证类文件的形式正确，甚至无法保证该文件确实由<span lang="EN-US">Java</span>编译器所生成。另一个问题在于继承与类兼容性。如果给定类文件所表示的类继承自另一个类文件表示的父类，那么<span lang="EN-US">JVM</span>必须确保该子类的类文件与父类的类文件兼容。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left"><span lang="EN-US">JVM</span>会校验每个类文件是否满足<span lang="EN-US">Java</span>语言规范对类文件的约束，不过<span lang="EN-US">Java</span>类校验器与<span lang="EN-US">Java</span>语言无关。用某些其他语言编写的程序同样也能编译成类文件格式，编译之后，该类文件也能通过校验过程。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left">校验过程分为<span lang="EN-US">4</span>个步骤：<span lang="EN-US"></span></p> <p class="MsoNormal" align="left"><span lang="EN-US">(1)</span>第一步由<span lang="EN-US">JVM</span>加载类文件并检查文件是否符合类文件的基本格式。类文件的长度必须准确。类文件必须确实表示类<span lang="EN-US">(</span>检查其中一个特殊数字<span lang="EN-US">)</span>。常量池中不能包含任何不可识别的信息，并且每个属性的长度正确。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left"><span lang="EN-US">(2)</span>校验过程的第二步在文件链接时进行。这一步执行的操作包括确保<span lang="EN-US">final</span>关键字约束的保留。这表示<span lang="EN-US">final</span>类不能派生子类，<span lang="EN-US">final</span>方法也不能被重写。然后确保常量池中的元素符合<span lang="EN-US">Java</span>语言的规定。验证常量池中的所有字段和方法引用，并检查每一个类<span lang="EN-US">(Object</span>类除外<span lang="EN-US">)</span>是否具有直接父类。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left"><span lang="EN-US">(3)</span>第三个校验步骤也在链接阶段进行。这一步检查类文件中引用的每一个方法，确保符合<span lang="EN-US">Java</span>语言对方法的规定。方法调用中参数的数量和类型必须正确。操作数栈必须总保持相同大小，并包含相同类型的值。局部变量在访问前应当包含合适的值。必须为字段指定正确类型的值。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left"><span lang="EN-US">(4)</span>校验的最后一步是处理第一次调用方法时出现的事件，并保证一切按规范进行。这些检查包括：确保给定类中存在某个引用的字段或引用的方法，确认引用的字段或引用的方法具有正确的描述符，并确保一个方法在运行时能够访问该引用字段或引用方法。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left">准备<span lang="EN-US"></span></p> <p class="MsoNormal" align="left">在校验类文件之后，<span lang="EN-US">JVM</span>准备初始化类，包括为类变量分配内存空间并设置为默认初始值。这些值是标准的默认值，例如<span lang="EN-US">int</span>类型为<span lang="EN-US">0</span>，<span lang="EN-US">Boolean</span>类型为<span lang="EN-US">false</span>等。在初始化阶段，这些值会设为程序相关的默认值。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left">解析<span lang="EN-US"></span></p> <p class="MsoNormal" align="left">在这一可选的步骤中，<span lang="EN-US">JVM</span>把运行时常量池中引用的符号解析成具体值。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left"><strong><span lang="EN-US">4.</span></strong><strong>初始化</strong><strong><span lang="EN-US"></span></strong></p> <p class="MsoNormal" align="left">链接过程完成后，会调用静态字段和静态初始化器。静态字段的值即使在类没有实例化时也能够访问得到，而静态初始化器用于单个表达式无法表示的静态初始化。<span lang="EN-US">JVM</span>把所有这类初始化器收集到一个特殊的方法中。例如，类所有初始化器的集合就是初始化方法<span lang="EN-US">&lt;clinit&gt;</span>。<span lang="EN-US"></span></p> <p class="MsoNormal" align="left">不过，<span lang="EN-US">JVM</span>在初始化一个类时不仅需要调用该类的初始化方法<span lang="EN-US">(</span>只有<span lang="EN-US">JVM</span>能够调用<span lang="EN-US">)</span>，而且需要初始化所有的父类<span lang="EN-US">(</span>即需要调用这些父类的<span lang="EN-US">&lt;clinit&gt;)</span>。结果就是，总是需要最先初始化<span lang="EN-US">Object</span>类。另外，包含应用程序<span lang="EN-US">main()</span>方法的类总是要初始化。<span lang="EN-US"></span></p> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-414.htm">如何用pycharm来查看PyTorch，CUDA版本</a></p>
+                                                        <p>下一个：<a href="/html/category/article-416.htm">Python自学笔记（三）深入理解Python变量的数据类型和存储</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-471.htm" title="linux清理磁盘文件夹方法">linux清理磁盘文件夹方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-483.htm" title="vue变更v-for列表多个项目的颜色和选择项目">vue变更v-for列表多个项目的颜色和选择项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                        <li class="py-2"><a href="/html/category/article-487.htm" title="Go 语言结构体链表详解">Go 语言结构体链表详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-476.htm" title="JavaScript查找数组中的第一个冗余元素方法详解">JavaScript查找数组中的第一个冗余元素方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
+                        <li class="py-2"><a href="/html/category/article-468.htm" title="C语言井字棋游戏">C语言井字棋游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-481.htm" title="如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？">如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？</a></li>
+                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

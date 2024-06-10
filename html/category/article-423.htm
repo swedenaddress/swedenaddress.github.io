@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-423.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>python代码抒写开kerberos安全的kafka生产者消费 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        python代码抒写开kerberos安全的kafka生产者消费                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>艰辛三天的时间，终于走通了。</p> <h3><strong>前提说明：</strong></h3> <p>针对kafka server开启了 kerberos认证，协议使用的GSSAPI协议。</p> <p>经常用java代码写消费者，java代码支持GSSAPI协议，可以通过代码去登陆用户。</p> <p>python也支持gssapi协议，但是需要通过kerberos客户端去登陆用户。</p> <p>阅读源码--conn.py，发现是支持 GSSAPI的。</p> <p><img fetchpriority="high" decoding="async" alt="" class="has" height="324" src="http://img.555519.xyz/uploads/20221230/b91e354dccb3265368d5aea1f2a2241f.jpg"></p> <p>&nbsp;</p> <p>操作系统：&nbsp;&nbsp;CentOS Linux release 7.6.1810 (Core)，非硬性要求</p> <h3>1、python环境的搭建</h3> <p>1.1、系统本身自带了---Python 2.7.5版本</p> <p>1.2、升级下python到3.7.0</p> <p>1.2.1下载&nbsp;wget <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tar.xz"  rel="nofollow">https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tar.xz</a></p> <p>1.2.2、在安装包中有一个README的文件，里面有写如何安装</p> <p>tar Jxvf Python-3.7.0.tar.xz</p> <p>cd Python-3.7.0</p> <p>./configure --prefix=/usr/local/python3</p> <p>make &amp;&amp; make install</p> <p>1.2.3、软连接到 python3命令</p> <p>ln -s /usr/local/python3/bin/python3.7 /usr/local/bin/python3</p> <p>到这里python安装完成。&nbsp; 使用 python3 -V 查看版本。&nbsp;</p> <p>1.2.4、软连接到pip命令</p> <p>ln -s /usr/local/python3/bin/pip3.7 /usr/local/bin/pip</p> <p>1.2.5、升级 pip</p> <p>pip install --upgrade pip</p> <h3>2、kerberos认证客户端的准备</h3> <p>2.1、安装</p> <p>yum install -y krb5-devel.x86_64</p> <p>2.2、验证</p> <p>krb5-config</p> <p>kinit</p> <p>klist 命令的是否可用</p> <h3>3、python-kafka生产者代码</h3> <p>3.1、代码运行需要导入 pip install gssapi ; pip install kafka-python</p> <p>从kdc服务端拿来 keytab密钥以及用户。kinit 登陆用户，记得修改 /etc下面的 krb5.conf文件 ，和服务器的 krb5.conf保持一致。</p> <pre class="has"><code>from kafka import KafkaProducer  from kafka.errors import KafkaError  import os  class Kafka_Producer():  &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, kafkahost, kafkaport, kafkatopic):  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.kafkaHost = kafkahost  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.kafkaPort = kafkaport  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.kafkatopic = kafkatopic  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.producer = KafkaProducer(  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bootstrap_servers = '{kafka_host}:{kafka_port}'.format(kafka_host=self.kafkaHost,kafka_port=self.kafkaPort),  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;security_protocol="SASL_PLAINTEXT",  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sasl_mechanism="GSSAPI",  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sasl_kerberos_service_name="kafka"  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)  &nbsp;&nbsp;&nbsp;&nbsp;def sendFileData(self, params):  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f = open(params,'rb')  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parmasMessage = f.read(-1).strip()  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;producer = self.producer  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;producer.send(self.kafkatopic, parmasMessage)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;producer.flush()  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;except KafkaError as e:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print (e)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  def main():  &nbsp;&nbsp;&nbsp;&nbsp;filePath = "/mnt/data/"  &nbsp;&nbsp;&nbsp;&nbsp;topic = "demo"  &nbsp;&nbsp;&nbsp;&nbsp;producer = Kafka_Producer("xxx","9092",topic)  &nbsp;&nbsp;&nbsp;&nbsp;dirList = os.listdir(filePath)  &nbsp;&nbsp;&nbsp;&nbsp;for fileName in dirList:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;producer.sendFileData(filePath+fileName)  &nbsp;&nbsp;&nbsp;&nbsp;print('send success!!!')    if __name__=='__main__':  &nbsp;&nbsp;&nbsp;&nbsp;main()</code></pre> <h3>遇到的问题：</h3> <p>1、gssapi包导入不成功。因为krb5-devel.x86_64没有windows版本，在 window下导入gssapi会报“krb5-config --libs gssapi”。需要在linux环境下 安装krb5-devel.x86_64导入gssapi。</p> <h3>参考资料：</h3> <p>&nbsp; &nbsp; &nbsp; &nbsp;<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/feng18/p/5854912.html"  rel="nofollow">https://www.cnblogs.com/feng18/p/5854912.html</a></p> <p>&nbsp; &nbsp; &nbsp; &nbsp;<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.iteblog.com/archives/2148.html"  rel="nofollow">https://www.iteblog.com/archives/2148.html</a></p> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-422.htm">3.7&#8211;Kotlin 课堂：标准函数和静态方法</a></p>
+                                                        <p>下一个：<a href="/html/category/article-424.htm">生产环境MySQL索引时效的排查过程_Mysql_</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-471.htm" title="linux清理磁盘文件夹方法">linux清理磁盘文件夹方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-481.htm" title="如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？">如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？</a></li>
+                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-478.htm" title="JavaScript如何添加用于将案例交换到字符串原型对象的函数">JavaScript如何添加用于将案例交换到字符串原型对象的函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-482.htm" title="Hyperledger Fabric节点的动态添加和删除">Hyperledger Fabric节点的动态添加和删除</a></li>
+                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-524.htm" title="数据库四大特性及数据库隔离级别（*）">数据库四大特性及数据库隔离级别（*）</a></li>
+                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

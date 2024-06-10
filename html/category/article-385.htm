@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-385.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>HashMap中红黑树插入节点的调整过程分析_在线工具 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        HashMap中红黑树插入节点的调整过程分析_在线工具                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li><a href="#%E4%B8%80%E5%BC%95%E8%A8%80" rel="nofollow">一、引言</a></li> <li><a href="#%E4%BA%8Chashmap%E6%BA%90%E7%A0%81%E4%B8%AD%E7%BA%A2%E9%BB%91%E6%A0%91%E6%8F%92%E5%85%A5%E8%8A%82%E7%82%B9%E7%9A%84%E8%B0%83%E6%95%B4%E8%BF%87%E7%A8%8B" rel="nofollow">二、HashMap源码中红黑树插入节点的调整过程</a></li> <li><a href="#%E4%B8%89%E9%98%85%E8%AF%BBhashmap%E6%BA%90%E7%A0%81%E7%9A%84%E4%B8%80%E4%BA%9Btips" rel="nofollow">三、阅读HashMap源码的一些Tips</a> <ul> <li><a href="#1-%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC" rel="nofollow">1. 代码风格</a></li> <li><a href="#2-%E5%8F%98%E9%87%8F%E5%90%8D" rel="nofollow">2. 变量名</a> <ul> <li><a href="#balanceinsertion%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84%E5%8F%98%E9%87%8F%E5%90%8D" rel="nofollow"><code>balanceInsertion</code>方法中的变量名</a></li> <li><a href="#rotateleftrotateright%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84%E5%8F%98%E9%87%8F%E5%90%8D" rel="nofollow"><code>rotateLeft</code>、<code>rotateRight</code>方法中的变量名</a></li> </ul> </li> </ul> </li> </ul> </div> <h2 id="一引言">一、引言</h2> <p>如果有对红黑树的定义及调整过程有过研究，其实很容易理解HashMap中的红黑树插入节点的调整过程。</p> <blockquote> <p>“红黑树定义及调整过程”的参考文章：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/daheww/p/16214028.html"  target="_blank" rel="nofollow">《红黑树原理、查找效率、插入及变化规则分析》</a></p> </blockquote> <p>下面的<a href="#HashMap%E6%BA%90%E7%A0%81%E4%B8%AD%E7%BA%A2%E9%BB%91%E6%A0%91%E6%8F%92%E5%85%A5%E8%8A%82%E7%82%B9%E7%9A%84%E8%B0%83%E6%95%B4%E8%BF%87%E7%A8%8B" rel="nofollow">流程图</a>就是HashMap源码中，红黑树插入节点的调整过程。这个过程要是写文章讲的话，感觉也没什么意思，其实关键还是需要你要清楚红黑树的定义及调整过程，然后知道数据结构里二叉树左旋、右旋调整的过程。接下来需要做的，就是慢慢啃这段不长的源码。</p> <p>你看到最后会发现，<strong>这个过程中的判断、步骤，都是基于我上面说的：红黑树的定义、红黑树的调整过程、二叉树左旋/右旋调整的过程</strong>，然后就是一些指针操作。</p> <h2 id="二hashmap源码中红黑树插入节点的调整过程">二、HashMap源码中红黑树插入节点的调整过程</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/754847def3a9b2f7d4ca81da370f09ad.jpg" alt="HashMap中红黑树插入节点的调整过程分析_在线工具"></p> <h2 id="三阅读hashmap源码的一些tips">三、阅读HashMap源码的一些Tips</h2> <h3 id="1-代码风格">1. 代码风格</h3> <p>HashMap源码中特别喜欢在判断语句中加赋值语句，形如：<code>if ((xp = x.parent) == null)</code>。它这一行代码做了两件事：</p> <ol> <li>把x.parent赋值给xp</li> <li>判断xp是否为null</li> </ol> <p>还喜欢使用连等号，形如：<code>pp = r.parent = p.parent</code>。它这一行代码也做了两件事：</p> <ol> <li>把p.parent赋值给r.parent</li> <li>把r.parent赋值给pp</li> </ol> <p>这种代码风格我看着很不习惯，但是看多了后，也就习惯了。</p> <h3 id="2-变量名">2. 变量名</h3> <blockquote> <p>源码中的树指针的变量命名其实很有规律：<code>r</code>对应右子树，<code>l</code>对应左子树，<code>p</code>对应父节点，<code>pp</code>对应爷爷节点。<br /> 举个例子：变量名pr的含义是，父节点的右子树。</p> </blockquote> <h4 id="balanceinsertion方法中的变量名"><code>balanceInsertion</code>方法中的变量名</h4> <pre><code class="language-txt">root x所在树的根节点 x    要插入的节点 xp   x的parent节点 xpp  x的parent的parent -&gt; 爷爷节点 xppl x的爷爷节点的左子树 xppr x的爷爷节点的右子树                    +-----+              +----+     +----+              |    +-----+    |              |      xpp      |           +--v--+         +--v--+    +------+     |         |     |    |      +-----+         +-----+    |        xppl            xppr +--v--+      xp |     | +-----+    x</code></pre> <h4 id="rotateleftrotateright方法中的变量名"><code>rotateLeft</code>、<code>rotateRight</code>方法中的变量名</h4> <pre><code class="language-txt">p    旋转的关键点 pp   p的parent节点 r    p的右子节点节点 l    p的左子节点节点 rl   p的右子节点节点的左子节点 lr   p的左子节点节点的右子节点</code></pre> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-384.htm">C语言字符串、字符数组、字符指针</a></p>
+                                                        <p>下一个：<a href="/html/category/article-386.htm">Python 树表查找_千树万树梨花开，忽如一夜春风来（二叉排序树、平衡二叉树）</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
+                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
+                        <li class="py-2"><a href="/html/category/article-521.htm" title="typescript的安装运行与自动编译">typescript的安装运行与自动编译</a></li>
+                        <li class="py-2"><a href="/html/category/article-467.htm" title="对象和封装总结">对象和封装总结</a></li>
+                        <li class="py-2"><a href="/html/category/article-466.htm" title="Spring Security核心组件详解">Spring Security核心组件详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-501.htm" title="springboot自定义视图映射">springboot自定义视图映射</a></li>
+                        <li class="py-2"><a href="/html/category/article-484.htm" title="Springboot启动原理详细解析">Springboot启动原理详细解析</a></li>
+                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/html/category/article-492.htm" title="kafka系列SpringBoot 中使用@KafkaListener详解与使用">kafka系列SpringBoot 中使用@KafkaListener详解与使用</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

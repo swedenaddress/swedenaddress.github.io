@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-301.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>原型模式在实际开发中的应用BeanUtils - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        原型模式在实际开发中的应用BeanUtils                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>&nbsp; &nbsp; &nbsp; &nbsp;我们学习设计模式的时候学了原型模式，原型模式在我们的实际开发中使用场景也是很多的，我在实际开发中主要有以下两大场景：</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1、在我们希望接下来这个类的操作与之前这个类的操作之间相互不影响；</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2、通常在异步操作的时候避免多线程问题，在调用方法的时候不希望被调用方法对对象的操作影响本层的剩余业务逻辑处理；</p> <p>&nbsp; &nbsp; &nbsp; &nbsp;在需要这样的时候我可以直接new一个对象自己赋值不采用原型模式呢？</p> <p>&nbsp; &nbsp; &nbsp; &nbsp;当然可以，只要你不嫌麻烦，前辈们为我们提供了原型模式肯定是因为原型模式对我们有大大的好处的，一般来说原型模式给我们带来了以下的好处：</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1、程序运行效率：可以节省new创建对象的时间，</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2、代码开发效率：可以一个clone()方法搞定，无需复杂的赋值操作</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 3、代码的稳定性：依次一个一个的进行代码赋值，会不会因为一个Cv操作失误导致一个细微难察觉的代码bug发布出来了呢？</p> <p>&nbsp;那么首先我们来看看要通过clone实现原型模式的代码吧</p> <pre class="has"><code class="language-java">//第一步：对象实现Cloneable接口 //第二步：重写clone方法； public Object clone() throws CloneNotSupportedException{     Student student=(Student)super.clone();     student.setStudentFiles((StudentFiles)studentFiles.clone());     return student; }    //当我们需要进行深克隆的时候可以通过序列化的方式实现；</code></pre> <p>但是在实际开发中就会发现当我们需要使用原型模式的时候还需要去对对象model进行clone这种方式真的不是很友好；</p> <p>&nbsp; &nbsp; &nbsp; what？ 不友好吗？</p> <p>&nbsp; &nbsp; &nbsp; 当然，首先，这不符合开闭原则，我们在使用前并不知道这个需要使用原型模式，当需要使用的时候还需要去改老代码，这不是不符合开闭原则吗？</p> <p>&nbsp; &nbsp; &nbsp; 其次，我只是需要一个克隆对象，还需要去实现一堆复杂的浅克隆，深克隆代码吗？是不是有点太耗费功夫了呢？是的，作为程序员的我就是这么懒；</p> <p>&nbsp; &nbsp; &nbsp; 那么我们不使用clone，怎么快速友好，非侵入的实现原型模式呢？</p> <p>&nbsp; &nbsp; &nbsp; 这个时候我们的猪脚就上场了，而且还是两个</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;org.springframework.beans.BeanUtils</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; org.apache.commons.beanutils.BeanUtils</p> <p><strong>按照惯例，我们分析就从源码进入</strong>：</p> <p>&nbsp; &nbsp; &nbsp; &nbsp;org.springframework.beans.BeanUtils</p> <pre class="has"><code class="language-java">    //使用无参数构造函数实例化类的便利方法。         public static &lt;T&gt; T instantiate(Class&lt;T&gt; clazz) throws BeanInstantiationException { 		Assert.notNull(clazz, "Class must not be null"); 		if (clazz.isInterface()) { 			throw new BeanInstantiationException(clazz, "Specified class is an interface"); 		} 		try { 			return clazz.newInstance(); 		} 		catch (InstantiationException ex) { 			throw new BeanInstantiationException(clazz, "Is it an abstract class?", ex); 		} 		catch (IllegalAccessException ex) { 			throw new BeanInstantiationException(clazz, "Is the constructor accessible?", ex); 		} 	}          //使用无参数的构造函数实例化一个类。     public static &lt;T&gt; T instantiateClass(Class&lt;T&gt; clazz) throws BeanInstantiationException   { 		Assert.notNull(clazz, "Class must not be null"); 		if (clazz.isInterface()) { 			throw new BeanInstantiationException(clazz, "Specified class is an interface"); 		} 		try { 			return instantiateClass(clazz.getDeclaredConstructor()); 		} 		catch (NoSuchMethodException ex) { 			throw new BeanInstantiationException(clazz, "No default constructor found", ex); 		} 	}        //将给定源bean的属性值复制到目标bean中。     public static void copyProperties(Object source, Object target) throws BeansException { 		copyProperties(source, target, null, (String[]) null); 	}         //将给定源bean的属性值复制到给定目标bean中，     //只设置在给定的“可编辑”类(或接口)中定义的属性。     public static void copyProperties(Object source, Object target, Class&lt;?&gt; editable) throws BeansException { 		copyProperties(source, target, editable, (String[]) null); 	}        //将给定源bean的属性值复制到给定目标bean中，忽略给定的“ignoreProperties”。     public static void copyProperties(Object source, Object target, String... ignoreProperties) throws BeansException { 		copyProperties(source, target, null, ignoreProperties); 	}          //真正的属性拷贝处理方法：     //将给定源bean的属性值复制到给定目标bean中。     private static void copyProperties(Object source, Object target, Class&lt;?&gt; editable, String... ignoreProperties) 			throws BeansException {  		Assert.notNull(source, "Source must not be null"); 		Assert.notNull(target, "Target must not be null");  		Class&lt;?&gt; actualEditable = target.getClass(); 		if (editable != null) { 			if (!editable.isInstance(target)) { 				throw new IllegalArgumentException("Target class [" + target.getClass().getName() + 						"] not assignable to Editable class [" + editable.getName() + "]"); 			} 			actualEditable = editable; 		} 		PropertyDescriptor[] targetPds = getPropertyDescriptors(actualEditable); 		List&lt;String&gt; ignoreList = (ignoreProperties != null ? Arrays.asList(ignoreProperties) : null);  		for (PropertyDescriptor targetPd : targetPds) { 			Method writeMethod = targetPd.getWriteMethod(); 			if (writeMethod != null &amp;&amp; (ignoreList == null || !ignoreList.contains(targetPd.getName()))) { 				PropertyDescriptor sourcePd = getPropertyDescriptor(source.getClass(), targetPd.getName()); 				if (sourcePd != null) { 					Method readMethod = sourcePd.getReadMethod(); 					if (readMethod != null &amp;&amp; 							ClassUtils.isAssignable(writeMethod.getParameterTypes()[0], readMethod.getReturnType())) { 						try { 							if (!Modifier.isPublic(readMethod.getDeclaringClass().getModifiers())) { 								readMethod.setAccessible(true); 							} 							Object value = readMethod.invoke(source); 							if (!Modifier.isPublic(writeMethod.getDeclaringClass().getModifiers())) { 								writeMethod.setAccessible(true); 							} 							writeMethod.invoke(target, value); 						} 						catch (Throwable ex) { 							throw new FatalBeanException( 									"Could not copy property '" + targetPd.getName() + "' from source to target", ex); 						} 					} 				} 			} 		} 	}</code></pre> <p><strong>&nbsp; &nbsp; &nbsp; &nbsp;org.apache.commons.beanutils.BeanUtils</strong></p> <pre class="has"><code class="language-java">    //根据可用的属性getter和setter克隆一个bean，即使bean类本身没有实现Cloneable。     public static Object cloneBean(Object bean) throws IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().cloneBean(bean);     }      //对于所有属性名相同的情况，将属性值从原始bean复制到目标bean。     public static void copyProperties(Object dest, Object orig) throws IllegalAccessException, InvocationTargetException {         BeanUtilsBean.getInstance().copyProperties(dest, orig);     }      //将指定的属性值复制到指定的目标bean，执行所需的任何类型转换。     public static void copyProperty(Object bean, String name, Object value) throws IllegalAccessException, InvocationTargetException {         BeanUtilsBean.getInstance().copyProperty(bean, name, value);     }      //返回指定bean提供读方法的整个属性集。     public static Map describe(Object bean) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().describe(bean);     }      //以字符串数组的形式返回指定bean的指定数组属性的值。     public static String[] getArrayProperty(Object bean, String name) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getArrayProperty(bean, name);     }      //以字符串的形式返回指定bean的指定索引属性的值。     public static String getIndexedProperty(Object bean, String name) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getIndexedProperty(bean, name);     }      //以字符串的形式返回指定bean的指定索引属性的值。     public static String getIndexedProperty(Object bean, String name, int index) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getIndexedProperty(bean, name, index);     }      //以字符串的形式返回指定bean的指定索引属性的值。     public static String getMappedProperty(Object bean, String name) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getMappedProperty(bean, name);     }      //以字符串的形式返回指定bean的指定索引属性的值。     public static String getMappedProperty(Object bean, String name, String key) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getMappedProperty(bean, name, key);     }      //为指定bean返回指定名称(可能是嵌套的)属性的值，作为字符串。     public static String getNestedProperty(Object bean, String name) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getNestedProperty(bean, name);     }      //以字符串的形式返回指定bean的指定属性的值，无论使用哪种属性引用格式。     public static String getProperty(Object bean, String name) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getProperty(bean, name);     }      //返回转换为字符串的指定bean的指定简单属性的值。     public static String getSimpleProperty(Object bean, String name) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getSimpleProperty(bean, name);     }      //根据指定的名称/值对填充指定bean的javabean属性。     public static void populate(Object bean, Map properties) throws IllegalAccessException, InvocationTargetException {         BeanUtilsBean.getInstance().populate(bean, properties);     }      //设置指定的属性值，根据需要执行类型转换以符合目标属性的类型。     public static void setProperty(Object bean, String name, Object value) throws IllegalAccessException, InvocationTargetException {         BeanUtilsBean.getInstance().setProperty(bean, name, value);     }</code></pre> <p><strong>使用推荐</strong>：</p> <p>&nbsp; &nbsp; &nbsp; &nbsp;spring 与apache的BeanUtils相比，在性能上spring有极大的优势，因此在简单做属性赋值的时候推荐使用spring的，经过测试在大规模的赋值操作中spring性能可以达到apace性能的100倍；</p> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-300.htm">手写RPC-整合Spring、SpringBoot</a></p>
+                                                        <p>下一个：<a href="/html/category/article-302.htm">PHP静态属性和方法详解</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
+                        <li class="py-2"><a href="/html/category/article-500.htm" title="SpringBoot动态定时任务的实现">SpringBoot动态定时任务的实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-468.htm" title="C语言井字棋游戏">C语言井字棋游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-490.htm" title="vue实现简单无缝滚动效果_vue.js">vue实现简单无缝滚动效果_vue.js</a></li>
+                        <li class="py-2"><a href="/html/category/article-524.htm" title="数据库四大特性及数据库隔离级别（*）">数据库四大特性及数据库隔离级别（*）</a></li>
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
+                        <li class="py-2"><a href="/html/category/article-522.htm" title="用字符串中的ASCII值替换所有特殊字符-JavaScript">用字符串中的ASCII值替换所有特殊字符-JavaScript</a></li>
+                        <li class="py-2"><a href="/html/category/article-521.htm" title="typescript的安装运行与自动编译">typescript的安装运行与自动编译</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

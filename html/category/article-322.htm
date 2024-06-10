@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-322.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>MSSQL基本语法及实例操作语句_MsSql_ - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        MSSQL基本语法及实例操作语句_MsSql_                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<h2>刷新本地缓存</h2> <div class="ay1code"> <pre class="brush:sql;">Ctrl+Shift+R</pre> </div> <h2>查询</h2> <div class="ay1code"> <pre class="brush:sql;">select *from [table]</pre> </div> <h2>修改</h2> <h3>1、普通更新</h3> <div class="ay1code"> <pre class="brush:sql;">UPDATE [table] set [字段]=[values]</pre> </div> <h3>2、关联表更新</h3> <div class="ay1code"> <pre class="brush:sql;">UPDATE A SET A1 = B1, A2 = B2, A3 = B3 FROM A, B WHERE A.ID = B.ID</pre> </div> <h2>删除（数据）</h2> <div class="ay1code"> <pre class="brush:sql;">delete [table]</pre> </div> <h2>删除（表）</h2> <div class="ay1code"> <pre class="brush:sql;">drop [table]</pre> </div> <h2>条件查询</h2> <div class="ay1code"> <pre class="brush:sql;">select *from [table] where [字段]=[values]</pre> </div> <h2>事务</h2> <p>1 开始事务: begin transaction</p> <p>2 提交事务：commit transaction</p> <p>3 回滚事务: rollback transaction</p> <p>4 结束事务: 提交或回滚事务都将结束事务</p> <div class="ay1code"> <pre class="brush:sql;">/*--开始事务--*/  begin transaction  declare @errorSum int    --定义变量，用于累计事务执行过程中的错误  /*--转帐--*/  update bank set currentMoney=currentMoney-800 where customerName='张三'  set @errorSum=@errorSum+@@error    --累计是否有错误  update bank set currentMoney=currentMoney+800 where customerName='李四'  set @errorSum=@errorSum+@@error --累计是否有错误    print '查看转帐事务过程中的余额'  select * from bank    /*--根据是否有错误，确定事务是提交还是回滚--*/  if @errorSum&gt;0      begin          print '交易失败，回滚事务.'          rollback transaction      end  else      begin          print '交易成功，提交事务，写入硬盘，永久保存！'          /*--提交并且结束事务--*/          commit transaction      end  go    print '查看转帐后的余额'  select * from bank  go</pre> </div> <h2>查询所有表名</h2> <div class="ay1code"> <pre class="brush:sql;">select * from sys.tables</pre> </div> <h2>查询所有表包含的字段名</h2> <div class="ay1code"> <pre class="brush:sql;">select * from sys.columns</pre> </div> <h2>查询所有字段说明</h2> <div class="ay1code"> <pre class="brush:sql;">select * from sys.extended_properties</pre> </div> <h2>根据表查询所含字段说明</h2> <div class="ay1code"> <pre class="brush:sql;">SELECT t.[name] AS 表名,c.[name] AS 字段名,cast(ep.[value]  as varchar(100)) AS [字段说明]  FROM sys.tables AS t  INNER JOIN sys.columns AS c   ON t.object_id = c.object_id  LEFT JOIN sys.extended_properties AS ep  ON ep.major_id = c.object_id AND ep.minor_id = c.column_id WHERE ep.class =1  AND t.name='UTB_GBNT_PROJ_INFO'--------表名</pre> </div> <h2>创建视图</h2> <div class="ay1code"> <pre class="brush:sql;">create view ViewName  (字段1，字段2)  as  (      select 字段1, 字段2       from [table]   )</pre> </div> <h2>数据字典</h2> <div class="ay1code"> <pre class="brush:sql;">SELECT t.FieldExp 名称,t.ColumnName 代码,    case t.FieldDataType   when 'bigint' then t.FieldDataType  when 'int' then t.FieldDataType  when 'datetime' then t.FieldDataType  when 'numeric' then t.FieldDataType  when 'nvarchar' then (cast(t.FieldDataType as varchar(100))+'('+cast(t.Fieldlength as varchar(100))+')')  when 'decimal' then (cast(t.FieldDataType as varchar(100))+'('+cast(t.Fieldlength as varchar(100))+','+cast(t.Scale as varchar(100))+')')  end as 数据类型    ,t.Fieldlength 长度,t.Scale 精确度    ,case t.FieldNullable  when 0 then '不为空'  when 1 then '' end as 说明    from (select   colorder=C.column_id,   FieldExp=ISNULL(PFD.[value],N''),   ColumnName=C.name,   FieldDataType=T.name,   Fieldlength=COLUMNPROPERTY(c.object_id ,c.name ,'PRECISION'),   Scale=C.scale,  FieldNullable=C.is_nullable  --FieldDefVal=D.definition  FROM sys.columns C   INNER JOIN sys.objects O   ON C.[object_id]=O.[object_id]   AND (O.type='U' or O.type='V')   AND O.is_ms_shipped=0   INNER JOIN sys.types T   ON C.user_type_id=T.user_type_id   LEFT JOIN sys.default_constraints D   ON C.[object_id]=D.parent_object_id   AND C.column_id=D.parent_column_id   AND C.default_object_id=D.[object_id]   LEFT JOIN sys.extended_properties PFD   ON PFD.class=1   AND C.[object_id]=PFD.major_id   AND C.column_id=PFD.minor_id   LEFT JOIN sys.extended_properties PTB   ON PTB.class=1   AND PTB.minor_id=0   AND C.[object_id]=PTB.major_id   LEFT JOIN   (   SELECT   IDXC.[object_id],   IDXC.column_id,   Sort=CASE INDEXKEY_PROPERTY(IDXC.[object_id],IDXC.index_id,IDXC.index_column_id,'IsDescending')  WHEN 1 THEN 'DESC' WHEN 0 THEN 'ASC' ELSE '' END,    PrimaryKey=CASE WHEN IDX.is_primary_key=1 THEN N'√'ELSE N'' END,   IndexName=IDX.Name    FROM sys.indexes IDX    INNER JOIN sys.index_columns IDXC    ON IDX.[object_id]=IDXC.[object_id]    AND IDX.index_id=IDXC.index_id    LEFT JOIN sys.key_constraints KC    ON IDX.[object_id]=KC.[parent_object_id]    AND IDX.index_id=KC.unique_index_id    INNER JOIN    (    SELECT [object_id], Column_id, index_id=MIN(index_id)    FROM sys.index_columns    GROUP BY [object_id], Column_id    ) IDXCUQ    ON IDXC.[object_id]=IDXCUQ.[object_id]    AND IDXC.Column_id=IDXCUQ.Column_id    AND IDXC.index_id=IDXCUQ.index_id    ) IDX    ON C.[object_id]=IDX.[object_id]    AND C.column_id=IDX.column_id    WHERE O.name='--tablename--')as t  ORDER BY colorder,ColumnName</pre> </div> <div class="ay1code"> <pre class="brush:sql;">SELECT    表名=case when a.colorder=1 then d.name else '' end,   表说明=case when a.colorder=1 then isnull(f.value,'') else '' end,  字段序号=a.colorder,   字段名=a.name,   标识=case when COLUMNPROPERTY(a.id,a.name,'IsIdentity')=1 then '√'else '' end,   主键=case when exists(SELECT 1 FROM sysobjects where xtype='PK' and name in (    SELECT name FROM sysindexes WHERE indid in(     SELECT indid FROM sysindexkeys WHERE id = a.id AND colid=a.colid      ))) then '√' else '' end,   类型=b.name,   占用字节数=a.length,   长度=COLUMNPROPERTY(a.id,a.name,'PRECISION'),   小数位数=isnull(COLUMNPROPERTY(a.id,a.name,'Scale'),0),   允许空=case when a.isnullable=1 then '√'else '' end,   默认值=isnull(e.text,''),   字段说明=isnull(g.[value],'')   FROM syscolumns a   left join systypes b on a.xtype=b.xusertype   inner join sysobjects d on a.id=d.id and d.xtype='U' and d.name&lt;&gt;'dtproperties'   left join syscomments e on a.cdefault=e.id   left join sys.extended_properties g on a.id=g.major_id and a.colid=g.minor_id   left join sys.extended_properties f on d.id=f.major_id and f.minor_id =0   --where d.name='要查询的表' --如果只查询指定表,加上此条件     order by a.id,a.colorder</pre> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-321.htm">简单实现JS浅拷贝和深拷贝</a></p>
+                                                        <p>下一个：<a href="/html/category/article-323.htm">从一个基础的socket服务说起</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-465.htm" title="C语言数据结构、十字链表的分析及实现">C语言数据结构、十字链表的分析及实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
+                        <li class="py-2"><a href="/html/category/article-476.htm" title="JavaScript查找数组中的第一个冗余元素方法详解">JavaScript查找数组中的第一个冗余元素方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-480.htm" title="JAVA基础小细节——equals()与hashCode()">JAVA基础小细节——equals()与hashCode()</a></li>
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-501.htm" title="springboot自定义视图映射">springboot自定义视图映射</a></li>
+                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
+                        <li class="py-2"><a href="/html/category/article-488.htm" title="eslint在vue中如何使用">eslint在vue中如何使用</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

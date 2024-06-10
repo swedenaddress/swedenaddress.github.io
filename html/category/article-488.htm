@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-488.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>eslint在vue中如何使用 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        eslint在vue中如何使用                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <h1>1、说明</h1> <p style="text-indent:33px;">eslint帮助我们检查代码的是否规范，本文使用Prettier规则（还有<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://standardjs.com/readme-zhcn.html"  rel="nofollow">standardjs</a>、<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/airbnb/javascript"  rel="nofollow">airbnb</a>等规则），如果你想用eslint默认规则或者自行定义规则，可以不下载prettier相关依赖包（同时在.eslintrc.js删掉带‘prettier’的相关配置，不删除配置又没有下载prettier项目启动会报错）。我在vscode环境下载eslint插件可以在保存时根据rules格式化不规范的代码。</p> <h1>2、下载相关依赖包</h1> <p style="text-indent:33px;">&nbsp;"eslint"</p> <p style="text-indent:33px;">&nbsp;"babel-eslint"</p> <p style="text-indent:33px;">&nbsp;&nbsp;"eslint-config-prettier"</p> <p style="text-indent:33px;">&nbsp;&nbsp;"eslint-loader"</p> <p style="text-indent:33px;">&nbsp;&nbsp;"eslint-plugin-prettier"</p> <p style="text-indent:33px;">&nbsp;&nbsp;&nbsp;"eslint-plugin-vue"</p> <h1>3、配置文件.eslintrc.js（还有其他方式配置规则）</h1> <p style="text-indent:33px;">在项目根目录新建文件.eslintrc.js，内容如下（可根据自己的需求配置）：</p> <pre><code class="language-javascript">module.exports = {   root: true, // 只将当前项目应用此规则   parserOptions: {     "parser": "babel-eslint",     "sourceType": 'module', // 设置为  "module" ，"script" (默认)     // "ecmaVersion": 6 // 启用es6语法，不自动启用es6全局变量   },   parser: "vue-eslint-parser", // 识别.vue文件 需下载eslint-plugin-vue   // 想启用的环境   env: {     "browser": true,     "node": true,     "es6": true   },    //继承插件的规则   extends: [     "eslint:recommended", // 启动被标记为 “√” 默认规则     "plugin:prettier/recommended" // 别人写好的规则，依赖包eslint-config-***，这里用的是prettier规则   ],   // 配置插件名字的列表。插件名称可以省略 ‘eslint-plugin- ’前缀。   plugins: [      'vue', // eslint-plugin-vue     'prettier' // eslint-plugin-prettier   ],   // 自定义规则 优先级最高   "rules": {     "no-console": 0   } }</code></pre> <p style="text-indent:33px;"> <h1>4、在vscode(版本1.44.0)配置保存时自动格式化代码</h1> <p style="text-indent:33px;">vscode下载插件eslint,打开settings.json文件，添加：</p> <p style="text-indent:33px;">"editor.codeActionsOnSave":&nbsp;{<!-- --></p> <p style="text-indent:33px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"source.fixAll.eslint":&nbsp;true</p> <p style="text-indent:33px;">&nbsp;&nbsp;&nbsp;&nbsp;},</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220609/6fe1cdf918a2e31209575411b72410f5.jpg"></p> <p>其他版本配置或略有不同，比如在版本1.36.1上如图配置方可生效</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220609/31792b6daa2151744b09e407466e3d36.jpg"></p> <h1>5、在package.json添加scripts命令：eslint 检测并自动修复</h1> <p>&nbsp;"eslint":&nbsp;"eslint&nbsp;--fix&nbsp;--ext&nbsp;.js,.vue&nbsp;--ignore-path&nbsp;.eslintignore&nbsp;."</p> <p>&nbsp; eslintignore是配置检测时忽略的文件</p> <p style="text-align:center;"><img fetchpriority="high" decoding="async" alt="" height="153" src="http://img.555519.xyz/uploads3/20220609/42d851e3412a352701fd733e6fa02a14.jpg"></p> <h1 style="text-indent:0px;">6、项目关闭eslint验证</h1> <p style="text-indent:33px;">这里以vue-cli3及以上版本为例，只需在vue.config.js中添加如下配置</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; lintOnSave: false</p> <h1>7、eslint 中文文档</h1> <p style="text-indent:33px;"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://eslint.bootcss.com/docs/user-guide/getting-started"  rel="nofollow">https://eslint.bootcss.com/docs/user-guide/getting-started</a></p> <p style="text-indent:33px;"> <p>有问题欢迎留言。</p> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-487.htm">Go 语言结构体链表详解</a></p>
+                                                        <p>下一个：<a href="/html/category/article-489.htm">CSS中文本居中显示</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-500.htm" title="SpringBoot动态定时任务的实现">SpringBoot动态定时任务的实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
+                        <li class="py-2"><a href="/html/category/article-496.htm" title="vue3+elementUI-plus 项目实战登录">vue3+elementUI-plus 项目实战登录</a></li>
+                        <li class="py-2"><a href="/html/category/article-480.htm" title="JAVA基础小细节——equals()与hashCode()">JAVA基础小细节——equals()与hashCode()</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-465.htm" title="C语言数据结构、十字链表的分析及实现">C语言数据结构、十字链表的分析及实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-524.htm" title="数据库四大特性及数据库隔离级别（*）">数据库四大特性及数据库隔离级别（*）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-449.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>feign实现微服务之间的远程调用 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        feign实现微服务之间的远程调用                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>原因：RestTemplate存在代码可读性差，编程体验不统一，参数复杂URL难以维护等缺点，因此可以用Feign替代RestTemplate实现微服务之间的远程调用。步骤如下：</p> <p>1.在需要远程调用的微服务的pom文件中增加feign的依赖。</p> <pre><code class="language-java">&lt;dependency&gt;     &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;     &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt; &lt;/dependency&gt;</code></pre> <p>2.在启动类上添加注解开启Feign的功能。@EnableFeignClients//开启feign的功能</p> <p>3.编写Feign的客户端（注意是接口）例子如下</p> <pre><code class="language-java">@FeignClient("userservice") //被调用服务名 public interface UserClient {     @GetMapping("/user/{id}")     User findById(@PathVariable("id") Long id);//被调用的方法 }</code></pre> <p>4.测试在测试类中自动注入编写的接口</p> <pre><code class="language-java">@Service public class OrderService {      @Autowired     private OrderMapper orderMapper;     @Autowired     private RestTemplate restTemplate;     @Autowired     private UserClient userClient;//编写的Feign接口      public Order queryOrderById(Long orderId) {         // 1.查询订单         Order order = orderMapper.findById(orderId);         //第一种方式：用restTemplate实现，代码编写不规范 /*        String url="http://localhost:8081/user/"+order.getUserId();         User user = restTemplate.getForObject(url, User.class);*/         //第二种方式：用feign实现远程调用是常用的方式         User user = userClient.findById(order.getUserId());         order.setUser(user);         // 4.返回         return order;     }</code></pre> <p>5.Feign的简单调用已经完成。总结一下：先引入依赖、启动类加上注解添加@EnableFeignClients注解 ，编写FeignClient接口 ，使用FeignClient中定义的方法代替RestTemplate。</p> <h2>注意点：feign支持自定义配置</h2> <p>1.修改配置文件yml文件可以更改feign的日志级别。例如：</p> <pre><code class="language-java">feign:     client:     config:        default: # 这里用default就是全局配置，如果是写服务名称，则是针对某个微服务的配置         loggerLevel: FULL #  日志级别</code></pre> <p>也可以用代码方式更改日志级别此处省略。</p> <p>以上是feign的简单使用，底层发起的http请求时默认的URLConnection，不支持连接池，为了提高性能应该用连接池代替默认的URLConnection。本文用Apache的HttpClient来演示。以下是步骤</p> <p>1.调用者的pom文件中引入依赖</p> <pre><code class="language-java">        &lt;!--httpClient的依赖 --&gt;         &lt;dependency&gt;             &lt;groupId&gt;io.github.openfeign&lt;/groupId&gt;             &lt;artifactId&gt;feign-httpclient&lt;/artifactId&gt;         &lt;/dependency&gt;</code></pre> <p>2.yml文件中修改feign的配置</p> <pre><code class="language-java"># 修改feign的日志级别 feign:   client:     config:       default: # default全局的配置         loggerLevel: BASIC # 日志级别，BASIC就是基本的请求和响应信息 # 开启feign对HttpClient的支持           httpclient:     enabled: true # 开启feign对HttpClient的支持     max-connections: 200 # 最大的连接数     max-connections-per-route: 50 # 每个路径的最大连接数</code></pre> <p>3.结束，feign的最佳实践此处略。</p> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-448.htm">【Golang实战】反射设置结构体字段值</a></p>
+                                                        <p>下一个：<a href="/html/category/article-450.htm">设计模式详解之结构型设计模式——适配器、装饰器</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                        <li class="py-2"><a href="/html/category/article-495.htm" title="python读写hdfs">python读写hdfs</a></li>
+                        <li class="py-2"><a href="/html/category/article-514.htm" title="Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源">Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源</a></li>
+                        <li class="py-2"><a href="/html/category/article-489.htm" title="CSS中文本居中显示">CSS中文本居中显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-481.htm" title="如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？">如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？</a></li>
+                        <li class="py-2"><a href="/html/category/article-478.htm" title="JavaScript如何添加用于将案例交换到字符串原型对象的函数">JavaScript如何添加用于将案例交换到字符串原型对象的函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-522.htm" title="用字符串中的ASCII值替换所有特殊字符-JavaScript">用字符串中的ASCII值替换所有特殊字符-JavaScript</a></li>
+                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
+                        <li class="py-2"><a href="/html/category/article-501.htm" title="springboot自定义视图映射">springboot自定义视图映射</a></li>
+                        <li class="py-2"><a href="/html/category/article-507.htm" title="vue 封装图片路径">vue 封装图片路径</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

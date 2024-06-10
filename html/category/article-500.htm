@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-500.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>SpringBoot动态定时任务的实现 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        SpringBoot动态定时任务的实现                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <h1>1. Spring 定时任务的简单实现</h1> <p>在<code>Spring Boot</code>中使用定时任务，只需要<code>@EnableScheduling</code>开启定时任务支持，在需要调度的方法上添加<code>@Scheduled</code>注解。这样就能够在项目中开启定时调度功能了，支持通过cron、fixedRate、fixedDelay等灵活的控制执行周期和频率。</p> <h2>1.1 缺点</h2> <ul> <li>周期一旦指定，想要更改必须要重启应用</li> </ul> <h2>1.2 需求</h2> <ul> <li>热更新定时任务的执行周期，基于cron表达式并支持外部存储，如数据库，nacos等</li> <li>最小改造兼容现有的定时任务(仅需添加一个注解)</li> <li>动态增加定时任务</li> </ul> <h1>2.Spring 定时任务源码分析</h1> <p>2.1 <code>@EnableScheduling</code> 引入了配置类 <code>SchedulingConfiguration</code></p> <pre><code>@Target(ElementType.TYPE) @Retention(RetentionPolicy.RUNTIME) @Import(SchedulingConfiguration.class) @Documented public @interface EnableScheduling { } </code></pre> <p>2.2 <code>SchedulingConfiguration</code>只配置了一个bean,<code>ScheduledAnnotationBeanPostProcessor</code>从名字就知道该类实现<code>BeanPostProcessor</code>接口</p> <pre><code>@Configuration @Role(BeanDefinition.ROLE_INFRASTRUCTURE) public class SchedulingConfiguration {    @Bean(name = TaskManagementConfigUtils.SCHEDULED_ANNOTATION_PROCESSOR_BEAN_NAME)    @Role(BeanDefinition.ROLE_INFRASTRUCTURE)    public ScheduledAnnotationBeanPostProcessor scheduledAnnotationProcessor() {       return new ScheduledAnnotationBeanPostProcessor();    } } </code></pre> <p>2.3 <code>ScheduledAnnotationBeanPostProcessor</code>的<code>postProcessAfterInitialization</code>实现，可见具体处理<code>@Scheduled</code>实现定时任务的是<code>processScheduled</code>方法</p> <pre><code>@Override public Object postProcessAfterInitialization(Object bean, String beanName) {    if (bean instanceof AopInfrastructureBean || bean instanceof TaskScheduler ||          bean instanceof ScheduledExecutorService) {       // Ignore AOP infrastructure such as scoped proxies.       return bean;    }     Class&lt;?&gt; targetClass = AopProxyUtils.ultimateTargetClass(bean);    if (!this.nonAnnotatedClasses.contains(targetClass) &amp;&amp;          AnnotationUtils.isCandidateClass(targetClass, Arrays.asList(Scheduled.class, Schedules.class))) {       // 获取bean的方法及@Scheduled映射关系       Map&lt;Method, Set&lt;Scheduled&gt;&gt; annotatedMethods = MethodIntrospector.selectMethods(targetClass,             (MethodIntrospector.MetadataLookup&lt;Set&lt;Scheduled&gt;&gt;) method -&gt; {                Set&lt;Scheduled&gt; scheduledMethods = AnnotatedElementUtils.getMergedRepeatableAnnotations(                      method, Scheduled.class, Schedules.class);                return (!scheduledMethods.isEmpty() ? scheduledMethods : null);             });       if (annotatedMethods.isEmpty()) {          this.nonAnnotatedClasses.add(targetClass);          if (logger.isTraceEnabled()) {             logger.trace("No @Scheduled annotations found on bean class: " + targetClass);          }       }       else {          // Non-empty set of methods          annotatedMethods.forEach((method, scheduledMethods) -&gt;                // 处理@Scheduled注解                scheduledMethods.forEach(scheduled -&gt; processScheduled(scheduled, method, bean)));          if (logger.isTraceEnabled()) {             logger.trace(annotatedMethods.size() + " @Scheduled methods processed on bean '" + beanName +                   "': " + annotatedMethods);          }       }    }    return bean; } </code></pre> <p>2.4 以下仅贴出<code>ScheduledAnnotationBeanPostProcessor.processScheduled</code>处理<code>cron</code>表达式的关键实现,</p> <pre><code>private final ScheduledTaskRegistrar registrar;  public ScheduledAnnotationBeanPostProcessor() {    this.registrar = new ScheduledTaskRegistrar(); }  protected void processScheduled(Scheduled scheduled, Method method, Object bean) {    try {       // 将定时任务方法，转为Runnable       Runnable runnable = createRunnable(bean, method);       boolean processedSchedule = false;        Set&lt;ScheduledTask&gt; tasks = new LinkedHashSet&lt;&gt;(4);        // Determine initial delay       // 处理 scheduled.initialDelay()的值，略过...        // Check cron expression       String cron = scheduled.cron();       if (StringUtils.hasText(cron)) {          String zone = scheduled.zone();          if (this.embeddedValueResolver != null) {             // ${}变量值表达式的转换             cron = this.embeddedValueResolver.resolveStringValue(cron);             zone = this.embeddedValueResolver.resolveStringValue(zone);          }          if (StringUtils.hasLength(cron)) {             Assert.isTrue(initialDelay == -1, "'initialDelay' not supported for cron triggers");             processedSchedule = true;             if (!Scheduled.CRON_DISABLED.equals(cron)) {                TimeZone timeZone;                if (StringUtils.hasText(zone)) {                   timeZone = StringUtils.parseTimeZoneString(zone);                } else {                   timeZone = TimeZone.getDefault();                }                                // 创建cron触发器CronTrigger对象，并注册CronTask                tasks.add(this.registrar.scheduleCronTask(new CronTask(runnable, new CronTrigger(cron, timeZone))));             }          }       }       // 处理fixedDelay和fixedRate，及ScheduledTask保存用于销毁，略过...    }    // 略过 catch Exception ... } </code></pre> <p>以上通过<code>this.registrar.scheduleCronTask</code>实现cron定时任务注册或初始化</p> <h1>3.动态定时任务的实现</h1> <p>实现思路: 重写<code>ScheduledAnnotationBeanPostProcessor.processScheduled</code>方法，修改处理cron的部分代码，使用<code>this.registrar.scheduleTriggerTask</code>注册或初始化定时任务</p> <h2>3.1 相关类图</h2> <p>DisposableBean+destroy() : voidDynamicCronScheduleTaskManager+Map&lt;String, ScheduledTask&gt; dynamicScheduledTaskMap-ScheduledTaskRegistrar registrar+addTriggerTask(String cronName, TriggerTask task) : ScheduledTask+contains(String cronName) : boolean+updateTriggerTask(String cronName) : void+removeTriggerTask(String cronName) : voidEnvironmentAware+setEnvironment()EnvironmentDynamicCronHandler+Environment environment+environmentChangeEvent(EnvironmentChangeEvent event) : voidAbstractDynamicCronHandler-DynamicCronScheduleTaskManager dynamicCronScheduleTaskManager+getCronExpression(String cronName) : String+updateTriggerTash(String cronName) : voidTrigger+nextExecutionTime(TriggerContext triggerContext) : DateDynamicCronTrigger-String cronName-AbstractDynamicCronHandler dynamicCronHandler-String cronExpression-CronSequenceGenerator sequenceGeneratorScheduledDynamicCron+value() : String+cronName() : Stringextends AbstractDynamicCronHandler</p> <h2>3.2 DynamicCronScheduleTaskManager</h2> <pre><code>import org.springframework.beans.factory.DisposableBean; import org.springframework.scheduling.config.ScheduledTask; import org.springframework.scheduling.config.ScheduledTaskRegistrar; import org.springframework.scheduling.config.TriggerTask; import java.util.HashMap; import java.util.Map; /**  * @author HuangJS  * @date 2021-12-11 3:04 下午  */ public class DynamicCronScheduleTaskManager implements DisposableBean {     private Map&lt;String, ScheduledTask&gt; dynamicScheduledTaskMap = new HashMap&lt;&gt;();     ScheduledTaskRegistrar registrar;     // 添加定时任务     public ScheduledTask addTriggerTask(String cronName, TriggerTask task) {         ScheduledTask scheduledTask = dynamicScheduledTaskMap.get(cronName);         if (scheduledTask != null) {             scheduledTask.cancel();         }                  scheduledTask = this.registrar.scheduleTriggerTask(task);         dynamicScheduledTaskMap.put(cronName, scheduledTask);         return scheduledTask;     }     public boolean contains(String cronName){         return this.dynamicScheduledTaskMap.containsKey(cronName);     }     // 更新定时任务的触发时机     public void updateTriggerTask(String cronName) {         ScheduledTask scheduledTask = dynamicScheduledTaskMap.get(cronName);         if (scheduledTask == null) {             throw new IllegalStateException("Invalid cronName "" + cronName + "",no fund ScheduledTask");         }         scheduledTask.cancel();                  scheduledTask = this.registrar.scheduleTriggerTask((TriggerTask) scheduledTask.getTask());         dynamicScheduledTaskMap.put(cronName, scheduledTask);     }          // 移除定时任务     public void removeTriggerTask(String cronName) {         ScheduledTask scheduledTask = dynamicScheduledTaskMap.remove(cronName);         if (scheduledTask != null) {             scheduledTask.cancel();         }     }          @Override     public void destroy() throws Exception {         for (ScheduledTask value : dynamicScheduledTaskMap.values()) {             value.cancel();         }         this.dynamicScheduledTaskMap.clear();     } } </code></pre> <h2>3.3 AbstractDynamicCronHandler</h2> <pre><code>public abstract class AbstractDynamicCronHandler {     @Autowired     protected DynamicCronScheduleTaskManager dynamicCronScheduleTaskManager;     /**      * 获取cron表达式      * @return      */     public abstract String getCronExpression(String cronName);          /**      * 更新cronName对应的定时任务的触发时机      * @param cronName      */     public void updateTriggerTask(String cronName) {         dynamicCronScheduleTaskManager.updateTriggerTask(cronName);     } } </code></pre> <h2>3.4 EnvironmentDynamicCronHandler</h2> <p>基于Environment，在刷新配置时，自动刷新定时任务的触发时机，支持分布式多节点集群部署。</p> <p>如，cron表达式配置在nacos,更新nacos上的配置时由于监听了<code>EnvironmentChangeEvent</code>事件实现了定时任务的触发时机的更新</p> <pre><code>import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.springframework.cloud.context.environment.EnvironmentChangeEvent; import org.springframework.context.EnvironmentAware; import org.springframework.context.event.EventListener; import org.springframework.core.env.Environment;  /**  * @author HuangJS  * @date 2021-12-11 11:46 上午  */ public class EnvironmentDynamicCronHandler extends AbstractDynamicCronHandler implements EnvironmentAware {     private final Logger logger = LoggerFactory.getLogger(EnvironmentDynamicCronHandler.class);     private Environment environment;          @Override     public String getCronExpression(String cronName) {         try {             return environment.getProperty(cronName);         } catch (Exception e) {             logger.error(e.getMessage(), e);         }         return null;     }          @Override     public void setEnvironment(Environment environment) {         this.environment = environment;     }          @EventListener     public void environmentChangeEvent(EnvironmentChangeEvent event) {         for (String key : event.getKeys()) {             if (this.dynamicCronScheduleTaskManager.contains(key)) {                 this.dynamicCronScheduleTaskManager.updateTriggerTask(key);             }         }     } } </code></pre> <h2>3.5 DynamicCronTrigger</h2> <pre><code>public class DynamicCronTrigger implements Trigger {     private final static Logger LOGGER = LoggerFactory.getLogger(DynamicCronTrigger.class);     private String cronName;     private AbstractDynamicCronHandler dynamicCronHandler;     private String cronExpression;     private CronSequenceGenerator sequenceGenerator;          public DynamicCronTrigger(String cronName, AbstractDynamicCronHandler dynamicCronHandler) {         this.cronName = cronName;         this.dynamicCronHandler = dynamicCronHandler;     }          @Override     public Date nextExecutionTime(TriggerContext triggerContext) {         String cronExpression = dynamicCronHandler.getCronExpression(cronName);         if (cronExpression == null) {             return null;         }         if (this.sequenceGenerator == null || !cronExpression.equals(this.cronExpression)) {             try {                 this.sequenceGenerator = new CronSequenceGenerator(cronExpression);                 this.cronExpression = cronExpression;             } catch (Exception e) {                 LOGGER.error(e.getMessage(), e);             }         }              Date date = triggerContext.lastCompletionTime();         if (date != null) {             Date scheduled = triggerContext.lastScheduledExecutionTime();             if (scheduled != null &amp;&amp; date.before(scheduled)) {                 // Previous task apparently executed too early...                 // Let's simply use the last calculated execution time then,                 // in order to prevent accidental re-fires in the same second.                 date = scheduled;             }         } else {             date = new Date();         }         return this.sequenceGenerator.next(date);     } } </code></pre> <h2>3.6 注解类ScheduledDynamicCron</h2> <pre><code>@Target({ElementType.METHOD,ElementType.ANNOTATION_TYPE}) @Retention(RetentionPolicy.RUNTIME) @Documented public @interface ScheduledDynamicCron {     /**      * 动态cron名称      * @return      */     @AliasFor("cronName")     String value() default "";     /**      * 动态cron名称      * @return      */     @AliasFor("value")     String cronName() default "";          /**      * 动态cron处理类，默认使用基于 Environment 实现的处理类      * @return      */     Class&lt;? extends AbstractDynamicCronHandler&gt; handler() default EnvironmentDynamicCronHandler.class; } </code></pre> <h2>3.7 DynamicScheduledAnnotationBeanPostProcessor</h2> <pre><code>import org.springframework.beans.factory.BeanFactory; import org.springframework.scheduling.annotation.Scheduled; import org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor; import org.springframework.scheduling.config.*; import org.springframework.scheduling.support.CronTrigger; import org.springframework.util.Assert; import org.springframework.util.StringUtils; import org.springframework.util.StringValueResolver;  import java.lang.reflect.Field; import java.lang.reflect.Method; import java.time.Duration; import java.util.LinkedHashSet; import java.util.Map; import java.util.Set; import java.util.TimeZone;  /**  *  * @author HuangJS  * @date 2020/5/14 17:23  **/  public class DynamicScheduledAnnotationBeanPostProcessor extends ScheduledAnnotationBeanPostProcessor {     private StringValueResolver embeddedValueResolver;     private BeanFactory beanFactory;     private DynamicCronScheduleTaskManager dynamicCronScheduleTaskManager;      private final ScheduledTaskRegistrar registrar = (ScheduledTaskRegistrar) getFieldValueFromParentClass("registrar");     private final Map&lt;Object, Set&lt;ScheduledTask&gt;&gt; scheduledTasks = (Map) getFieldValueFromParentClass("scheduledTasks");      public DynamicScheduledAnnotationBeanPostProcessor(DynamicCronScheduleTaskManager dynamicCronScheduleTaskManager) {         this.dynamicCronScheduleTaskManager = dynamicCronScheduleTaskManager;         this.dynamicCronScheduleTaskManager.registrar = this.registrar;     }      @Override     public void setEmbeddedValueResolver(StringValueResolver resolver) {         super.setEmbeddedValueResolver(resolver);         this.embeddedValueResolver = resolver;     }          @Override     public void setBeanFactory(BeanFactory beanFactory) {         super.setBeanFactory(beanFactory);         this.beanFactory = beanFactory;     }          /**      * @param scheduled      * @param method      * @param bean      * @see ScheduledAnnotationBeanPostProcessor      */     @Override     protected void processScheduled(Scheduled scheduled, Method method, Object bean) {         try {             Runnable runnable = createRunnable(bean, method);             boolean processedSchedule = false;             String errorMessage =                     "Exactly one of the 'cron', 'fixedDelay(String)', or 'fixedRate(String)' attributes is required";              Set&lt;ScheduledTask&gt; tasks = new LinkedHashSet&lt;&gt;(4);              // Determine initial delay             long initialDelay = scheduled.initialDelay();             String initialDelayString = scheduled.initialDelayString();             if (StringUtils.hasText(initialDelayString)) {                 Assert.isTrue(initialDelay &lt; 0, "Specify 'initialDelay' or 'initialDelayString', not both");                 if (this.embeddedValueResolver != null) {                     initialDelayString = this.embeddedValueResolver.resolveStringValue(initialDelayString);                 }                 if (StringUtils.hasLength(initialDelayString)) {                     try {                         initialDelay = parseDelayAsLong(initialDelayString);                     }                     catch (RuntimeException ex) {                         throw new IllegalArgumentException(                                 "Invalid initialDelayString value "" + initialDelayString + "" - cannot parse into long");                     }                 }             }                  // 处理ScheduledDynamicCron注解             if (method.isAnnotationPresent(ScheduledDynamicCron.class)) {                 ScheduledDynamicCron dynamicCron = method.getAnnotation(ScheduledDynamicCron.class);                 String cronName = dynamicCron.value();                 if (StringUtils.hasText(dynamicCron.cronName())) {                     cronName = dynamicCron.cronName();                 } else {                     Assert.isTrue(StringUtils.hasText(cronName), "@ScheduledDynamicCron 'cronName' or 'value' attributes is required");                 }                                  DynamicCronTrigger trigger = new DynamicCronTrigger(cronName, this.beanFactory.getBean(dynamicCron.handler()));                 ScheduledTask scheduledTask = this.dynamicCronScheduleTaskManager.addTriggerTask(cronName, new TriggerTask(runnable, trigger));                 tasks.add(scheduledTask);                      processedSchedule = true;             } else {                 // Check cron expression                 String cron = scheduled.cron();                 if (StringUtils.hasText(cron)) {                     String zone = scheduled.zone();                     if (this.embeddedValueResolver != null) {                         cron = this.embeddedValueResolver.resolveStringValue(cron);                         zone = this.embeddedValueResolver.resolveStringValue(zone);                     }                     if (StringUtils.hasLength(cron)) {                         Assert.isTrue(initialDelay == -1, "'initialDelay' not supported for cron triggers");                         processedSchedule = true;                         if (!Scheduled.CRON_DISABLED.equals(cron)) {                             TimeZone timeZone;                             if (StringUtils.hasText(zone)) {                                 timeZone = StringUtils.parseTimeZoneString(zone);                             }                             else {                                 timeZone = TimeZone.getDefault();                             }                             tasks.add(this.registrar.scheduleCronTask(new CronTask(runnable, new CronTrigger(cron, timeZone))));                         }                     }                 }             }              // At this point we don't need to differentiate between initial delay set or not anymore             if (initialDelay &lt; 0) {                 initialDelay = 0;             }              // Check fixed delay             long fixedDelay = scheduled.fixedDelay();             if (fixedDelay &gt;= 0) {                 Assert.isTrue(!processedSchedule, errorMessage);                 processedSchedule = true;                 tasks.add(this.registrar.scheduleFixedDelayTask(new FixedDelayTask(runnable, fixedDelay, initialDelay)));             }             String fixedDelayString = scheduled.fixedDelayString();             if (StringUtils.hasText(fixedDelayString)) {                 if (this.embeddedValueResolver != null) {                     fixedDelayString = this.embeddedValueResolver.resolveStringValue(fixedDelayString);                 }                 if (StringUtils.hasLength(fixedDelayString)) {                     Assert.isTrue(!processedSchedule, errorMessage);                     processedSchedule = true;                     try {                         fixedDelay = parseDelayAsLong(fixedDelayString);                     }                     catch (RuntimeException ex) {                         throw new IllegalArgumentException(                                 "Invalid fixedDelayString value "" + fixedDelayString + "" - cannot parse into long");                     }                     tasks.add(this.registrar.scheduleFixedDelayTask(new FixedDelayTask(runnable, fixedDelay, initialDelay)));                 }             }              // Check fixed rate             long fixedRate = scheduled.fixedRate();             if (fixedRate &gt;= 0) {                 Assert.isTrue(!processedSchedule, errorMessage);                 processedSchedule = true;                 tasks.add(this.registrar.scheduleFixedRateTask(new FixedRateTask(runnable, fixedRate, initialDelay)));             }             String fixedRateString = scheduled.fixedRateString();             if (StringUtils.hasText(fixedRateString)) {                 if (this.embeddedValueResolver != null) {                     fixedRateString = this.embeddedValueResolver.resolveStringValue(fixedRateString);                 }                 if (StringUtils.hasLength(fixedRateString)) {                     Assert.isTrue(!processedSchedule, errorMessage);                     processedSchedule = true;                     try {                         fixedRate = parseDelayAsLong(fixedRateString);                     }                     catch (RuntimeException ex) {                         throw new IllegalArgumentException(                                 "Invalid fixedRateString value "" + fixedRateString + "" - cannot parse into long");                     }                     tasks.add(this.registrar.scheduleFixedRateTask(new FixedRateTask(runnable, fixedRate, initialDelay)));                 }             }              // Check whether we had any attribute set             Assert.isTrue(processedSchedule, errorMessage);              // Finally register the scheduled tasks             synchronized (this.scheduledTasks) {                 Set&lt;ScheduledTask&gt; regTasks = this.scheduledTasks.computeIfAbsent(bean, key -&gt; new LinkedHashSet&lt;&gt;(4));                 regTasks.addAll(tasks);             }         }         catch (IllegalArgumentException ex) {             throw new IllegalStateException(                     "Encountered invalid @Scheduled method '" + method.getName() + "': " + ex.getMessage());         }     }     private Object getFieldValueFromParentClass(String registrar) {         try {             Field field = ScheduledAnnotationBeanPostProcessor.class.getDeclaredField(registrar);             field.setAccessible(true);             Object fieldVaule = field.get(this);             return fieldVaule;         } catch (Exception e) {             logger.error("通过反射读取ScheduledAnnotationBeanPostProcessor.{} 的时候出现错误", e);             throw new IllegalArgumentException(e);         }     }     private static long parseDelayAsLong(String value) throws RuntimeException {         return value.length() &lt;= 1 || !isP(value.charAt(0)) &amp;&amp; !isP(value.charAt(1)) ? Long.parseLong(value) : Duration.parse(value).toMillis();     }     private static boolean isP(char ch) {         return ch == 'P' || ch == 'p';     } } </code></pre> <h2>3.8 配置类SchedulerConfiguration</h2> <pre><code>@EnableScheduling public class SchedulerConfiguration implements SchedulingConfigurer {     /**      * 执行任务的线程数量      */     @Value("${app.scheduler.thread.count:10}")     private int schedulerThreadCount;      @Override     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {         TaskScheduler taskScheduler = new ConcurrentTaskScheduler(new ScheduledThreadPoolExecutor(schedulerThreadCount));         taskRegistrar.setTaskScheduler(taskScheduler);     }          @Bean     public EnvironmentDynamicCronHandler environmentDynamicCronHandler() {         return new EnvironmentDynamicCronHandler();     }          @Bean     public DynamicCronScheduleTaskManager dynamicCronScheduleTaskManager() {         return new DynamicCronScheduleTaskManager();     }          @Bean(name = TaskManagementConfigUtils.SCHEDULED_ANNOTATION_PROCESSOR_BEAN_NAME)     @Role(BeanDefinition.ROLE_INFRASTRUCTURE)     @Primary     public ScheduledAnnotationBeanPostProcessor scheduledAnnotationProcessor(DynamicCronScheduleTaskManager dynamicCronScheduleTaskManager) {         return new RedisScheduledAnnotationBeanPostProcessor(dynamicCronScheduleTaskManager);     } } </code></pre> <h1>4. Spring boot使用示例</h1> <h2>4.1 配置方式，在启动类中导入配置类<code>SchedulerConfiguration</code><br /> </h2> <p>如下示例：</p> <pre><code>@SpringBootApplication @Import(SchedulerConfiguration.class) // 导入配置类 public class DemoApplication {     public static void main(String[] args) {         SpringApplication.run(DemoApplication.class, args);     } } </code></pre> <h2>4.2 nacos配置cron示例</h2> <p>nacos的配置</p> <pre><code>cron:   name1: "0/5 * * * * ?" # 每5秒执行一次 </code></pre> <p>使用<code>@ScheduledDynamicCron</code>指定cron表达式的配置名<code>cron.name1</code>,不指定<code>handler()</code>默认使用<code>EnvironmentDynamicCronHandler</code>,该类会根据指定的配置名<code>cron.name1</code>获取<code>nacos</code>上的<code>cron</code>表达式</p> <pre><code>@Component public class DynamicTask {     @Scheduled     @ScheduledDynamicCron("cron.name1")     public void dynamicCronForEnvironment() {         System.out.println("dynamicCronForEnvironment:" + DateUtils.format(LocalDateTime.now()));     } } </code></pre> <ul> <li> <code>@Scheduled</code>仍需要添加，但会忽略其中的cron属性配置</li> <li>修改<code>nacos</code>的<code>cron.name1</code>配置为<code>0/2 * * * * ?</code>并发布，定时任务会立即由原来的5秒执行一次，变为2秒执行一次</li> </ul> <h2>4.3 数据库存储cron示例</h2> <p>扩展AbstractDynamicCronHandler，实现从数据库查询cron表达式</p> <pre><code>import org.springframework.beans.factory.annotation.Autowired; import org.springframework.stereotype.Component;  @Component public class DynamicCronHandler extends AbstractDynamicCronHandler {     @Autowired     private ParametersService parametersService;          @Override     public String getCronExpression(String cronName) {         // 通过cronName查询保存在数据库的cron表达式         Parameters ap = parametersService.getByName(cronName);         return ap.getValue();     } } </code></pre> <p>定时任务类</p> <pre><code>@Component public class DynamicTask {     @Scheduled     // 需要指定handler为上面定义的DynamicCronHandler     @ScheduledDynamicCron(cronName = "cron.name2", handler = DynamicCronHandler.class)     public void dynamicCronForDb() {         System.out.println("dynamicCronForDb:" + LocalDateTime.now());     } } </code></pre> <p>定时任务触发时机更新，需要在更新数据库配置时进行更新</p> <pre><code>@RestController @RequestMapping("parameters") public class ParametersController {     @Autowired     private ParametersService parametersService;     @Autowired     private DynamicCronHandler dynamicCronHandler;          @PostMapping("/update")     public Result update(Parameters parameters){         if (parametersService.update(parameters)) {             if ("cron.name2".equals(parameters.getName())) {                 // 更新数据库配置后，更新定时任务的触发时机                 dynamicCronHandler.updateTriggerTask(cronName);             }         }         return Result.success();     } } </code></pre> <h2>4.4 分布式集群部署服务的定时任务的更新</h2> <p>上面更新数据库配置后，同步更新任务的触发时机，仅在本服务生效，集群中的其他服务节点并不会更新</p> <p>其他节点的更新可以通过消息总线的方式进行更新，如通过MQ发送广播消息，其它服务节点消费消息后调用以下方法更新任务触发时机</p> <pre><code>dynamicCronHandler.updateTriggerTask(cronName); </code></pre> <h2>4.5 添加定时任务</h2> <p>添加任务的web接口</p> <pre><code>@RestController @RequestMapping("dynamicCron") public class DynamicCronController {     @Autowired     private DynamicCronScheduleTaskManager dynamicCronScheduleTaskManager;     @Autowired     private EnvironmentDynamicCronHandler environmentDynamicCronHandler;          @PostMapping("/addTask")     public Result addTask(String cronName){         // 创建要定时运行的Runnable         Runnable runnable = () -&gt; System.out.println("run task:" + LocalDateTime.now());         // 使用EnvironmentDynamicCronHandler，创建触发器         DynamicCronTrigger trigger = new DynamicCronTrigger(cronName, environmentDynamicCronHandler);         // 添加定时任务         dynamicCronScheduleTaskManager.addTriggerTask(cronName, new TriggerTask(runnable, trigger));         return Result.success();     } } </code></pre> <p style="text-align:center;"><img decoding="async" alt="image.png" src="http://img.555519.xyz/uploads/20230118/36983457fad6b33b5385d51e472543ab.jpg"></p> <p>接口执行完成后，定时任务并不会执行，因为还没配置<code>cron.name2</code>，在nacos配置cron表达式后，定时任务将开始调度</p> <p style="text-align:center;"><img decoding="async" alt="image.png" src="http://img.555519.xyz/uploads/20230118/99e4926eecf75aa497ad718849f5a6f6.jpg"></p> <p>配置nacos后的控制台输出</p> <p style="text-align:center;"><img decoding="async" alt="image.png" src="http://img.555519.xyz/uploads/20230118/ae7b427af7a0cfa6b9d140d01f4334c6.jpg"></p> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-499.htm">我们如何将值添加到MySQL表的列中？</a></p>
+                                                        <p>下一个：<a href="/html/category/article-501.htm">springboot自定义视图映射</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-478.htm" title="JavaScript如何添加用于将案例交换到字符串原型对象的函数">JavaScript如何添加用于将案例交换到字符串原型对象的函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-493.htm" title="JavaScript动态操作select下拉框_javascript技巧_">JavaScript动态操作select下拉框_javascript技巧_</a></li>
+                        <li class="py-2"><a href="/html/category/article-480.htm" title="JAVA基础小细节——equals()与hashCode()">JAVA基础小细节——equals()与hashCode()</a></li>
+                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-468.htm" title="C语言井字棋游戏">C语言井字棋游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-475.htm" title="redis持久化概述">redis持久化概述</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

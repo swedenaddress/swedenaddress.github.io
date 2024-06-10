@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-274.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>PHP对象迭代 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        PHP对象迭代                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<h2>介绍</h2> <p>从PHP 5开始，可以遍历对象的所有可见项的列表。可以使用<strong>foreach</strong>循环以及<strong>迭代器</strong>接口来执行<strong>迭代</strong>。PHP中还有<strong>IteratorAggregate</strong>接口，可用于此目的</p> <h2>使用foreach循环</h2> <h2>示例</h2> <pre>&lt;?php class&nbsp;myclass{ &nbsp;&nbsp;&nbsp;private&nbsp;$var; &nbsp;&nbsp;&nbsp;protected&nbsp;$var1; &nbsp;&nbsp;&nbsp;public&nbsp;$x,&nbsp;$y,&nbsp;$z; &nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;__construct(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;var="private&nbsp;variable"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;var1=TRUE; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;x=100; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;y=200; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;z=300; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;iterate(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;($this&nbsp;as&nbsp;$key&nbsp;=&gt;&nbsp;$value)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;"$key&nbsp;=&gt;&nbsp;$value\n"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;} } $obj&nbsp;=&nbsp;new&nbsp;myclass(); foreach($obj&nbsp;as&nbsp;$key&nbsp;=&gt;&nbsp;$value)&nbsp;{ &nbsp;&nbsp;&nbsp;print&nbsp;"$key&nbsp;=&gt;&nbsp;$value\n"; } echo&nbsp;"\n"; $obj-&gt;iterate(); ?&gt;</pre> <p>输出结果</p> <p>输出如下-</p> <pre>x&nbsp;=&gt;&nbsp;100 y&nbsp;=&gt;&nbsp;200 z&nbsp;=&gt;&nbsp;300  var&nbsp;=&gt;&nbsp;private&nbsp;variable var1&nbsp;=&gt;&nbsp;1 x&nbsp;=&gt;&nbsp;100 y&nbsp;=&gt;&nbsp;200 z&nbsp;=&gt;&nbsp;300</pre> <h2>使用迭代器接口</h2> <p>此接口定义以下抽象方法，在以下示例中将实现</p> <pre>abstract&nbsp;public&nbsp;current&nbsp;(&nbsp;void&nbsp;)&nbsp;:&nbsp;mixed abstract&nbsp;public&nbsp;key&nbsp;(&nbsp;void&nbsp;)&nbsp;:&nbsp;scalar abstract&nbsp;public&nbsp;next&nbsp;(&nbsp;void&nbsp;)&nbsp;:&nbsp;void abstract&nbsp;public&nbsp;rewind&nbsp;(&nbsp;void&nbsp;)&nbsp;:&nbsp;void abstract&nbsp;public&nbsp;valid&nbsp;(&nbsp;void&nbsp;)&nbsp;:&nbsp;bool</pre> <p>Iterator::current —返回当前元素</p> <p>Iterator::key —返回当前元素的键</p> <p>Iterator::next-移至下一个元素</p> <p>Iterator::rewind —将Iterator倒退到第一个元素</p> <p>Iterator::valid —检查当前位置是否有效</p> <p>以下示例通过实现Iterator接口演示了对象迭代</p> <h2>示例</h2> <pre>&lt;?php class&nbsp;myclass&nbsp;implements&nbsp;Iterator{ &nbsp;&nbsp;&nbsp;private&nbsp;$arr&nbsp;=&nbsp;array('a','b','c'); &nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;rewind(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;"rewinding\n"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reset($this-&gt;arr); &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;current(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;current($this-&gt;arr); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;"current:&nbsp;$var\n"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$var; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;key()&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;key($this-&gt;arr); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;"key:&nbsp;$var\n"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$var; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;next()&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;next($this-&gt;arr); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;"next:&nbsp;$var\n"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$var; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;valid(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$key&nbsp;=&nbsp;key($this-&gt;arr); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;($key&nbsp;!==&nbsp;NULL&nbsp;&amp;&amp;&nbsp;$key&nbsp;!==&nbsp;FALSE); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;"valid:&nbsp;$var\n"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$var; &nbsp;&nbsp;&nbsp;} } $obj&nbsp;=&nbsp;new&nbsp;myclass(); foreach&nbsp;($obj&nbsp;as&nbsp;$k&nbsp;=&gt;&nbsp;$v)&nbsp;{ &nbsp;&nbsp;&nbsp;print&nbsp;"$k:&nbsp;$v\n"; } ?&gt;</pre> <p>输出结果</p> <p>上面的代码产生以下结果-</p> <pre>rewinding valid:&nbsp;1 current:&nbsp;a key:&nbsp;0 0:&nbsp;a next:&nbsp;b valid:&nbsp;1 current:&nbsp;b key:&nbsp;1 1:&nbsp;b next:&nbsp;c valid:&nbsp;1 current:&nbsp;c key:&nbsp;2 2:&nbsp;c next: valid:</pre> <div></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-273.htm">深入理解mmap&#8211;内核代码分析及驱动demo示例</a></p>
+                                                        <p>下一个：<a href="/html/category/article-275.htm">java时间相关类详解（Date类，Calendar类，LocalDate类，时间格式化，时间戳）</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-479.htm" title="python多线程编程_2小时玩转python多线程编程">python多线程编程_2小时玩转python多线程编程</a></li>
+                        <li class="py-2"><a href="/html/category/article-476.htm" title="JavaScript查找数组中的第一个冗余元素方法详解">JavaScript查找数组中的第一个冗余元素方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
+                        <li class="py-2"><a href="/html/category/article-488.htm" title="eslint在vue中如何使用">eslint在vue中如何使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-492.htm" title="kafka系列SpringBoot 中使用@KafkaListener详解与使用">kafka系列SpringBoot 中使用@KafkaListener详解与使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-477.htm" title="win11系统hosts文件无法保存怎么办">win11系统hosts文件无法保存怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

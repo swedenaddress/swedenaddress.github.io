@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-290.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>java开发对controller返回数据统一封装结果集 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        java开发对controller返回数据统一封装结果集                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>在日常开发中前后端对接一般要约定好某种规则，比如说一个接口甲同学返回code=100表示返回成功数据，乙同学返回code=200表示返回成功数据，就会形成很多各自的规则，前端对接起来也麻烦，因此针对这种情况要进行同一返回的规则，对code和message进行约定好</p> <p><img fetchpriority="high" decoding="async" alt="" height="147" src="http://img.555519.xyz/uploads3/20220822/269de8c272e3bb84ba81d6e5f81a635a.jpg"></p> <p>用到的工具类如下，可直接拿走：</p> <p><img decoding="async" alt="" height="119" src="http://img.555519.xyz/uploads3/20220822/bb32a9b874d084ca6545cbd5eadae168.jpg"></p> <h3>Result:</h3> <pre><code class="language-java">package com.atguigu.yygh.common.result;  import io.swagger.annotations.ApiModel; import io.swagger.annotations.ApiModelProperty; import lombok.Data;  /**  * 全局统一返回结果类  */ @Data @ApiModel(value = "全局统一返回结果") public class Result&lt;T&gt; {      @ApiModelProperty(value = "返回码")     private Integer code;      @ApiModelProperty(value = "返回消息")     private String message;      @ApiModelProperty(value = "返回数据")     private T data;      public Result(){}      protected static &lt;T&gt; Result&lt;T&gt; build(T data) {         Result&lt;T&gt; result = new Result&lt;T&gt;();         if (data != null)             result.setData(data);         return result;     }      public static &lt;T&gt; Result&lt;T&gt; build(T body, ResultCodeEnum resultCodeEnum) {         Result&lt;T&gt; result = build(body);         result.setCode(resultCodeEnum.getCode());         result.setMessage(resultCodeEnum.getMessage());         return result;     }      public static &lt;T&gt; Result&lt;T&gt; build(Integer code, String message) {         Result&lt;T&gt; result = build(null);         result.setCode(code);         result.setMessage(message);         return result;     }      public static&lt;T&gt; Result&lt;T&gt; ok(){         return Result.ok(null);     }      /**      * 操作成功      * @param data      * @param &lt;T&gt;      * @return      */     public static&lt;T&gt; Result&lt;T&gt; ok(T data){         Result&lt;T&gt; result = build(data);         return build(data, ResultCodeEnum.SUCCESS);     }      public static&lt;T&gt; Result&lt;T&gt; fail(){         return Result.fail(null);     }      /**      * 操作失败      * @param data      * @param &lt;T&gt;      * @return      */     public static&lt;T&gt; Result&lt;T&gt; fail(T data){         Result&lt;T&gt; result = build(data);         return build(data, ResultCodeEnum.FAIL);     }      public Result&lt;T&gt; message(String msg){         this.setMessage(msg);         return this;     }      public Result&lt;T&gt; code(Integer code){         this.setCode(code);         return this;     }      public boolean isOk() {         if(this.getCode().intValue() == ResultCodeEnum.SUCCESS.getCode().intValue()) {             return true;         }         return false;     } }</code></pre> <h3>ResultCodeEnum:</h3> <pre><code class="language-java">package com.atguigu.yygh.common.result;  import lombok.Getter;  /**  * 统一返回结果状态信息类  */ @Getter public enum ResultCodeEnum {      SUCCESS(200,"成功"),     FAIL(201, "失败"),     PARAM_ERROR( 202, "参数不正确"),     SERVICE_ERROR(203, "服务异常"),     DATA_ERROR(204, "数据异常"),     DATA_UPDATE_ERROR(205, "数据版本异常"),      LOGIN_AUTH(208, "未登陆"),     PERMISSION(209, "没有权限"),      CODE_ERROR(210, "验证码错误"), //    LOGIN_MOBLE_ERROR(211, "账号不正确"),     LOGIN_DISABLED_ERROR(212, "改用户已被禁用"),     REGISTER_MOBLE_ERROR(213, "手机号已被使用"),     LOGIN_AURH(214, "需要登录"),     LOGIN_ACL(215, "没有权限"),      URL_ENCODE_ERROR( 216, "URL编码失败"),     ILLEGAL_CALLBACK_REQUEST_ERROR( 217, "非法回调请求"),     FETCH_ACCESSTOKEN_FAILD( 218, "获取accessToken失败"),     FETCH_USERINFO_ERROR( 219, "获取用户信息失败"),     //LOGIN_ERROR( 23005, "登录失败"),      PAY_RUN(220, "支付中"),     CANCEL_ORDER_FAIL(225, "取消订单失败"),     CANCEL_ORDER_NO(225, "不能取消预约"),      HOSCODE_EXIST(230, "医院编号已经存在"),     NUMBER_NO(240, "可预约号不足"),     TIME_NO(250, "当前时间不可以预约"),      SIGN_ERROR(300, "签名错误"),     HOSPITAL_OPEN(310, "医院未开通，暂时不能访问"),     HOSPITAL_LOCK(320, "医院被锁定，暂时不能访问"),     PARAM_ILL(555,"参数异常"),     PARAM_ILL2(555,"参数异常2"),     ;      private Integer code;     private String message;      private ResultCodeEnum(Integer code, String message) {         this.code = code;         this.message = message;     } }</code></pre> <h3>controller调用如下所示：</h3> <p><img decoding="async" alt="" height="556" src="http://img.555519.xyz/uploads3/20220822/7a16fc34fb1b93fb0487731b7648ddfb.jpg"></p> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-289.htm">利用 onnxruntime 库同时推理多个模型的效率研究</a></p>
+                                                        <p>下一个：<a href="/html/category/article-291.htm">pip 和 Conda 镜像站配置</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
+                        <li class="py-2"><a href="/html/category/article-488.htm" title="eslint在vue中如何使用">eslint在vue中如何使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-480.htm" title="JAVA基础小细节——equals()与hashCode()">JAVA基础小细节——equals()与hashCode()</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-476.htm" title="JavaScript查找数组中的第一个冗余元素方法详解">JavaScript查找数组中的第一个冗余元素方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-478.htm" title="JavaScript如何添加用于将案例交换到字符串原型对象的函数">JavaScript如何添加用于将案例交换到字符串原型对象的函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                        <li class="py-2"><a href="/html/category/article-508.htm" title="Libco Hook 机制浅析_在线工具">Libco Hook 机制浅析_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-474.htm" title="实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题">实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

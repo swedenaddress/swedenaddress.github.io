@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-375.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>mybatis的的代理开发 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        mybatis的的代理开发                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>mybatis的代理开发：（代理也相当于是通过调用方法来实现逻辑业务的）</p> <p><strong>Mapper接口开发方法只需要程序员编写Mapper接口（相当于Dao接口)，由Mybatis框架根据接口定义创建接口的动态代理对象，代理对象的方法体同上边Dao接口实现类方法。</strong></p> <p><strong>这种相比传统的方法我们不需要自己去创建这个接口的实现类了，直接通过mybatis来帮助我们来完成实现类。</strong></p> <p><strong>Mapper接口开发需要遵循以下规范:</strong></p> <p><strong>1、Mapper.xml文件中的namespace与mapper接口的全限定名相同</strong></p> <p><strong>2、Mapper接口方法名和Mapper.xml中定义的每个statement的id相同</strong></p> <p><strong>3、Mapper接口方法的输入参数类型和mapper.xml中定义的每个sql的parameterType的类型相同</strong></p> <p><strong>4、Mapper接口方法的输出参数类型和mapper.xml中定义的每个sql的resultType的类型相同</strong></p> <p><strong>下面是代码演示：</strong></p> <p><strong>第一步：Mapper.xml文件中的namespace与mapper接口的全限定名相同</strong></p> <p><img fetchpriority="high" decoding="async" alt="" height="223" src="http://img.555519.xyz/uploads/20230211/c3b772692b7e8bc47c709d0cbcf1aed2.jpg"></p> <p>第二步：<strong>Mapper接口方法名和Mapper.xml中定义的每个statement的id相同</strong></p> <p><img decoding="async" alt="" height="199" src="http://img.555519.xyz/uploads/20230211/18597c53761bad7633c9aa72160abc8d.jpg"></p> <p>&nbsp;<img decoding="async" alt="" height="147" src="http://img.555519.xyz/uploads/20230211/b9202495aed264810a5bfeb614e49db3.jpg"></p> <p>第三步：<strong>Mapper接口方法的输入参数类型和mapper.xml中定义的每个sql的parameterType的类型相同（我们这里没有参数，两边都没有参数就相当于是相同的）</strong></p> <p><strong>第四步：Mapper接口方法的输出参数类型和mapper.xml中定义的每个sql的resultType的类型相同</strong></p> <p><img loading="lazy" decoding="async" alt="" height="209" src="http://img.555519.xyz/uploads/20230211/1754d8afe0593f7276e1aee366a3cd68.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="149" src="http://img.555519.xyz/uploads/20230211/e317494cfb47f9d6fbfdb8057bdd4132.jpg">&nbsp;</p> <p>测试代码：</p> <pre><code>public class ServiceDemo {      public static void main(String[] args) throws IOException {           InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");          SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(resourceAsStream);         SqlSession sqlSession = sqlSessionFactory.openSession();  //通过mybatis来帮我们创建实现类         UserMapper userMapper=sqlSession.getMapper(UserMapper.class);                           List&lt;User&gt; all=userMapper.findAll();         System.out.println(all);       } }</code></pre> <p>效果：</p> <p><img loading="lazy" decoding="async" alt="" height="46" src="http://img.555519.xyz/uploads/20230211/e2e53bcd1629cad782f1e69ae4127805.jpg">&nbsp;</p> <p>&nbsp;我们相比较传统的方法是没有写这个接口的实现类的，这个代理是直接通过接口去调用映射文件里的代码。</p> <p>上面我写的是一个没有参数的，现在我们写一个有参数的。</p> <p>接口的方法：</p> <p><img loading="lazy" decoding="async" alt="" height="65" src="http://img.555519.xyz/uploads/20230211/4e7d4cd075c6192af70bfeaafc6f80b5.jpg"></p> <p>映射文件：</p> <p><img loading="lazy" decoding="async" alt="" height="116" src="http://img.555519.xyz/uploads/20230211/bc2e46f6a806d69f26c26b231fff944e.jpg"></p> <p>测试代码：</p> <p><img loading="lazy" decoding="async" alt="" height="71" src="http://img.555519.xyz/uploads/20230211/c62a127de697966718d514e25accdbf7.jpg"></p> <p>效果：</p> <p><img loading="lazy" decoding="async" alt="" height="54" src="http://img.555519.xyz/uploads/20230211/3ec2daa3a108b882c3b9d222f93373b3.jpg"></p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-374.htm">k8s入门之ConfigMap(九)_在线工具</a></p>
+                                                        <p>下一个：<a href="/html/category/article-376.htm">k8s &#8211; 控制器（deployment）</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-477.htm" title="win11系统hosts文件无法保存怎么办">win11系统hosts文件无法保存怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-466.htm" title="Spring Security核心组件详解">Spring Security核心组件详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-473.htm" title="VUE前端开发环境版本查看命令方法详解">VUE前端开发环境版本查看命令方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-504.htm" title="Infrastructure 知识: dnf对module的处理">Infrastructure 知识: dnf对module的处理</a></li>
+                        <li class="py-2"><a href="/html/category/article-520.htm" title="什么是MySQL ENUM数据类型？使用ENUM数据类型有什么优势？">什么是MySQL ENUM数据类型？使用ENUM数据类型有什么优势？</a></li>
+                        <li class="py-2"><a href="/html/category/article-467.htm" title="对象和封装总结">对象和封装总结</a></li>
+                        <li class="py-2"><a href="/html/category/article-501.htm" title="springboot自定义视图映射">springboot自定义视图映射</a></li>
+                        <li class="py-2"><a href="/html/category/article-489.htm" title="CSS中文本居中显示">CSS中文本居中显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-521.htm" title="typescript的安装运行与自动编译">typescript的安装运行与自动编译</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

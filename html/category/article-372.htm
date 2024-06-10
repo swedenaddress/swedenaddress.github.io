@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-372.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>脚本如何加入html文件中,html中加载JavaScript脚本文件的常用方式总结 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        脚本如何加入html文件中,html中加载JavaScript脚本文件的常用方式总结                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>当浏览器遇到(内嵌)标签时，当前浏览器无从获知javaScript是否会修改页面内容。因此，这时浏览器会停止处理页面，先执行javaScript代码，然后再继续解析和渲染页面。同样的情况也发生在使用 src 属性加在javaScript的过程中(即外链 javaScript)，浏览器必须先花时间下载外链文件中的代码，然后解析并执行它。在这个过程中，页面渲染和用户交互完全被阻塞了。</p> <p>也就是说：每当浏览器解析到标签(无论内嵌还是外链)时，浏览器会(一根筋地)优先下载、解析并执行该标签中的javaScript代码，而阻塞了其后所有页面内容的下载和渲染。</p> <p>方式一：惯例的做法</p> <p>最传统的方式是在head标签内插入标签。</p> <p>然而这种常规的做法却隐藏着严重的性能问题。根据上述对标签特性的描述，我们知道，在该示例中，当浏览器解析到标签时，浏览器会停止解析其后的内容，而优先下载脚本文件，并执行其中的代码，这意味着，其后的test.css样式文件和</p> <p>标签都无法被加载，由于标签无法被加载，那么页面自然就无法渲染了。因此在该javaScript代码完全执行完之前，页面都是一片空白。</p> <p>方式二：经典的做法</p> <p>既然标签会阻塞其后内容的加载，那么将标签放到所有页面内容之后不就可以避免这种糟糕的状况了吗？ 将所有的标签尽可能地放到</p> <p>标签底部，以尽量避免对页面其余部分下载的影响。</p> <p>在IE8+浏览器上已经实现了脚本并行下载，但在某些浏览器中(即使脚本文件放到了</p> <p>标签底部)，页面中脚本仍是一个接着一个加载的。所以我们需要下一个方法，即：动态加载脚本。</p> <p>方式三：动态脚本</p> <p>通过文档对象模型(DOM)，我们可以几乎可以页面任意地方创建。</p> <p>上述代码动态创建了一个外链file1的标签，并将其添加到</p> <p>标签内。这种技术的重点在于：</p> <p>无论在何时启动下载，文件的下载和执行过程不会阻塞页面其他进程(包括脚本加载)。</p> <p>然而这种方法也是有缺陷的。这种方法加载的脚本会在下载完成后立即执行，那么意味着多个脚本之间的运行顺序是无法保证的(除了Firefox和Opera)。当某个脚本对另一个脚本有依赖关系时，就很可能发生错误了。比如，写一个jQuery代码，需要引入jQuery库，然而你写的jQuery代码文件很可能会先完成下载并立即执行，这时浏览器会报错——‘jQuery未定义'之类的，因为此时jQuery库还未下载完成。于是做出以下改进：</p> <p>上述代码改进的地方就是增加了一个回调函数，该函数会在相应脚本文件加载完成后被调用。这样便可以实现顺序加载了，写法如下(假设file2依赖file1，file1和file3相互独立)：loadScript(‘file1.js',function(){ loadScript(‘file2.js',function(){}); }); loadScript(‘file3.js',function(){});</p> <p>file2会在file1加载完后才开始加载，保证了在file2执行前file1已经准备妥当。而file1和file3是并行下载的，互不影响。 虽然loadScript函数已经足够好，但还是有些不尽人意的地方——通过分析这段代码，我们知道，loadScript函数中的顺序加载是以脚本的阻塞加载来实现的(正如上述红字部分指出的那样)。而我们真正想实现的是——脚本同步下载并按相应顺序执行，即并行加载并顺序执行。</p> </div> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-371.htm">@Transactional 详解</a></p>
+                                                        <p>下一个：<a href="/html/category/article-373.htm">准确详解：C/C++ float、double数据类型的表示范围及精度</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-501.htm" title="springboot自定义视图映射">springboot自定义视图映射</a></li>
+                        <li class="py-2"><a href="/html/category/article-469.htm" title="聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响">聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响</a></li>
+                        <li class="py-2"><a href="/html/category/article-473.htm" title="VUE前端开发环境版本查看命令方法详解">VUE前端开发环境版本查看命令方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-474.htm" title="实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题">实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-504.htm" title="Infrastructure 知识: dnf对module的处理">Infrastructure 知识: dnf对module的处理</a></li>
+                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
+                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
+                        <li class="py-2"><a href="/html/category/article-477.htm" title="win11系统hosts文件无法保存怎么办">win11系统hosts文件无法保存怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

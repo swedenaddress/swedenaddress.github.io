@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-492.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>kafka系列SpringBoot 中使用@KafkaListener详解与使用 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        kafka系列SpringBoot 中使用@KafkaListener详解与使用                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>说明<br /> 从2.2.4版开始，您可以直接在注释上指定Kafka使用者属性，这些属性将覆盖在使用者工厂中配置的具有相同名称的所有属性。您不能通过这种方式指定group.id和client.id属性。他们将被忽略；</p> <p>可以使用#{…}或属性占位符（${…}）在SpEL上配置注释上的大多数属性。<br /> 比如:</p> <pre><code>@KafkaListener(id = "consumer-id",topics = "SHI_TOPIC1",concurrency = "${listen.concurrency:3}",             clientIdPrefix = "myClientId")</code></pre> <p>对于spring.kafka.listener.concurrency=3这个参数来说，它设置的是每个@KafkaListener的并发个数。每添加一个@KafkaListener, spring-kafka都会启动concurrency条Consumer线程来监听这些topic(注解可以指定监听多个topic), 当enable-auto-commit设为true时会直接在当前线程，即kafka consumer所在线程调用我们的@KafkaListener方法，如果设为false，则是将消息投放到阻塞队列中，另一边由Listener线程取出执行，有源码为证：</p> <p>所以，当concurrency=3，自动提交设置为false时，如果你程序里有两个方法标记了@KafkaListener，那么此时会启动 2 * 3 = 6 个Consumer线程，6个Listener线程。<br /> 这个信息在排查错误的时候非常重要，但官方文档居然没怎么提线程的事(不够详细)，只是在介绍KafkaContainerListener。特此记录</p> <h2>@KafkaListener详解</h2> <h3><a name="t2" rel="nofollow"></a><a id="id__id_16" rel="nofollow"></a>id 监听器的id</h3> <p><a id="__17" rel="nofollow"></a>①. 消费者线程命名规则</p> <p>填写:</p> <p>2020-11-19 14:24:15 c.d.b.k.KafkaListeners 120 [INFO] 线程:Thread[consumer-id5-1-C-1,5,main]-groupId:BASE-DEMO consumer-id5 消费</p> <p>没有填写ID:</p> <p>2020-11-19 10:41:26 c.d.b.k.KafkaListeners 137 [INFO] 线程:Thread[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1,5,main] consumer-id7</p> <p>②.在相同容器中的监听器ID不能重复</p> <p>否则会报错</p> <pre><code>Caused by: java.lang.IllegalStateException: Another endpoint is already registered with id</code></pre> <p>③.会覆盖消费者工厂的消费组GroupId<br /> 假如配置文件属性配置了消费组kafka.consumer.group-id=BASE-DEMO<br /> 正常情况它是该容器中的默认消费组<br /> 但是如果设置了 @KafkaListener(id = "consumer-id7", topics = {"SHI_TOPIC3"})<br /> 那么当前消费者的消费组就是consumer-id7 ;</p> <p>当然如果你不想要他作为groupId的话 可以设置属性idIsGroup = false;那么还是会使用默认的GroupId;</p> <p>④. 如果配置了属性groupId,则其优先级最高<br /> &nbsp;@KafkaListener(id = "consumer-id5",idIsGroup = false,topics = "SHI_TOPIC3",groupId = "groupId-test")</p> <p> 例如上面代码中最终这个消费者的消费组GroupId是 “groupId-test”</p> <p>该id属性（如果存在）将用作Kafka消费者group.id属性,并覆盖消费者工厂中的已配置属性（如果存在）您还可以groupId显式设置或将其设置idIsGroup为false，以恢复使用使用者工厂的先前行为group.id。</p> <p>topicPattern 匹配Topic进行监听(与topics、topicPartitions 三选一)<br /> topicPartitions 显式分区分配<br /> 可以为监听器配置明确的主题和分区（以及可选的初始偏移量）</p> <pre><code>@KafkaListener(id = "thing2", topicPartitions = &nbsp; &nbsp; &nbsp; &nbsp; { @TopicPartition(topic = "topic1", partitions = { "0", "1" }), &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @TopicPartition(topic = "topic2", partitions = "0", &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;partitionOffsets = @PartitionOffset(partition = "1", initialOffset = "100")) &nbsp; &nbsp; &nbsp; &nbsp; }) public void listen(ConsumerRecord&lt;?, ?&gt; record) { &nbsp; &nbsp; ... }</code></pre> <p> 上面例子意思是 监听topic1的0,1分区；监听topic2的第0分区,并且第1分区从offset为100的开始消费;</p> <h3>errorHandler 异常处理</h3> <p>实现<code>KafkaListenerErrorHandler</code>; 然后做一些异常处理;</p> <pre><code>@Component public class KafkaDefaultListenerErrorHandler implements KafkaListenerErrorHandler {     @Override     public Object handleError(Message&lt;?&gt; message, ListenerExecutionFailedException exception) {         return null;     }      @Override     public Object handleError(Message&lt;?&gt; message, ListenerExecutionFailedException exception, Consumer&lt;?, ?&gt; consumer) {     	//do someting         return null;     } }</code></pre> <p>调用的时候 填写beanName;例如<code>errorHandler="kafkaDefaultListenerErrorHandler"</code></p> <h3>containerFactory 监听器工厂</h3> <blockquote> <p>指定生成监听器的工厂类;</p> </blockquote> <p>例如我写一个 批量消费的工厂类</p> <pre><code>    /**      * 监听器工厂 批量消费      * @return      */     @Bean     public KafkaListenerContainerFactory&lt;ConcurrentMessageListenerContainer&lt;Integer, String&gt;&gt; batchFactory() {         ConcurrentKafkaListenerContainerFactory&lt;Integer, String&gt; factory =                 new ConcurrentKafkaListenerContainerFactory&lt;&gt;();         factory.setConsumerFactory(kafkaConsumerFactory());         //设置为批量消费，每个批次数量在Kafka配置参数中设置ConsumerConfig.MAX_POLL_RECORDS_CONFIG         factory.setBatchListener(true);         return factory;     }</code></pre> <p>使用<code>containerFactory = "batchFactory"</code></p> <h3>clientIdPrefix 客户端前缀</h3> <blockquote> <p>会覆盖消费者工厂的<code>kafka.consumer.client-id</code>属性; 最为前缀后面接<code>-n</code>&nbsp;n是数字</p> </blockquote> <h3>concurrency并发数</h3> <p>会覆盖消费者工厂中的concurrency ,这里的并发数就是多线程消费; 比如说单机情况下,你设置了3; 相当于就是启动了3个客户端来分配消费分区;分布式情况 总线程数=concurrency*机器数量; 并不是设置越多越好,具体如何设置请看 属性concurrency的作用及配置(RoundRobinAssignor 、RangeAssignor)</p> <pre><code>    /**      * 监听器工厂       * @return      */     @Bean     public KafkaListenerContainerFactory&lt;ConcurrentMessageListenerContainer&lt;Integer, String&gt;&gt; concurrencyFactory() {         ConcurrentKafkaListenerContainerFactory&lt;Integer, String&gt; factory =                 new ConcurrentKafkaListenerContainerFactory&lt;&gt;();         factory.setConsumerFactory(kafkaConsumerFactory());         factory.setConcurrency(6);         return factory;     }</code></pre> <pre><code>&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; @KafkaListener(id = "consumer-id5",idIsGroup = false,topics = "SHI_TOPIC3", containerFactory = "concurrencyFactory",concurrency = "1)</code></pre> <p> 虽然使用的工厂是concurrencyFactory(concurrency配置了6); 但是他最终生成的监听器数量 是1;</p> <h3>properties 配置其他属性</h3> <p>kafka中的属性看<code>org.apache.kafka.clients.consumer.ConsumerConfig</code>&nbsp;;<br /> 同名的都可以修改掉;</p> <p>用法</p> <pre><code>    @KafkaListener(id = "consumer-id5",idIsGroup = false,topics = "SHI_TOPIC3", containerFactory = "concurrencyFactory",concurrency = "1"             , clientIdPrefix = "myClientId5",groupId = "groupId-test",             properties = {                     "enable.auto.commit:false","max.poll.interval.ms:6000" },errorHandler="kafkaDefaultListenerErrorHandler")</code></pre> <h2>@KafkaListener使用</h2> <h2><a name="t13" rel="nofollow"></a><a id="KafkaListenerEndpointRegistry_159" rel="nofollow"></a>KafkaListenerEndpointRegistry</h2> <pre><code>    @Autowired     private KafkaListenerEndpointRegistry registry;        //.... 获取所有注册的监听器         registry.getAllListenerContainers();</code></pre> <h3>设置入参验证器</h3> <p><strong>当您将Spring Boot与验证启动器一起使用时，将LocalValidatorFactoryBean自动配置：如下</strong></p> <pre><code>@Configuration @EnableKafka public class Config implements KafkaListenerConfigurer {  &nbsp; &nbsp; @Autowired &nbsp; &nbsp; private LocalValidatorFactoryBean validator; &nbsp; &nbsp; ...  &nbsp; &nbsp; @Override &nbsp; &nbsp; public void configureKafkaListeners(KafkaListenerEndpointRegistrar registrar) { &nbsp; &nbsp; &nbsp; registrar.setValidator(this.validator); &nbsp; &nbsp; } }</code></pre> <p><strong>使用</strong></p> <pre><code>@KafkaListener(id="validated", topics = "annotated35", errorHandler = "validationErrorHandler", &nbsp; &nbsp; &nbsp; containerFactory = "kafkaJsonListenerContainerFactory") public void validatedListener(@Payload @Valid ValidatedClass val) { &nbsp; &nbsp; ... }  @Bean public KafkaListenerErrorHandler validationErrorHandler() { &nbsp; &nbsp; return (m, e) -&gt; { &nbsp; &nbsp; &nbsp; &nbsp; ... &nbsp; &nbsp; }; }</code></pre> <p></p> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-491.htm">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></p>
+                                                        <p>下一个：<a href="/html/category/article-493.htm">JavaScript动态操作select下拉框_javascript技巧_</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-490.htm" title="vue实现简单无缝滚动效果_vue.js">vue实现简单无缝滚动效果_vue.js</a></li>
+                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
+                        <li class="py-2"><a href="/html/category/article-482.htm" title="Hyperledger Fabric节点的动态添加和删除">Hyperledger Fabric节点的动态添加和删除</a></li>
+                        <li class="py-2"><a href="/html/category/article-479.htm" title="python多线程编程_2小时玩转python多线程编程">python多线程编程_2小时玩转python多线程编程</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
+                        <li class="py-2"><a href="/html/category/article-504.htm" title="Infrastructure 知识: dnf对module的处理">Infrastructure 知识: dnf对module的处理</a></li>
+                        <li class="py-2"><a href="/html/category/article-507.htm" title="vue 封装图片路径">vue 封装图片路径</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

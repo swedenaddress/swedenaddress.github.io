@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-331.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>Windows 环境 python读需kerberos认证的hdfs - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        Windows 环境 python读需kerberos认证的hdfs                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>Windows 环境 python读需kerberos认证的hdfs</p> <p>不喜欢废话，直接先上结论：<br /> Windows环境下python读kerberos认证的hdfs不支持，即使用anaconda中的也不行，因为再撸代码过程中，必须引用krbcontext包来认证，krbcontext提供了一个kerberos上下文，可以将代码放入其中，其中 需要凭据缓存中的有效票证。但是krbcontext包中的引用包pwd不支持Windows环境，pyspark也不能绕不开krbcontext包。</p> <p>不废话直接上官方例子：<br /> hdfs模块的官方文档地址是 https://hdfscli.readthedocs.io/en/latest/ ，<br /> 下面是一段代码示例:<br /> krbcontext 和 hdfs 是python连接hdfs时需要用到的库，它所建立的连接本质上是一个http连接，安装hdfs时，需要指定kerberos插件<br /> pip install hdfs[kerberos]<br /> pip install krbcontext</p> <p>代码：<br /> from hdfs.ext.kerberos import KerberosClient<br /> from krbcontext import krbcontext</p> <p>keytab_file = ‘/etc/coolpython.keytab’<br /> principal = ‘hadoop/admin@coolpython.net’</p> <p>with krbcontext(using_keytab=True, keytab_file=keytab_file, principal=principal, ccache_file=’/tmp/cache_keytab_zds’):<br /> client = KerberosClient(url=‘http://集群的ip:50070’)<br /> hdfs_save_path = ‘/user/hadoop/backup/001’<br /> client.makedirs(hdfs_save_path) # 新建目录</p> <p>官方给的例子写的也很清楚，直接都是Linux环境的，都没考虑过python再Windows环境下使用。</p> <p>也尝试了krbcontext、pwd包再Windows环境下替代包，尝试的过程，krbcontext这个包再Kerberos认证过程中不可少，绕不开。后又尝试了pwd的替代方法，如直接引用自定义–game over，winpwd替代pwd–game over，python-daemon尝试降级到2.1.2版，再安装luigi–game over。<br /> 直接放弃用python语言了，直接用spark分分钟开发完了，这不香吗？</p> <p>希望有搞定的朋友可以本着人类命运共同体的崇高精神分享出来。</p> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-330.htm">spring security 基本介绍</a></p>
+                                                        <p>下一个：<a href="/html/category/article-332.htm">SpringBoot项目@Scheduled读取动态参数</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-508.htm" title="Libco Hook 机制浅析_在线工具">Libco Hook 机制浅析_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-488.htm" title="eslint在vue中如何使用">eslint在vue中如何使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-478.htm" title="JavaScript如何添加用于将案例交换到字符串原型对象的函数">JavaScript如何添加用于将案例交换到字符串原型对象的函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-479.htm" title="python多线程编程_2小时玩转python多线程编程">python多线程编程_2小时玩转python多线程编程</a></li>
+                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
+                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
+                        <li class="py-2"><a href="/html/category/article-492.htm" title="kafka系列SpringBoot 中使用@KafkaListener详解与使用">kafka系列SpringBoot 中使用@KafkaListener详解与使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-487.htm" title="Go 语言结构体链表详解">Go 语言结构体链表详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

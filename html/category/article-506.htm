@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-506.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>【数据结构之线性表】顺序表简单实现图书系统 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        【数据结构之线性表】顺序表简单实现图书系统                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>&nbsp; &nbsp; &nbsp; &nbsp; 本次图书系统使用DEV C++软件来进行操作实现。实现语言是c++。</p> <p>实现图书系统使用到了顺序表的初始化、顺序表的建立、顺序表的插入、顺序表的删除、顺序表的查找等顺序表的基本操作。还使用到了c++的流进行数据的输入。</p> <pre><code class="language-cpp">#include&lt;iostream&gt; #include&lt;fstream&gt; #include &lt;iomanip&gt;//这三个是c++的头文件 #define MAXSIZE 20 using namespace std; typedef int Status;  //定义图书类型  typedef struct { 	string id;//ISBN 	string name;//书名 	double price;//定价  } Book; typedef struct { 	Book *elem;//存储基地址 	int length;//当前长度  }SqList; //顺序表初始化 Status InitList (SqList &amp;L) { 	L.elem = new Book[MAXSIZE];//为顺序表分配一个大小为MAXSIZE的数组空间 	if(L.elem == NULL) { 		cout&lt;&lt; "初始化分配失败！" &lt;&lt;endl; 		return 0;//初始化分配失败返回0。  	}  	L.length = 0; 	return 1;//返回一则初始化成功  } //顺序表的取值 Status GetElem (SqList L, int i, Book &amp;e) { 	if(i &lt; 1 || i &gt; L.length) { 		cout &lt;&lt; "获取值失败，原因：取值不合理！！！" &lt;&lt; endl; 		exit(1);//取值不合理直接退出。  	} 	e = L.elem[i - 1]; 	return 1;//取值成功返回一。  }  //顺序表的查找  Status LocatElem (SqList L, double e) { 	for(int i = 0; i &lt; L.length; i++) { 		if(L.elem[i].price == e) { 			return i + 1;//查找成功则返回序号 i + 1;  		} 	}  	return 0;//查找失败返回0。  }  //顺序表的插入 Status ListInsert (SqList &amp;L, int i, Book e) { 	//首先判断是否可以插入 	if(i &lt; 1 || i &gt; L.length + 1) 	{ 		return 0;  	 }  	 if(L.length == MAXSIZE)  	 { 	 	return 0; 	 } 	 for (int j = L.length - 1; j &gt;= i - 1; j--) {//插入位置及其之后的元素向后移动一位。  	 	L.elem[j + 1] = L.elem[j]; 	 } 	 L.elem[i - 1] = e;//将元素e放入到第i个元素。  	 ++L.length;//顺序表加长。  	 return 1;//插入成功返回 1。  }  //顺序表的删除 Status ListDelete (SqList &amp;L, Status i) { 	//在顺序表中删除第i个元素，首先判断i的取值范围。 	if(i &lt; 1 || i &gt; L.length) { 		cout &lt;&lt; "删除失败！！！"; 		return 0;//i值不合法，返回0.  	}  	for(int j = i; j &lt;= L.length - 1; j++) { 		L.elem[j - 1] = L.elem[j]; 	} 	--L.length; 	return 1;//删除成功返回1.  }  //编写主函数调用顺序表的算法  int main() { 	SqList L; 	int i = 0, temp = 0, location = 0; 	int choose; 	double price = 0; 	Book e; 	string head_1, head_2, head_3; 	cout &lt;&lt; "1,建立\n"; 	cout &lt;&lt; "2,输入\n"; 	cout &lt;&lt; "3,取值\n"; 	cout &lt;&lt; "4,查找\n"; 	cout &lt;&lt; "5,插入\n"; 	cout &lt;&lt; "6,删除\n"; 	cout &lt;&lt; "7,输出\n"; 	cout &lt;&lt; "8,退出\n"; 	choose = -1; 	while (choose != 0) { 		cout &lt;&lt; "请选择：\n"; 		cin &gt;&gt; choose; 		switch (choose) { 			//创建顺序表  			case 1: 				if(InitList(L) == 1) { 					cout &lt;&lt; "创建成功";  				} 				break; 			//顺序信息输入  			case 2: 				{ 					i = 0; 					fstream file; 					file.open("F://数据结构//线性表//book.txt"); 					if(!file) { 						cout &lt;&lt; "错误！ 未找到文件！" &lt;&lt; endl; 						continue; 					} 					file &gt;&gt; head_1 &gt;&gt; head_2 &gt;&gt; head_3; 					while (!file.eof()) { 						file &gt;&gt; L.elem[i].id &gt;&gt; L.elem[i].name &gt;&gt; L.elem[i].price; 						i++; 					} 					cout &lt;&lt;"输入 book.txt信息完毕\n\n"; 					L.length = i; 					file.close(); 				} 				break; 			//顺序表的取值  			//调用此函数：GetElem (SqList L, int i, Book &amp;e) 			case 3: 				{ 					cout &lt;&lt; "请输入一个位置用来取值:\n"; 					cin &gt;&gt;i; 					temp = GetElem(L,i,e); 	                if(temp!=0) 	                { 	                    cout&lt;&lt; "查找成功\n"; 	                    cout&lt;&lt; "第" &lt;&lt; i &lt;&lt; "本图书的信息是:\n"; 	                    cout&lt;&lt; left &lt;&lt; setw(15) &lt;&lt; e.id &lt;&lt; "\t"  ///在C++中，setw(int n)用来控制输出间隔。 	                        &lt;&lt; left &lt;&lt; setw(50) &lt;&lt; e.name &lt;&lt; "\t" 	                        &lt;&lt; left &lt;&lt; setw(5) &lt;&lt; e.price &lt;&lt; endl 	                        &lt;&lt; endl; 	                } 	                else cout&lt;&lt; "查找失败，位置超出范围！\n\n";	 				}		 				break; 			//顺序表的查找  			//调用此函数：LocatElem (SqList L, double e) 			case 4: 				{ 					cout &lt;&lt; "请输入要查找的价格：\n"; 					cin &gt;&gt; price; 					i = LocatElem(L,price); 					if (i == 0) { 						cout &lt;&lt; "查找失败！！！";  					} else { 						cout &lt;&lt; "此价格商品的序列号为：" &lt;&lt; i &lt;&lt;endl; 					} 				} 				break; 			//顺序表的插入 ， 			//调用此函数：Status ListInsert (SqList &amp;L, int i, Book e)  			case 5: 				{ 					cout &lt;&lt; "输入插入的位置,书本信息包括：编号 书名 价格"; 					cin &gt;&gt; location; 					cin &gt;&gt; e.id &gt;&gt; e.name &gt;&gt; e.price; 					i = ListInsert(L,location,e); 					if (i == 1) { 						cout &lt;&lt; "插入成功！！！"; 					} 				} 				break; 			//顺序表的删除	 			//调用此函数：Status ListDelete (SqList &amp;L, Status i)   			case 6: 				{ 					cout &lt;&lt; "请输入所要删除的书籍的位置："; 					cin &gt;&gt; location;  					if(ListDelete(L,location) == 1) { 						cout &lt;&lt; "删除成功！！！"; 					} 				} 				break; 			//顺序表的输出  			case 7: 				{ 					cout &lt;&lt; "当前图书系统的信息（顺序表）读出：\n"; 					for(i = 0; i &lt; L.length; i++ ) { 						cout &lt;&lt; left &lt;&lt;setw(15)&lt;&lt; L.elem[i].id &lt;&lt; "\t" &lt;&lt; left 						&lt;&lt; setw(50) &lt;&lt; L.elem[i].name &lt;&lt; "\t" &lt;&lt; left &lt;&lt; setw(5) 						&lt;&lt; L.elem[i].price &lt;&lt; endl; 					} 					cout &lt;&lt; endl; 				} 				break; 			case 8: 				choose = 0; 				break; 			default: 				break; 		} 	} 	return 0; } </code></pre> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-505.htm">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></p>
+                                                        <p>下一个：<a href="/html/category/article-507.htm">vue 封装图片路径</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-472.htm" title="Java 实现选择排序">Java 实现选择排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-521.htm" title="typescript的安装运行与自动编译">typescript的安装运行与自动编译</a></li>
+                        <li class="py-2"><a href="/html/category/article-480.htm" title="JAVA基础小细节——equals()与hashCode()">JAVA基础小细节——equals()与hashCode()</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-482.htm" title="Hyperledger Fabric节点的动态添加和删除">Hyperledger Fabric节点的动态添加和删除</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-495.htm" title="python读写hdfs">python读写hdfs</a></li>
+                        <li class="py-2"><a href="/html/category/article-484.htm" title="Springboot启动原理详细解析">Springboot启动原理详细解析</a></li>
+                        <li class="py-2"><a href="/html/category/article-522.htm" title="用字符串中的ASCII值替换所有特殊字符-JavaScript">用字符串中的ASCII值替换所有特殊字符-JavaScript</a></li>
+                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

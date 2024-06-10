@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-498.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>js 小案例 跑马灯效果 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        js 小案例 跑马灯效果                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p><strong>俗话说：‘能用css解决的动画，绝不用js来实现’</strong></p> <p>下面是利用 css中的 animation 实现跑马灯效果</p> <p><span style="color:#fe2c24;"><strong>这个我采了坑 ，to {left:1500px},这里的距离是所有图片的宽度（不包含无缝复制的哈）</strong></span></p> <p><span style="color:#fe2c24;"><strong>&nbsp; &nbsp; 我一直设置的是container 一屏的宽度，一直不流畅。所以在此纪录下。</strong></span></p> <pre><code class="language-html">&lt;!DOCTYPE html&gt; &lt;html lang="en"&gt;  &lt;head&gt;     &lt;meta charset="UTF-8"&gt;     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;     &lt;title&gt;京东跑马灯&lt;/title&gt;     &lt;style&gt;         .container {             box-sizing: border-box;             overflow: hidden;             position: relative;             width: 1000px;             height: 200px;             margin: 50px auto 0px;             border: 1px solid red;         }          .container .wrapper {             position: absolute;             top: 0px;             left: 0px;             box-sizing: border-box;             width: 2200px;             height: 200px;         }          .container .wrapper .slider {             box-sizing: border-box;             float: left;             width: 200px;             height: 200px;             padding: 10px 20px;         }          .container .wrapper .slider span {             display: block;             /* 不换行三件套 */             overflow: hidden;             text-overflow: ellipsis;             white-space: nowrap;         }         .container .wrapper .slider img {             width: 150px;             height: 150px;         }         .container .wrapper  {             animation: test 5s infinite linear;         }         @keyframes test {             from  {                 left: 0px;             }             to {                 left: -1200px;             }         }         .container:hover .wrapper {             animation-play-state: paused;         }              &lt;/style&gt; &lt;/head&gt;  &lt;body&gt;     &lt;div class="container "&gt;         &lt;div class="wrapper "&gt;             &lt;!-- 每一张图片slider --&gt;             &lt;div class="slider"&gt;                 &lt;span&gt;天地壹号 清爽酸甜 苹果醋22222222222&lt;/span&gt;                 &lt;img src="./img/2.jpg" alt="js 小案例 跑马灯效果"&gt;             &lt;/div&gt;             &lt;div class="slider"&gt;                 &lt;img src="./img/3.jpg" alt="js 小案例 跑马灯效果"&gt;                 &lt;span&gt;天地壹号 清爽酸甜 苹果醋&lt;/span&gt;             &lt;/div&gt;             &lt;div class="slider"&gt;                 &lt;span&gt;天地壹号 清爽酸甜 苹果醋&lt;/span&gt;                 &lt;img src="./img/4.jpg" alt="js 小案例 跑马灯效果"&gt;             &lt;/div&gt;             &lt;div class="slider"&gt;                 &lt;img src="./img/5.jpg" alt="js 小案例 跑马灯效果"&gt;                 &lt;span&gt;天地壹号 清爽酸甜 苹果醋&lt;/span&gt;             &lt;/div&gt;             &lt;div class="slider"&gt;                 &lt;img src="./img/6.jpg" alt="js 小案例 跑马灯效果"&gt;                 &lt;span&gt;天地壹号 清爽酸甜 苹果醋&lt;/span&gt;             &lt;/div&gt;             &lt;div class="slider"&gt;                 &lt;img src="./img/7.jpg" alt="js 小案例 跑马灯效果"&gt;                 &lt;span&gt;天地壹号 清爽酸甜 苹果醋&lt;/span&gt;             &lt;/div&gt;             &lt;!-- 无缝的 --&gt;             &lt;div class="slider"&gt;                 &lt;span&gt;天地壹号 清爽酸甜 无缝的苹果醋&lt;/span&gt;                 &lt;img src="./img/2.jpg" alt="js 小案例 跑马灯效果"&gt;             &lt;/div&gt;             &lt;div class="slider"&gt;                 &lt;img src="./img/3.jpg" alt="js 小案例 跑马灯效果"&gt;                 &lt;span&gt;天地壹号 清爽酸甜 苹果醋&lt;/span&gt;             &lt;/div&gt;             &lt;div class="slider"&gt;                 &lt;span&gt;天地壹号 清爽酸甜 苹果醋&lt;/span&gt;                 &lt;img src="./img/4.jpg" alt="js 小案例 跑马灯效果"&gt;             &lt;/div&gt;             &lt;div class="slider"&gt;                 &lt;img src="./img/5.jpg" alt="js 小案例 跑马灯效果"&gt;                 &lt;span&gt;天地壹号 清爽酸甜 苹果醋&lt;/span&gt;             &lt;/div&gt;         &lt;/div&gt;     &lt;/div&gt; &lt;/body&gt;  &lt;/html&gt;</code></pre> <p>当然你也可以使用js代码实现哦！html和css是一样的</p> <pre><code class="language-javascript">     var wrapper = document.querySelector('.wrapper'),             timer = null,             step = -10,             left = 0;         window.onload = function () {             timer = setInterval(autoMove, 100)         }         function autoMove() {             left = getCss(wrapper, 'left');             left += step             if (left &lt; -1200) {                 wrapper.style.left = 0 + 'px';                 wrapper.style.transition = 'all 0s'                 left = getCss(wrapper, 'left');             }             console.log(left);             wrapper.style.left = left + 'px';             wrapper.style.transition = 'all .3s'         }         function getCss(culEle, attr) {             return parseFloat(window.getComputedStyle(culEle, null)[attr]);         }</code></pre> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-497.htm">HTML5画布 canvas移动</a></p>
+                                                        <p>下一个：<a href="/html/category/article-499.htm">我们如何将值添加到MySQL表的列中？</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-488.htm" title="eslint在vue中如何使用">eslint在vue中如何使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-522.htm" title="用字符串中的ASCII值替换所有特殊字符-JavaScript">用字符串中的ASCII值替换所有特殊字符-JavaScript</a></li>
+                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
+                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-469.htm" title="聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响">聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-471.htm" title="linux清理磁盘文件夹方法">linux清理磁盘文件夹方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
+                        <li class="py-2"><a href="/html/category/article-496.htm" title="vue3+elementUI-plus 项目实战登录">vue3+elementUI-plus 项目实战登录</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-426.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>比较爽的导航查询 功能  .NET ORM  / SqlSugar - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        比较爽的导航查询 功能  .NET ORM  / SqlSugar                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<h2>.NET ORM 新概念导航</h2> <p>今天这篇文章分享一款好用简单的ORM框架 SqlSugar ，相比 EF Core的导航查询 更加简单 ，配置更加容易，几分钟就能上手</p> <h2 id="blogTitle0">1、导航查询特点</h2> <p>作用：主要处理主对象里面有子对象这种层级关系查询</p> <h3 id="blogTitle1">1.1 无外键开箱就用</h3> <p>其它ORM导航查询 需要 各种配置或者外键，而SqlSugar则开箱就用，无外键，只需配置特性和主键就能使用</p> <h3 id="blogTitle2">1.2 高性能优</h3> <p>&nbsp;查询 性能非常强悍</p> <p>&nbsp;支持大数据分页导航查询</p> <h3 id="blogTitle3">3.3 语法超级爽</h3> <p>注意：多级查询时VS有时候没提示直接写就行了 ，相比 其他 .NET ORM语法要简单的多</p> <div class="cnblogs_Highlighter"> <pre class="brush:csharp;gutter:true;"> var list=db.Queryable&lt;Test&gt;()            .Includes(x =&gt; x.Provinces,x=&gt;x.Citys ,x=&gt;x.Street)//多级查询 有时候VS没提示手写             .Includes(x =&gt; x.ClassInfo)// 一级查询            .ToList();                                      var list=db.Queryable&lt;Test&gt;()         //多级查询  加排序过滤         .Includes(x =&gt;x.Provinces.Where(z=&gt;z.Id&gt;0).OrderBy(z=&gt;z.Id).ToList(),x=&gt;x.Citys,x=&gt;x.Street)          // 一级查询         .Includes(x =&gt;x.ClassInfo)         .ToList();</pre> </div> <h2>2、新导航查询 ORM</h2> <p>适合有主键的常规操作, 请升级到5.0.6.8</p> <h3 id="blogTitle5">2.1 一对一</h3> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">实体</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> StudentA         {             [SugarColumn(IsPrimaryKey</span>=<span style="color: rgba(0, 0, 255, 1)">true, IsIdentity = true</span><span style="color: rgba(0, 0, 0, 1)">)]</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">int</span> StudentId {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">string</span> Name {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">int</span> SchoolId {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }             [Navigate(NavigateType.OneToOne, nameof(SchoolId))]</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">一对一</span><span style="color: rgba(0, 0, 255, 1)">public</span> SchoolA SchoolA {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }            }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> SchoolA         {             [SugarColumn(IsPrimaryKey</span>=<span style="color: rgba(0, 0, 255, 1)">true, IsIdentity = true</span><span style="color: rgba(0, 0, 0, 1)">)]</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">int</span> SchoolId {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">string</span> SchoolName {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }          }</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">代码</span><span style="color: rgba(0, 0, 255, 1)">var</span> list2 = db.Queryable&lt;StudentA&gt;<span style="color: rgba(0, 0, 0, 1)">()            .Includes(x</span>=&gt;<span style="color: rgba(0, 0, 0, 1)"> x.SchoolA)            .Where(x</span>=&gt; x.SchoolA.SchoolName ==<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">北大</span><span style="color: rgba(128, 0, 0, 1)">"</span>)<span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">可以对一级导航进行过滤</span>            .ToList();</pre> </div> <h3>2.2 一对多</h3> <div class="cnblogs_Highlighter"> <pre class="brush:csharp;gutter:true;">    public class StudentA     {      [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]      public int StudentId { get; set; }      public string Name { get; set; }      public int SchoolId { get; set; }      [Navigate(NavigateType.OneToMany, nameof(BookA.studenId))]      public List&lt;BookA&gt; Books { get; set; }        }     public class BookA     {        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]        public int BookId { get; set; }       public string Name { get; set; }       public int studenId { get; set; }     }               //例1: 简单用法     var list = db.Queryable&lt;StudentA&gt;()     .Includes(x =&gt; x.Books)     .ToList();           //例2:支持Any和Count 对主表进行过滤     var list = db.Queryable&lt;StudentA&gt;()     .Includes(x =&gt; x.Books)      .Where(x=&gt;x.Books.Any(z=&gt;z.BookId==1))     .ToList();           //例3:对子对象进行排序和过滤      var list = db.Queryable&lt;StudentA&gt;()        .Includes(x =&gt; x.Books.Where(y=&gt;y.BookId &gt;0).OrderBy(y=&gt;y.BookId ).ToList())         .ToList();</pre> </div> <h3 id="blogTitle7">2.3 多对多</h3> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">多对多</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> ABMapping1        {             [SugarColumn(IsPrimaryKey</span>=<span style="color: rgba(0, 0, 255, 1)">true</span><span style="color: rgba(0, 0, 0, 1)"> )]</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">int</span> AId {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }             [SugarColumn(IsPrimaryKey</span>=<span style="color: rgba(0, 0, 255, 1)">true</span><span style="color: rgba(0, 0, 0, 1)">)]</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">int</span> BId {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }         }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> A1         {             [SugarColumn(IsPrimaryKey</span>=<span style="color: rgba(0, 0, 255, 1)">true, IsIdentity = true</span><span style="color: rgba(0, 0, 0, 1)">  )]</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">int</span> Id {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">string</span> Name {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }             [Navigate(</span><span style="color: rgba(0, 0, 255, 1)">typeof</span><span style="color: rgba(0, 0, 0, 1)">(ABMapping1),nameof(ABMapping1.AId),nameof(ABMapping1.BId))]</span><span style="color: rgba(0, 0, 255, 1)">public</span> List&lt;B1&gt; BList {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }         }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> B1         {             [SugarColumn(IsPrimaryKey</span>=<span style="color: rgba(0, 0, 255, 1)">true</span><span style="color: rgba(0, 0, 0, 1)"> , IsIdentity = true)]</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">int</span> Id {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">string</span> Name {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }             [Navigate(</span><span style="color: rgba(0, 0, 255, 1)">typeof</span><span style="color: rgba(0, 0, 0, 1)">(ABMapping1), nameof(ABMapping1.BId), nameof(ABMapping1.AId))]</span><span style="color: rgba(0, 0, 255, 1)">public</span> List&lt;A1&gt; AList {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }         }</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">例1:简单用法</span><span style="color: rgba(0, 0, 255, 1)">var</span> list3= db.Queryable&lt;A1&gt;().Includes(x =&gt;<span style="color: rgba(0, 0, 0, 1)"> x.BList).ToList();</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">例2:支持子对象排序和过滤</span><span style="color: rgba(0, 0, 255, 1)">var</span> list3= db.Queryable&lt;A1&gt;().Includes(x =&gt; x.BList.Where(z=&gt;z.Id&gt;<span style="color: rgba(128, 0, 128, 1)">0</span><span style="color: rgba(0, 0, 0, 1)">).ToList()).ToList();</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">例3:支持主表过滤  Any和Count</span><span style="color: rgba(0, 0, 255, 1)">var</span> list3= db.Queryable&lt;A1&gt;().Includes(x =&gt;<span style="color: rgba(0, 0, 0, 1)"> x.BList)                              .Where(x</span>=&gt;x.BList .Any(z=&gt;z.Id ==<span style="color: rgba(128, 0, 128, 1)">1</span>)).ToList();</pre> </div> <h3>2.4 多级查询</h3> <p id="blogTitle8">配置好实体类，我们可以多级查询 ，.NET 中轻松多级查询</p> <div class="cnblogs_Highlighter"> <pre class="brush:csharp;gutter:true;"> var list=db.Queryable&lt;Test&gt;()                 .Includes(x =&gt; x.Provinces,x=&gt;x.Citys ,x=&gt;x.Street)//有时候没提示 直接写                 .Includes(x =&gt; x.ClassInfo)// 一级查询                 .ToList();</pre> </div> <h3><span style="font-size: 1.17em">2.5 大数据分页导航</span></h3> <p>适合一次性查询1000条以上的导航</p> <div class="cnblogs_Highlighter"> <pre class="brush:csharp;gutter:true;">  var list = new List&lt;Tree1&gt;();       db.Queryable&lt;Tree1&gt;()         .Includes(it =&gt; it.Child)         .ForEach(it =&gt; list.Add(it), 300); //每次查询300条</pre> </div> <p>&nbsp;更多用法：https://www.donet5.com/Home/Doc?typeId=2414</p> <h2 id="blogTitle10">3、ORM无配置映射（高性能）</h2> <p>适合没有主键或者复杂的一些操作</p> <h3 id="blogTitle11">&nbsp;3.1 无配置映射实现二层</h3> <p>结构:&nbsp; Student-&gt;SchoolA</p> <div class="cnblogs_Highlighter"> <pre class="brush:csharp;gutter:true;">var list = db.Queryable&lt;StudentA&gt;().ToList(); db.ThenMapper(list, stu =&gt; {   //如果加Where不能带有stu参数，stu参数写到 SetContext   stu.SchoolA=db.Queryable&lt;SchoolA&gt;().SetContext(scl=&gt;scl.SchoolId,()=&gt;stu.SchoolId,stu).FirstOrDefault(); }); // SetContext不会生成循环操作，高性能  和直接Where性能是不一样的</pre> </div> <p><span style="font-size: 1.17em">如果没有SetContext那么这个查询将会循环</span></p> <h3><span style="font-size: 1.17em">3.2&nbsp; 无配置映射无限级</span></h3> <p>了解原理后我们用ThenMapper想映射哪层就映射哪层</p> <div class="cnblogs_Highlighter"> <pre class="brush:csharp;gutter:true;">var treeRoot=db.Queryable&lt;Tree&gt;().Where(it =&gt; it.Id == 1).ToList(); //第一层 db.ThenMapper(treeRoot, item =&gt; {     item.Child = db.Queryable&lt;Tree&gt;().SetContext(x =&gt; x.ParentId, () =&gt; item.Id, item).ToList(); }); //第二层 db.ThenMapper(treeRoot.SelectMany(it=&gt;it.Child), it =&gt; {     it.Child = db.Queryable&lt;Tree&gt;().SetContext(x =&gt; x.ParentId, () =&gt; it.Id, it).ToList(); }); //第三层 db.ThenMapper(treeRoot.SelectMany(it =&gt; it.Child).SelectMany(it=&gt;it.Child), it =&gt; {     it.Child = db.Queryable&lt;Tree&gt;().SetContext(x =&gt; x.ParentId, () =&gt; it.Id, it).ToList(); }); //这儿只是用树型结构来证明可以实现无限级别导航查询 ,实际开发中树型结构用ToTree实现 public class Tree { [SqlSugar.SugarColumn(IsPrimaryKey =true)] public int Id { get; set; } public string Name { get; set; } public int ParentId { get; set; } [SqlSugar.SugarColumn(IsIgnore = true)] public Tree Parent { get; set; } [SqlSugar.SugarColumn(IsIgnore = true)] public List&lt;Tree&gt; Child { get; set; } } // SetContext不会生成循环操作，高性能  和直接Where性能是不一样的</pre> </div> <h2></h2> <h2>4 、.NET ORM 未来计划</h2> <p>Json to sql&nbsp; 正在开发中 ，未来将打造一套直接由前端操作数据库的API</p> <div class="cnblogs_Highlighter"> <pre class="brush:javascript;gutter:true;"> {  "Queryable":"order",   Select:[ [{SqlFunc_AggregateMin:["id"]},"id"], [{SqlFunc_GetDate:[]},"Date"] ]  }</pre> </div> <p>将支持 权限过滤 ，验证，多表查询，层级导航查询 等</p> <h2>GitHUB 源码：</h2> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/donet5/SqlSugar"  target="_blank" rel="nofollow">https://github.com/donet5/SqlSugar</a></p> <p>喜欢的可以点个星星、点个关注</p> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-425.htm">sql server查询语句阻塞优化性能_MsSql_</a></p>
+                                                        <p>下一个：<a href="/html/category/article-427.htm">Java 中单例模式的正确用法？</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-491.htm" title="我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></li>
+                        <li class="py-2"><a href="/html/category/article-483.htm" title="vue变更v-for列表多个项目的颜色和选择项目">vue变更v-for列表多个项目的颜色和选择项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-501.htm" title="springboot自定义视图映射">springboot自定义视图映射</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/html/category/article-484.htm" title="Springboot启动原理详细解析">Springboot启动原理详细解析</a></li>
+                        <li class="py-2"><a href="/html/category/article-471.htm" title="linux清理磁盘文件夹方法">linux清理磁盘文件夹方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
+                        <li class="py-2"><a href="/html/category/article-468.htm" title="C语言井字棋游戏">C语言井字棋游戏</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

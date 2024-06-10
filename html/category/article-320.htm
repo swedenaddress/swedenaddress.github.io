@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-320.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>正则表达式贪婪与非贪婪模式 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        正则表达式贪婪与非贪婪模式                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>高级用法在这里：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/m0_37673307/article/details/81627553"  rel="nofollow">正则表达式（三）——高级用法：search，findall，sub，split</a></p> <h3><span style="color:#3399ea;">8.贪婪与非贪婪模式</span></h3> <blockquote> <p>首先我们以简单的例子来说说<strong><span style="color:#7c79e5;">什么是正则表达式的贪婪与非贪婪匹配</span>？</strong></p> <p>比如假定匹配字符串和正则表达式为：</p> <pre class="has"><code class="language-python">&gt;&gt;&gt; match_str = 'abcdefc'  #匹配字符串</code></pre> <ul> <li><strong>&nbsp;贪婪匹配:</strong></li> </ul> <pre class="has"><code class="language-python">&gt;&gt;&gt; pattern = r'ab.*c' &gt;&gt;&gt; re.match(pattern,match_str) &lt;_sre.SRE_Match object; span=(0, 7), match='abcdefc'&gt;</code></pre> <p>&nbsp;正则表达式一般趋向于最大长度匹配，<span style="color:#f33b45;">总是尝试匹配尽可能多的字符，</span>也就是所谓的贪婪匹配。如上面使用模式p匹配字符串str，结果就是匹配到：<strong>abcdefc。</strong>当出现c时，它还是继续向后找，又找到c，它就把cdef当做是(.*)的匹配</p> <ul> <li><strong>非贪婪匹配</strong>：</li> </ul> <pre class="has"><code class="language-python">&gt;&gt;&gt; pattern = r'ab.*?c'  #非贪婪匹配 &gt;&gt;&gt; re.match(pattern,match_str) &lt;_sre.SRE_Match object; span=(0, 3), match='abc'&gt;</code></pre> <p>非贪婪匹配就是匹配到结果就好，<span style="color:#f33b45;">总是尝试匹配尽可能少的字符</span>。如上面使用模式p匹配字符串str，结果就是匹配到：<strong>abc</strong>。当它遇见c后，它就停止查找，此时把空字符作为(.*)的匹配。</p> </blockquote> <blockquote> <p><span style="color:#7c79e5;"><strong>那么贪婪与非贪婪怎么区分呢？</strong></span></p> <p><strong>re模块默认是贪婪模式；在量词后面直接加上一个问号？就是非贪婪模式。</strong></p> <p>我们熟知的量词有：</p> <table align="left" border="1" cellpadding="1" cellspacing="1" style="width:500px;"> <tbody> <tr> <td>*</td> <td>任意多个</td> </tr> <tr> <td>+</td> <td>至少一个</td> </tr> <tr> <td>？</td> <td>0或1个</td> </tr> <tr> <td>{m,n}</td> <td>m到n个</td> </tr> </tbody> </table> </blockquote> <blockquote> <p>在上一节中的去除HTML中的标签时，我们使用r'&lt;.+&gt;'去匹配得到的却是一堆'\n'，我们来看看原因。拿其中的一行来看，为什么输出'\n'：</p> <pre class="has"><code class="language-html">&lt;p&gt;&lt;br/&gt;&lt;/p&gt;</code></pre> <p>&nbsp;分析：sub函数先做匹配操作，再做替换操作。在匹配操作时，首先匹配 &lt;（左尖括号），&lt;p&gt;的&lt;就已经匹配到，当匹配到&lt;p&gt;的&gt;时，匹配未结束，它继续往后匹配。当匹配到&lt;br/&gt;的&gt;时，仍然未结束，贪婪的向后继续匹配，直到匹配到&lt;/p&gt;的&gt;，再继续去匹配，字符串后面有个‘\n',结束匹配，它就把&nbsp; p&gt;&lt;br/&gt;&lt;/p 这些内容都当做 .+ 来处理。因此匹配到这一行内容除了'\n'，并进行替换操作，替换为空字符''，因此输出'\n'。因此，在 .+ 后面加上?表示非贪婪模式，当碰到&lt;p&gt;的 &gt; 就停止此次匹配。</p> <pre class="has"><code class="language-python">&gt;&gt;&gt; re.sub(r'&lt;.+?&gt;','',s)</code></pre> </blockquote> <p>至此，正则表达式的学习就告一段落了，还是需要在实践中才能检验出真理......</p> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-319.htm">使用Python递归遍历目标路径下的所有文件</a></p>
+                                                        <p>下一个：<a href="/html/category/article-321.htm">简单实现JS浅拷贝和深拷贝</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-486.htm" title="如何使用Copy-Item在PowerShell中复制多个文件？">如何使用Copy-Item在PowerShell中复制多个文件？</a></li>
+                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
+                        <li class="py-2"><a href="/html/category/article-493.htm" title="JavaScript动态操作select下拉框_javascript技巧_">JavaScript动态操作select下拉框_javascript技巧_</a></li>
+                        <li class="py-2"><a href="/html/category/article-475.htm" title="redis持久化概述">redis持久化概述</a></li>
+                        <li class="py-2"><a href="/html/category/article-483.htm" title="vue变更v-for列表多个项目的颜色和选择项目">vue变更v-for列表多个项目的颜色和选择项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-471.htm" title="linux清理磁盘文件夹方法">linux清理磁盘文件夹方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-478.htm" title="JavaScript如何添加用于将案例交换到字符串原型对象的函数">JavaScript如何添加用于将案例交换到字符串原型对象的函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-481.htm" title="如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？">如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-521.htm" title="typescript的安装运行与自动编译">typescript的安装运行与自动编译</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

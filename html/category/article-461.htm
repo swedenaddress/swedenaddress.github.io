@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-461.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>记一次Spring|项目启动耗时超级长的优化 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        记一次Spring|项目启动耗时超级长的优化                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p><strong>起因: 手上的一个spring项目启动耗时超级长，启动后查看花费的时间，一共花了426849毫秒，换算近7.11415分钟。</strong></p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230109/416be95e3cf5594d6ad7b98448cad03f.jpg"></p> <p><strong>1，观察日志初步排查问题，发现系统卡在此处不动了。。。</strong></p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230109/131b2595ffe4a89c2e41e9de4f67ebe0.jpg"></p> <p><strong>2，继续等待日志，发现在启动过程中加载阿里数据库连接池DruidDataSource耗时近4分钟。</strong></p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230109/327aaf2334a86c45806bd780a005e204.jpg"></p> <p><strong>3，由此怀疑是连接池配置问题，去除所有初始化的参数，保留连接信息(driverClassName,url,username,password)，启动耗时39282毫秒, 0.6547 分</strong></p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230109/54f96ad8c388eb2bbd9fd7b90f347e80.jpg"></p> <p><strong>4，继续排查连接池配置，放出几个初始化参数，再重新启动服务，发现耗时又出现将近7分钟，由此可发现问题出现在此。</strong></p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230109/d2838a45580f83ae9a296225d99e1131.jpg"></p> <p><strong>5，查看Druid的官方文档，配置推荐<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/alibaba/druid/wiki/DruidDataSource%E9%85%8D%E7%BD%AE"  title="DruidDataSource配置 · alibaba/druid Wiki · GitHub" rel="nofollow">DruidDataSource配置 · alibaba/druid Wiki · GitHub</a></strong></p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230109/d75419081c92bdb8bd5ed6e591006314.jpg"></p> <pre>&lt;property name="initialSize" value="500" /&gt;   //此处配置的值问题很大。</pre> <p>查询官网文档：<br /> initialSize&nbsp;&nbsp; &nbsp; 默认值是0&nbsp; 初始化时建立物理连接的个数，初始化发生在显示调用init方法，或者第一次getConnection时</p> <p>初始化配置了500的个数，Spring启动过程就需要花费大量的时间去初始化创建连接，导致系统启动超级的慢。</p> <p><strong>准确定位到初始化参数问题，导致项目启动耗时如此之长久。&nbsp;&nbsp; &nbsp;</strong></p> <p><strong>原先&lt;property name="initialSize" value="500" /&gt;<br /> 修改后&lt;property name="initialSize" value="50" /&gt;</strong></p> <p><strong>此次优化效果如下：<br /> 系统启动性能优化（前后耗时对比）：</strong><br /> 优化前：spring项目启动耗时426849毫秒，大约7分钟。<br /> 优化后：spring项目启动耗时185613毫秒，大约3分钟，启动性能提升2倍多。<br /> 极致情况下，开发人员本地启动服务，可直接删掉initialSize参数配置，启动性能还可在原基础上提升20秒左右。<br /> 启动这个项目，一次可提速近3分钟。</p> <p><strong>将近3分钟的启动时长，对于项目来说还是太长了，继续深度优化。</strong></p> <p><strong>6，监控日志发现加载线程池出现耗时将近（从18s到27s）10秒</strong></p> <p>2022-03-01 16:47:<strong>18</strong> [RMI TCP Connection(5)-127.0.0.1] INFO &nbsp;bs2.xxxxxxxxx.orm.core.SQLExecutor &nbsp;- 2441 query select &nbsp;from `xxxxxxx` &nbsp;<br /> 2022-03-01 16:47:<strong>27</strong> [RMI TCP Connection(5)-127.0.0.1] INFO &nbsp;org.springframework.xxxxx.concurrent.ThreadPoolTaskExecutor &nbsp;- Initializing 'txxxxkxecutor'</p> <p><strong>定位到系统使用xml配置线程池，在初始化的时候直接加载，导致耗时增加，于是修改加载为lazy-init</strong></p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230109/3ea30caecf636d527aba11997fad4589.jpg"></p> <p><strong>7，继续监控日志，在webApplication初始化时停留了一分多钟。</strong><br /> 16:33:40.811 [NettyClientSelector_1] DEBUG i.n.u.i.JavassistTypeParameterMatcherGenerator - Generated: io.netty.util.internal.__matchers__.com.alibaba.xxxxxmq.remoting.protocol.RemotingCommandMatcher<br /> 2022-03-01 <strong>16:34:48</strong> [RMI TCP Connection(3)-127.0.0.1] INFO &nbsp;org.springframework.web.context.ContextLoader &nbsp;- Root WebApplicationContext: initialization completed in 104988 ms<br /> 2022-03-01<strong> 16:34:52 </strong>[RMI TCP Connection(3)-127.0.0.1] INFO&nbsp; rsLog &nbsp;- com.baison.bap.resource.StringResourceLoader starting load</p> <p><strong>8，定位到是由于spring的bean加载，启动过程中加载了大量的bean类，于是在bean.xml文件中，进行懒加载配置。</strong></p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230109/cba4f565256234a9b5f5c4cef34f5950.jpg"></p> <p> 优化后，耗时已经到1分多钟了，这下启动起来瞬间就爽了。</p> <p><strong>此次优化效果如下：<br /> 系统启动性能优化（前后耗时对比）：</strong><br /><strong>优化前：spring项目启动耗时426849毫秒，大约7分钟。<br /> 优化后：spring项目启动耗时99505毫秒，大约1分半，启动性能提升将近5倍。</strong><br /> 启动这个项目，一次可提速近5分钟，平均下来用在这些项目启动的时间上面，每天可以节省几十分钟。</p> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-460.htm">java面向对象是什么意思_java什么是面向对象</a></p>
+                                                        <p>下一个：<a href="/html/category/article-462.htm">java之Arrays工具类的使用</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-500.htm" title="SpringBoot动态定时任务的实现">SpringBoot动态定时任务的实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-496.htm" title="vue3+elementUI-plus 项目实战登录">vue3+elementUI-plus 项目实战登录</a></li>
+                        <li class="py-2"><a href="/html/category/article-518.htm" title="使用TreeMap在Java中对用户定义的对象进行排序">使用TreeMap在Java中对用户定义的对象进行排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-475.htm" title="redis持久化概述">redis持久化概述</a></li>
+                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-467.htm" title="对象和封装总结">对象和封装总结</a></li>
+                        <li class="py-2"><a href="/html/category/article-482.htm" title="Hyperledger Fabric节点的动态添加和删除">Hyperledger Fabric节点的动态添加和删除</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

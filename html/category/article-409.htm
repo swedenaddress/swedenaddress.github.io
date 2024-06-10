@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-409.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>分割数组– - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        分割数组–                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<p>假设，我们需要编写一个函数，该函数将字符串/数字文字的数组arr作为第一个参数，将数字n作为第二个参数。</p> <p>我们需要返回一个n个子数组的数组，每个子数组最多包含arr.length / n个元素。而且元素的分布应该像这样-</p> <ul class="list-paddingleft-2"> <li> <p>第一个元素进入第一个子数组，第二个进入第二个子数组，第三个进入第三个子数组，依此类推。</p> </li> <li> <p>在每个子数组中都有一个元素后，我们再次从第一个子数组中填充第二个元素开始。</p> </li> <li> <p>同样，当所有子数组只有两个元素之后，我们才将第一个元素填充到第三个数组中，依此类推。</p> </li> </ul> <p>例如-</p> <p>如果输入数组是-</p> <pre>&nbsp; const&nbsp;input&nbsp;=&nbsp;[656,&nbsp;756,&nbsp;5345,&nbsp;67,&nbsp;43,&nbsp;76,&nbsp;54,&nbsp;768,&nbsp;34];</pre> <p>并且数字n为3，则输出应为-</p> <pre>const&nbsp;output&nbsp;=&nbsp;[ &nbsp;&nbsp;&nbsp;[&nbsp;656,&nbsp;67,&nbsp;54&nbsp;], &nbsp;&nbsp;&nbsp;[&nbsp;756,&nbsp;43,&nbsp;768&nbsp;], &nbsp;&nbsp;&nbsp;[&nbsp;5345,&nbsp;76,&nbsp;34&nbsp;] ];</pre> <p>我们将在原始数组上使用Array.prototype.reduce()方法来构造所需的数组。</p> <h2>示例</h2> <p>以下是代码-</p> <pre>const&nbsp;input&nbsp;=&nbsp;[656,&nbsp;756,&nbsp;5345,&nbsp;67,&nbsp;43,&nbsp;76,&nbsp;54,&nbsp;768,&nbsp;34]; const&nbsp;divideArray&nbsp;=&nbsp;(arr,&nbsp;size)&nbsp;=&gt;&nbsp;{ &nbsp;&nbsp;&nbsp;return&nbsp;arr.reduce((acc,&nbsp;val,&nbsp;ind)&nbsp;=&gt;&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;subIndex&nbsp;=&nbsp;ind&nbsp;%&nbsp;size; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!Array.isArray(acc[subIndex])){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acc[subIndex]&nbsp;=&nbsp;[val]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acc[subIndex].push(val); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;acc; &nbsp;&nbsp;&nbsp;},&nbsp;[]); }; console.log(divideArray(input,&nbsp;3));</pre> <p>输出结果</p> <p>这将在控制台中产生以下输出-</p> <pre>[&nbsp;[&nbsp;656,&nbsp;67,&nbsp;54&nbsp;],&nbsp;[&nbsp;756,&nbsp;43,&nbsp;768&nbsp;],&nbsp;[&nbsp;5345,&nbsp;76,&nbsp;34&nbsp;]&nbsp;]</pre> <div></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-408.htm">victoriaMetrics中的一些Sao操作_在线工具</a></p>
+                                                        <p>下一个：<a href="/html/category/article-410.htm">Idea启动Spring Boot很慢终于解决了</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-507.htm" title="vue 封装图片路径">vue 封装图片路径</a></li>
+                        <li class="py-2"><a href="/html/category/article-479.htm" title="python多线程编程_2小时玩转python多线程编程">python多线程编程_2小时玩转python多线程编程</a></li>
+                        <li class="py-2"><a href="/html/category/article-466.htm" title="Spring Security核心组件详解">Spring Security核心组件详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-475.htm" title="redis持久化概述">redis持久化概述</a></li>
+                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/html/category/article-508.htm" title="Libco Hook 机制浅析_在线工具">Libco Hook 机制浅析_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
+                        <li class="py-2"><a href="/html/category/article-514.htm" title="Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源">Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源</a></li>
+                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

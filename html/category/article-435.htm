@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-435.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>C#程序中使用DataView的ToTable方法实现distinct功能 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        C#程序中使用DataView的ToTable方法实现distinct功能                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p style="margin:10px auto; padding-top:0px; padding-bottom:0px; color:rgb(51,51,51); font-family:Verdana,Arial,Helvetica,sans-serif; font-size:14px; line-height:25.200000762939453px"> 在大数据量查询中经常会碰到使用distinct来获取所有不同的数据，然后当数据量达到一定数量时，distinct会是查询效率降低，是查询时间集中在排序区分上面。导致查询缓慢。如果将distinct这部分功能放在代码中则会是查询效率提升。同时将distinct这部分的在程序中来解决的话则可以极大的缓解数据库的压力，而程序部分的则很容易提升。相对来说。数据库的资源比其他资源要宝贵的多。好了。前话到这里。</p> <p style="margin:10px auto; padding-top:0px; padding-bottom:0px; color:rgb(51,51,51); font-family:Verdana,Arial,Helvetica,sans-serif; font-size:14px; line-height:25.200000762939453px"> 要在程序中实现distinct功能的话。写代码是必须的，当然相对来说是如何写比较简单的问题。在这方面，微软给我们提供了贴心的服务在DataView 中有一个ToTable方法。这个方法有四个重载方法，这里直说第三种重载方法。</p> <h1 class="title" style="margin:0px; padding:0px; font-size:2.76em; font-weight:normal; line-height:1.167; font-family:'Microsoft YaHei UI','Microsoft YaHei',SimSun,'Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif"> DataView.ToTable 方法 (Boolean, String[])</h1> <p style="margin:10px auto; padding-top:0px; padding-bottom:0px; color:rgb(51,51,51); font-family:Verdana,Arial,Helvetica,sans-serif; font-size:14px; line-height:25.200000762939453px"> 这个方法：</p> <p style="margin:0px auto; padding-top:0px; padding-bottom:15px; font-size:13px; line-height:18px; font-family:'Microsoft YaHei UI','Microsoft YaHei',SimSun,'Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif; color:rgb(42,42,42)"> 根据现有&nbsp;<a target="_blank" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://msdn.microsoft.com/zh-cn/library/system.data.dataview%28v=vs.80%29.aspx"  style="margin:0px; padding:0px; color:rgb(3,105,122); text-decoration:none" rel="nofollow">DataView</a>&nbsp;中的行，创建并返回一个新的&nbsp;<span style="margin:0px; padding:0px">DataTable</span>。</p> <p style="margin:0px auto; padding-top:0px; padding-bottom:15px; font-size:13px; line-height:18px; font-family:'Microsoft YaHei UI','Microsoft YaHei',SimSun,'Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif; color:rgb(42,42,42)"> <span style="margin:0px; padding:0px">命名空间:</span>System.Data<br style="margin:0px; padding:0px"/><span style="margin:0px; padding:0px">程序集:</span>System.Data（在 system.data.dll 中）</p> <p style="margin:0px auto; padding-top:0px; padding-bottom:15px; font-size:13px; line-height:18px; font-family:'Microsoft YaHei UI','Microsoft YaHei',SimSun,'Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif; color:rgb(42,42,42)"> <span style="margin:0px; padding:0px; color:rgb(255,0,0)">注意：此方法在 .NET Framework 2.0 版中是新增的。</span></p> <p style="margin:0px auto; padding-top:0px; padding-bottom:15px; font-size:13px; line-height:18px; font-family:'Microsoft YaHei UI','Microsoft YaHei',SimSun,'Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif; color:rgb(42,42,42)"> <span style="margin:0px; padding:0px; color:rgb(255,0,0)">该方法原型是介个样子的：public DataTable ToTable(bool distinct, params string[] columnNames);</span></p> <p style="margin:0px auto; padding-top:0px; padding-bottom:15px; font-size:13px; line-height:18px; font-family:'Microsoft YaHei UI','Microsoft YaHei',SimSun,'Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif; color:rgb(42,42,42)"> <span style="margin:0px; padding:0px; color:rgb(255,0,0)">这里的distinct是一个bool类型。如果指明为true则表示按照后面可变参数中的列名来实现获取这些列中的distinct数据。如下：</span></p> <p style="margin:0px auto; padding-top:0px; padding-bottom:15px; font-size:13px; line-height:18px; font-family:'Microsoft YaHei UI','Microsoft YaHei',SimSun,'Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif; color:rgb(42,42,42)"> &nbsp;</p> <h4 class="subHeading" style="margin:0px; padding:0px; font-size:1.07em; font-weight:normal; font-family:'Microsoft YaHei UI','Microsoft YaHei',SimSun,'Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif"> 参数</h4> <p style="margin:0px auto; padding-top:0px; padding-bottom:15px; font-size:13px; line-height:18px; font-family:'Microsoft YaHei UI','Microsoft YaHei',SimSun,'Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif; color:rgb(42,42,42)"> &nbsp;</p> <dl style="margin:0px; padding:0px; font-size:13px; line-height:17px; font-family:'Microsoft YaHei UI','Microsoft YaHei',SimSun,'Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif"> <span class="parameter" style="margin:0px; padding:0px; font-style:italic">distinct</span></p> <dd style="margin:0px; padding:0px"> <p style="margin:0px auto; padding-top:0px; padding-bottom:15px; line-height:18px; color:rgb(42,42,42)"> 如果为&nbsp;<span style="margin:0px; padding:0px">true</span>，则返回的&nbsp;<a target="_blank" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://msdn.microsoft.com/zh-cn/library/system.data.datatable%28v=vs.80%29.aspx"  style="margin:0px; padding:0px; color:rgb(3,105,122); text-decoration:none" rel="nofollow">DataTable</a>&nbsp;将包含所有列都具有不同值的行。默认值为&nbsp;<span style="margin:0px; padding:0px">false</span>。</p> </dd> </dl> <p style="margin:0px auto; padding-top:0px; padding-bottom:15px; font-size:13px; line-height:18px; font-family:'Microsoft YaHei UI','Microsoft YaHei',SimSun,'Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif; color:rgb(42,42,42)"> &nbsp;</p> <dl style="margin:0px; padding:0px; font-size:13px; line-height:17px; font-family:'Microsoft YaHei UI','Microsoft YaHei',SimSun,'Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif"> <span class="parameter" style="margin:0px; padding:0px; font-style:italic">columnNames</span></p> <dd style="margin:0px; padding:0px"> <p style="margin:0px auto; padding-top:0px; padding-bottom:15px; line-height:18px; color:rgb(42,42,42)"> 一个字符串数组，包含要包括在返回的&nbsp;<span style="margin:0px; padding:0px">DataTable</span>&nbsp;中的列名的列表。<span style="margin:0px; padding:0px">DataTable</span>&nbsp;包含指定的列，其顺序与这些列在该数组中的顺序相同。</p> <p style="margin:0px auto; padding-top:0px; padding-bottom:15px; line-height:18px; color:rgb(42,42,42)"> &nbsp;</p> <p style="margin:0px auto; padding-top:0px; padding-bottom:15px; line-height:18px; color:rgb(42,42,42)"> 最后我们以一个小的例子来结尾。上代码~\(≧▽≦)/~啦啦啦!!!!!</p> </dd> <dd style="margin:0px; padding:0px"> <p style="margin:0px auto; padding-top:0px; padding-bottom:15px; line-height:18px; color:rgb(42,42,42)"> <pre><code class="language-csharp">using System; using System.Collections.Generic; using System.Linq; using System.Text; using System.Data;  namespace TableTest {     class Program     {         static void Main(string[] args)         {             DemonstrateDataView();         }          private static void DemonstrateDataView()         {             // Create a DataTable with three columns.             DataTable table = new DataTable("NewTable");             Console.WriteLine("Original table name: " + table.TableName);             #region Columns             DataColumn column = new DataColumn("ID", typeof(System.Int32));             table.Columns.Add(column);              column = new DataColumn("Category", typeof(System.String));             table.Columns.Add(column);              column = new DataColumn("Product", typeof(System.String));             table.Columns.Add(column);              column = new DataColumn("QuantityInStock", typeof(System.Int32));             table.Columns.Add(column);             #endregion              #region Rows             // Add some items.             DataRow row = table.NewRow();             row.ItemArray = new object[] { 1, "Fruit", "Apple", 14 };             table.Rows.Add(row);              row = table.NewRow();             row.ItemArray = new object[] { 1, "Fruit", "Apple", 14 };             table.Rows.Add(row);              row = table.NewRow();             row.ItemArray = new object[] { 2, "Fruit", "Orange", 27 };             table.Rows.Add(row);              row = table.NewRow();             row.ItemArray = new object[] { 3, "Bread", "Muffin", 23 };             table.Rows.Add(row);              row = table.NewRow();             row.ItemArray = new object[] { 4, "Fish", "Salmon", 12 };             table.Rows.Add(row);              row = table.NewRow();             row.ItemArray = new object[] { 5, "Fish", "Salmon", 15 };             table.Rows.Add(row);              row = table.NewRow();             row.ItemArray = new object[] { 6, "Bread", "Croissant", 23 };             table.Rows.Add(row);             #endregion              // Mark all rows as "accepted". Not required             // for this particular example.             table.AcceptChanges();              // Print current table values.             PrintTableOrView(table, "Current Values in Table");              DataView view = new DataView(table);             view.Sort = "Category";             PrintTableOrView(view, "Current Values in View");              DataTable newTable = view.ToTable(true, "ID", "Category", "Product", "QuantityInStock");             PrintTableOrView(newTable, "Table created from sorted DataView");             Console.WriteLine("New table name: " + newTable.TableName);              Console.WriteLine("Press any key to continue.");             Console.ReadKey();         }          private static void PrintTableOrView(DataView dv, string label)         {             System.IO.StringWriter sw;             string output;             DataTable table = dv.Table;              Console.WriteLine(label);              // Loop through each row in the view.             foreach (DataRowView rowView in dv)             {                 sw = new System.IO.StringWriter();                  // Loop through each column.                 foreach (DataColumn col in table.Columns)                 {                     // Output the value of each column's data.                     sw.Write(rowView[col.ColumnName].ToString() + ", ");                 }                 output = sw.ToString();                 // Trim off the trailing ", ", so the output looks correct.                 if (output.Length &gt; 2)                 {                     output = output.Substring(0, output.Length - 2);                 }                 // Display the row in the console window.                 Console.WriteLine(output);             }             Console.WriteLine();         }           private static void PrintTableOrView(DataTable table, string label)         {             System.IO.StringWriter sw;             string output;              Console.WriteLine(label);              // Loop through each row in the table.             foreach (DataRow row in table.Rows)             {                 sw = new System.IO.StringWriter();                 // Loop through each column.                 foreach (DataColumn col in table.Columns)                 {                     // Output the value of each column's data.                     sw.Write(row[col].ToString() + ", ");                 }                 output = sw.ToString();                 // Trim off the trailing ", ", so the output looks correct.                 if (output.Length &gt; 2)                 {                     output = output.Substring(0, output.Length - 2);                 }                 // Display the row in the console window.                 Console.WriteLine(output);             } //             Console.WriteLine();         }     } }</code></pre> </dd> </dl> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-434.htm">Go并发编程sync.Cond的具体使用_Golang</a></p>
+                                                        <p>下一个：<a href="/html/category/article-436.htm">vue-cli@3封装多模块Vuex（vue项目模板封装系列）</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
+                        <li class="py-2"><a href="/html/category/article-467.htm" title="对象和封装总结">对象和封装总结</a></li>
+                        <li class="py-2"><a href="/html/category/article-469.htm" title="聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响">聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响</a></li>
+                        <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
+                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
+                        <li class="py-2"><a href="/html/category/article-486.htm" title="如何使用Copy-Item在PowerShell中复制多个文件？">如何使用Copy-Item在PowerShell中复制多个文件？</a></li>
+                        <li class="py-2"><a href="/html/category/article-485.htm" title="mysql索引失效的常见9种原因详解">mysql索引失效的常见9种原因详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-477.htm" title="win11系统hosts文件无法保存怎么办">win11系统hosts文件无法保存怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-465.htm" title="C语言数据结构、十字链表的分析及实现">C语言数据结构、十字链表的分析及实现</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

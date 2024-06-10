@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-289.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>利用 onnxruntime 库同时推理多个模型的效率研究 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        利用 onnxruntime 库同时推理多个模型的效率研究                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<h2 id="1-背景">1. 背景</h2> <p><strong>需求</strong>：针对视频形式的数据输入，对每一帧图像，有多个神经网络模型需要进行推理并获得预测结果。如何让整个推理过程更加高效，尝试了几种不同的方案。</p> <p><strong>硬件</strong>：单显卡主机。</p> <h2 id="2-方案">2. 方案</h2> <p>由于存在多个模型需要推理，但模型之间没有相互依赖关系，因此很容易想到通过<strong>并行</strong>的方式来提高运行效率。</p> <p>对比了如下几种方案的结果，包括：</p> <ol> <li>串行</li> <li>线程</li> <li>进程</li> <li>协程</li> </ol> <h2 id="3-实现">3. 实现</h2> <h3 id="31-整体流程">3.1 整体流程</h3> <p>配置了 4 个体量相近的模型。<br /> 为了屏蔽读取和解码的时间消耗对最终结果的影响，提前读取视频并准备输入。<br /> 统计每个单独模型执行推理的累积时间，以及整体的运行时间。</p> <pre><code class="language-python">import asyncio from time import time  def main():     frames = load_video()     weights = load_weights()      print('串行：')     one_by_one(weights, frames)     print('多线程：')     multit_thread(weights, frames)     print('多进程：')     multi_process(weights, frames)     print('协程：')     asyncio.run(coroutine(weights, frames))</code></pre> <h3 id="32-串行">3.2 串行</h3> <p>读取到当前帧数据后，所有模型依次运行。</p> <pre><code class="language-python">def one_by_one(weights, frames):     sessions = [init_session(weight) for weight in weights]     costs = [[] for _ in range(len(weights))]     since_infer = time()     for frame in frames:         for session in sessions:             since = time()             _ = session.run('output', {'input': frame})             cost = time() - since             costs[idx].append(cost)     print([sum(cost) for cost in costs])     print("infer:", time() - since_infer)     return</code></pre> <h3 id="33-多线程">3.3 多线程</h3> <p>为每一个模型分配一个线程。</p> <pre><code class="language-python">from threading import Thread  def multit_thread(weights, frames):     sessions = [init_session(weight) for weight in weights]     threads = []     since_infer = time()     for session in sessions:         thread = Thread(target=run_session_thread, args=(session, frames))         thread.start()         threads.append(thread)     for thread in threads:         thread.join()     print("infer:", time() - since_infer)     return  def run_session_thread(session, frames):     costs = []     for frame in frames:         since = time()         _ = session.run('output', {'input': frame})         costs.append(time() - since)     print(sum(costs))     return</code></pre> <h3 id="34-多进程">3.4 多进程</h3> <p>为每一个模型分配一个进程。<br /> 由于 session 不能在进程间传递，因此需要在每个进程的内部单独初始化。如果数据较多，这部分初始化的时间消耗基本可以忽略不急。</p> <pre><code class="language-python">from multiprocessing import Manager, Process  def multi_process(weights, frames):     inputs = Manager().list(frames)     processes = []     since_infer = time()     for weight in weights:         process = Process(target=run_session_process, args=(weight, inputs))         process.start()         processes.append(process)     for process in processes:         process.join()     print("infer:", time() - since_infer)     return  def run_session_process(weight, frames):     session = init_session(weight)     costs = []     for frame in frames:         since = time()         _ = session.run('output', {'input': frame})         costs.append(time() - since)     print(sum(costs))     return</code></pre> <h3 id="35-协程">3.5 协程</h3> <p>为每一个模型分配一个协程。</p> <pre><code class="language-python">async def coroutine(weights, frames):     sessions = [init_session(weight) for weight in weights]     since_infer = time()     tasks = [         asyncio.create_task(run_session_coroutine(session, frames))         for session in sessions     ]     for task in tasks:         await task     print("infer:", time() - since_all)     return  async def run_session_coroutine(session, frames):     costs = []     for frame in frames:         since = time()         _ = session.run('output', {'input': frame})         costs.append(time() - since)     print(sum(costs))     return</code></pre> <h3 id="36-其他辅助函数">3.6 其他辅助函数</h3> <pre><code class="language-python">import cv2 import numpy as np import onnxruntime as ort  def init_session(weight):     provider = "CUDAExecutionProvider"     session = ort.InferenceSession(weight, providers=[provider])     return session  def load_video():     # 为了减少读视频的时间，复制相同的图片组成batch     vcap = cv2.VideoCapture('path_to_video')     count = 1000     batch_size = 4     frames = []     for _ in range(count):         _, frame = vcap.read()         frame = cv2.resize(frame, (256, 256)).transpose((2, 0, 1))         frame = np.stack([frame] * batch_size, axis=0)         frames.append(frame.astype(np.float32))     return frames  def load_weights():     return ['path_to_weights_0',             'path_to_weights_1',             'path_to_weights_2',             'path_to_weights_3',]</code></pre> <h2 id="4-结果及分析">4. 结果及分析</h2> <h3 id="41-执行结果">4.1 执行结果</h3> <p>以<code>batch_size=4</code>共运行 1000 帧数据，推理结果如下：</p> <table> <thead> <tr> <th>方案</th> <th>串行</th> <th>线程</th> <th>进程</th> <th>协程</th> </tr> </thead> <tbody> <tr> <td>单模型累积时间/s</td> <td>7.9/5.3/5.2/5.2</td> <td>13.5/13.5/15.6/15.7</td> <td>13.5/13.8/13.7/13.6</td> <td>6.5/5.2/5.3/5.3</td> </tr> <tr> <td>总时间/s</td> <td>23.7</td> <td>15.8</td> <td>30.1</td> <td>22.5</td> </tr> <tr> <td>显存占用/MB</td> <td>1280</td> <td>1416</td> <td>3375</td> <td>1280</td> </tr> <tr> <td>平均<strong>GPU-Util</strong></td> <td>约 60%</td> <td>约 85%</td> <td>约 70%</td> <td>约 55%</td> </tr> </tbody> </table> <ul> <li>在这个场景下，<strong>多线程</strong>是综合效率最高的方式（时间最短、显存占用合理、GPU 利用率最高）；</li> <li>串行作为最基础的方案，总时间就是每个模型执行时间之和；</li> <li>多进程的方式，单模型的累积时间与多线程类似，但是总时间有明显增加，且极大增加了显存占用；</li> <li>用协程的方式，总结果看，与串行模式本质上是一样的。</li> </ul> <h3 id="42-结果分析">4.2 结果分析</h3> <h4 id="421-关于线程方案">4.2.1 关于线程方案</h4> <p><strong>为什么多线程相比串行可以提高运行效率？</strong></p> <ul> <li>基本的判断是，<code>session.run()</code>函数运行时，既有 CPU 执行的部分，又有 GPU 执行的部分；</li> <li>如果是串行方案，则 CPU 运行时，GPU 会等待，反之亦然；</li> <li>当换用多线程方案后，当一个线程从 CPU 执行切换到 GPU 执行后，会继续执行另一个线程的 CPU 部分，并等待 GPU 返回结果。</li> </ul> <h4 id="422-关于进程方案">4.2.2 关于进程方案</h4> <p><strong>为什么多进程反而降低了运行效率？</strong></p> <ul> <li>基本的判断是，整体执行的瓶颈并不在 CPU 的运算部分，而是在于 GPU 上模型前向推理的计算部分；</li> <li>因此，用多个进程并没有充分利用系统资源，多个 CPU 核心会争夺同一个 GPU 的计算资源，并增加了调度消耗。</li> </ul> <h4 id="423-关于协程方案">4.2.3 关于协程方案</h4> <p><strong>为什么看起来协程与串行的效果一样？</strong></p> <p>协程方案在执行过程中，从表现上来看：</p> <ul> <li>单个模型的累积时间是逐步<code>print</code>出来的，间隔大致等于每个模型的累积时间（而线程和进程方案中，几乎是同时输出 4 个模型的累积时间，说明是同时运行结束）；</li> <li>显存占用是逐步增加的，最后达到与串行方案一致。</li> </ul> <p>可能的原因：</p> <ul> <li>CPU 和 GPU 的任务切换，可能无法触发协程的切换，导致最终的效果是，一个模型完成了所有数据的推理后，再进行下一个模型的推理。</li> </ul> <p>使用协程的必要性：</p> <ul> <li>从线程改为协程，是为了进一步降低线程切换的消耗；</li> <li>在这个场景下，需要同时执行推理的模型数量一般不会太多，建立同样数量的线程，系统资源的消耗是可控的；</li> <li>因此，没有使用协程的必要性。</li> </ul> <blockquote> <p>关于<strong>协程</strong>的使用，也是现学，有可能因为使用方法不当而得出以上的结论。如有错误，欢迎指正。</p> </blockquote> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-288.htm">.NET如何快速比较两个byte数组是否相等</a></p>
+                                                        <p>下一个：<a href="/html/category/article-290.htm">java开发对controller返回数据统一封装结果集</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-492.htm" title="kafka系列SpringBoot 中使用@KafkaListener详解与使用">kafka系列SpringBoot 中使用@KafkaListener详解与使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-500.htm" title="SpringBoot动态定时任务的实现">SpringBoot动态定时任务的实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-490.htm" title="vue实现简单无缝滚动效果_vue.js">vue实现简单无缝滚动效果_vue.js</a></li>
+                        <li class="py-2"><a href="/html/category/article-478.htm" title="JavaScript如何添加用于将案例交换到字符串原型对象的函数">JavaScript如何添加用于将案例交换到字符串原型对象的函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-488.htm" title="eslint在vue中如何使用">eslint在vue中如何使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-472.htm" title="Java 实现选择排序">Java 实现选择排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
+                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

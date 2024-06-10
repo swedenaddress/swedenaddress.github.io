@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-512.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<p><span style="font-size: 18pt"><strong>1. 概述</strong></span></p> <p>老话说的好：舍得舍得，先舍才能后得。</p> <p>言归正传，今天我们来聊聊 VUE 中使用 Mixin 实现代码的复用。</p> <p><span style="font-size: 18pt"><strong>2. Mixin 的使用</strong></span></p> <p><span style="font-size: 14pt"><strong>2.1 不使用 Mixin 的写法</strong></span></p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">body</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(255, 0, 0, 1)">id</span><span style="color: rgba(0, 0, 255, 1)">="myDiv"</span><span style="color: rgba(0, 0, 255, 1)">&gt;&lt;/</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">body</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">script</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">     const app</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> Vue.createApp({         data(){</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 255, 1)">return</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> {                 num :</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">1</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">             }         },          created() {             console.info(</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">created</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">);         },          methods : {             myAdd() {                 console.info(</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">myAdd</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">);             }         },          template:`</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">div</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">button @click</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">"</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">myAdd</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">"</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">增加</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">/</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">button&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">div</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">{{num}}</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">/</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">div&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">/</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">div&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">        `     });     const vm</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> app.mount(</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">"</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">#myDiv</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">"</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">);</span></pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e8c7fb4feabeef88e7cc6ea6e15f44d3.jpg" alt="VUE3 之 使用 Mixin 实现代码的复用 - 这个系列的教程通俗易懂，适合新手"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/0efd18d92a48eda198ec18de4dc2049e.jpg" alt="VUE3 之 使用 Mixin 实现代码的复用 - 这个系列的教程通俗易懂，适合新手"></p> <p>&nbsp;这个例子中，我们使用了之前聊过的 data、生命周期函数 created，method</p> <p><span style="font-size: 14pt"><strong>2.2 在 Mixin 中定义 data</strong></span></p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">   const myMixin = {         data(){             return {                 num : 2,                 count : 1             }         }     }      const app = Vue.createApp({         data(){             return {                 num : 1             }         },         created() {             console.info('created');         },         mixins:[myMixin],             methods : {             myAdd() {                 console.info('myAdd');             }         },         template:`</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">button</span><span style="color: rgba(255, 0, 0, 1)">@click</span><span style="color: rgba(0, 0, 255, 1)">="myAdd"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span>增加<span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">button</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span>{{num}}<span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span>{{count}}<span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 0, 1)">         `     });</span></pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/9bbeba267d827d8940b387f13e3f056f.jpg" alt="VUE3 之 使用 Mixin 实现代码的复用 - 这个系列的教程通俗易懂，适合新手"></p> <p>这个例子中，我们在 Mixin 中定义了 data，并在主组件中使用&nbsp;mixins:[myMixin] 引用了 Mixin。</p> <p>并且我们得到了一个结论，组件中的 data 变量比 Mixin 中 data 变量的优先级高，因此 num 最终是 1，而不是 2。</p> <p><span style="font-size: 14pt"><strong>2.3 在 Mixin 中定义生命周期函数</strong></span></p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">    const myMixin = {         data(){             return {                 num : 2,                 count : 1             }         },         created() {             console.info('myMixin created');         },      }</span></pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/31a97f4a1a466c9b3d71239799c74ce3.jpg" alt="VUE3 之 使用 Mixin 实现代码的复用 - 这个系列的教程通俗易懂，适合新手"></p> <p>两个生命周期函数都会执行，Mixin 的先执行，组件中的后执行</p> <p><span style="font-size: 14pt"><strong>2.4&nbsp;在 Mixin 中定义 method</strong></span></p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">    const myMixin = {         data(){             return {                 num : 2,                 count : 1             }         },         created() {             console.info('myMixin created');         },         methods : {             myAdd() {                 console.info('myMixin myAdd');             }         },     }</span></pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/7356ee293dcc4bba7918082c4408ca1a.jpg" alt="VUE3 之 使用 Mixin 实现代码的复用 - 这个系列的教程通俗易懂，适合新手"></p> <p>&nbsp;组件中 method 的会覆盖 mixin中的同名 method</p> <p><span style="font-size: 14pt"><strong>2.5 子组件中使用 Mixin</strong></span></p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">    app.component('sub-com', {         mixins:[myMixin],          template: `</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span>{{count}}<span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 0, 1)">         `     });</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">        template:`</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">button</span><span style="color: rgba(255, 0, 0, 1)">@click</span><span style="color: rgba(0, 0, 255, 1)">="myAdd"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span>增加<span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">button</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span>{{num}}<span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">sub-com</span><span style="color: rgba(0, 0, 255, 1)">/&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 0, 1)">         `</span></pre> </div> <p>子组件中使用 Mixin，需要在子组件中使用&nbsp;mixins:[myMixin]&nbsp;引用 Mixin，只在主组件中引用 Mixin 是不行的，主组件、子组件都需要引用 Mixin。</p> <p><span style="font-size: 18pt"><strong>3. 综述</strong></span></p> <p>今天聊了一下 VUE3 中使用 Mixin 实现代码的复用，希望可以对大家的工作有所帮助，下一节我们继续讲 Vue 中的高级语法，敬请期待</p> <p>欢迎帮忙点赞、评论、转发、加关注 ：）</p> <p><strong>关注追风人聊Java，这里干货满满，都是实战类技术文章，通俗易懂，轻松上手。</strong></p> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-511.htm">Java中的多线程你只要看这一篇就够了</a></p>
+                                                        <p>下一个：<a href="/html/category/article-513.htm">springboot整合log4j的踩坑实战记录_java</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-472.htm" title="Java 实现选择排序">Java 实现选择排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-467.htm" title="对象和封装总结">对象和封装总结</a></li>
+                        <li class="py-2"><a href="/html/category/article-465.htm" title="C语言数据结构、十字链表的分析及实现">C语言数据结构、十字链表的分析及实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-507.htm" title="vue 封装图片路径">vue 封装图片路径</a></li>
+                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/html/category/article-492.htm" title="kafka系列SpringBoot 中使用@KafkaListener详解与使用">kafka系列SpringBoot 中使用@KafkaListener详解与使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-491.htm" title="我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></li>
+                        <li class="py-2"><a href="/html/category/article-488.htm" title="eslint在vue中如何使用">eslint在vue中如何使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-483.htm" title="vue变更v-for列表多个项目的颜色和选择项目">vue变更v-for列表多个项目的颜色和选择项目</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

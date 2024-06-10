@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-447.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>Redis 缓存击穿（失效）、缓存穿透、缓存雪崩怎么解决？ - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        Redis 缓存击穿（失效）、缓存穿透、缓存雪崩怎么解决？                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<p>原始数据存储在 DB 中（如 MySQL、Hbase 等），但 DB 的读写性能低、延迟高。</p> <p>比如 MySQL 在 4 核 8G 上的 TPS = 5000，QPS = 10000 左右，读写平均耗时 10~100 ms。</p> <p>用 Redis 作为缓存系统正好可以弥补 DB 的不足，「码哥」在自己的 MacBook Pro 2019 上执行 Redis 性能测试如下：</p> <pre><code class="language-bash">$ redis-benchmark -t set,get -n 100000 -q SET: 107758.62 requests per second, p50=0.239 msec GET: 108813.92 requests per second, p50=0.239 msec</code></pre> <p><strong>TPS 和 QPS 达到 10 万</strong>，于是乎我们就引入缓存架构，在数据库中存储原始数据，同时在缓存总存储一份。</p> <p><strong>当请求进来的时候，先从缓存中去数据，如果有则直接返回缓存中的数据。</strong></p> <p><strong>如果缓存中没数据，就去数据库中读取数据并写到缓存中，再返回结果。</strong></p> <p>这样就天衣无缝了么？缓存的设计不当，将会导致严重后果，本文将介绍缓存使用中常见的三个问题和解决方案：</p> <ul> <li>缓存击穿（失效）；</li> <li>缓存穿透；</li> <li>缓存雪崩。</li> </ul> <h1 id="缓存击穿失效">缓存击穿（失效）</h1> <p><strong>高并发流量，访问的这个数据是热点数据，请求的数据在 DB 中存在，但是 Redis 存的那一份已经过期，后端需要从 DB 从加载数据并写到 Redis。</strong></p> <p><strong>关键字：单一热点数据、高并发、数据失效</strong></p> <p>但是由于高并发，可能会把 DB 压垮，导致服务不可用。如下图所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/3083b85c62bb5dbc9894a7912513bd23.jpg" alt="Redis 缓存击穿（失效）、缓存穿透、缓存雪崩怎么解决？"></p> <h2 id="解决方案">解决方案</h2> <h3 id="过期时间--随机值">过期时间 + 随机值</h3> <p>对于热点数据，我们不设置过期时间，这样就可以把请求都放在缓存中处理，充分把 Redis 高吞吐量性能利用起来。</p> <p>或者过期时间再加一个随机值。</p> <p>设计缓存的过期时间时，使用公式：过期时间=baes 时间+随机时间。</p> <p>即相同业务数据写缓存时，在基础过期时间之上，再加一个随机的过期时间，让数据在未来一段时间内慢慢过期，避免瞬时全部过期，对 DB 造成过大压力</p> <h3 id="预热">预热</h3> <p>预先把热门数据提前存入 Redis 中，并设热门数据的过期时间超大值。</p> <h3 id="使用锁">使用锁</h3> <p>当发现缓存失效的时候，不是立即从数据库加载数据。</p> <p>而是先获取分布式锁，获取锁成功才执行数据库查询和写数据到缓存的操作，获取锁失败，则说明当前有线程在执行数据库查询操作，当前线程睡眠一段时间在重试。</p> <p>这样只让一个请求去数据库读取数据。</p> <p>伪代码如下：</p> <pre><code class="language-java">public Object getData(String id) {     String desc = redis.get(id);         // 缓存为空，过期了         if (desc == null) {             // 互斥锁，只有一个请求可以成功             if (redis(lockName)) {                 try                      // 从数据库取出数据                     desc = getFromDB(id);                     // 写到 Redis                     redis.set(id, desc, 60 * 60 * 24);                 } catch (Exception ex) {                     LogHelper.error(ex);                 } finally {                     // 确保最后删除，释放锁                     redis.del(lockName);                     return desc;                 }             } else {                 // 否则睡眠200ms，接着获取锁                 Thread.sleep(200);                 return getData(id);             }         } }</code></pre> <h1 id="缓存穿透">缓存穿透</h1> <p>缓存穿透：意味着有特殊请求在查询一个不存在的数据，<strong>即不数据存在 Redis 也不存在于数据库。</strong></p> <p>导致每次请求都会<strong>穿透</strong>到数据库，缓存成了摆设，对数据库产生很大压力从而影响正常服务。</p> <p>如图所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/5ded94daba56bd5270bf2892aa60f368.jpg" alt="Redis 缓存击穿（失效）、缓存穿透、缓存雪崩怎么解决？"></p> <h2 id="解决方案-1">解决方案</h2> <ul> <li>缓存空值：当请求的数据不存在 Redis 也不存在数据库的时候，设置一个缺省值（比如：None）。当后续再次进行查询则直接返回空值或者缺省值。</li> <li>布隆过滤器：在数据写入数据库的同时将这个 ID 同步到到布隆过滤器中，当请求的 id 不存在布隆过滤器中则说明该请求查询的数据一定没有在数据库中保存，就不要去数据库查询了。</li> </ul> <p>BloomFilter 要缓存全量的 key，这就要求全量的 key 数量不大，10 亿 条数据以内最佳，因为 10 亿 条数据大概要占用 1.2GB 的内存。</p> <blockquote> <p>说下布隆过滤器的原理吧</p> </blockquote> <p>BloomFilter 的算法是，首先分配一块内存空间做 bit 数组，数组的 bit 位初始值全部设为 0。</p> <p>加入元素时，采用 k 个相互独立的 Hash 函数计算，然后将元素 Hash 映射的 K 个位置全部设置为 1。</p> <p>检测 key 是否存在，仍然用这 k 个 Hash 函数计算出 k 个位置，如果位置全部为 1，则表明 key 存在，否则不存在。</p> <p>如下图所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d89fbe5e72a7fc2e5dcc0c2496b866eb.jpg" alt="Redis 缓存击穿（失效）、缓存穿透、缓存雪崩怎么解决？"></p> <p><strong>哈希函数会出现碰撞，所以布隆过滤器会存在误判。</strong></p> <p>这里的误判率是指，BloomFilter 判断某个 key 存在，但它实际不存在的概率，因为它存的是 key 的 Hash 值，而非 key 的值。</p> <p>所以有概率存在这样的 key，它们内容不同，但多次 Hash 后的 Hash 值都相同。</p> <p><strong>对于 BloomFilter 判断不存在的 key ，则是 100% 不存在的，反证法，如果这个 key 存在，那它每次 Hash 后对应的 Hash 值位置肯定是 1，而不会是 0。布隆过滤器判断存在不一定真的存在。</strong></p> <h1 id="缓存雪崩">缓存雪崩</h1> <p>缓存雪崩指的是<strong>大量的请求无法在 Redis 缓存系统中处理，请求全部打到数据库，导致数据库压力激增</strong>，甚至宕机。</p> <p>出现该原因主要有两种：</p> <ul> <li>大量热点数据同时过期，导致大量请求需要查询数据库并写到缓存；</li> <li>Redis 故障宕机，缓存系统异常。</li> </ul> <h2 id="缓存大量数据同时过期">缓存大量数据同时过期</h2> <p>数据保存在缓存系统并设置了过期时间，但是由于在同时一刻，大量数据同时过期。</p> <p>系统就把请求全部打到数据库获取数据，并发量大的话就会导致数据库压力激增。</p> <p><strong>缓存雪崩是发生在大量数据同时失效的场景，而缓存击穿（失效）是在某个热点数据失效的场景，这是他们最大的区别。</strong></p> <p>如下图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/ac03445f9fd453a73202e3cfe082524c.jpg" alt="Redis 缓存击穿（失效）、缓存穿透、缓存雪崩怎么解决？"></p> <h3 id="解决方案-2">解决方案</h3> <p><strong>过期时间添加随机值</strong></p> <p>要避免给大量的数据设置一样的过期时间，过期时间 = baes 时间+ 随机时间（较小的随机数，比如随机增加 1~5 分钟）。</p> <p>这样一来，就不会导致同一时刻热点数据全部失效，同时过期时间差别也不会太大，既保证了相近时间失效，又能满足业务需求。</p> <p><strong>接口限流</strong></p> <p>当访问的不是核心数据的时候，在查询的方法上加上<strong>接口限流保护</strong>。比如设置 10000 req/s。</p> <p>如果访问的是核心数据接口，缓存不存在允许从数据库中查询并设置到缓存中。</p> <p>这样的话，只有部分请求会发送到数据库，减少了压力。</p> <p>限流，就是指，我们在<strong>业务系统的请求入口前端控制每秒进入系统的请求数，避免过多的请求被发送到数据库。</strong></p> <p>如下图所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/12f6589cf9b2628e0a08d8e4701545c1.jpg" alt="Redis 缓存击穿（失效）、缓存穿透、缓存雪崩怎么解决？"></p> <h2 id="redis-故障宕机">Redis 故障宕机</h2> <p>一个 Redis 实例能支撑 10 万的 QPS，而一个数据库实例只有 1000 QPS。</p> <p>一旦 Redis 宕机，会导致大量请求打到数据库，从而发生缓存雪崩。</p> <h3 id="解决方案-3">解决方案</h3> <p>对于缓存系统故障导致的缓存雪崩的解决方案有两种：</p> <ul> <li>服务熔断和接口限流；</li> <li>构建高可用缓存集群系统。</li> </ul> <p><strong>服务熔断和限流</strong></p> <p>在业务系统中，<strong>针对高并发的使用服务熔断来有损提供服务从而保证系统的可用性。</strong></p> <p><strong>服务熔断就是当从缓存获取数据发现异常，则直接返回错误数据给前端，防止所有流量打到数据库导致宕机。</strong></p> <p><strong>服务熔断和限流属于在发生了缓存雪崩，如何降低雪崩对数据库造成的影响的方案。</strong></p> <p><strong>构建高可用的缓存集群</strong></p> <p>所以，缓存系统一定要构建一套 Redis 高可用集群，比如<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s/m3j2WZdFas8fjLRsykGcBQ"  target="_blank" rel="nofollow">《Redis 哨兵集群》</a>或者<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s/qOF9hT_gDvkMH6HbaIvBwg"  target="_blank" rel="nofollow">《Redis Cluster 集群》</a>，如果 Redis 的主节点故障宕机了，从节点还可以切换成为主节点，继续提供缓存服务，避免了由于缓存实例宕机而导致的缓存雪崩问题。</p> <h1 id="总结">总结</h1> <ul> <li><strong>缓存穿透</strong>指的是数据库本就没有这个数据，请求直奔数据库，缓存系统形同虚设。</li> <li><strong>缓存击穿（失效）</strong>指的是数据库有数据，缓存本应该也有数据，但是缓存过期了，Redis 这层流量防护屏障被击穿了，请求直奔数据库。</li> <li><strong>缓存雪崩</strong>指的是<strong>大量</strong>的热点数据无法在 Redis 缓存中处理（大面积热点数据缓存失效、Redis 宕机），流量全部打到数据库，导致数据库极大压力。</li> </ul> <p>参考资料</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://segmentfault.com/a/1190000039688578"  target="_blank" rel="nofollow">https://segmentfault.com/a/1190000039688578</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://cloud.tencent.com/developer/article/1824584"  target="_blank" rel="nofollow">https://cloud.tencent.com/developer/article/1824584</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://learn.lianglianglee.com/"  target="_blank" rel="nofollow">https://learn.lianglianglee.com/</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://time.geekbang.org/"  target="_blank" rel="nofollow">https://time.geekbang.org/</a></p> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-446.htm">java中使用poi导出ppt（图片和表格）</a></p>
+                                                        <p>下一个：<a href="/html/category/article-448.htm">【Golang实战】反射设置结构体字段值</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-482.htm" title="Hyperledger Fabric节点的动态添加和删除">Hyperledger Fabric节点的动态添加和删除</a></li>
+                        <li class="py-2"><a href="/html/category/article-491.htm" title="我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></li>
+                        <li class="py-2"><a href="/html/category/article-469.htm" title="聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响">聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响</a></li>
+                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
+                        <li class="py-2"><a href="/html/category/article-474.htm" title="实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题">实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

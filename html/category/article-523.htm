@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-523.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>vue &#8211; 如何实现导入excel功能 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        vue &#8211; 如何实现导入excel功能                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <h1>1.应用场景</h1> <p>实际情况中有时候需要我们一次性添加多个员工信息，这个时候就需要我们开发一个批量导入的功能：将事先以excel格式保存的文件批量导入进来。</p> <h1>2.思路</h1> <p>思路1：前端主导（本文只对前端主导进行讲解）</p> <p>上传excel文件，把excel文件的内容读出来，还原成最基本的行列结构，按后端的接口要求回传过去。</p> <p><img fetchpriority="high" decoding="async" alt="" height="226" src="http://img.555519.xyz/uploads3/20220609/0ba495f341d27eeccfa6c97169060c5d.jpg"></p> <p>思路2：后端主导</p> <p><img decoding="async" alt="" height="209" src="http://img.555519.xyz/uploads3/20220609/46c5598e97c08bb5a739125b72074be4.jpg"></p> <h1>&nbsp;3.步骤</h1> <h2>3.1 组件封装</h2> <h3>3.1.1 将vue-element-admin提供的组件复制到我们自己的项目下</h3> <p>复制以下代码即可</p> <pre><code class="language-javascript">&lt;template&gt;   &lt;div&gt;     &lt;input ref="excel-upload-input" class="excel-upload-input" type="file" accept=".xlsx, .xls" @change="handleClick"&gt;     &lt;div class="drop" @drop="handleDrop" @dragover="handleDragover" @dragenter="handleDragover"&gt;       拖入excel文件 or       &lt;el-button :loading="loading" style="margin-left:16px;" size="mini" type="primary" @click="handleUpload"&gt;         浏览       &lt;/el-button&gt;     &lt;/div&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; import XLSX from 'xlsx'  export default {   name: 'UploadExcel',   props: {     beforeUpload: Function, // eslint-disable-line     onSuccess: Function// eslint-disable-line   },   data() {     return {       loading: false,       excelData: {         header: null,         results: null       }     }   },   methods: {     generateData({ header, results }) {       this.excelData.header = header       this.excelData.results = results       this.onSuccess &amp;&amp; this.onSuccess(this.excelData)     },     handleDrop(e) {       e.stopPropagation()       e.preventDefault()       if (this.loading) return       const files = e.dataTransfer.files       if (files.length !== 1) {         this.$message.error('Only support uploading one file!')         return       }       const rawFile = files[0] // only use files[0]        if (!this.isExcel(rawFile)) {         this.$message.error('Only supports upload .xlsx, .xls, .csv suffix files')         return false       }       this.upload(rawFile)       e.stopPropagation()       e.preventDefault()     },     handleDragover(e) {       e.stopPropagation()       e.preventDefault()       e.dataTransfer.dropEffect = 'copy'     },     handleUpload() {       this.$refs['excel-upload-input'].click()     },     handleClick(e) {       const files = e.target.files       const rawFile = files[0] // only use files[0]       if (!rawFile) return       this.upload(rawFile)     },     upload(rawFile) {       this.$refs['excel-upload-input'].value = null // fix can't select the same excel        if (!this.beforeUpload) {         this.readerData(rawFile)         return       }       const before = this.beforeUpload(rawFile)       if (before) {         this.readerData(rawFile)       }     },     readerData(rawFile) {       this.loading = true       return new Promise((resolve, reject) =&gt; {         const reader = new FileReader()         reader.onload = e =&gt; {           const data = e.target.result           const workbook = XLSX.read(data, { type: 'array' })           const firstSheetName = workbook.SheetNames[0]           const worksheet = workbook.Sheets[firstSheetName]           const header = this.getHeaderRow(worksheet)           const results = XLSX.utils.sheet_to_json(worksheet)           this.generateData({ header, results })           this.loading = false           resolve()         }         reader.readAsArrayBuffer(rawFile)       })     },     getHeaderRow(sheet) {       const headers = []       const range = XLSX.utils.decode_range(sheet['!ref'])       let C       const R = range.s.r       /* start in the first row */       for (C = range.s.c; C &lt;= range.e.c; ++C) { /* walk every column in the range */         const cell = sheet[XLSX.utils.encode_cell({ c: C, r: R })]         /* find the cell in the first row */         let hdr = 'UNKNOWN ' + C // &lt;-- replace with your desired default         if (cell &amp;&amp; cell.t) hdr = XLSX.utils.format_cell(cell)         headers.push(hdr)       }       return headers     },     isExcel(file) {       return /\.(xlsx|xls|csv)$/.test(file.name)     }   } } &lt;/script&gt;  &lt;style scoped&gt; .excel-upload-input{   display: none;   z-index: -9999; } .drop{   border: 2px dashed #bbb;   width: 600px;   height: 160px;   line-height: 160px;   margin: 0 auto;   font-size: 24px;   border-radius: 5px;   text-align: center;   color: #bbb;   position: relative; } &lt;/style&gt;</code></pre> <h2>3.1.2&nbsp;安装插件</h2> <pre><code>npm install xlsx -S</code></pre> <h2>3.1.3&nbsp;引入UploadExcel组件并注册为全局</h2> <pre><code class="language-javascript">import PageTools from './PageTools' import UploadExcel from './UploadExcel'  export default {   // 插件的初始化, 插件给你提供的全局的功能, 都可以在这里配置   install(Vue) {     // 进行组件的全局注册     Vue.component('PageTools', PageTools) // 注册工具栏组件     Vue.component('UploadExcel', UploadExcel) // 注册导入excel组件   } }</code></pre> <h2>3.2 准备页面</h2> <p>3.2.1 建立路由</p> <pre><code class="language-javascript">&lt;template&gt;   &lt;upload-excel :on-success="handleSuccess" /&gt; &lt;/template&gt;  &lt;script&gt; export default {   name: 'Import',   methods: {     handleSuccess({ header, results }) {       console.log(header, results)     }   } } &lt;/script&gt;</code></pre> <h3>3.2.2 配置路由</h3> <pre><code class="language-javascript">{     path: '/import',     component: Layout,     hidden: true, // 不显示到左侧菜单     children: [{       path: '',        component: () =&gt; import('@/views/import')     }] }</code></pre> <h3>3.2.3 测试结果</h3> <p><img decoding="async" alt="" height="137" src="http://img.555519.xyz/uploads3/20220609/d866c0bfe0d5733bb352998241df8059.jpg"></p> <h2>3.3 数据处理</h2> <p><img loading="lazy" decoding="async" alt="" height="290" src="http://img.555519.xyz/uploads3/20220609/84385e874b1c2107a024d4cfaeee72d5.jpg"></p> <h3>3.3.1 目标</h3> <p>将excel解析好的数据经过处理后，转成可以传给接口调用的数据</p> <blockquote> <p>下面是后端接口要求的示例格式 ：</p> <p><img loading="lazy" decoding="async" alt="" height="331" src="http://img.555519.xyz/uploads3/20220609/4057fda773dbc3082a279015c587b6e9.jpg"></p> <p>处理内容：</p> <p>1.字段中文转英文。excel中读入的是<code>姓名</code>,而后端需要的是<code>username</code></p> <p>2.日期处理。从excel中读入的时间是一个number值，而后端需要的是标准日期。</p> </blockquote> <h3>3.3.2 代码：</h3> <pre><code class="language-javascript">    transExcel(results) {       const mapInfo = {         '入职日期': 'timeOfEntry',         '手机号': 'mobile',         '姓名': 'username',         '转正日期': 'correctionTime',         '工号': 'workNumber',         '部门': 'departmentName',         '聘用形式': 'formOfEmployment'       }       return results.map(zhObj =&gt; {         const enObj = {}         const zhKeys = Object.keys(zhObj) // ['姓名', '手机号']          zhKeys.forEach(zhKey =&gt; {           const enKey = mapInfo[zhKey]            enObj[enKey] = zhObj[zhKey]         })          return enObj       })     }</code></pre> <h2>3.4 封装日期处理函数</h2> <pre><code class="language-javascript">// 把excel文件中的日期格式的内容转回成标准时间 // https://blog.csdn.net/qq_15054679/article/details/107712966 export function formatExcelDate(numb, format = '/') {   const time = new Date((numb - 25567) * 24 * 3600000 - 5 * 60 * 1000 - 43 * 1000 - 24 * 3600000 - 8 * 3600000)   time.setYear(time.getFullYear())   const year = time.getFullYear() + ''   const month = time.getMonth() + 1 + ''   const date = time.getDate() + ''   if (format &amp;&amp; format.length === 1) {     return year + format + month + format + date   }   return year + (month &lt; 10 ? '0' + month : month) + (date &lt; 10 ? '0' + date : date) }</code></pre> <p>更新代码：</p> <pre><code class="language-javascript">transExcel(results) {       const mapInfo = {         '入职日期': 'timeOfEntry',         '手机号': 'mobile',         '姓名': 'username',         '转正日期': 'correctionTime',         '工号': 'workNumber',         '部门': 'departmentName',         '聘用形式': 'formOfEmployment'       }       return results.map(zhObj =&gt; {         const enObj = {}         const zhKeys = Object.keys(zhObj) // ['姓名', '手机号']          zhKeys.forEach(zhKey =&gt; {           const enKey = mapInfo[zhKey]            if (enKey === 'timeOfEntry' || enKey === 'correctionTime') {             // 后端需要的日期格式是标准时间              enObj[enKey] = new Date(formatExcelDate(zhObj[zhKey]))           } else {             enObj[enKey] = zhObj[zhKey]           }         })          return enObj       })     }</code></pre> <p><strong>&nbsp;最后，根据实际情况，封装接口并调用即可</strong></p> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-522.htm">用字符串中的ASCII值替换所有特殊字符-JavaScript</a></p>
+                                                        <p>下一个：<a href="/html/category/article-524.htm">数据库四大特性及数据库隔离级别（*）</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-473.htm" title="VUE前端开发环境版本查看命令方法详解">VUE前端开发环境版本查看命令方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
+                        <li class="py-2"><a href="/html/category/article-478.htm" title="JavaScript如何添加用于将案例交换到字符串原型对象的函数">JavaScript如何添加用于将案例交换到字符串原型对象的函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/html/category/article-481.htm" title="如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？">如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？</a></li>
+                        <li class="py-2"><a href="/html/category/article-476.htm" title="JavaScript查找数组中的第一个冗余元素方法详解">JavaScript查找数组中的第一个冗余元素方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-479.htm" title="python多线程编程_2小时玩转python多线程编程">python多线程编程_2小时玩转python多线程编程</a></li>
+                        <li class="py-2"><a href="/html/category/article-467.htm" title="对象和封装总结">对象和封装总结</a></li>
+                        <li class="py-2"><a href="/html/category/article-465.htm" title="C语言数据结构、十字链表的分析及实现">C语言数据结构、十字链表的分析及实现</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

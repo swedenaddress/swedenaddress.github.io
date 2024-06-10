@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-438.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>数据分析的工具（Numpy） - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        数据分析的工具（Numpy）                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>(一)简介</p> <p>数据分析我们常用的工具Numpy,pandas,Matplotlib库，其中Numpy库是pandas库的基础，它们主要是用来处理一维及二维的表格数据，而Matplotlib库这是数据可视化的利器。</p> <p>（二）Numpy基础</p> <p>引入方法：import numpy as np</p> <p>（1）Numpy的定义：</p> <p>官方解释：NumPy系统是Python的一种开源的数值计算扩展，这种工具可用来存储和处理大型矩阵，比Python自身的嵌套列表（nested list structure)结构要高效的多（该结构也可以用来表示矩阵（matrix））。</p> <p>简单来说：Numpy中含有矩阵matrix和数组array是NumPy里的两种数据类型，都可以用于处理行列表示的数字元素</p> <blockquote> <p>python数组和Numpy数组区别：</p> <p>（1）主要区别：numpy数组（array or matrix）创建时是固定大小，python数组（list）是动态的。更改ndarray的大小将创建一个新数组并删除原来的数组。(就是array 和list 的区别)</p> <p>（2）元素类型区别：</p> <p>NumPy数组中的元素都需要具有相同的数据类型，因此在内存中的大小相同。</p> <p>　　python的List可以存放不同类型的元素。</p> <p>　　例外情况：Python的原生数组里包含了NumPy的对象的时候，这种情况下就允许不同大小元素的数组。</p> </blockquote> <p>（2）array 和matrix的区别</p> <p>１．ｍａｔｒｉｘ只能是２维的，ａｒｒａｙ可以是任意维数。</p> <p>２．在这两个数据类型上执行相同的数学运算会得到不同的结果</p> <p>对于a,b两个matrices,a*b表示矩阵乘积</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/0742cfedc54ee8c7b9b92e85829c561a.jpg"></p> <blockquote> <p>矩阵乘法：</p> <p>1、当矩阵A的列数（column）等于矩阵B的行数（row）时，A与B可以相乘。</p> <p>2、矩阵C的行数等于矩阵A的行数，C的列数等于B的列数。</p> <p>3、乘积C的第m行第n列的元素等于矩阵A的第m行的元素与矩阵B的第n列对应元素乘积之和</p> </blockquote> <p>对于array来说，a*b表示逐个元素相乘</p> <p>&nbsp;</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/74e17e38f5fee639b48baf9388988007.jpg"></p> <p>**运算符表示的含义也不同，对于maxtrix来说，a**2表示a*a</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/bdfa5700d45c97bc6ec1982e6d361fd9.jpg"></p> <p>对于array来说，a**2表示数组里的数的平方</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/84182e9bec7578ed9263e509ab0712e3.jpg"></p> <p>（二）Numpy和python数组</p> <p>（1）打印结果不相同</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/9dea862f0b37609ba6363ce020e7f4d2.jpg"></p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/011e07277e506bc9be76193f94c6a17e.jpg"></p> <p>（2）索引相似点</p> <p>&nbsp;</p> <p>&nbsp;</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/44819a2d6817e0f57dbfa9c6ec5ef747.jpg"></p> <p>&nbsp;</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/5bdb6c7b033da9137f7d9a33aa33b9cc.jpg"></p> <p>&nbsp;</p> <p>切片是左闭右开。</p> <p>（3）进行数学计算不同</p> <p>Numpy作为一个数据处理的库能非常好的支持一些数学运算</p> <p>&nbsp;</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/c80e07c8cb64dc29c829626ea3847c6d.jpg"></p> <p>&nbsp;</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/6f6322d5e0882585181104d4a6c26927.jpg"></p> <p>（4）数据存储不同</p> <p>列表储存的是一维的数据，而数组则可以存储多维的数据：</p> <p>&nbsp;</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/d66930bbf3da98107074fcc906a1e203.jpg"></p> <p>&nbsp;</p> <p>&nbsp;</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/003509a5045bbabeb6842454695bce19.jpg"></p> <p>（三）Numpy建立数组的方式</p> <p>（1）np.array(列表)</p> <p>f=np.array([[1,2],[3.4],[5,6]])</p> <p>输出：</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/94f9a55cfb62fd91b836a5b3530f7be4.jpg"></p> <p>&nbsp;</p> <p>（2）np.arrange(起点，终点，步长)：</p> <p>&nbsp;</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/3868bc01a98999f755c9471144f2ce6c.jpg"></p> <p>注意左闭右开</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/df10e38831c59a521276abdb55b06e43.jpg"></p> <p>&nbsp;</p> <p>&nbsp;</p> <p>（3）.reshape来改变np.arrange(行，列) 的形状</p> <p>a=np.arrange(12).reshape(3,4)</p> <p>输出：</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/debab2d7ca8bde13cac29a7c7034e204.jpg"></p> <p>&nbsp;</p> <p>（4）np.random模块来创建随机一维数组</p> <p>1.np.random.randn(n)来创建一个服从正太分布 （均值为0，方差为1的分布）的n个随机数一维数组，代码如下：</p> <p>a=np.random.randn(3)</p> <p>打印：</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230207/7c46d91c1342dec0b4c8f3f9f1603205.jpg"></p> <p>2.通过np.random.randint(起始数，终止数(行，列))，我们可以随机生成从起始数到终止数的n行n列数组</p> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-437.htm">python导入numpy函数库</a></p>
+                                                        <p>下一个：<a href="/html/category/article-439.htm">我们如何检查服务器上所有MySQL数据库的默认字符集？</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-484.htm" title="Springboot启动原理详细解析">Springboot启动原理详细解析</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-481.htm" title="如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？">如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？</a></li>
+                        <li class="py-2"><a href="/html/category/article-485.htm" title="mysql索引失效的常见9种原因详解">mysql索引失效的常见9种原因详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-490.htm" title="vue实现简单无缝滚动效果_vue.js">vue实现简单无缝滚动效果_vue.js</a></li>
+                        <li class="py-2"><a href="/html/category/article-522.htm" title="用字符串中的ASCII值替换所有特殊字符-JavaScript">用字符串中的ASCII值替换所有特殊字符-JavaScript</a></li>
+                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                        <li class="py-2"><a href="/html/category/article-507.htm" title="vue 封装图片路径">vue 封装图片路径</a></li>
+                        <li class="py-2"><a href="/html/category/article-477.htm" title="win11系统hosts文件无法保存怎么办">win11系统hosts文件无法保存怎么办</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

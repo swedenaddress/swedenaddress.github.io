@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-391.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>JAVA8-Lambda表达式 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        JAVA8-Lambda表达式                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-dracula"> <h3> <a id="_0" rel="nofollow"></a>前言</h3> <p>行为参数化，是将方法作为参数进行传递，可以适应更多的需求变化。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/48978ee4c6638215eb05e2470dd715e9.jpg" alt="JAVA8-Lambda表达式"><br /> 行为参数化中的方法参数，在JDK8之前可以使用匿名累来进行传递，也可以通过一个指定接口实现一个类来进行传递。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/4a454f01db6d6d8a66fac8121c3ae356.jpg" alt="JAVA8-Lambda表达式"><br /> 总之，行为参数化传递代码有助于应对不断变化的需求。</p> <h3> <a id="Lambda_7" rel="nofollow"></a>什么是Lambda表达式</h3> <p>可以把Lambda表达式理解为简洁地表示可传递的匿名函数的一种方式:它没有名称，但它有参数列表、函数主体、返回类型，可能还有一个可以抛出的异常列表。<br /> Lambda表达式可以作为参数传递给方法或者存储在变量中。</p> <p><strong>Lambda表达式分为三部分</strong>、<br /> 1.参数列表。传递给Lambda的主体<br /> 2.箭头。用于把参数列表和Lambda主体隔开。<br /> 3.Lambda主体。表达式就是Lambda的返回值。可以使void、String等等类型。</p> <p>Lambda示例<br /> 布尔表达式<code>List&lt;String&gt; list) -&gt; list.isEmpty()</code><br /> 创建对象<code>() -&gt; new Apple(10)</code><br /> 消费一个对象</p> <pre><code>(Apple a) -&gt; {     System.out.println(a.getWeight()); } </code></pre> <p>从一个对象中选择/抽取<code>(String s) -&gt; s.length()</code><br /> 组合两个值<code>(int a, int b) -&gt; a * b</code><br /> 比较两个对象的值<code>(Apple a1, Apple a2) -&gt; a1.getWeight().compareTo(a2.getWeight())</code></p> <p>Lambda引用的外部变量必须是不可修改的，被final修饰的。</p> <h3> <a id="_32" rel="nofollow"></a>函数式接口</h3> <p>函数式接口就是只定义一个抽象方法的接口。并且它可以有1个或者多个默认方法。</p> <pre><code>public interface Predicate&lt;T&gt;{         boolean test (T t); } </code></pre> <p>函数描述符是什么？也就是函数的抽象方法。例如Runnable接口，它就是() -&gt; void。</p> <p>注解<code>@FunctionalInterface</code><br /> 这个标注用于表示该接口会设计成一个函数式接口。如果不符合要求，编译器会返回错误。</p> <p>任何函数式接口都不允许抛出受检异常。<br /> 如果需要抛出异常：1.可以定义接口时声明抛出受检异常。2.可以把lambda包在try/catch块中。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/d63ecf3de184b484e98fc263782c0eb9.jpg" alt="JAVA8-Lambda表达式"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/0e919c40e8b2dc153367b5c39282dd7f.jpg" alt="JAVA8-Lambda表达式"><br /> 特殊void兼容逻辑：如果Lambda主体是一个语句表达式，那它一个返回void的函数描述符兼容。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/a795f2a313832fb1eb43a8eab40e7a5d.jpg" alt="JAVA8-Lambda表达式"><br /> Lambda表达式不能操作外部局部变量，因为java中局部变量是存在每个线程的栈中。Lambda相当于另一个线程！<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/5bfadd9426f7f0e005a8d1fd541729d4.jpg" alt="JAVA8-Lambda表达式"></p> <h3> <a id="JAVA8_54" rel="nofollow"></a>JAVA8中新的函数式接口</h3> <p>1.<code>java.util.function.Predicate</code><br /> java.util.function.Predicate接口定义了一个名叫test的抽象方法，它接受泛型 T对象，并返回一个boolean。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/76bf4bb30ccbb74a41a061ab1151fccf.jpg" alt="JAVA8-Lambda表达式"><br /> 2.<code>java.util.function.Consumer</code><br /><code>java.util.function.Consumer&lt;T&gt;</code>定义了一个名叫accept的抽象方法，它接受泛型T 的对象，没有返回(void)。你如果需要访问类型T的对象，并对其执行某些操作(打印、处理数据)，就可以使用这个接口。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/e2e632aa767f583b3119a0183d8d0d3f.jpg" alt="JAVA8-Lambda表达式"><br /> 3.<code>java.util.function.Function</code><br /><code>java.util.function.Function&lt;T, R&gt;</code>接口定义了一个叫作apply的方法，它接受一个 泛型T的对象，并返回一个泛型R的对象。如果你需要定义一个Lambda，将输入对象的信息映射到输出，就可以使用这个接口<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/69a1adf08d4dbedd3f029ea942b3d882.jpg" alt="JAVA8-Lambda表达式"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/520bb19de255089d37f30e35f33e3fc8.jpg" alt="JAVA8-Lambda表达式"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/7113c6fc73a3a8fe89a27e381775275e.jpg" alt="JAVA8-Lambda表达式"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/84ae5ffddf632cbe3c397792e00c69c2.jpg" alt="JAVA8-Lambda表达式"></p> <h3> <a id="lambda_68" rel="nofollow"></a>lambda类型检查、推断及限制</h3> <p>类型检查过程：<br /> 检查方法接口定义、检查定义类型、检查入参类型（接收什么返回什么）<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/b945105f09a68c5697a9141a3310542d.jpg" alt="JAVA8-Lambda表达式"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/534e7994bcfe1d79b1bc841cc2e6c7e4.jpg" alt="JAVA8-Lambda表达式"></p> <h3> <a id="Lambda_73" rel="nofollow"></a>简写Lambda</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230210/a2f65f0a79bdcb7a439a14b874aa3b2e.jpg" alt="JAVA8-Lambda表达式"><br /> 可以用在静态方法、实例方法、某个对象的实例方法。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/fea5a64fd43c78057d30c66bb0196f47.jpg" alt="JAVA8-Lambda表达式"><br /><strong>Lambda操作构造函数</strong></p> <pre><code>	    Supplier&lt;Apple&gt; c1 = () -&gt; new Apple();         Apple a1 = c1.get();         //简化         Supplier&lt;Apple&gt; c2 = Apple::new;         Apple a2 = c2.get();          Function&lt;Integer, Apple&gt; f1 = (weight) -&gt; new Apple(weight);         Apple a3 = f1.apply(200);         //简化         Function&lt;Integer, Apple&gt; f2 = Apple::new;         Apple a4 = f2.apply(100); </code></pre> <h3> <a id="Lambda_92" rel="nofollow"></a>复合Lambda表达式</h3> <p>1.Predicate谓词<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/65d6fa5d77ed7f53c62c7db52fb560a4.jpg" alt="JAVA8-Lambda表达式"><br /> 注意优先级是从左到右的~<br /> 2.Function函数<br /> Function接口为此配 了andThen和compose两个默认方法。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/4b6fd731c4991820eca1811aa6afb367.jpg" alt="JAVA8-Lambda表达式"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/cb30571e6457f50eae731428834cefba.jpg" alt="JAVA8-Lambda表达式"><br /> 同样也可以自己实现<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/bf32f671fd4c9d970839ff8313b450ae.jpg" alt="JAVA8-Lambda表达式"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/1fffe9a92f430e3b5743060b7383f835.jpg" alt="JAVA8-Lambda表达式"></p> <p>这种复杂Lambda也能实现<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230210/190fcd4f7924e48899b370e5a2f56238.jpg" alt="JAVA8-Lambda表达式"></p> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-390.htm">Python数据展示 &#8211; 生成表格图片</a></p>
+                                                        <p>下一个：<a href="/html/category/article-392.htm">linux交叉编译openssl,【经验分享】linux交叉编译 &#8211; openssl动态库</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-465.htm" title="C语言数据结构、十字链表的分析及实现">C语言数据结构、十字链表的分析及实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-508.htm" title="Libco Hook 机制浅析_在线工具">Libco Hook 机制浅析_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-493.htm" title="JavaScript动态操作select下拉框_javascript技巧_">JavaScript动态操作select下拉框_javascript技巧_</a></li>
+                        <li class="py-2"><a href="/html/category/article-514.htm" title="Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源">Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源</a></li>
+                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
+                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
+                        <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-481.htm" title="如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？">如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

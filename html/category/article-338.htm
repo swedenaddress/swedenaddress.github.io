@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-338.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>InnoDB的逻辑存储结构是什么，表空间组成包括哪些？_在线工具 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        InnoDB的逻辑存储结构是什么，表空间组成包括哪些？_在线工具                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div> <div class="article-content" data-v-3fbea7fe=""> <div class="markdown-body"> <h2 data-id="heading-0"><img decoding="async" src="https://img2022.cnblogs.com/blog/1238581/202205/1238581-20220502165340601-106486322.jpg" alt="InnoDB的逻辑存储结构是什么，表空间组成包括哪些？_在线工具"></h2> <h2 data-id="heading-0">一、表空间</h2> <p data-id="heading-0">在InnoDB中我们创建的表还有对应的索引数据都存储在扩展名为.ibd 的文件中，这个文件路径可以先通过查mysql变量<code>datadir</code>来得到，然后进入对应的数据库名目录，会看到很多ibd，文件名就是表名，这里有两种类型的表空间，<span style="color: rgba(255, 0, 0, 1)">共享表空间</span>（或者叫系统表空间）和<span style="color: rgba(255, 0, 0, 1)">独立表空间</span>文件。</p> <p>对于共享表空间，所有的表数据和相应索引都存放在这里，而独立表空间，就是每个表的数据和索引都存放在一个单独的ibd文件中，在目前的MySQL版本中，默认都是使用的独立表空间。</p> <p>共享表空间文件名可以通过<code>innodb_data_file_path</code>得到，</p> <div class="cnblogs_Highlighter"> <pre class="brush:sql;gutter:true;">mysql&gt; show variables like 'innodb_data_file_path'; +-----------------------+------------------------+ | Variable_name         | Value                  | +-----------------------+------------------------+ | innodb_data_file_path | ibdata1:12M:autoextend | +-----------------------+------------------------+ 1 row in set (0.00 sec)</pre> </div> <p>独立和共享表空间可以通过<code>innodb_file_per_table</code>切换，如果启用了他，那么每张表内的数据就单独放在一个表空间文件中，还需要注意，每个表的表空间只存储数据、索引，其他类的数据，如回滚信息、系统事务信息、二次写缓冲仍存储在原始共享表空间中。</p> <p>下面语句可以查看<code>innodb_file_per_table</code>的状态。</p> <div class="cnblogs_Highlighter"> <pre class="brush:sql;gutter:true;">mysql&gt; show variables like '%innodb_file_per_table'; +-----------------------+-------+ | Variable_name         | Value | +-----------------------+-------+ | innodb_file_per_table | ON    | +-----------------------+-------+ 1 row in set (0.01 sec)</pre> </div> <p>修改<code>innodb_file_per_table</code>状态</p> <div class="cnblogs_Highlighter"> <pre class="brush:sql;gutter:true;">set global innodb_file_per_table=0;</pre> </div> <p>如果在<code>innodb_file_per_table</code>等于0的情况下，也就是OFF关闭情况下，创建的表都会存放的系统共享的表空间中，比如下面的列子。</p> <div class="cnblogs_Highlighter"> <pre class="brush:sql;gutter:true;">1.创建database_1数据库 mysql&gt; create  database database_1; Query OK, 1 row affected (0.02 sec)  2. 当前状态 mysql&gt; show variables like '%innodb_file_per_table'; +-----------------------+-------+ | Variable_name         | Value | +-----------------------+-------+ | innodb_file_per_table | ON    | +-----------------------+-------+ 1 row in set (0.01 sec)  3. 创建表 mysql&gt; create table t1(id int(11)); Query OK, 0 rows affected, 1 warning (0.05 sec)   4. 查看ibd文件 root@hxl-PC:/var/lib/mysql/database_1# ls t1.ibd root@hxl-PC:/var/lib/mysql/database_1#   5. 关闭innodb_file_per_table后在创建表 mysql&gt; set global innodb_file_per_table=0; Query OK, 0 rows affected (0.01 sec)  mysql&gt; create table t2(id int(11)); Query OK, 0 rows affected, 1 warning (0.05 sec) 6. 查看ibd文件 root@hxl-PC:/var/lib/mysql/database_1# ls t1.ibd</pre> </div> <p>可以发现在关闭后，没有创建新的ibd文件。</p> <p><span style="color: rgba(255, 0, 0, 1)">表空间又由段(segment)、区(extent)、页(page)组成</span>，引入一张网络图片。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/ccb362f932704451f14d176a50dbbfe2.jpg" alt="InnoDB的逻辑存储结构是什么，表空间组成包括哪些？_在线工具"></p> <h2 data-id="heading-1">二、段</h2> <p>表空间由段组成，他是一个逻辑结构，用来管理物理文件，常见的段有数据段、索引段、回滚段，每个段由N个区和32个零散的页组成。</p> <p><strong>InnoDB默认是基于B+树实现的数据存储。</strong>这里的索引段则是指的B+树的非叶子节点，而数据段则是B+树的叶子节点。而回滚段则指的是回滚数据，事务隔离的MVCC利用了回滚段实现了多版本查询数据。</p> <div></div> <h2 data-id="heading-2">三、区</h2> <p>区是由连续的页组成的空间，无论如何，<span style="color: rgba(255, 0, 0, 1)">每个区的大小都是1MB</span>。为了保证区域内页面的连续性，InnoDB存储引擎一次从磁盘申请4-5个区域。</p> <h2 data-id="heading-3">四、页</h2> <p>页是InnoDB存储引擎磁盘管理的最小单位，<span style="color: rgba(255, 0, 0, 1)">默认16kb</span>，可以通过参数<code>innodb_page_size</code>设置页大小为4K、8K、16K 。</p> <p>默认情况下，InnoDB存储引擎的区大小为1MB，也就是有64个连续页组成，即16*64=1024=1M。</p> <p>InnoDB为了实现不同的目的而设计了很多种页，InnoDB 存储引擎中常见的页面类型有：</p> <ol> <li> <p>数据页</p> </li> <li> <p>undo页面</p> </li> <li> <p>系统页面</p> </li> <li> <p>事物数据页面（交易系统页面）</p> </li> <li> <p>插入缓冲位图页</p> </li> <li> <p>插入缓冲区空闲列表页</p> </li> <li> <p>未压缩的二进制大对象页面</p> </li> <li> <p>压缩二进制大对象页面</p> </li> </ol> <p>可以通过以下命令查看大小。</p> <div class="cnblogs_Highlighter"> <pre class="brush:sql;gutter:true;">mysql&gt; show status like 'innodb_page_size'; +------------------+-------+ | Variable_name    | Value | +------------------+-------+ | Innodb_page_size | 16384 | +------------------+-------+ 1 row in set (0.00 sec)</pre> </div> <p>下面是InnoDB数据页结构，它由七部分组成。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/ed7fbea740394c84af8b68e6a6ec73c8.jpg" alt="InnoDB的逻辑存储结构是什么，表空间组成包括哪些？_在线工具"></p> <table> <thead> <tr> <th>名称</th> <th>作用</th> </tr> </thead> <tbody> <tr> <td>File header</td> <td>记录了页头的一些信息，cheksum、Ppervious和next page的记录</td> </tr> <tr> <td>Page header</td> <td>记录了页的状态信息和存储信息、首个记录的position</td> </tr> <tr> <td>Infimum+ supremum</td> <td>InnoDB每个数据页有两个虚拟行记录，用来限定记录边界</td> </tr> <tr> <td>Row records</td> <td>实际存储的行数据信息</td> </tr> <tr> <td>Free space</td> <td>空闲空间，同样是链表结构</td> </tr> <tr> <td>Page directory</td> <td>存放了记录的相对位置</td> </tr> <tr> <td>File trailer</td> <td>innodb利用它来保证页完整地写入磁盘</td> </tr> </tbody> </table> <h3 data-id="heading-4"></h3> <h2 data-id="heading-4">五、行</h2> <p>InnoDB存储引擎是面向行的，页里面又记录着行记录的信息，也就是数据是按照行存储的。行记录数据又是按照行格式进行存放的。每个页存放的行记录也是有硬性定义的，最多允许存放16KB/2-200行，也就是7992行。</p> <p>InnoDB存储引擎有两种文件格式，一种叫Antelops,另外一种叫Barracuda。</p> <p>在Antelope文件格式下，有compact和redundant两种行记录格式。</p> <p>在Barracuda文件格式下，有compressed和dynamic两种行记录格式。</p> <p>可以通过以下方式查看当前格式，其中Row_format就是对应行格式存储类型。</p> <div class="cnblogs_Highlighter"> <pre class="brush:sql;gutter:true;">mysql&gt; show table status \G; *************************** 1. row ***************************            Name: t1          Engine: InnoDB         Version: 10      Row_format: Dynamic            Rows: 15  Avg_row_length: 1092     Data_length: 16384 Max_data_length: 0    Index_length: 0       Data_free: 0  Auto_increment: NULL     Create_time: 2021-08-24 09:43:29     Update_time: 2021-08-24 14:43:35      Check_time: NULL       Collation: utf8mb4_0900_ai_ci        Checksum: NULL  Create_options:          Comment:</pre> </div> <p>文章资料：</p> </div> </div> </div> <ol> <li><span style="color: rgba(0, 0, 0, 1)">https://www.cnblogs.com/agilestyle/p/11428574.html</span></li> <li><span style="color: rgba(0, 0, 0, 1)">https://juejin.cn/post/6999936914119720996</span></li> <li><span style="color: rgba(0, 0, 0, 1)"><span style="color: rgba(0, 0, 0, 1)">https://time.geekbang.org/column/article/121710</span></span></li> </ol> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-337.htm">PowerDesigner默认双向关联修改为单向关联</a></p>
+                                                        <p>下一个：<a href="/html/category/article-339.htm">Springboot 使用RestTemplate</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-475.htm" title="redis持久化概述">redis持久化概述</a></li>
+                        <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-484.htm" title="Springboot启动原理详细解析">Springboot启动原理详细解析</a></li>
+                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
+                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-476.htm" title="JavaScript查找数组中的第一个冗余元素方法详解">JavaScript查找数组中的第一个冗余元素方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
+                        <li class="py-2"><a href="/html/category/article-465.htm" title="C语言数据结构、十字链表的分析及实现">C语言数据结构、十字链表的分析及实现</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

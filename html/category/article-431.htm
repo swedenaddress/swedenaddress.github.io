@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-431.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>Redis主从同步详解 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        Redis主从同步详解                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<h3 id="28版本以前">2.8版本以前</h3> <h4 id="同步snyc">同步(snyc)</h4> <p>执行步骤：</p> <ol> <li>从服务器发送<code>snyc</code>给主服务器</li> <li>主服务器收到命令后，开始执行<code>bgsave</code>操作，将生成RDB文件，将生成的RDB文件同步给从服务。并使用一个缓冲区记录从现在开始的写命令</li> <li>从服务载入接受到的RDB文件，期间不可进行其他操作。</li> <li>主服务将缓冲区里的命令同步给从服务器<br /><img decoding="async" src="https://img2022.cnblogs.com/blog/781971/202204/781971-20220423143504070-1553663527.png" alt="Redis主从同步详解"></li> </ol> <h4 id="传播">传播</h4> <p>同步完成之后，后续的命令都是通过传播的方式发送给从服务器的。即当主服务执行完一条命令后，将该命令发送给从服务，完成数据的同步。</p> <h4 id="缺陷">缺陷</h4> <p>场景：</p> <ul> <li>首次复制，不存在问题，毕竟新连接上一个master服务器，则需要复制其全量的数据</li> <li>断开后重连复制，这是，仍是需要通过<code>sync</code>进行全量的复制，这就是很耗费资源的。毕竟如果断开时间短，如中间网络抖动，导致中间短暂性断开，再次复制全量数据，成本太高。</li> </ul> <p>关于<code>sync</code>命令：</p> <ol> <li>主服务器需要执行<code>bgsave</code>命令来生成RDB文件，这个操作会耗费主服务器的大量CPU、内存和磁盘IO资源。</li> <li>主服务器将RDB文件发送给从服务器，会消耗双方的网络资源(带宽和流量)。</li> <li>接受到RDB文件后，从服务器需要载入RDB文件，这个载入期间，从服务器因为阻塞而没有办法处理命令请求。</li> </ol> <h3 id="28版本以后">2.8版本以后</h3> <p>psnyc具备完整重同步(full resynchronization)和部分重同步(partial resynchronization)。</p> <p>其中，<b>完整重同步</b>和<code>sync</code>的首次同步是一致的，通过主服务器生成RDB文件进行全量数据的同步，如果存在多个从服务器，主服务器仅会生成一份RDB文件，分别同步给各个从服务器。<b>部分重同步</b>则解决了<code>sync</code>断开重连的问题，当断开重连后，主服务器在条件允许的前提下，仅会发送断开期间的写命令。<b>部分重同步</b>的主要实现由以下三部分组成：</p> <ul> <li>主服务器的复制偏移量(replication offset)和从服务器的复制偏移量</li> <li>主服务器的复制积压缓冲区(replication backlogs)</li> <li>服务器的运行ID(run ID)</li> </ul> <h4 id="复制偏移量">复制偏移量</h4> <p>主服务器记录的是自己发给从服务器的偏移量，从服务器记录的是自己接受到的数据偏移量。比如：当前主从服务器的偏移量均为100，在有新的写入命令后，主服务器的偏移量变成了110，而从服务器的是100，此时会有短暂的不一致，待主服务器将新写入命令同步给从服务器后，从服务器的偏移量会变更为110，此时主从服务器又是保持一致的数据了。</p> <h4 id="复制积压缓冲区">复制积压缓冲区</h4> <p>一个固定长度的先进先出队列，默认1M，可通过配置repl_backlog_size调整其大小。当收到一条写入命令，除了发给从服务器外，还会将命令写入到复制积压缓冲区一份。</p> <p><img decoding="async" src="https://img2022.cnblogs.com/blog/781971/202204/781971-20220423143535347-1161526671.png" alt="Redis主从同步详解"></p> <p>当从服务器A与主服务器断开后，中间的写入命令会无法同步给从服务器A，之后，重连后，从服务器会将其复制偏移量告知主服务器，如果该偏移量还在复制积压缓冲区中，则直接将复制积压缓冲区该偏移量后的命令发送给从服务器。</p> <h4 id="服务器的运行id">服务器的运行ID</h4> <p>每个redis实例在启动时候，都会随机生成一个长度为40的唯一字符串来标识当前运行的redis节点。当从服务器对主服务器进行首次复制时，则将自己的runID发送给从服务器，从服务器会将这个ID保存起来。当从服务器与主服务器断开后重连时，会向主服务器发送当前存储的runID，主服务器收到后，会判断与当前自己的runID是否一致，如果不一致，则进行全量复制；如果一致，则判断复制偏移量是否还在复制积压缓冲区中，如果还在，则进行部分重同步。</p> <h4 id="psync命令">psync命令</h4> <p><code>psync &lt;runId&gt; &lt;offset&gt;</code></p> <p>首次发送时为<code>psync ? -1</code>，之后发送的为上次master的runID和当前的复制偏移量。</p> <h4 id="缺陷-1">缺陷</h4> <p>由于每次实例重启都会重新生成runID，或者发生故障迁移后，新Master的runId必然与上一次的不一致，仍会导致完整重同步。</p> <h4 id="40版本以后的优化">4.0版本以后的优化</h4> <p>解决了psnyc的缺陷，简称：psync2</p> <h5 id="第一种情况redis重启">第一种情况：redis重启</h5> <p>第一步，在redis关闭时，通过shutdown save,都会调用rdbSaveInfoAuxFields函数，把当前实例的repl-id和repl-offset保存到RDB文件中。</p> <p>第二步，重启后加载RDB文件中的复制信息。把其中repl_id和repl_offset加载到实例中，分别赋给master_replid和master_repl_offset两个变量值。</p> <blockquote> <p>当从库开启了AOF持久化，redis加载顺序发生变化优先加载AOF文件，但是由于aof文件中没有复制信息，所以导致重启后从实例依旧使用全量复制！</p> </blockquote> <p>第三步：向主库上报复制信息，判断是否进行部分同步。</p> <ul> <li>从实例向主库上报master_replid与主实例的master_replid1或replid2有一个相等，用于判断主从未发生改变；</li> <li>从实例上报的master_repl_offset+1字节，还存在于主实例的复制积压缓冲区中，用于判断从库丢失部分是否在复制缓冲区中；</li> </ul> <h5 id="第二种情况-故障切换">第二种情况: 故障切换</h5> <p>redis从库默认开始复制积压缓冲区，方便从库切换为主库，其他从库可以直接从master节点获取缺失的命令。通过两组replId实现。</p> <p>第一组：master_replid和master_repl_offset：如果redis是主实例，则表示为自己的replid和复制偏移量； 如果redis是从实例，则表示为自己主实例的replid1和同步主实例的复制偏移量。</p> <p>第二组：master_replid2和second_repl_offset：无论主从，都表示自己上次主实例repid1和复制偏移量；用于兄弟实例或级联复制，主库故障切换psync。</p> <p>判断是否使用部分复制条件：如果从库提供的master_replid与master的replid不同，且与master的replid2不同，或同步速度快于master； 就必须进行全量复制，否则执行部分复制。</p> <p>公众号：慢行的蜗牛</p> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-430.htm">JavaScript对数组的所有唯一值求和方法详解</a></p>
+                                                        <p>下一个：<a href="/html/category/article-432.htm">vue实现图文混合输入</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-490.htm" title="vue实现简单无缝滚动效果_vue.js">vue实现简单无缝滚动效果_vue.js</a></li>
+                        <li class="py-2"><a href="/html/category/article-465.htm" title="C语言数据结构、十字链表的分析及实现">C语言数据结构、十字链表的分析及实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-487.htm" title="Go 语言结构体链表详解">Go 语言结构体链表详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-466.htm" title="Spring Security核心组件详解">Spring Security核心组件详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-483.htm" title="vue变更v-for列表多个项目的颜色和选择项目">vue变更v-for列表多个项目的颜色和选择项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                        <li class="py-2"><a href="/html/category/article-507.htm" title="vue 封装图片路径">vue 封装图片路径</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-476.htm" title="JavaScript查找数组中的第一个冗余元素方法详解">JavaScript查找数组中的第一个冗余元素方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

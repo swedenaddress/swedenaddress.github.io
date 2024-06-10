@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-392.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>linux交叉编译openssl,【经验分享】linux交叉编译 &#8211; openssl动态库 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        linux交叉编译openssl,【经验分享】linux交叉编译 &#8211; openssl动态库                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>一、准备工作</p> <p>1、到openssl官网下载最新版本openssl(如openssl-1.1.1d.tar.gz)，上传到linux编译机上(如上传到目录/home/test下)，并使用tar -xvf openssl-1.1.1d.tar.gz解压：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221117/2560eabb2b11f4f1951c4b6af91843e4.jpg" alt="linux交叉编译openssl,【经验分享】linux交叉编译 - openssl动态库"></p> <p>2、将要用到的交叉编译工具链解压后，找到交叉编译器所在路径(如果直接使用系统的gcc，可跳过这一步，但要保证gcc已安装)：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221117/166a9144d0071542d12d6f568504b0ef.jpg" alt="linux交叉编译openssl,【经验分享】linux交叉编译 - openssl动态库"></p> <p>注意：gcc/g++/ar/ranlib/nm等文件的名字根据编译链的不同，文件名开头会有所不同，但文件名结尾是不变的，如arm架构比较常见的编译器是arm-linux-gcc</p> <p>二、配置</p> <p>进入openssl源码目录，运行如下配置命令</p> <p>./config shared --prefix=/home/test/openssl --openssldir=/home/test/openssl/ssl</p> <p>或./config&nbsp; no-asm shared --prefix=/home/test/openssl --openssldir=/home/test/openssl/ssl</p> <p>其中prefix 是安装目录，openssldir 是配置文件目录，shared 作用是生成动态链接库(即.so库)</p> <p>注意：no-asm表示不使用汇编代码，如果编译有问题再加，没有问题就不加</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221117/f33d8dd05fa19734f6967d3ad8270d20.jpg" alt="linux交叉编译openssl,【经验分享】linux交叉编译 - openssl动态库"></p> <p>注意：&nbsp;如果遇到64位的编译链，需要添加sysroot参数，用如下命令配置(+参考图片)：</p> <p>./config no-asm shared --prefix=/home/test/openssl --openssldir=/home/test/openssl/ssl --sysroot="{头文件所在路径}"</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221117/1a9e359205a41f478649d00e2cd4bb44.jpg" alt="linux交叉编译openssl,【经验分享】linux交叉编译 - openssl动态库"></p> <p>一般来说，头文件所在路径 与 XXX-gcc/g++/ar/nm等(XXX是交叉编译器名字的前缀)的所在目录不一样，在另外一个大目录下(如下图所示)</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221117/ff7d3d55b7e3bc5f7fdcbe74f2e56341.jpg" alt="linux交叉编译openssl,【经验分享】linux交叉编译 - openssl动态库"></p> <p>Tips:</p> <p>可以先用find ./ -name *-gcc命令找到gcc/g++/ar/ranlib/nm等文件所在目录，那另一个目录就是头文件所在路径</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221117/b38816f626bf9ffcda133cbdfac107ca.jpg" alt="linux交叉编译openssl,【经验分享】linux交叉编译 - openssl动态库"></p> <p>从上图看，gcc/g++/ar/ranlib/nm等文件在sysroots/x86_64-fslsdk-linux的某目录，所以头文件一般在另一个目录sysroots/ppc64e6500-fsl-linux下，且sysroots/ppc64e6500-fsl-linux下的usr/include目录下面有许多(不是一两个)头文件(也就是说--sysroot的值是usr/include所在的目录)：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221117/335a7e459d27fee043a62b33c21365d3.jpg" alt="linux交叉编译openssl,【经验分享】linux交叉编译 - openssl动态库"></p> <p>三、修改Makefile</p> <p>配置完成后会在openssl源码目录下生成一个Makefile文件，打开查看内容，会看到CROSS_COMPILE的值是空的</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221117/1449295e9a89ab8feabee7aca79d0aba.jpg" alt="linux交叉编译openssl,【经验分享】linux交叉编译 - openssl动态库"></p> <p>这时要将CROSS_COMPILE的值修改为XXX-gcc所在绝对路径+XXX-gcc的文件名前缀(参考下图)，也就是说要先找到交叉编译工具xxx-gcc/g++/ar/nm等文件所在路径(其中“XXX-”是交叉编译工具文件名前缀)：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221117/b9d24a53d4f0abd5818d0aef2cd62897.jpg" alt="linux交叉编译openssl,【经验分享】linux交叉编译 - openssl动态库"></p> <p>修改CROSS_COMPILE的值最终是为了修改arm-linux-xxx-gcc/ar/ranlib/nm等的路径，在比较老的openssl版本中，没有CROSS_COMPILE参数，需要修改如下5个变量的值 (注意下图所用的交叉编译工具不是跟前面的不一样，所以路径也不同)：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221117/73788e71f893e4edb19569e787dfef9e.jpg" alt="linux交叉编译openssl,【经验分享】linux交叉编译 - openssl动态库"></p> <p>四、编译出库</p> <p>修改完Makefile后就可以进行编译了，到openssl源码目录下，运行make命令：</p> <p>openssl源码目录下，运行make命令：</p> <p>make</p> <p>如果没有报错，再运行make install</p> <p>make install</p> <p>在配置的openssl安装目录下/home/test/openssl找到lib目录，有如下两个文件：</p> <p>libcrypto.so.1.1、libssl.so.1.1和软链接libcrypto.so、libssl.so</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221117/c9b6d875cd470704cf1ffee68ee575a5.jpg" alt="linux交叉编译openssl,【经验分享】linux交叉编译 - openssl动态库"></p> <p>五、其他说明</p> <p>1、交叉编译工具不是在任何环境上都可使用的，需要系统环境和编译工具匹配才可以，主要看CPU和指令集</p> <p>2、如果不需要交叉编译工具，而是直接使用gcc，那么，配置生成Makefile后不需要修改Makefile(即跳过第三步)，直接编译即可</p> <p>3、如果make出错后修改了Makefile，记得make clean后再make</p> <p>4、有的编译工具是32位的，如果在64位的linux机器上使用，可能会报如下错误，这时只要将Makefile中的-m64都删除，再进行编译即可</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221117/c964fe6cfb8f48ae08174ed838ba1c6e.jpg" alt="linux交叉编译openssl,【经验分享】linux交叉编译 - openssl动态库"></p> </div> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-391.htm">JAVA8-Lambda表达式</a></p>
+                                                        <p>下一个：<a href="/html/category/article-393.htm">CoreWCF 1.0.0 发布，微软正式支持WCF_在线工具</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-493.htm" title="JavaScript动态操作select下拉框_javascript技巧_">JavaScript动态操作select下拉框_javascript技巧_</a></li>
+                        <li class="py-2"><a href="/html/category/article-471.htm" title="linux清理磁盘文件夹方法">linux清理磁盘文件夹方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
+                        <li class="py-2"><a href="/html/category/article-514.htm" title="Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源">Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源</a></li>
+                        <li class="py-2"><a href="/html/category/article-504.htm" title="Infrastructure 知识: dnf对module的处理">Infrastructure 知识: dnf对module的处理</a></li>
+                        <li class="py-2"><a href="/html/category/article-476.htm" title="JavaScript查找数组中的第一个冗余元素方法详解">JavaScript查找数组中的第一个冗余元素方法详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

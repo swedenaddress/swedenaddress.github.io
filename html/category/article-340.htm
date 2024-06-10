@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-340.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>kafka踩坑java找不到kafka-run-class.sh: line 309: exec: java: not found - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        kafka踩坑java找不到kafka-run-class.sh: line 309: exec: java: not found                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atelier-sulphurpool-light"> <p>今天执行</p> <pre><code class="prism language-java">user_1<span class="token annotation punctuation">@test_1</span><span class="token operator">:</span><span class="token operator">/</span>opt<span class="token operator">/</span>kafka$ sudo bin<span class="token operator">/</span>zookeeper<span class="token operator">-</span>server<span class="token operator">-</span>start<span class="token punctuation">.</span>sh config<span class="token operator">/</span>zookeeper<span class="token punctuation">.</span>properties<span class="token operator">/</span>opt<span class="token operator">/</span>kafka<span class="token operator">/</span>bin<span class="token operator">/</span>kafka<span class="token operator">-</span>run<span class="token operator">-</span><span class="token keyword">class</span><span class="token punctuation">.</span>sh<span class="token operator">:</span> line<span class="token number">309</span><span class="token operator">:</span> exec<span class="token operator">:</span> java<span class="token operator">:</span> not found</code></pre> <p>但却出现报错kafka-run-class.sh: line 309: exec: java: not found，<br /> 根据网上查询，说可能是jdk问题，之后我又在/etc/profile下检查jdk</p> <pre><code class="prism language-java"># java JAVA_HOME<span class="token operator">=</span><span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>java<span class="token operator">/</span>jdk<span class="token operator">-</span><span class="token number">11.0</span><span class="token number">.6</span> JRE_HOME<span class="token operator">=</span>$JAVA_HOME CLASSPATH<span class="token operator">=</span><span class="token punctuation">.</span><span class="token punctuation">:</span>$JAVA_HOME<span class="token operator">/</span>lib<span class="token operator">:</span>$JRE_HOME<span class="token operator">/</span>lib<span class="token operator">:</span>$CLASSPATH PATH<span class="token operator">=</span>$PATH<span class="token operator">:</span>$JAVA_HOME<span class="token operator">/</span>bin export JAVA_HOME CLASSPATH PATH JRE_HOME  # java<span class="token number">8</span> #JAVA_HOME<span class="token operator">=</span><span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>java<span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0</span>_231 #JRE_HOME<span class="token operator">=</span><span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>java<span class="token operator">/</span>jdk1<span class="token punctuation">.</span><span class="token number">8.0</span>_231<span class="token operator">/</span>jre #CLASS_PATH<span class="token operator">=</span><span class="token punctuation">.</span><span class="token punctuation">:</span>$JAVA_HOME<span class="token operator">/</span>lib<span class="token operator">/</span>dt<span class="token punctuation">.</span>jar<span class="token operator">:</span>$JAVA_HOME<span class="token operator">/</span>lib<span class="token operator">/</span>tools<span class="token punctuation">.</span>jar<span class="token operator">:</span>$JRE_HOME<span class="token operator">/</span>lib #PATH<span class="token operator">=</span>$PATH<span class="token operator">:</span>$JAVA_HOME<span class="token operator">/</span>bin<span class="token operator">:</span>$JRE_HOME<span class="token operator">/</span>bin #export JAVA_HOME JRE_HOME CLASS_PATH PATH</code></pre> <p>发现也没有什么错误呀，再一想我使用的是普通用户登录进来在root用户下的目录下（/opt/kafka）进行操作，虽然给该文件夹了755权限并且还带了sudo执行，但是否是还可能是因为用户权限问题呢？之后我把用户切换成了root用户，再一执行，发现开启成功。</p> <p>随后我想，之前我只赋予了/opt/kafka755权限，就试试把这个/opt/kafka增加chmod 777 权限后再用普通用户登录，看是否有效。</p> <p>实验了一下<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220821/bc8a630c54e677bc68e10e40191c110a.jpg" alt="kafka踩坑java找不到kafka-run-class.sh: line 309: exec: java: not found"><br /> 发现还是不行，可能是因为调用需要用到jdk可能还要再给jdk增加权限。</p> <p>得了，那我就把kafka放到普通用户的文件夹下使用就行了。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220821/eed6afc0eebd34e25b9fb11fce3fb8da.jpg" alt="kafka踩坑java找不到kafka-run-class.sh: line 309: exec: java: not found"></p> <p>再来实验一下<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220821/b2b7aea028b91aed4549f231a4a7d9b4.jpg" alt="kafka踩坑java找不到kafka-run-class.sh: line 309: exec: java: not found"><br /> 启动成功！</p> <ul> <li> <p>扩展知识：<br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.jianshu.com/p/4720cbedd790"  rel="nofollow">Linux的文件访问权限及修改权限命令chmod</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/zhi-leaf/p/11442878.html"  rel="nofollow">Linux中文件权限查看和修改</a></p> </li> </ul> <h3><a id="KafkausrbinjavaJAVA_HOMEbinjava_45" rel="nofollow"></a>再进行深入分析后发现是Kafka的默认<code>/usr/bin/java</code>路径与我们实际的<code>$JAVA_HOME/bin/java</code>路径不一致导致的。</h3> <p>这里我们有两种修改方式：</p> <ol> <li>修改我们的实际路径（<code>$JAVA_HOME</code>）</li> <li>设置一个软连接就可以了</li> </ol> <p>参考文章：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/qq_44766883/article/details/109250866?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control"  rel="nofollow">Kafka启动报错处理：/opt/module/kafka/bin/kafka-run-class.sh: 第 258 行:exec: java: 未找到</a></p> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-339.htm">Springboot 使用RestTemplate</a></p>
+                                                        <p>下一个：<a href="/html/category/article-341.htm">数据库基础知识详解五：MySQL中的索引和其两种引擎、主从复制以及关系型/非关系型数据库</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-491.htm" title="我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></li>
+                        <li class="py-2"><a href="/html/category/article-469.htm" title="聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响">聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响</a></li>
+                        <li class="py-2"><a href="/html/category/article-493.htm" title="JavaScript动态操作select下拉框_javascript技巧_">JavaScript动态操作select下拉框_javascript技巧_</a></li>
+                        <li class="py-2"><a href="/html/category/article-514.htm" title="Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源">Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源</a></li>
+                        <li class="py-2"><a href="/html/category/article-466.htm" title="Spring Security核心组件详解">Spring Security核心组件详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-479.htm" title="python多线程编程_2小时玩转python多线程编程">python多线程编程_2小时玩转python多线程编程</a></li>
+                        <li class="py-2"><a href="/html/category/article-518.htm" title="使用TreeMap在Java中对用户定义的对象进行排序">使用TreeMap在Java中对用户定义的对象进行排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-468.htm" title="C语言井字棋游戏">C语言井字棋游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-524.htm" title="数据库四大特性及数据库隔离级别（*）">数据库四大特性及数据库隔离级别（*）</a></li>
+                        <li class="py-2"><a href="/html/category/article-489.htm" title="CSS中文本居中显示">CSS中文本居中显示</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

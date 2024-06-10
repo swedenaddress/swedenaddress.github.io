@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-427.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>Java 中单例模式的正确用法？ - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        Java 中单例模式的正确用法？                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p><span style="color:#fe2c24;"><strong>单例模式指的是，保证一个类只有一个实例，并且提供一个全局可以访问的入口。</strong></span></p> <p>那么我们为什么需要单例呢，<strong>其中一个理由</strong>，那就是为了节省内存、节省计算。很多情况下，我们只需要一个实例就够了，如果出现了更多的实例，反而属于浪费。举个例子：</p> <pre><code>public class ExpensiveResource {     public ExpensiveResource() {         field1 = // 查询数据库         field2 = // 然后对查到的数据做大量计算         field3 = // 加密、压缩等耗时操作     } }</code></pre> <p>这个类在构造的时候，需要查询数据库并对查到的数据做大量计算，所以在第一次构造时，我们花了很多时间来初始化这个对象。但是假设我们数据库里的数据是不变的，并把这个对象保存在了内存中，那么以后就用同一个实例了，如果每次都重新生成新的实例，实在是没必要。</p> <p><strong>第二个理由</strong>就是为了保证结果的正确性，比如我们需要一个全局的计数器，如果有多个实例就会造成混乱了。</p> <h2>适用场景</h2> <p>无状态的工具类：比如日志工具类，不管是在哪里使用，我们需要的只是它帮我们记录日志信息，除此之外，并不需要在它的实例对象上存储任何状态，这时候我们就只需要一个实例对象。</p> <p>全局信息类：比如我们在一个类上记录网站的访问次数，并且不希望有的访问被记录在对象 A 上，有的却被记录在对象 B 上，这时候我们就可以让这个类成为单例，需要计数的时候拿出来用即可。</p> <p><span style="color:#956fe7;"><strong>常见的写法有 5 种：饿汉式、懒汉式、双重检查式、静态内部类式、枚举式。</strong></span></p> <h3>饿汉式</h3> <pre><code>//饿汉式 public class Singleton {       private static Singleton singleton = new Singleton();       private Singleton(){}       public static Singleton getInstance(){         return singleton;     } }</code></pre> <p>用 static 修饰我们的实例，并把构造函数用 private 修饰。这是最直观的写法。由 JVM 的类加载机制保证了线程安全。</p> <p>这种写法的缺点也比较明显，那就是在类被加载时便会把实例生成出来，所以假设我们最终没有使用到这个实例的话，便会造成不必要的开销。</p> <p>下面我们再来看下饿汉式的变种——静态代码块形式。缺点和第一种写法一样。</p> <pre><code>public class Singleton {       private static Singleton singleton;       static {         singleton = new Singleton();     }       private Singleton() {}       public static Singleton getInstance() {         return singleton;     } }</code></pre> <h3>懒汉式</h3> <pre><code>public class Singleton {       private static Singleton singleton;       private Singleton() {}       public static Singleton getInstance() {         if (singleton == null) {             singleton = new Singleton();         }         return singleton;     } }</code></pre> <p>这种写法的优点在于，只有在 getInstance 方法被调用的时候，才会去进行实例化，所以不会造成资源浪费，但是在创建的过程中，并没有考虑到线程安全问题，如果有两个线程同时执行 getInstance 方法，就可能会创建多个实例。所以这里需要注意，不能使用这种方式，这是错误的写法。</p> <p>为了避免发生线程安全问题，我们可以对前面的写法进行升级，那么线程安全的懒汉式的写法是怎样的呢。</p> <pre><code> public class Singleton {       private static Singleton singleton;       private Singleton() {}       public static synchronized Singleton getInstance() {         if (singleton == null) {             singleton = new Singleton();         }         return singleton;     } }</code></pre> <p>我们在 getInstance 方法上加了 synchronized 关键字，保证同一时刻最多只有一个线程能执行该方法，这样就解决了线程安全问题。但是这种写法的缺点也很明显：如果有多个线程同时获取实例，那他们不得不进行排队，多个线程不能同时访问，然而这在大多数情况下是没有必要的。</p> <p>为了提高效率，缩小同步范围，就把 synchronized 关键字从方法上移除了，然后再把 synchronized 关键字放到了我们的方法内部，采用代码块的形式来保护线程安全。</p> <pre><code>public class Singleton {       private static Singleton singleton;       private Singleton() {}       public static Singleton getInstance() {         if (singleton == null) {             synchronized (Singleton.class) {                 singleton = new Singleton();             }         }         return singleton;     } }</code></pre> <p>这种写法是错误的。它的本意是想缩小同步的范围，但是从实际效果来看反而得不偿失。因为假设有多个线程同时通过了 if 判断，那么依然会产生多个实例，这就破坏了单例模式。</p> <p><strong>所以，为了解决这个问题，在这基础上就有了“双重检查模式”。</strong></p> <pre><code>public class Singleton {       private static volatile Singleton singleton;       private Singleton() {}       public static Singleton getInstance() {         if (singleton == null) {             synchronized (Singleton.class) {                 if (singleton == null) {                     singleton =  new Singleton();                 }             }         }         return singleton;     } }</code></pre> <p>这种写法的优点就是不仅做到了延迟加载，而且是线程安全的，同时也避免了过多的同步环节。</p> <h3>静态内部类</h3> <pre><code>public class Singleton {       private Singleton() {}       private static class SingletonInstance {         private static final Singleton singleton = new Singleton();     }       public static Singleton getInstance() {         return SingletonInstance.singleton;     } }</code></pre> <p>相比于饿汉式在类加载时就完成实例化，这种静态内部类的写法并不会有这个问题，这种写法只有在调用 getInstance 方法时，才会进一步完成内部类的 singleton 的实例化，所以不存在内存浪费的问题。</p> <p><span style="color:#fe2c24;">这里简单做个小总结，静态内部类写法与双重检查模式的优点一样，都是避免了线程不安全的问题，并且延迟加载，效率高。</span></p> <p>可以看出，静态内部类和双重检查的写法都是不错的写法，但是它们不能防止被反序列化生成多个实例，那有没有更好的写法呢？最后我们来看枚举方式的写法。</p> <pre><code>/**  * 描述： 枚举式单例的写法  */ public enum Singleton {     INSTANCE;      public void whatever() {         System.out.println("执行了单例类的方法，例如返回环境变量信息");     }     public static void main(String[] args) {         //演示如何使用枚举写法的单例类         Singleton.INSTANCE.whatever();     } }</code></pre> <p>枚举写法的优点：</p> <p><strong>首先就是写法简单</strong>。枚举的写法不需要我们自己考虑懒加载、线程安全等问题。同时，代码也比较“短小精悍”，比任何其他的写法都更简洁，很优雅。</p> <p>第二个优点是<strong>线程安全有保障</strong>，枚举类的本质也是一个 Java 类，但是它的枚举值会在枚举类被加载时完成初始化，所以依然是由 JVM 帮我们保证了线程安全。</p> <p>前面几种实现单例的方式，其实是存在隐患的，那就是可能被反序列化生成新对象，产生多个实例，<strong>从而破坏了单例模式</strong>。接下来要说的枚举写法的第 3 个优点，它恰恰解决了这些问题。</p> <p>对 Java 官方文档中的相关规定翻译如下：“枚举常量的序列化方式不同于普通的可序列化或可外部化对象。枚举常量的序列化形式仅由其名称组成；该常量的字段值不存在于表单中。要序列化枚举常量，ObjectOutputStream 将写入枚举常量的 name 方法返回的值。要反序列化枚举常量，ObjectInputStream 从流中读取常量名称；然后，通过调用 java.lang.Enum.valueOf 方法获得反序列化常量，并将常量的枚举类型和收到的常量名称作为参数传递。”</p> <p>也就是说，对于枚举类而言，反序列化的时候，会根据名字来找到对应的枚举对象，而不是创建新的对象，所以这就防止了反序列化导致的单例破坏问题的出现。</p> <p>对于通过反射破坏单例而言，枚举类同样有防御措施。反射在通过 newInstance 创建对象时，会检查这个类是否是枚举类，如果是，就抛出 IllegalArgumentException(“Cannot reflectively create enum objects”) 异常，反射创建对象失败。</p> <p>可以看出，枚举这种方式，能够防止序列化和反射破坏单例，在这一点上，与其他的实现方式比，有很大的优势。安全问题不容小视，一旦生成了多个实例，单例模式就彻底没用了。</p> <p>所以结合讲到的这 3 个优点，写法简单、线程安全、防止反序列化和反射破坏单例，枚举写法最终胜出。</p> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-426.htm">比较爽的导航查询 功能  .NET ORM  / SqlSugar</a></p>
+                                                        <p>下一个：<a href="/html/category/article-428.htm">Glance基础服务运维_在线工具Live2D</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-471.htm" title="linux清理磁盘文件夹方法">linux清理磁盘文件夹方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-493.htm" title="JavaScript动态操作select下拉框_javascript技巧_">JavaScript动态操作select下拉框_javascript技巧_</a></li>
+                        <li class="py-2"><a href="/html/category/article-477.htm" title="win11系统hosts文件无法保存怎么办">win11系统hosts文件无法保存怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-521.htm" title="typescript的安装运行与自动编译">typescript的安装运行与自动编译</a></li>
+                        <li class="py-2"><a href="/html/category/article-522.htm" title="用字符串中的ASCII值替换所有特殊字符-JavaScript">用字符串中的ASCII值替换所有特殊字符-JavaScript</a></li>
+                        <li class="py-2"><a href="/html/category/article-488.htm" title="eslint在vue中如何使用">eslint在vue中如何使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-518.htm" title="使用TreeMap在Java中对用户定义的对象进行排序">使用TreeMap在Java中对用户定义的对象进行排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-473.htm" title="VUE前端开发环境版本查看命令方法详解">VUE前端开发环境版本查看命令方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-478.htm" title="JavaScript如何添加用于将案例交换到字符串原型对象的函数">JavaScript如何添加用于将案例交换到字符串原型对象的函数</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

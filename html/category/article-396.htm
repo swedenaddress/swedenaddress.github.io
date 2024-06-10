@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-396.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>Vertica集成Apache Hudi指南 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        Vertica集成Apache Hudi指南                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<h2 id="1-摘要">1. 摘要</h2> <p>本文演示了使用外部表集成 Vertica 和 Apache Hudi。 在演示中我们使用 Spark 上的 Apache Hudi 将数据摄取到 S3 中，并使用 Vertica 外部表访问这些数据。</p> <h2 id="2-apache-hudi介绍">2. Apache Hudi介绍</h2> <p>Apache Hudi 是一种变更数据捕获 (CDC) 工具，可在不同时间线将事务记录在表中。 Hudi 代表 Hadoop Upserts Deletes and Incrementals，是一个开源框架。 Hudi 提供 ACID 事务、可扩展的元数据处理，并统一流和批处理数据处理。<br /> 以下流程图说明了该过程。 使用安装在 Apache Spark 上的 Hudi 将数据处理到 S3，并从 Vertica 外部表中读取 S3 中的数据更改。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/218c8b259110b0cc5a197d0475aa401e.jpg" alt="Vertica集成Apache Hudi指南"></p> <h2 id="3-环境准备">3. 环境准备</h2> <ul> <li>Apache Spark 环境。 使用具有 1 个 Master 和 3 个 Worker 的 4 节点集群进行了测试。 按照在<a target="_blank" rel="nofollow">多节点集群上设置 Apache Spark 中的说明安装 Spark 集群环境</a>。 启动 Spark 多节点集群。</li> <li>Vertica 分析数据库。 使用 Vertica Enterprise 11.0.0 进行了测试。</li> <li>AWS S3 或 S3 兼容对象存储。 使用 MinIO 作为 S3 存储桶进行了测试。</li> <li>需要以下 jar 文件。将 jar 复制到 Spark 机器上任何需要的位置，将这些 jar 文件放在 /opt/spark/jars 中。 <ul> <li>Hadoop - hadoop-aws-2.7.3.jar</li> <li>AWS - aws-java-sdk-1.7.4.jar</li> </ul> </li> <li>在 Vertica 数据库中运行以下命令来设置访问存储桶的 S3 参数：</li> </ul> <pre><code class="language-sql">SELECT SET_CONFIG_PARAMETER('AWSAuth', 'accesskey:secretkey'); SELECT SET_CONFIG_PARAMETER('AWSRegion','us-east-1'); SELECT SET_CONFIG_PARAMETER('AWSEndpoint',’&lt;S3_IP&gt;:9000'); SELECT SET_CONFIG_PARAMETER('AWSEnableHttps','0');</code></pre> <blockquote> <p>endpoint可能会有所不同，具体取决于 S3 存储桶位置选择的 S3 对象存储。</p> </blockquote> <h2 id="4-vertica和apache-hudi集成">4. Vertica和Apache Hudi集成</h2> <p>要将 Vertica 与 Apache Hudi 集成，首先需要将 Apache Spark 与 Apache Hudi 集成，配置 jars，以及访问 AWS S3 的连接。 其次，将 Vertica 连接到 Apache Hudi。 然后对 S3 存储桶执行 Insert、Append、Update 等操作。<br /> 按照以下部分中的步骤将数据写入 Vertica。<br /><a target="_blank" rel="nofollow">在 Apache Spark 上配置 Apache Hudi 和 AWS S3</a><br /><a target="_blank" rel="nofollow">配置 Vertica 和 Apache Hudi 集成</a></p> <h3 id="41-在-apache-spark-上配置-apache-hudi-和-aws-s3">4.1 在 Apache Spark 上配置 Apache Hudi 和 AWS S3</h3> <p>在 Apache Spark 机器中运行以下命令。<br /> 这会下载 Apache Hudi 包，配置 jar 文件，以及 AWS S3</p> <pre><code class="language-shell">/opt/spark/bin/spark-shell \ --conf "spark.serializer=org.apache.spark.serializer.KryoSerializer"\--packages org.apache.hudi:hudi-spark3-bundle_2.12:0.9.0,org.apache.spark:spark-avro_2.12:3.0.1</code></pre> <p>导入Hudi的读、写等所需的包：</p> <pre><code class="language-scala">import org.apache.hudi.QuickstartUtils._ import scala.collection.JavaConversions._ import org.apache.spark.sql.SaveMode._ import org.apache.hudi.DataSourceReadOptions._ import org.apache.hudi.DataSourceWriteOptions._ import org.apache.hudi.config.HoodieWriteConfig._</code></pre> <p>使用以下命令根据需要配置 Minio 访问密钥、Secret key、Endpoint 和其他 S3A 算法和路径。</p> <pre><code class="language-scala">spark.sparkContext.hadoopConfiguration.set("fs.s3a.access.key", "*****") spark.sparkContext.hadoopConfiguration.set("fs.s3a.secret.key", "*****") spark.sparkContext.hadoopConfiguration.set("fs.s3a.endpoint", "http://XXXX.9000") spark.sparkContext.hadoopConfiguration.set("fs.s3a.path.style.access", "true") sc.hadoopConfiguration.set("fs.s3a.signing-algorithm","S3SignerType")</code></pre> <p>创建变量来存储 MinIO 的表名和 S3 路径。</p> <pre><code class="language-scala">val tableName = “Trips” val basepath = “s3a://apachehudi/vertica/”</code></pre> <p>准备数据，使用 Scala 在 Apache spark 中创建示例数据</p> <pre><code class="language-scala">val df = Seq( ("aaa","r1","d1",10,"US","20211001"), ("bbb","r2","d2",20,"Europe","20211002"), ("ccc","r3","d3",30,"India","20211003"), ("ddd","r4","d4",40,"Europe","20211004"), ("eee","r5","d5",50,"India","20211005"), ).toDF("uuid", "rider", "driver","fare","partitionpath","ts")</code></pre> <p>将数据写入 AWS S3 并验证此数据</p> <pre><code class="language-scala">df.write.format("org.apache.hudi"). options(getQuickstartWriteConfigs). option(PRECOMBINE_FIELD_OPT_KEY, "ts"). option(RECORDKEY_FIELD_OPT_KEY, "uuid"). option(PARTITIONPATH_FIELD_OPT_KEY, "partitionpath"). option(TABLE_NAME, tableName). mode(Overwrite). save(basePath)</code></pre> <p>使用 Scala 运行以下命令以验证是否从 S3 存储桶中正确读取数据。</p> <pre><code class="language-scala">spark.read.format("hudi").load(basePath).createOrReplaceTempView("dta") spark.sql("select _hoodie_commit_time, uuid, rider, driver, fare,ts, partitionpath from  dta order by uuid").show()</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/64ecf1f368eb8998940a1e785db57b7c.jpg" alt="Vertica集成Apache Hudi指南"></p> <h3 id="42-配置-vertica-和-apache-hudi-集成">4.2 配置 Vertica 和 Apache HUDI 集成</h3> <p>在 vertica 中创建一个外部表，其中包含来自 S3 上 Hudi 表的数据。 我们创建了“旅行”表。</p> <pre><code class="language-sql">CREATE EXTERNAL TABLE Trips ( _hoodie_commit_time TimestampTz, uuid varchar, rider varchar, driver varchar, fare int, ts varchar, partitionpath varchar ) AS COPY FROM 's3a://apachehudi/parquet/vertica/*/*.parquet' PARQUET;</code></pre> <p>运行以下命令以验证正在读取外部表：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d51da239c4f1a09e9f8dad6b77090c01.jpg" alt="Vertica集成Apache Hudi指南"></p> <h3 id="43-如何让-vertica-查看更改的数据">4.3 如何让 Vertica 查看更改的数据</h3> <p>以下部分包含为查看 Vertica 中更改的数据而执行的一些操作的示例。</p> <h4 id="431-写入数据">4.3.1 写入数据</h4> <p>在这个例子中，我们使用 Scala 在 Apache spark 中运行了以下命令并附加了一些数据：</p> <pre><code class="language-scala">val df2 = Seq( ("fff","r6","d6",50,"India","20211005") ).toDF("uuid", "rider", "driver","fare","partitionpath","ts")</code></pre> <p>运行以下命令将此数据附加到 S3 上的 Hudi 表中：</p> <pre><code class="language-scala">df2.write.format("org.apache.hudi"). options(getQuickstartWriteConfigs). option(PRECOMBINE_FIELD_OPT_KEY, "ts"). option(RECORDKEY_FIELD_OPT_KEY, "uuid"). option(PARTITIONPATH_FIELD_OPT_KEY, "partitionpath"). option(TABLE_NAME, tableName). mode(Append). save(basePath)</code></pre> <h4 id="432-更新数据">4.3.2 更新数据</h4> <p>在这个例子中，我们更新了一条 Hudi 表的记录。 需要导入数据以触发并更新数据：</p> <pre><code class="language-scala">val df3 = Seq( ("aaa","r1","d1",100,"US","20211001"), ("eee","r5","d5",500,"India","20211001") ).toDF("uuid", "rider", "driver","fare","partitionpath","ts")</code></pre> <p>运行以下命令将数据更新到 S3 上的 HUDI 表：</p> <pre><code class="language-scala">df3.write.format("org.apache.hudi"). options(getQuickstartWriteConfigs). option(PRECOMBINE_FIELD_OPT_KEY, "ts"). option(RECORDKEY_FIELD_OPT_KEY, "uuid"). option(PARTITIONPATH_FIELD_OPT_KEY, "partitionpath"). option(TABLE_NAME, tableName). mode(Append). save(basePath)</code></pre> <p>以下是 spark.sql 的输出：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d73d33194936fefd394a6a0f0e8c53d3.jpg" alt="Vertica集成Apache Hudi指南"></p> <p>以下是 Vertica 输出：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/2348df65c8b50aab89c03e22105d4c17.jpg" alt="Vertica集成Apache Hudi指南"></p> <h4 id="433-创建和查看数据的历史快照">4.3.3 创建和查看数据的历史快照</h4> <p>执行以下指向特定时间戳的 spark 命令：</p> <pre><code class="language-scala">val dd = spark.read .format("hudi") .option("as.of.instant", "20211007092600") .load(basePath)</code></pre> <p>使用以下命令将数据写入 S3 中的 parquet：</p> <pre><code class="language-scala">dd.write.parquet("s3a://apachehudi/parquet/p2")</code></pre> <p>在此示例中，我们正在读取截至“20211007092600”日期的 Hudi 表快照。</p> <pre><code class="language-scala">dd.show</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f4747c4959ebf03fe6aa83e8c250551b.jpg" alt="Vertica集成Apache Hudi指南"></p> <p>通过在 parquet 文件上创建外部表从 Vertica 执行命令。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e8e569870e26d87ed728e7b9d45b261a.jpg" alt="Vertica集成Apache Hudi指南"></p> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-395.htm">springMvc+spring security 注解方式实现权限控制</a></p>
+                                                        <p>下一个：<a href="/html/category/article-397.htm">HCNP Routing&amp;Switching之端口隔离</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-468.htm" title="C语言井字棋游戏">C语言井字棋游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-466.htm" title="Spring Security核心组件详解">Spring Security核心组件详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-518.htm" title="使用TreeMap在Java中对用户定义的对象进行排序">使用TreeMap在Java中对用户定义的对象进行排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-485.htm" title="mysql索引失效的常见9种原因详解">mysql索引失效的常见9种原因详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
+                        <li class="py-2"><a href="/html/category/article-522.htm" title="用字符串中的ASCII值替换所有特殊字符-JavaScript">用字符串中的ASCII值替换所有特殊字符-JavaScript</a></li>
+                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

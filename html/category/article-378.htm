@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-378.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>Python中print和字符格式化的小结（Python2.7.5） - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        Python中print和字符格式化的小结（Python2.7.5）                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>1、print可以同时打印多个字面量或者变量，用逗号隔开，打印结果是以空格隔开</p> <pre><code class="language-python">name = "Guido van Rossum" print "My name is", name, "Thank u"  #output: My name is Guido van Rossum Thank u </code></pre> <p> 2、print 打印结果会自动在行末加上回车换行，可以在print语句的结尾加逗号来取消自动换行 </p> <pre><code class="language-python">for i in range(0,10):     print i,  #output: 0 1 2 3 4 5 6 7 8 9 </code></pre> <p> 3、与C的printf类似，python的print也支持格式化输出 </p> <p>通用形式print "a = %letter, b = %letter, c = %letter." % (value1, value2, value3)</p> <p>%letter可以是：</p> <p>%s 字符串</p> <p>%d 整形数</p> <p>%u 无符号整形数</p> <p>%x 十六进制</p> <p>%o 八进制</p> <p>%f 浮点数</p> <p>%e 科学计数法</p> <p>%g 根据数值不同自动选择%f或%e</p> <p>%r 原样输出</p> <p></p> <p><span style="font-size:24px">%f</span></p> <pre><code class="language-python">import math  #%a.bf，a表示浮点数的打印长度，b表示浮点数小数点后面的精度  #只是%f时表示原值，默认是小数点后5位数 print "PI=%f" % math.pi             # output: PI=3.141593  #只是%9f时，表示打印长度9位数，小数点也占一位，不够左侧补空格 print "PI=%9f" % math.pi            # output: PI=_3.141593  #只有.没有后面的数字时，表示去掉小数输出整数，03表示不够3位数左侧补0 print "PI=%03.f" % math.pi          # output: PI=003  #%6.3f表示小数点后面精确到3位，总长度6位数，包括小数点，不够左侧补空格 print "PI=%6.3f" % math.pi          # output: PI=_3.142  #%-6.3f表示小数点后面精确到3位，总长度6位数，包括小数点，不够右侧补空格 print "PI=%-6.3f" % math.pi         # output: PI=3.142_  #还可以用%*.*f来表示精度，两个*的值分别在后面小括号的前两位数值指定 #如下，不过这种方式06就失去补0的功能，只能补空格 print "PI=%*.*f" % (06,3,math.pi)   # output: PI=_3.142</code></pre> <p></p> <p><span style="font-size:24px">%d</span></p> <pre><code class="language-python">num=14  #%d打印时结果是14 print "num=%d" % num&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # output: num=14  #%1d意思是打印结果为1位整数，当整数的位数超过1位时，按整数原值打印，所以%1d的打印结果还是14 print "num=%1d" % num&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # output: num=14  #%3d意思是打印结果为3位整数，当整数的位数不够3位时，在整数左侧补空格，所以%3d的打印结果是 14 print "num=%3d" % num&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # output: num= 14  #%-3d意思是打印结果为3位整数，当整数的位数不够3位时，在整数右侧补空格，所以%3d的打印结果是14_ print "num=%-3d" % num&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # output: num=14_  #%05d意思是打印结果为5位整数，当整数的位数不够5位时，在整数左侧补0，所以%05d的打印结果是00014 print "num=%05d" % num&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # output: num=00014  #%.3d小数点后面的3意思是打印结果为3位整数， #当整数的位数不够3位时，在整数左侧补0，所以%.3d的打印结果是014 print "num=%.3d" % num&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # output: num=014  #%.0003d小数点后面的0003和3一样，都表示3，意思是打印结果为3位整数， #当整数的位数不够3位时，在整数左侧补0，所以%.3d的打印结果还是014 print "num=%.0003d" % num&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # output: num=014  #%5.3d是两种补齐方式的综合，当整数的位数不够3时，先在左侧补0，还是不够5位时，再在左侧补空格， #规则就是补0优先，最终的长度选数值较大的那个，所以%5.3d的打印结果还是&nbsp; 014 print "num=%5.3d" % num&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # output: num=&nbsp; 014  #%05.3d是两种补齐方式的综合，当整数的位数不够3时，先在左侧补0，还是不够5位时， #由于是05，再在左侧补0，最终的长度选数值较大的那个，所以%05.3d的打印结果还是00014 print "num=%05.3d" % num&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # output: num=00014  #还可以用%*.*d来表示精度，两个*的值分别在后面小括号的前两位数值指定 #如下，不过这种方式04就失去补0的功能，只能补空格，只有小数点后面的3才能补0 print "num=%*.*d" % (04,3,num)&nbsp; # output: num= 014 </code></pre> <p><span style="font-size:24px">%s</span></p> <pre><code class="language-python">string="hello"  #%s打印时结果是hello print "string=%s" % string      # output: string=hello  #%2s意思是字符串长度为2，当原字符串的长度超过2时，按原长度打印，所以%2s的打印结果还是hello print "string=%2s" % string     # output: string=hello  #%7s意思是字符串长度为7，当原字符串的长度小于7时，在原字符串左侧补空格， #所以%7s的打印结果是  hello print "string=%7s" % string     # output: string=  hello  #%-7s意思是字符串长度为7，当原字符串的长度小于7时，在原字符串右侧补空格， #所以%-7s的打印结果是  hello print "string=%-7s!" % string     # output: string=hello  !  #%.2s意思是截取字符串的前2个字符，所以%.2s的打印结果是he print "string=%.2s" % string    # output: string=he  #%.7s意思是截取字符串的前7个字符，当原字符串长度小于7时，即是字符串本身， #所以%.7s的打印结果是hello print "string=%.7s" % string    # output: string=hello  #%a.bs这种格式是上面两种格式的综合，首先根据小数点后面的数b截取字符串， #当截取的字符串长度小于a时，还需要在其左侧补空格 print "string=%7.2s" % string   # output: string=     he print "string=%2.7s" % string   # output: string=hello print "string=%10.7s" % string  # output: string=     hello  #还可以用%*.*s来表示精度，两个*的值分别在后面小括号的前两位数值指定 print "string=%*.*s" % (7,2,string)      # output: string=     he</code></pre> <p><span style="font-size:24px">%r</span></p> <p>%r输出参数原样，带有类型信息</p> <pre><code class="language-python">str1 = "Hello world." str2 = 'Hello world.' str3 = "I don't konw." str4 = """ There is something going on here. With the three double-quotes. """ bValue=True pi=3.14159  #输出字符串的原样并带有类型信息，不过要注意的是， #不管是单引号还是双引号，亦或三单引号三双引号，默认都是输出单引号表示的结果 #若字符串中含有单引号，那么输出结果则用双引号表示 #三单引号三双引号中的回车换行用\n表示 print "str1=%r" % str1      #output: str1='Hello world.' print "str2=%r" % str2      #output: str2='Hello world.' print "str3=%r" % str3      #output: str3="I don't konw." print "str4=%r" % str4       #output: str4="\nThere is something going on here.\nWith the three double-quotes.\n"  #输出布尔型原样 print "bValue=%r" % bValue  #output: bValue=True  #输出数值型原样 print "pi=%r" % pi          #output: pi=3.14159</code></pre> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-377.htm">Eureka的配置项详解</a></p>
+                                                        <p>下一个：<a href="/html/category/article-379.htm">QT学习-08-Qt连接Sqllite数据库</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-489.htm" title="CSS中文本居中显示">CSS中文本居中显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-514.htm" title="Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源">Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源</a></li>
+                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
+                        <li class="py-2"><a href="/html/category/article-491.htm" title="我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></li>
+                        <li class="py-2"><a href="/html/category/article-468.htm" title="C语言井字棋游戏">C语言井字棋游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                        <li class="py-2"><a href="/html/category/article-488.htm" title="eslint在vue中如何使用">eslint在vue中如何使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                        <li class="py-2"><a href="/html/category/article-482.htm" title="Hyperledger Fabric节点的动态添加和删除">Hyperledger Fabric节点的动态添加和删除</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-463.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>mongodb开发&#8212;GridFS文件存储 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        mongodb开发&#8212;GridFS文件存储                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views">                     <span style="font-size:18px"><span style="white-space:pre"></span>GridFS是MongoDB中的一个内置功能，可以用于存放大量小文件。<br /> GridFS使用两集合来存储文件的元数据和内容。文件的元数据存储在文件集合中，文件的内容存储在块集合中。<br /></span> </p> <p><span style="font-size:18px">两集合以FS。默认使用fs.chunks和fs.files来存储文件。其中fs.files集合存放文件的信息，fs.chunks存放文件数据。</span></p> <p><span style="font-size:18px"><span style="color:#33ccff">有些内容参考自 http://www.server110.com/mongodb/201404/10124.html</span></span></p> <p><span style="font-size:18px">下面是具体的使用方式：</span></p> <p><span style="font-size:18px"><span style="white-space:pre"></span></span></p> <pre><code class="language-java">1.引入spring-boot-starter-data-mongodb的依赖。 	&lt;dependency&gt; 		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; 		&lt;artifactId&gt;spring-boot-starter-data-mongodb&lt;/artifactId&gt; 	&lt;/dependency&gt;  2.注入模版 	@Autowired 	MongoTemplate mongoTemplate ; 	 	@Autowired 	MongoDbFactory dbFactory ; 3.创建GridFsTemplate模版 	GridFsTemplate gridfsTemplate = new GridFsTemplate(dbFactory, mongoTemplate.getConverter()) ; 4.保存文件 	gridfsTemplate.store(content, filename, contentType, metadata) 	gridfsTemplate.store(file.getInputStream(), fileName, file.getContentType(), metadata); 5.查找文件 	GridFsTemplate gridfsTemplate = new GridFsTemplate(dbFactory, mongoTemplate.getConverter()) ; 		 	Query query = new Query() ; 	 	//查询条件设置 	GridFsCriteria.whereContentType() 	GridFsCriteria.where(key) 	GridFsCriteria.whereMetaData(metadataKey) 	 	Criteria  criteria = GridFsCriteria.whereFilename() ; 	criteria.is(fileName) ;		 	query.addCriteria(criteria); 		 	Order order = new Order(Sort.Direction.DESC, "uploadDate") ; 	Sort sort = new Sort(order) ; 	query.with(sort); 	 	GridFSDBFile gridFils = gridfsTemplate.findOne(query)	 	List&lt;GridFSDBFile&gt; gridFils = gridfsTemplate.find(query) ; 	 	 	//输入到指定的流、文件、获取输入流。 	dbFile.writeTo(Outputstram out ) 	dbFile.getInputStream() 	dbFile.writeTo(file) 	 	//根据文件名查询文件（可以带正则表达式），返回一个Resource 	GridFsResource[] gridFsResource = gridFsTemplate.getResources("test*"); 	  6.删除文件 	gridfsTemplate.delete(query);  讲GridFSDBFile有什么方法。  GridFSDBFile  Core Methods  	The GridFSDBFile  API is quite simple as well:  	getInputStream – returns an InputStream from which data can be read 	getFilename – gets the filename of the file 	getMetaData – gets the metadata for the given file 	containsField – determines if the document contains a field with the given name 	get – gets a field from the object by name 	getId – gets the file’s object ID 	keySet – gets the object’s field names  注意事项 1. GridFS不自动处理md5相同的文件，对于md5相同的文件，如果想在GridFS中只有一个存储，要用户自已处理。 Md5值的计算由客户端完成。 2. 因为GridFS在上传文件过程中是先把文件数据保存到fs.chunks，最后再把文件信息保存到fs.files中，所以 如果在上传文件过程中失败，有可能在fs.chunks中出现垃圾数据。这些垃圾数据可以定期清理掉。</code></pre> <p>                 </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-462.htm">java之Arrays工具类的使用</a></p>
+                                                        <p>下一个：<a href="/html/category/article-464.htm">Python技法：实现简单的递归下降Parser_在线工具</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
+                        <li class="py-2"><a href="/html/category/article-490.htm" title="vue实现简单无缝滚动效果_vue.js">vue实现简单无缝滚动效果_vue.js</a></li>
+                        <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-485.htm" title="mysql索引失效的常见9种原因详解">mysql索引失效的常见9种原因详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-497.htm" title="HTML5画布 canvas移动">HTML5画布 canvas移动</a></li>
+                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
+                        <li class="py-2"><a href="/html/category/article-514.htm" title="Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源">Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源</a></li>
+                        <li class="py-2"><a href="/html/category/article-486.htm" title="如何使用Copy-Item在PowerShell中复制多个文件？">如何使用Copy-Item在PowerShell中复制多个文件？</a></li>
+                        <li class="py-2"><a href="/html/category/article-481.htm" title="如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？">如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

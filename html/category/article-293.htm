@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-293.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>MySQL通过show status查看、explain分析优化数据库性能_Mysql - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        MySQL通过show status查看、explain分析优化数据库性能_Mysql                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<h2>1.概述</h2> <p>在应用系统开发过程中，由于初期数据量小，开发人员写SQL语句时更重视功能上的实现，但是当应用系统正式上线后，随着生产数据量的急剧增长，很多SQL语句开始逐渐显露出性能问题，对生产环境的影响也越来越大，此时这些有问题的SQL语句就成为整个系统性能的瓶颈，因此我们必须要对它们进行优化，该章节将详细介绍在MySQL中优化SQL语句的方法。</p> <h2>2.通过show status命令了解各种SQL的执行频率</h2> <p>MySQL客户端连接成功后，通过show [session|global]status命令可以提供服务器状态信息，也可以在操作系统上使用mysqladmin extended-status命令获得这些消息。show [session|global] status可以根据需要加上参数“session”或者“global”来显示session级（当前连接）的统计结果和global级（自数据库上次启动至今）的统计结果。如果不写，默认使用参数是“session”。</p> <p>下面的命令显示了当前session中所有统计参数的值：</p> <div class="ay1code"> <pre class="brush:sql;">-- 查看会话所有统计的值  SHOW STATUS LIKE 'Com_%';  Or  SHOW SESSION STATUS LIKE 'Com_%';</pre> </div> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/cba11c601c1d6f30939626bfeb4c2e7f.jpg"></p> <p>下面的命令显示了当前global中所有统计参数的值：</p> <p>-- 查看全局所有统计的值</p> <div class="ay1code"> <pre class="brush:sql;">SHOW GLOBAL STATUS LIKE 'Com_%';</pre> </div> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/b780015a856d5b8057691a493ea659b1.jpg"></p> <p>Com_xxx表示每个xxx语句执行的次数，我们通常比较关心的是以下几个统计参数：</p> <ul> <li>Com_select：执行SELECT操作的次数，一次查询只累加1。</li> <li>Com_insert：执行INSERT操作的次数，对于批量插入的INSERT操作，只累加一次。</li> <li>Com_update：执行UPDATE操作的次数。</li> <li>Com_delete：执行DELETE操作的次数。</li> </ul> <p>上面这些参数对于所有存储引擎的表操作都会进行累计。下面这几个参数只是针对InnoDB存储引擎的，累加的算法也略有不同。</p> <ul> <li>Innodb_rows_read：SELECT查询返回的行数。</li> <li>Innodb_rows_inserted：执行INSERT操作插入的行数。</li> <li>Innodb_rows_updated：执行UPDATE操作更新的行数。</li> <li>Innodb_rows_deleted：执行DELETE操作删除的行数。</li> </ul> <p>通过以上几个参数，可以很容易地了解当前数据库的应用系统是以插入更新为主还是以查询操作为主，以及各种类型的SQL大致的执行比例是多少。对于更新操作的计数，是对执行次数的计数，不论提交还是回滚都会进行累加。</p> <p>对于事务型的应用，通过Com_commit和Com_rollback可以了解事务提交和回滚的情况，对于回滚操作非常频繁的数据库，可能意味着应用编写存在问题。此外，以下几个参数便于用户了解数据库的基本情况。</p> <ul> <li>Connections：试图连接MySQL服务器的次数。</li> <li>Uptime：服务器工作时间。</li> <li>Slow_queries：慢查询的次数。</li> </ul> <h2>3.定位执行效率较低的SQL语句</h2> <p>可以通过以下两种方式定位执行效率较低的SQL语句。</p> <ul> <li>通过慢查询日志定位那些执行效率较低的SQL语句，用--log-slow-queries[=file_name]选项启动时，mysqld写一个包含所有执行时间超过long_query_time秒的SQL语句的日志文件。</li> <li>慢查询日志在查询结束以后才纪录，所以在应用系统反映执行效率出现问题的时候查询慢查询日志并不能定位问题，可以使用show processlist命令查看当前MySQL在进行的线程，包括线程的状态、是否锁表等，可以实时地查看SQL的执行情况，同时对一些锁表操作进行优化。</li> </ul> <h2>4.通过EXPLAIN分析低效SQL的执行计划</h2> <p>通过定位执行效率较低的SQL语句后，可以通过EXPLAIN或者DESC命令获取MySQL如何执行SELECT语句的信息，包括在SELECT语句执行过程中表如何连接和连接的顺序，比如想统计所有库存阶梯数量，需要关联goods_stock表和goods_stock_price表，并且对goods_stock_price.Qty字段做求和（sum）操作，相应 SQL 的执行计划如下：</p> <div class="ay1code"> <pre class="brush:sql;">EXPLAIN SELECT SUM(sp.Qty)  FROM goods_stock AS s LEFT JOIN goods_stock_price AS sp  ON s.ID=sp.GoodsStockID;</pre> </div> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/8f59c6177e0f5eb4c79669bf88b4a9b9.jpg"></p> <p>如上图所示每个列的简单解释如下：</p> <ul> <li>select_type：表示 SELECT 的类型，常见的取值有： <ul> <li>SIMPLE（简单表，即不使用表连接 或者子查询）。</li> <li>PRIMARY（主查询，即外层的查询）、UNION（UNION 中的第二个或 者后面的查询语句）、◎SUBQUERY（子查询中的第一个SELECT）等。</li> </ul> </li> <li>table：输出结果集的表。</li> <li>type：表示表的连接类型，性能由好到差的连接类型为： <ul> <li>system（表中仅有一行，即常量表）。</li> <li>const（单表中最多有一个匹配行，例如primary key或者unique index）。</li> <li>eq_ref（对于前面的每一行，在此表中只查询一条记录，简单来说，就是多表连接中使用primary key或者unique index）。</li> <li>ref（与eq_ref类似，区别在于不是使用primary key或者unique index，而是使用普通的索引）。</li> <li>ref_or_null（与ref类似，区别在于条件中包含对NULL的查询）。</li> <li>index_merge（索引合并优化）。</li> <li>unique_subquery（in的后面是一个查询主键字段的子查询）。</li> <li>index_subquery（与unique_subquery类似，区别在于in的后面是查询非唯一索引字段的子查询）。</li> <li>range（单表中的范围查询）。</li> <li>index（对于前面的每一行，都通过查询索引来得到数据）。</li> <li>all（对于前面的每一行，都通过全表扫描来得到数据）。</li> </ul> </li> <li>possible_keys：表示查询时，可能使用的索引。</li> <li>key：表示实际使用的索引。</li> <li>key_len：索引字段的长度。</li> <li>rows：扫描行的数量。</li> <li>filtered：返回结果的行占需要读到的行(rows列的值)的百分比。</li> <li>Extra：执行情况的说明和描述。 <ul> <li>Using index（此值表示mysql将使用覆盖索引，以避免访问表）。</li> <li>Using where（mysql 将在存储引擎检索行后再进行过滤，许多where条件里涉及索引中的列，当(并且如果)它读取索引时，就能被存储引擎检验，因此不是所有带where子句的查询都会显示“Using where”。有时“Using where”的出现就是一个暗示：查询可受益于不同的索引）。</li> <li>Using temporary（mysql 对查询结果排序时会使用临时表）。</li> <li>Using filesort（mysql会对结果使用一个外部索引排序，而不是按索引次序从表里读取行。mysql有两种文件排序算法，这两种排序方式都可以在内存或者磁盘上完成，explain不会告诉你mysql将使用哪一种文件排序，也不会告诉你排序会在内存里还是磁盘上完成）。</li> <li>Range checked for each record(index map: N) （没有好用的索引，新的索引将在联接的每一行上重新估算，N是显示在possible_keys列中索引的位图，并且是冗余的）。</li> </ul> </li> </ul> <h2>5.确定问题并采取相应的优化措施</h2> <p>经过以上定位步骤，我们基本就可以分析到问题出现的原因。此时我们可以根据情况采取相应的改进措施，进行优化提高语句执行效率。<br />在上面的例子中，已经可以确认是goods_stock是走主键索引的，但是对goods_stock_price子表的进行了全表扫描导致效率的不理想，那么应该对goods_stock_price表的GoodsStockID字段创建索引，具体命令如下：</p> <div class="ay1code"> <pre class="brush:sql;">-- 创建索引  CREATE INDEX idx_stock_price_1 ON goods_stock_price (GoodsStockID);  -- 附加删除跟查询索引语句  ALTER TABLE goods_stock_price DROP INDEX idx_stock_price_1;  SHOW INDEX FROM goods_stock_price;</pre> </div> <p>创建索引后，我们再看一下这条语句的执行计划，具体如下：</p> <div class="ay1code"> <pre class="brush:sql;">EXPLAIN SELECT SUM(sp.Qty)  FROM goods_stock AS s LEFT JOIN goods_stock_price AS sp  ON s.ID=sp.GoodsStockID;</pre> </div> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/eed0179876d00989d6b9e1797f1e06aa.jpg"></p> <p>可以发现建立索引后对goods_stock_price子表需要扫描的行数明显减少（从 3 行减少到1行），可见索引的使用可以大大提高数据库的访问速度，尤其在表很庞大的时候这种优势更为明显。</p> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-292.htm">Java高级之LinkedList的ListIterator迭代器</a></p>
+                                                        <p>下一个：<a href="/html/category/article-294.htm">浅谈c++的命名空间（namespace）</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
+                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
+                        <li class="py-2"><a href="/html/category/article-475.htm" title="redis持久化概述">redis持久化概述</a></li>
+                        <li class="py-2"><a href="/html/category/article-473.htm" title="VUE前端开发环境版本查看命令方法详解">VUE前端开发环境版本查看命令方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
+                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

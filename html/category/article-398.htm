@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-398.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>Java-GUI编程之菜单组件 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        Java-GUI编程之菜单组件                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<p>前面讲解了如果构建GUI界面，其实就是把一些GUI的组件，按照一定的布局放入到容器中展示就可以了。在实际开发中，除了主界面，还有一类比较重要的内容就是菜单相关组件，可以通过菜单相关组件很方便的使用特定的功能，在AWT中，菜单相关组件的使用和之前学习的组件是一模一样的，只需要把菜单条、菜单、菜单项组合到一起，按照一定的布局，放入到容器中即可。</p> <p><center><img decoding="async" src="https://pic.imgdb.cn/item/624e321b239250f7c5025068.jpg" alt="Java-GUI编程之菜单组件"/></center></p> <p><strong>下表中给出常见的菜单相关组件：</strong></p> <table> <thead> <tr> <th>菜单组件名称</th> <th>功能</th> </tr> </thead> <tbody> <tr> <td>MenuBar</td> <td>菜单条 ， 菜单的容器 。</td> </tr> <tr> <td>Menu</td> <td>菜单组件 ， 菜单项的容器 。 它也是Menultem的子类 ，所以可作为菜单项使用</td> </tr> <tr> <td>PopupMenu</td> <td>上下文菜单组件(右键菜单组件)</td> </tr> <tr> <td>Menultem</td> <td>菜单项组件 。</td> </tr> <tr> <td>CheckboxMenuItem</td> <td>复选框菜单项组件</td> </tr> </tbody> </table> <p><strong>下图是常见菜单相关组件集成体系图：</strong></p> <p><center><img decoding="async" src="https://pic.imgdb.cn/item/624e30e8239250f7c500e4ae.png" alt="Java-GUI编程之菜单组件"/></center></p> <p><strong>菜单相关组件使用：</strong></p> <p>1.准备菜单项组件，这些组件可以是MenuItem及其子类对象</p> <p>2.准备菜单组件Menu或者PopupMenu(右击弹出子菜单)，把第一步中准备好的菜单项组件添加进来；</p> <p>3.准备菜单条组件MenuBar，把第二步中准备好的菜单组件Menu添加进来；</p> <p>4.把第三步中准备好的菜单条组件添加到窗口对象中显示。</p> <p><strong>小技巧：</strong></p> <p>1.如果要在某个菜单的菜单项之间添加分割线，那么只需要调用Menu的add（new MenuItem(-)）即可。</p> <p>2.如果要给某个菜单项关联快捷键功能，那么只需要在创建菜单项对象时设置即可，例如给菜单项关联 ctrl+shif+/ 快捷键，只需要：new MenuItem("菜单项名字",new MenuShortcut(KeyEvent.VK_Q,true);</p> <p><strong>案例1：</strong></p> <p>	使用awt中常用菜单组件，完成下图效果</p> <p><center><img decoding="async" src="https://pic.imgdb.cn/item/624e321b239250f7c5025068.jpg" alt="Java-GUI编程之菜单组件"/></center></p> <p><strong>演示代码1：</strong></p> <pre><code class="language-java">import java.awt.*; import java.awt.event.ActionEvent; import java.awt.event.ActionListener;  public class SimpleMenu {     //创建窗口     private Frame frame = new Frame("这里测试菜单相关组件");     //创建菜单条组件     private MenuBar menuBar = new MenuBar();     //创建文件菜单组件     private Menu fileMenu = new Menu("文件");     //创建编辑菜单组件     private Menu editMenu = new Menu("编辑");     //创建新建菜单项     private MenuItem newItem = new MenuItem("新建");     //创建保存菜单项     private MenuItem saveItem = new MenuItem("保存");     //创建退出菜单项     private MenuItem exitItem = new MenuItem("退出");      //创建自动换行选择框菜单项     private CheckboxMenuItem autoWrap = new CheckboxMenuItem("自动换行");      //创建复制菜单项     private MenuItem copyItem = new MenuItem("复制");      //创建粘贴菜单项     private MenuItem pasteItem = new MenuItem("粘贴");      //创建格式菜单     private Menu formatMenu = new Menu("格式");      //创建注释菜单项     private MenuItem commentItem = new MenuItem("注释");     //创建取消注释菜单项     private MenuItem cancelItem = new MenuItem("取消注释");      //创建一个文本域     private TextArea ta = new TextArea(6, 40);      public void init(){         //定义菜单事件监听器         ActionListener listener = new ActionListener() {             @Override             public void actionPerformed(ActionEvent e) {                 String command = e.getActionCommand();                 ta.append("单击“"+command+"”菜单\n");                 if (command.equals("退出")){                     System.exit(0);                 }             }         };         //为注释菜单项和退出菜单项注册监听器         commentItem.addActionListener(listener);         exitItem.addActionListener(listener);          //为文件菜单fileMenu添加菜单项         fileMenu.add(newItem);         fileMenu.add(saveItem);         fileMenu.add(exitItem);          //为编辑菜单editMenu添加菜单项         editMenu.add(autoWrap);         editMenu.add(copyItem);         editMenu.add(pasteItem);          //为格式化菜单formatMenu添加菜单项         formatMenu.add(commentItem);         formatMenu.add(cancelItem);          //将格式化菜单添加到编辑菜单中，作为二级菜单         editMenu.add(new MenuItem("-"));         editMenu.add(formatMenu);           //将文件菜单和编辑菜单添加到菜单条中         menuBar.add(fileMenu);         menuBar.add(editMenu);           //把菜单条设置到frame窗口上         frame.setMenuBar(menuBar);          //把文本域添加到frame中         frame.add(ta);          //设置frame最佳大小并可见         frame.pack();         frame.setVisible(true);     }     public static void main(String[] args) {         new SimpleMenu().init();     } }</code></pre> <p><strong>案例2：</strong></p> <p>	通过PopupMenu实现下图效果：</p> <p><center><img decoding="async" src="https://pic.imgdb.cn/item/624e32f4239250f7c5034267.jpg" alt="Java-GUI编程之菜单组件"/></center></p> <p><strong>实现思路：</strong></p> <p>1.创建PopubMenu菜单组件；</p> <p>2.创建多个MenuItem菜单项，并添加到PopupMenu中；</p> <p>3.将PopupMenu添加到目标组件中；</p> <p>4.为需要右击出现PopubMenu菜单的组件，注册鼠标监听事件，当监听到用户释放右键时，弹出菜单。</p> <p><strong>演示代码2：</strong></p> <pre><code class="language-java">import java.awt.*; import java.awt.event.MouseAdapter; import java.awt.event.MouseEvent;  public class PopupMenuTest {     private Frame frame = new Frame("这里测试PopupMenu");     // 创建PopubMenu菜单     private PopupMenu popupMenu = new PopupMenu();     // 创建菜单条     private MenuItem commentItem = new MenuItem("注释");     private MenuItem cancelItem = new MenuItem("取消注释");     private MenuItem copyItem = new MenuItem("复制");     private MenuItem pasteItem = new MenuItem("保存");     // 创建一个文本域     private TextArea ta = new TextArea("我爱中华！！！", 6, 40);     // 创建一个Panel     private Panel panel = new Panel();      public void init() {         // 把菜单项添加到PopupMenu中         popupMenu.add(commentItem);         popupMenu.add(cancelItem);         popupMenu.add(copyItem);         popupMenu.add(pasteItem);         // 设置panel大小         panel.setPreferredSize(new Dimension(300, 100));         // 把PopupMenu添加到panel中         panel.add(popupMenu);         // 为panel注册鼠标事件         panel.addMouseListener(new MouseAdapter() {             @Override             public void mouseReleased(MouseEvent e) {                 boolean flag = e.isPopupTrigger();                 // 判断当前鼠标操作是不是触发PopupMenu的操作                 if (flag) {                     // 让PopupMenu显示在panel上，并且跟随鼠标事件发生的地方显示                     popupMenu.show(panel, e.getX(), e.getY());                 }             }         });         // 把ta添加到frame中间区域中          frame.add(ta);          // 把panel添加到frame底部         frame.add(panel, BorderLayout.SOUTH);          // 设置frame最佳大小，并可视；         frame.pack();         frame.setVisible(true);     }      public static void main(String[] args) {         new PopupMenuTest().init();     }  }</code></pre> <p></p> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-397.htm">HCNP Routing&amp;Switching之端口隔离</a></p>
+                                                        <p>下一个：<a href="/html/category/article-399.htm">基于Ansible实现Apache Doris快速部署运维指南</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-518.htm" title="使用TreeMap在Java中对用户定义的对象进行排序">使用TreeMap在Java中对用户定义的对象进行排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-486.htm" title="如何使用Copy-Item在PowerShell中复制多个文件？">如何使用Copy-Item在PowerShell中复制多个文件？</a></li>
+                        <li class="py-2"><a href="/html/category/article-491.htm" title="我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></li>
+                        <li class="py-2"><a href="/html/category/article-480.htm" title="JAVA基础小细节——equals()与hashCode()">JAVA基础小细节——equals()与hashCode()</a></li>
+                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
+                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                        <li class="py-2"><a href="/html/category/article-484.htm" title="Springboot启动原理详细解析">Springboot启动原理详细解析</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-521.htm" title="typescript的安装运行与自动编译">typescript的安装运行与自动编译</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

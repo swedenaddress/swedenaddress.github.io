@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-309.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>深度解析javaScript常见数据类型检查校验_在线工具 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        深度解析javaScript常见数据类型检查校验_在线工具                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<h3 id="前言">前言</h3> <p>在JavaScript中，数据类型分为两大类，一种是基础数据类型，另一种则是复杂数据类型，又叫引用数据类型</p> <ul> <li>基础数据类型：数字Number 字符串String 布尔Boolean Null Undefined Symbols BigInt</li> <li>引用数据类型：日期Dete，对象Object，数组Array,方法Function, 正则regex,带键的集合：Maps, Sets, WeakMaps, WeakSets</li> </ul> <p>基础数据类型和引用数据类型的区别，在之前深拷贝的文章中提到过，这里不做详细赘述。</p> <blockquote> <p>传送门：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://lewyon.xyz/objectCopy.html"  target="_blank"  rel="nofollow">javaScript中深拷贝和浅拷贝简单梳理</a></p> </blockquote> <h3 id="常见的几种数据校验方式">常见的几种数据校验方式</h3> <p>接下来会针对下面几种数据类型，进行校验</p> <pre><code>// 基本数据类型 let str = "abc"; let num = 123; let boo = true; let undef = undefined; let testNull = null; let symb = Symbol("user"); let bigInt = BigInt(9007199254740999);  // 复杂-引用数据类型 let arr = [1, 2, 3, 4]; let func = function () {}; let obj = {}; let date1 = new Date(); let setObj1 = new Set(); let setObj2 = new Set([1, 2, 3]); let mapObj = new Map();  </code></pre> <h4 id="typeof操作符">typeof操作符</h4> <p><strong>typeof操作符，会返回一个字符串，表示未经计算的操作数的类型</strong></p> <pre><code>/**  * typeof 操作符  *  * 返回一个字符串，表示未经计算的操作数的类型。  *  * */ console.log(typeof str); //  string console.log(typeof num); //  number console.log(typeof boo); //  boolean console.log(typeof undef); //  undefined console.log(typeof testNull); //  object console.log(typeof symb); //  symbol console.log(typeof bigInt); //  bigint console.log(typeof Object(bigInt)); // object console.log(typeof arr); //  object console.log(typeof func); //  function console.log(typeof obj); //  object console.log(typeof date1); //  object console.log(typeof setObj1); //  object console.log(typeof setObj2); //  object console.log(typeof mapObj); //  object  </code></pre> <h5 id="小结">小结</h5> <p>使用typeof操作符的时候，我们可以看到一些较为特殊的情况：</p> <ul> <li>null，数组array，set,map 返回的是对象object</li> </ul> <h4 id="instanceof">instanceof</h4> <p><strong>instanceof用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。</strong></p> <pre><code>/**  *  * instanceof  *  * 用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。  *  * */  console.log(str instanceof String); // false  console.log(new String("abc") instanceof String); // true  console.log(num instanceof Number); // false  console.log(new Number(123) instanceof Number); // true  console.log(boo instanceof Boolean); // false  console.log(new Boolean(true) instanceof Boolean); // false  console.log(undef instanceof undefined); // Uncaught TypeError: Right-hand side of 'instanceof' is not an object  console.log(testNull instanceof null); // Uncaught TypeError: Right-hand side of 'instanceof' is not an object  console.log(symb instanceof Symbol); // false  // Symbol不是构造函数，没有new操作符  console.log(bigInt instanceof BigInt); // false  console.log(Object(BigInt("22")) instanceof Object); // true  console.log(Object(BigInt("22")) instanceof BigInt); // true  console.log(arr instanceof Array); // true  console.log(arr instanceof Object); // true  console.log(func instanceof Function); // true  console.log(func instanceof Object); // true  console.log(obj instanceof Object); // true  console.log(obj instanceof Function); // false  console.log(null instanceof Object); // false  console.log(date1 instanceof Object); // true  console.log(setObj1 instanceof Object); //  true  console.log(setObj2 instanceof Object); //  true  console.log(mapObj instanceof Object); //  true  console.log(setObj1 instanceof Array); //  false  console.log(setObj2 instanceof Array); //  false  console.log(mapObj instanceof Array); //  false  </code></pre> <h4 id="constructor">constructor</h4> <pre><code> /**  * constructor  *  * 返回创建实例对象的 构造函数的引用。  *  * 注意，此属性的值是对函数本身的引用，而不是一个包含函数名称的字符串  *  * 构造函数.prototype.constructor()  *  * */   // 基本数据类型 let str = "abc"; let num = 123; let boo = true; let undef = undefined; let testNull = null; let symb = Symbol("user"); let bigInt = BigInt(9007199254740999);  // 复杂-引用数据类型 let arr = [1, 2, 3, 4]; let func = function () {}; let obj = {}; let date1 = new Date(); function constructorFn() {   this.name = "11"; } let con1 = new constructorFn(); let setObj1 = new Set(); let setObj2 = new Set([1, 2, 3]); let mapObj = new Map();   console.log(str.constructor); // String  console.log(num.constructor); // Number  console.log(boo.constructor); // Boolean  // console.log(testUndefined.constructor); // Cannot read property 'constructor' of undefined  // console.log(testNull.constructor); // Cannot read property 'constructor' of null console.log(symb.constructor); // Symbol  console.log(bigInt.constructor); // BigInt  console.log(arr.constructor); // Array  console.log(func.constructor); // Function  console.log(obj.constructor); // Object  console.log(date1.constructor); // Date  console.log(constructorFn.constructor); // Function  console.log(con1.constructor); // constructorFn  console.log(setObj1.constructor); // Set  console.log(setObj2.constructor); // Set  console.log(mapObj.constructor); // Map   /**  *  * 构造函数校验  *  * */  console.log(Function.constructor); // Function console.log(Object.constructor); // Function console.log(Array.constructor); // Function console.log(Date.constructor); // Function  </code></pre> <h4 id="objectprototypetostringcall--objectprototypetostringapply">Object.prototype.toString.call &amp;&amp; Object.prototype.toString.apply</h4> <h5 id="objectprototypetostring">Object.prototype.toString()</h5> <p>在使用Object.prototype.toString.call或者Object.prototype.toString.apply检查数据类型之前，我们先了解一下Object.prototype.toString和JavaScript中的构造函数Function的原型方法apply和call：</p> <pre><code>/**  * 返回一个表示该对象的字符串  *  * Object.prototype.toString()  *  * 每个对象都有一个 toString() 方法，当该对象被表示为一个文本值时，或者一个对象以预期的字符串方式引用时自动调用。  * 默认情况下，toString() 方法被每个 Object 对象继承。  *  * 如果此方法在自定义对象中未被覆盖，toString() 返回 "[object type]"，其中 type 是对象的类型。以下代码说明了这一点：  *  * */  let isObj = { name: "zhangsan" }; let isBoolean = true; let isNumber = new Number(123); let isString = "abc"; let isFun = new Function(); console.log(isObj.toString()); // [object Object] console.log(isBoolean.toString()); // true console.log(isNumber.toString()); // 123 console.log(isString.toString()); // abc console.log(new Date().toString()); // Thu Apr 28 2022 16:37:19 GMT+0800 (中国标准时间) console.log(isFun.toString()); // function anonymous() {}  </code></pre> <h5 id="call--apply">call &amp;&amp; apply</h5> <pre><code>/**  *  * call() 使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数，function.call(thisArg, arg1, arg2, ...)  *  * apply() 使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数，unc.apply(thisArg, [argsArray])  *  * */  // call基本使用; function a() { 	console.log(this); }  function b() { 	console.log(this); } a.call(b); //		function b() {} b.call(a); //		function a() {}  </code></pre> <ul> <li>call和apply最简单的例子表明了，改变了当前方法的this指向</li> <li>同时这两个方法的区别在于传参的方式</li> </ul> <h4 id="objectprototypetostring结合functionprototypecall--apply">Object.prototype.toString结合Function.prototype.call &amp;&amp; apply</h4> <pre><code> /**  *  * 使用 toString() 检测对象类型可以通过 toString() 来获取每个对象的类型。  * 为了每个对象都能通过 Object.prototype.toString() 来检测，  * 需要以 Function.prototype.call() 或者 Function.prototype.apply() 的形式来调用，传递要检查的对象作为第一个参数，称为 thisArg。  *  * 那么 Object.prototype.toString 相当于 原生构造函数的实例化对象isNumber，传参数给Object.prototype.toString执行  * 实际上相当于 toString.call(new ***);  *  * */   let str = "abc"; let num = 123; let boo = true; let undef = undefined; let testNull = null; let symb = Symbol("user"); let bigInt = BigInt(9007199254740999);  // 复杂-引用数据类型 let arr = [1, 2, 3, 4]; let func = function () {}; let obj = {}; let date1 = new Date(); function testFun() {} let newTest = new testFun(); let newFun = new Function(); let setObj1 = new Set(); let setObj2 = new Set([1, 2, 3]); let mapObj = new Map();  console.log(Object.prototype.toString.apply(new String("sss"))); // [object String]  console.log(Object.prototype.toString.apply(str)); // [object String]  console.log(Object.prototype.toString.call(num)); // [object Number]  console.log(Object.prototype.toString.call(boo)); // [object Boolean]  console.log(Object.prototype.toString.call(undef)); // [object Undefined]  console.log(Object.prototype.toString.call(testNull)); // [object Null]  console.log(Object.prototype.toString.call(symb)); // [object Symbol]  console.log(Object.prototype.toString.call(Object(bigInt))); // [object BigInt]  console.log(Object.prototype.toString.call(bigInt)); // [object BigInt]  console.log(Object.prototype.toString.apply(arr)); // [object Array]  console.log(Object.prototype.toString.call(func)); // [object Function]  console.log(Object.prototype.toString.call(obj)); // [object Object]  console.log(Object.prototype.toString.call(date1)); // [object Date]  console.log(Object.prototype.toString.call(testFun)); // [object Function]  console.log(Object.prototype.toString.call(newTest)); // [object Object]  console.log(Object.prototype.toString.call(newFun)); // [object Function]  console.log(Object.prototype.toString.call(setObj1)); // [object Set]  console.log(Object.prototype.toString.call(setObj2)); // [object Set]  console.log(Object.prototype.toString.call(mapObj)); // [object Map]  </code></pre> <h4 id="其他校验数据类型的方法">其他校验数据类型的方法：</h4> <h6 id="判断是否是数组">判断是否是数组：</h6> <pre><code>console.log(Array.isArray([1, 2])); // true  </code></pre> <h6 id="判断一个对象是否是空对象">判断一个对象是否是空对象</h6> <pre><code>// 判断空对象 function isEmptyObj(obj) {   for (name in obj) {     console.log(name);     return false; // 不是空对象   }   return true; } console.log(isEmptyObj({}));  // true  </code></pre> <h4 id="总结">总结</h4> <ul> <li>不管是typeof操作符，还是其他的操作方法，都有各自的缺陷</li> <li>在日常的开发过程中，我们需要知道当前操作的是对象，还是构造函数生成的对象或者方法，才能针对当前需要判断的数据类型，采用最适合的方法</li> <li>Object.prototype.toString.call或者Object.prototype.toString.apply应该是最完善的方法，在我们不确定是否是引用类型或者基本数据类型的时候，建议作为首选</li> <li>在了解这些判断数据类型的方式之前或者说存有疑问：为什么array数组在使用instanceof和typeof 校验Object的时候都成立，这时候需要去了解一下引用数据类型的具体内容</li> <li>以上判断数据类型的方法，可以在项目开发过程中，可以写入到utils公共方法当中，作为开发中进行使用。</li> <li>更多用法等待补充。</li> </ul> <h4 id="源码地址">源码地址</h4> <ul> <li> <h5 id="码云-httpsgiteecomlewyonvue-note"> <strong>码云</strong> <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gitee.com/lewyon/vue-note"  target="_blank"  rel="nofollow">https://gitee.com/lewyon/vue-note</a><br /> </h5> </li> <li> <h5 id="githup-httpsgithubcomakari16vue-note"> <strong>githup</strong> <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/akari16/vue-note"  target="_blank"  rel="nofollow">https://github.com/akari16/vue-note</a><br /> </h5> </li> </ul> <p>文章个人博客地址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://lewyon.xyz/checkType.html"  target="_blank"  rel="nofollow">深度解析javaScript常见数据类型检查校验</a></p> <p>欢迎关注公众号：程序猿布欧，不定期更新一些前端入门文章</p> <p>创作不易，转载请注明出处和作者。</p> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-308.htm">Python 垃圾回收机制原理详解</a></p>
+                                                        <p>下一个：<a href="/html/category/article-310.htm">golang 中 sync.Mutex 的实现</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-492.htm" title="kafka系列SpringBoot 中使用@KafkaListener详解与使用">kafka系列SpringBoot 中使用@KafkaListener详解与使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
+                        <li class="py-2"><a href="/html/category/article-508.htm" title="Libco Hook 机制浅析_在线工具">Libco Hook 机制浅析_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-465.htm" title="C语言数据结构、十字链表的分析及实现">C语言数据结构、十字链表的分析及实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-485.htm" title="mysql索引失效的常见9种原因详解">mysql索引失效的常见9种原因详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-488.htm" title="eslint在vue中如何使用">eslint在vue中如何使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-478.htm" title="JavaScript如何添加用于将案例交换到字符串原型对象的函数">JavaScript如何添加用于将案例交换到字符串原型对象的函数</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

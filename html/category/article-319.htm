@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-319.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>使用Python递归遍历目标路径下的所有文件 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        使用Python递归遍历目标路径下的所有文件                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> <h2> <a id="_0" rel="nofollow"></a>需求介绍</h2> <blockquote> <p>从网上获取目标网站的数据一般通过网络爬虫的方式，但是这种方式往往可能效率比较低，而且有些网站可能会限制爬虫，比如著名的Github，当通过API爬虫的方式获取数据的时候，Github官方对爬虫速率进行了限制，超过了这个速率的爬虫会被限制，同时Github官方还要求提供Github用户验证等等，这些限制无形中都加大了我们爬虫的难度，但是其实我们还可以通过直接下载Github仓库的方式来获取数据，这种方式比爬虫要更加方便快捷，但是下下来的文件中很多是文件夹或者不符合条件的文件，我们该如何快速的通过python脚本将这些文件提取出来呢？下面就是我们要介绍的使用python递归遍历目标路径下的所有文件。</p> </blockquote> <h2> <a id="_3" rel="nofollow"></a>实现思路</h2> <ol> <li>导入操作json和文件的模块,并定义最终存储的变量。</li> </ol> <pre><code class="prism language-py"><span class="token keyword">import</span> os <span class="token keyword">import</span> json target_json <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> </code></pre> <ol start="2"> <li>定义递归函数，接收路径作为参数，遍历路径中的每一个item，并判断其为文件夹还是文件,文件夹则投入继续递归，文件则读取文件中的json数据并存储到指定变量中。</li> </ol> <pre><code class="prism language-py"><span class="token keyword">def</span> <span class="token function">getTarget</span><span class="token punctuation">(</span><span class="token builtin">dir</span><span class="token punctuation">)</span><span class="token punctuation">:</span>   temp <span class="token operator">=</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span><span class="token builtin">dir</span><span class="token punctuation">)</span>   <span class="token keyword">for</span> t <span class="token keyword">in</span> temp<span class="token punctuation">:</span>     <span class="token keyword">if</span> <span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>isfile<span class="token punctuation">(</span><span class="token builtin">dir</span> <span class="token operator">+</span> <span class="token string">'/'</span> <span class="token operator">+</span> t<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>       <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'找到了'</span><span class="token punctuation">,</span>t<span class="token punctuation">)</span>        <span class="token keyword">for</span> line <span class="token keyword">in</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token builtin">dir</span> <span class="token operator">+</span> <span class="token string">'/'</span> <span class="token operator">+</span> t<span class="token punctuation">)</span><span class="token punctuation">:</span>          <span class="token comment"># print(line)</span>         line<span class="token operator">=</span>line<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span>         line <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>line<span class="token punctuation">)</span>         target_json<span class="token punctuation">.</span>append<span class="token punctuation">(</span>line<span class="token punctuation">)</span>       <span class="token comment"># with open(dir + '/' + t) as f:</span>       <span class="token comment">#   line = f.readline()</span>       <span class="token comment">#   while line:</span>       <span class="token comment">#     target_json.append(line)</span>         <span class="token comment"># print(line)</span>     <span class="token keyword">else</span><span class="token punctuation">:</span>       getTarget<span class="token punctuation">(</span><span class="token builtin">dir</span> <span class="token operator">+</span> <span class="token string">'/'</span> <span class="token operator">+</span> t<span class="token punctuation">)</span>        getTarget<span class="token punctuation">(</span><span class="token string">'./crates.io-index-master'</span><span class="token punctuation">)</span> </code></pre> <ol start="3"> <li>将指定变量中的数据存储为json文件，方便后续使用。</li> </ol> <pre><code class="prism language-py">json_str <span class="token operator">=</span> json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>target_json<span class="token punctuation">)</span> <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'target_json.json'</span><span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> json_file<span class="token punctuation">:</span>     json_file<span class="token punctuation">.</span>write<span class="token punctuation">(</span>json_str<span class="token punctuation">)</span> </code></pre> <h2> <a id="_45" rel="nofollow"></a>总结</h2> <blockquote> <p>获取有代码仓库的网站的数据，不一定要使用爬虫，有时候直接从代码仓库中下载数据并使用脚本进行处理，无论是从获取的速度还是精度都要更高。</p> </blockquote></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-318.htm">彻底搞定kubernetes远程访问</a></p>
+                                                        <p>下一个：<a href="/html/category/article-320.htm">正则表达式贪婪与非贪婪模式</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-468.htm" title="C语言井字棋游戏">C语言井字棋游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-514.htm" title="Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源">Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-524.htm" title="数据库四大特性及数据库隔离级别（*）">数据库四大特性及数据库隔离级别（*）</a></li>
+                        <li class="py-2"><a href="/html/category/article-469.htm" title="聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响">聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响</a></li>
+                        <li class="py-2"><a href="/html/category/article-492.htm" title="kafka系列SpringBoot 中使用@KafkaListener详解与使用">kafka系列SpringBoot 中使用@KafkaListener详解与使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

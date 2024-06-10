@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-291.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>pip 和 Conda 镜像站配置 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        pip 和 Conda 镜像站配置                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<p>如果你经常使用 Python，那么你对 pip 和 Conda 一定不陌生，它们作为包管理器，可以非常方便的帮助我们下载需要的 Python 包，但是受限于大多 Python 包的服务器在国外，国内下载速度缓慢，因此需要配置镜像站提升下载速度。</p> <blockquote> <p>本文首发于<strong><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.hext.top/"  target="_blank" rel="nofollow">正切橙的博客</a></strong>，更多详细信息请点击<strong><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.hext.top//posts/py-mirrors/"  target="_blank" rel="nofollow">这里</a></strong>，转载请注明出处。</p> </blockquote> <hr/> <h1 id="一pip-镜像站">一、pip 镜像站</h1> <h2 id="1pip-是什么">1.pip 是什么</h2> <p>pip 是一个通用的 Python 包管理器，具有对 Python 包查找、下载、安装、卸载的功能。pip 已内置于 Python3.4 和 2.7 及以上版本中。pip 默认从 PyPI 中下载包，<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://pypi.org/"  target="_blank" rel="nofollow">PyPI</a> 全名为<code>Python Package Index</code>，是 Python 的正式第三方（official third-party）软件包的软件存储库。</p> <p style="text-align: center"><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/a0a386422d0a17ee0ec238f3496518c8.jpg" alt="pip 和 Conda 镜像站配置"></p> <p style="text-align: center"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://pypi.org/"  target="_blank" rel="nofollow">PyPI 官网</a></p> <h2 id="2镜像站列表">2.镜像站列表</h2> <table> <thead> <tr> <th style="text-align: center">name</th> <th style="text-align: center">index-url</th> <th style="text-align: center">trusted-host</th> </tr> </thead> <tbody> <tr> <td style="text-align: center">阿里云</td> <td style="text-align: center"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mirrors.aliyun.com/pypi/simple/"  target="_blank" rel="nofollow">https://mirrors.aliyun.com/pypi/simple/</a></td> <td style="text-align: center">mirrors.aliyun.com</td> </tr> <tr> <td style="text-align: center">豆瓣</td> <td style="text-align: center"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://pypi.douban.com/simple/"  target="_blank" rel="nofollow">https://pypi.douban.com/simple/</a></td> <td style="text-align: center">pypi.douban.com</td> </tr> <tr> <td style="text-align: center">腾讯云</td> <td style="text-align: center"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mirrors.cloud.tencent.com/pypi/simple/"  target="_blank" rel="nofollow">https://mirrors.cloud.tencent.com/pypi/simple/</a></td> <td style="text-align: center">mirrors.cloud.tencent.com</td> </tr> <tr> <td style="text-align: center">华为云</td> <td style="text-align: center"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://repo.huaweicloud.com/repository/pypi/simple/"  target="_blank" rel="nofollow">https://repo.huaweicloud.com/repository/pypi/simple/</a></td> <td style="text-align: center">repo.huaweicloud.com</td> </tr> <tr> <td style="text-align: center">清华大学</td> <td style="text-align: center"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://pypi.tuna.tsinghua.edu.cn/simple/"  target="_blank" rel="nofollow">https://pypi.tuna.tsinghua.edu.cn/simple/</a></td> <td style="text-align: center">pypi.tuna.tsinghua.edu.cn</td> </tr> <tr> <td style="text-align: center">北京外国语大学</td> <td style="text-align: center"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mirrors4.bfsu.edu.cn/pypi/web/simple/"  target="_blank" rel="nofollow">https://mirrors4.bfsu.edu.cn/pypi/web/simple/</a></td> <td style="text-align: center">mirrors4.bfsu.edu.cn</td> </tr> <tr> <td style="text-align: center">PyPI（默认仓库）</td> <td style="text-align: center"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://pypi.org/"  target="_blank" rel="nofollow">https://pypi.org/</a></td> <td style="text-align: center">pypi.org</td> </tr> </tbody> </table> <blockquote> <p>不同地区访问镜像站的速度可能不同，请自行选择合适的镜像站</p> </blockquote> <blockquote> <p>中科大的 pip 和 Conda 镜像站会重定向到北京外国语大学镜像站，故不列举</p> </blockquote> <h2 id="3如何配置">3.如何配置</h2> <p>查看 pip 安装源信息</p> <pre><code class="language-bash">pip config list</code></pre> <h3 id="临时使用">①.临时使用</h3> <p>每次使用 pip 安装包时指定镜像站</p> <pre><code class="language-bash">pip install [package-name] -i [index-url] --trusted-host [trusted-host]</code></pre> <p>例如安装<code>tensorflow</code> 时使用<code>阿里云</code> 镜像站</p> <pre><code class="language-bash">pip install tensorflow -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com</code></pre> <h3 id="永久使用">②.永久使用</h3> <p>全局使用镜像站，所有包都通过该镜像站下载</p> <pre><code class="language-bash">pip config set global.index-url [index-url] pip config set install.trusted-host [trusted-host]</code></pre> <p>例如全局使用<code>阿里云</code> 镜像站</p> <pre><code class="language-bash">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/ pip config set install.trusted-host mirrors.aliyun.com</code></pre> <h3 id="详细配置">③.详细配置</h3> <h4 id="windows">Windows</h4> <p>全局使用镜像站后，会在<code>C:\Users\xxx\AppData\Roaming\pip</code> 中产生一个<code>pip.ini</code> 文件（<code>C:\Users\xxx\AppData\Roaming\pip\pip.ini</code>）来记录配置信息（如果不存在就自己创建），我们可以修改这个文件进行更详细的配置，下面有一个参考模板：</p> <pre><code class="language-ini">[global] timeout = 600 index-url = https://mirrors.aliyun.com/pypi/simple/ extra-index-url = https://pypi.douban.com/simple/             https://pypi.org/                    [install] trusted-host = mirrors.aliyun.com             pypi.douban.com             pypi.org</code></pre> <ul> <li><code>timeout = 600</code>：超时限制为 600 秒</li> </ul> <h4 id="linuxmacos">Linux/macOS</h4> <p>全局使用镜像站后，会在用户根目录<code>~</code> 中产生一个隐藏文件夹<code>.pip</code>，其中的<code>pip.conf</code> 文件（<code>~/.pip/pip.conf</code>）来记录配置信息（如果不存在就自己创建），具体内容和<code>Windows</code> 配置一样</p> <h1 id="二conda-镜像站">二、Conda 镜像站</h1> <h2 id="1conda-是什么">1.Conda 是什么</h2> <p>Conda 是一个开源的软件包和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。它的包管理与 pip 类似，可以用来管理 Python 的第三方包。</p> <p style="text-align: center"><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b2c9a603305d178222f915adbb5bb247.jpg" alt="pip 和 Conda 镜像站配置"></p> <p style="text-align: center"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.conda.io/en/latest/"  target="_blank" rel="nofollow">Conda 官网</a></p> <h2 id="2镜像站列表-1">2.镜像站列表</h2> <table> <thead> <tr> <th style="text-align: center">name</th> <th style="text-align: center">channels</th> </tr> </thead> <tbody> <tr> <td style="text-align: center">阿里云</td> <td style="text-align: center"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mirrors.aliyun.com/anaconda/"  target="_blank" rel="nofollow">https://mirrors.aliyun.com/anaconda/</a></td> </tr> <tr> <td style="text-align: center">清华大学</td> <td style="text-align: center"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mirrors.tuna.tsinghua.edu.cn/anaconda/"  target="_blank" rel="nofollow">https://mirrors.tuna.tsinghua.edu.cn/anaconda/</a></td> </tr> <tr> <td style="text-align: center">北京外国语大学</td> <td style="text-align: center"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mirrors.bfsu.edu.cn/anaconda/"  target="_blank" rel="nofollow">https://mirrors.bfsu.edu.cn/anaconda/</a></td> </tr> <tr> <td style="text-align: center">Anaconda（默认仓库）</td> <td style="text-align: center"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://repo.anaconda.com/pkgs/"  target="_blank" rel="nofollow">https://repo.anaconda.com/pkgs/</a> （defaults）</td> </tr> </tbody> </table> <blockquote> <p>不同地区访问镜像站的速度可能不同，请自行选择合适的镜像站</p> </blockquote> <h2 id="3如何配置-1">3.如何配置</h2> <p>查看 Conda 安装源信息</p> <pre><code class="language-bash">conda info</code></pre> <h3 id="全局使用">①.全局使用</h3> <pre><code class="language-bash">conda config --add channels [channels]</code></pre> <p>例如全局添加<code>清华大学</code> 镜像站</p> <pre><code class="language-bash">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r/</code></pre> <p>切换镜像站后清除索引缓存，保证用的是镜像站提供的索引</p> <pre><code class="language-bash">conda clean -i</code></pre> <h3 id="详细配置-1">②.详细配置</h3> <h4 id="windows-1">Windows</h4> <p>全局使用镜像站后，会在<code>C:\Users\xxx</code> 中产生一个隐藏文件<code>.condarc</code>（<code>C:\Users\xxx\.condarc</code>）来记录配置信息（如果不存在就自己创建），我们可以修改这个文件进行更详细的配置，下面有一个参考模板：</p> <pre><code>channels:   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r/   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/   - https://mirrors.bfsu.edu.cn/anaconda/pkgs/main/   - https://mirrors.bfsu.edu.cn/anaconda/pkgs/free/   - https://mirrors.bfsu.edu.cn/anaconda/pkgs/r/   - defaults ssl_verify: true show_channel_urls: true auto_activate_base: false</code></pre> <blockquote> <p>上述模板展示了 Conda 主要库的镜像源，Conda 附加库的源可以通过<code>镜像站列表</code> 中的地址访问镜像站后自行添加，例如从<code>清华大学</code> 镜像站中添加的<code>pytorch</code> 源地址为<code>https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/</code></p> </blockquote> <ul> <li><code>ssl_verify: true</code>：开启 SSH 认证</li> <li><code>show_channel_urls: true</code>：安装包时，显示包的源地址</li> <li><code>auto_activate_base: false</code>：关闭自动进入<code>base</code> 环境</li> </ul> <p>同样使用<code>conda clean -i</code> 清除一下缓存</p> <h4 id="linuxmacos-1">Linux/macOS</h4> <p>全局使用镜像站后，会在用户根目录<code>~</code> 中产生一个隐藏文件<code>.condarc</code>（<code>~/.condarc</code>）来记录配置信息（如果不存在就自己创建），具体内容和<code>Windows</code> 配置一样</p> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-290.htm">java开发对controller返回数据统一封装结果集</a></p>
+                                                        <p>下一个：<a href="/html/category/article-292.htm">Java高级之LinkedList的ListIterator迭代器</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-491.htm" title="我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></li>
+                        <li class="py-2"><a href="/html/category/article-472.htm" title="Java 实现选择排序">Java 实现选择排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-507.htm" title="vue 封装图片路径">vue 封装图片路径</a></li>
+                        <li class="py-2"><a href="/html/category/article-496.htm" title="vue3+elementUI-plus 项目实战登录">vue3+elementUI-plus 项目实战登录</a></li>
+                        <li class="py-2"><a href="/html/category/article-495.htm" title="python读写hdfs">python读写hdfs</a></li>
+                        <li class="py-2"><a href="/html/category/article-489.htm" title="CSS中文本居中显示">CSS中文本居中显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
+                        <li class="py-2"><a href="/html/category/article-497.htm" title="HTML5画布 canvas移动">HTML5画布 canvas移动</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-425.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>sql server查询语句阻塞优化性能_MsSql_ - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        sql server查询语句阻塞优化性能_MsSql_                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<p> 在生产环境下，有时公司客服反映网页半天打不到，除了在浏览器按F12的Network响应来排查，确定web服务器无故障后。就需要检查数据库是否有出现阻塞</p> <p>当时数据库的生产环境中主表数据量超过2000w,子表数据量超过1亿，且更新和新增频繁。再加上做了同步镜像，很消耗资源。</p> <p>这时就要新建一个会话，大概需要了解以下几点：</p> <ul> <li>1.当前活动会话量有多少？</li> <li>2.会话运行时间？</li> <li>3.会话之间有没有阻塞？</li> <li>4.阻塞时间 ?</li> </ul> <p>查询阻塞的方法有很多。有sql 2000 的sp_lock, 有sql 2005及以上的dmv</p> <h3>一. 阻塞查询 sp_lock</h3> <p>执行 <code>exec sp_lock</code>  下面列下关键字段</p> <p>spid 是指进程ID，这个过滤掉了系统进程，只展示了用户进程spid&gt;50。</p> <p>dbid 指当前实例下的哪个数据库 , 使用DB_NAME() 函数来标识数据库</p> <p>type 请求锁住的模式</p> <p>mode 锁的请求状态</p> <ul> <li>GRANT：已获取锁。</li> <li>CNVRT：锁正在从另一种模式进行转换，但是转换被另一个持有锁（模式相冲突）的进程阻塞。</li> <li>WAIT：锁被另一个持有锁（模式相冲突）的进程阻塞。</li> </ul> <p>总结：当mode 不为GRANT状态时， 需要了解当前锁的模式，以及通过进程ID查找当前sql 语句 </p> <blockquote> <p>例如当前进程ID是416，且mode状态为WAIT 时，查看方式 DBCC INPUTBUFFER(416)</p> <p>用sp_lock查询显示的信息量很少，也很难看出谁被谁阻塞。所以当数据库版本为2005及以上时不建议使用。</p> </blockquote> <h3> 二.阻塞查询  dm_tran_locks </h3> <div class="ay1code"> <pre class="brush:sql;">SELECT   t1.resource_type,  t1.resource_database_id,  t1.resource_associated_entity_id,  t1.request_mode,  t1.request_session_id,  t2.blocking_session_id  FROM sys.dm_tran_locks as t1  INNER JOIN sys.dm_os_waiting_tasks as t2  ON t1.lock_owner_address = t2.resource_address;</pre> </div> <p>上面查询只显示有阻塞的会话， 关注blocking_session_id 也就是被阻塞的会话ID，同样使用DBCC INPUTBUFFER来查询sql语句</p> <h3>三.阻塞查询 sys.sysprocesses</h3> <div class="ay1code"> <pre class="brush:sql;">SELECT    spid,   kpid,   blocked,   waittime AS 'waitms',    lastwaittype,    DB_NAME(dbid)AS DB,     waitresource,    open_tran,   hostname,[program_name],   hostprocess,loginame,   [status]   FROM sys.sysprocesses WITH(NOLOCK)    WHERE    kpid&gt;0  AND  [status]&lt;&gt;'sleeping'  AND spid&gt;50   AND spid&lt;&gt;@@SPID</pre> </div> <p>sys.sysprocesses  能显示会话进程有多少， 等待时间， open_tran有多少事务， 阻塞会话是多少. 整体内容更为详细。<br />关键字段说明:</p> <ul> <li>spid 会话ID（进程ID），SQL内部对一个连接的编号，一般来讲小于50</li> <li>kipid 线程ID</li> <li>blocked: 阻塞的进程ID， 值大于0表示阻塞, 值为本身进程ID表示io操作</li> <li>waittime:当前等待时间（以毫秒为单位）。</li> <li>open_tran: 进程的打开事务数</li> <li>hostname:建立连接的客户端工作站的名称</li> <li>program_name 应用程序的名称。</li> <li>hostprocess 工作站进程 ID 号。</li> <li>loginame 登录名。</li> <li> <ul> <li>[status]</li> <li>running = 会话正在运行一个或多个批</li> <li>background = 会话正在运行一个后台任务，例如死锁检测</li> <li>rollback = 会话具有正在处理的事务回滚</li> <li>pending = 会话正在等待工作线程变为可用</li> <li>runnable = 会话中的任务在等待,由scheduler来运行的可执行队列中。(重要)</li> <li>spinloop = 会话中的任务正在等待调节锁变为可用。</li> <li>suspended = 会话正在等待事件（如 I/O）完成。(重要)</li> <li>sleeping = 连接空闲</li> <li>wait resource 格式为 fileid:pagenumber:rid 如(5:1:8235440)</li> <li>kpid=0, waittime=0 空闲连接</li> <li>kpid&gt;0, waittime=0 运行状态</li> <li>kpid&gt;0, waittime&gt;0 需要等待某个资源，才能继续执行,一般会是suspended（等待io）</li> <li>kpid=0, waittime=0 但它还是阻塞的源头，查看open_tran&gt;0 事务没有及时提交。</li> </ul> </li> </ul> <p>如果blocked&gt;0，但waittime时间很短，说明阻塞时间不长，不严重<br />如果status 上有好几个runnable状态任务，需要认真对待。 cpu负荷过重没有及时处理用户的并发请求</p> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-424.htm">生产环境MySQL索引时效的排查过程_Mysql_</a></p>
+                                                        <p>下一个：<a href="/html/category/article-426.htm">比较爽的导航查询 功能  .NET ORM  / SqlSugar</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
+                        <li class="py-2"><a href="/html/category/article-493.htm" title="JavaScript动态操作select下拉框_javascript技巧_">JavaScript动态操作select下拉框_javascript技巧_</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-481.htm" title="如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？">如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？</a></li>
+                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-465.htm" title="C语言数据结构、十字链表的分析及实现">C语言数据结构、十字链表的分析及实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-477.htm" title="win11系统hosts文件无法保存怎么办">win11系统hosts文件无法保存怎么办</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

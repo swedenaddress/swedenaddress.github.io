@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-405.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>.Net中字符串不变性与相等判断的特殊场景 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        .Net中字符串不变性与相等判断的特殊场景                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<p>今天写bug的时候帮同事解决了一个有趣的问题，可能很多人都会答错。分享给大家。</p> <h1 id="问题">问题</h1> <p>请看以下例子，并回答问题。</p> <pre><code class="language-c#">var s1 = "12"; var s2 = "12";  //序列化方式1 var o3 = Newtonsoft.Json.JsonConvert.DeserializeObject&lt;string&gt;(Newtonsoft.Json.JsonConvert.SerializeObject(s1)); //序列化方式2 MemoryStream stream = new MemoryStream(); System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter(); bf.Serialize(stream, s1); stream.Seek(0, SeekOrigin.Begin); var o4 = bf.Deserialize(stream);  //====分割线===================================================  var e1 = object.ReferenceEquals(s1, s2);  var e2 = o4 == s1;  var e3 = s1.Equals(o4);  var e4 = o3 == o4;  Console.ReadKey();</code></pre> <p>请回答分割线后e1, e2, e3, e4 值为true还是false。</p> <p>人人都知道在.Net中字符串是享元模式的经典范例。字符串具有不变性。（至少在托管层，事实上可以在非托管层修改字符串的值），但你真的能回答对上面的问题么？</p> <hr/> <h1 id="答案">答案</h1> <pre><code class="language-c#"> e1 = true; e2 = false; e3 = true; e4 = false;</code></pre> <p>要了解这个问题首先可以看下字符串在内存中的布局。</p> <h2 id="如何在visual-studio中查看变量的内存布局">如何在visual studio中查看变量的内存布局</h2> <p>在VS中可以非常方便的查看托管或非托管变量的内存值。方法如下。</p> <ul> <li>依次在调试模式下打开 调试 -&gt; 窗口 -&gt; 内存 -&gt; 内存1（1~4均可） 打开内存对话框。</li> <li>在地址栏中输入引用类型的变量名即可。</li> <li><strong>如果你的数据是struct类型则需要加&amp;取地址符。</strong></li> </ul> <h2 id="字符串变量在内存中的布局">字符串变量在内存中的布局</h2> <p>在.Net中字符串是以UTF-16格式在内存中保存的。在本例中s1的内存如下。</p> <p><code>00 00 00 00 00 00 00 00 98 d6 fc e5 fb 7f 00 00 02 00 00 00 31 00 32 00</code></p> <p>这里可能与你拿到的结果不一样。你可能并没有前8位<code>0x00</code>，因为我把对象头带上了。下面依次解释各段含义。</p> <ul> <li><code>00 00 00 00 00 00 00 00</code> 最开始的8比特是对象头。其中，在64位下，高4位为0，低4位为一个不为0的数（这里由于并没有执行lock或Gethashcode操作，所以这里为0，感兴趣的自行实验.）</li> <li><code>98 d6 fc e5 fb 7f 00 00</code>对象的<code>MethodTable</code>，根据类型而不同,对象的引用指向的位置。</li> <li><code>02 00 00 00</code> 字符串长度，这里是2。</li> <li><code>31 00 32 00</code> 字符串数组<code>* char</code>，注意都是小端模式。</li> </ul> <p>拿以上<code>s1 s2 o3 o4</code>分别实验可以发现<strong>他们的内存一模一样</strong>，其中<code>s1 s2</code>直接就是同一块内存地址，<strong>但剩下的内存地址都不一样</strong>。</p> <h2 id="比较与解答">比较与解答</h2> <ol> <li> <p><code>e1 = true;</code> 通过内存看合情合理，毕竟都同一块内存了。</p> </li> <li> <p><code>e2 = false;</code> 这里如果用的VS的版本比较高的话，也能看出来。因为这里VS会提示：</p> <blockquote> <p>可能非有意的引用比较。</p> </blockquote> <p>既然是引用比较，内存地址都不一样，肯定是false了。但是如果vs版本不高的话则迷惑性就较大了，其实这里做的是<code>ReferenceEquals</code>的比较。</p> </li> <li> <p><code>e3 = true;</code> 这里问题出在.Net代码里。字符串类型<code>Equals</code>方法被重载了。</p> </li> </ol> <pre><code class="language-c#">        // Determines whether two strings match.         public override bool Equals([NotNullWhen(true)] object? obj)         {             if (object.ReferenceEquals(this, obj))                 return true;              if (!(obj is string str))                 return false;              if (this.Length != str.Length)                 return false;              return EqualsHelper(this, str);         }</code></pre> <p><code>EqualsHelper</code>方法最终则调用如下。（在.Net 6下）</p> <pre><code class="language-c#">        // Optimized byte-based SequenceEquals. The "length" parameter for this one is declared a nuint rather than int as we also use it for types other than byte         // where the length can exceed 2Gb once scaled by sizeof(T).         public static unsafe bool SequenceEqual(ref byte first, ref byte second, nuint length)</code></pre> <p>由于实现过于复杂（.Net framework 4.5.2下则较简单，直接按长度比较char，有兴趣的自行查阅），这里就不贴具体实现了。我们很容易看出这里比较的目的是比较两段内存是否相等，显然为<code>true</code>。</p> <ol start="4"> <li><code>e4 = false;</code>这里是为了比较不同序列化方式的影响，和<code>e2</code>类似，结果显然是<code>false</code>。</li> </ol> <h1 id="结论">结论</h1> <p>虽然.Net中字符串是享元模式创建的，但并不能保证同一字符串在内存里只有一份。比如序列化情况等例外情况。如果读者知道其他情况也可以告诉我，提前说声感谢</p> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-404.htm">字符串逆序(递归实现)</a></p>
+                                                        <p>下一个：<a href="/html/category/article-406.htm">在react中使用event(事件对象)，如何使用，注意事项和react中如何定义和使用函数？</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-490.htm" title="vue实现简单无缝滚动效果_vue.js">vue实现简单无缝滚动效果_vue.js</a></li>
+                        <li class="py-2"><a href="/html/category/article-471.htm" title="linux清理磁盘文件夹方法">linux清理磁盘文件夹方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-491.htm" title="我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></li>
+                        <li class="py-2"><a href="/html/category/article-496.htm" title="vue3+elementUI-plus 项目实战登录">vue3+elementUI-plus 项目实战登录</a></li>
+                        <li class="py-2"><a href="/html/category/article-495.htm" title="python读写hdfs">python读写hdfs</a></li>
+                        <li class="py-2"><a href="/html/category/article-487.htm" title="Go 语言结构体链表详解">Go 语言结构体链表详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
+                        <li class="py-2"><a href="/html/category/article-497.htm" title="HTML5画布 canvas移动">HTML5画布 canvas移动</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

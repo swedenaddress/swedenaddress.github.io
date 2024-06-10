@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-418.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>Java实现简易购物系统_java - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        Java实现简易购物系统_java                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<p>本文实例为大家分享了Java实现简易购物系统的具体代码，供大家参考，具体内容如下</p> <p>用基本语句去实现一个购物系统</p> <div class="ay1code"> <pre class="brush:java;">package cn.ybk;     import java.util.Scanner;     /**   * 简易的购物系统   *   * 1.主界面（选择）   * 2.用户登录界面（验证用户信息）   * 3.登录成功进入购物界面（商品选择）   *   */  public class ShoppingSystem {         public static void main(String[] args) {          String choose3;          do {              Scanner input = new Scanner(System.in);              //1.主界面              System.out.println("======================");              System.out.println("========1.登录========");              System.out.println("========2.退出========");              System.out.println("======================");              System.out.println("请输入选项（1   or  2）");              int choose1 = input.nextInt();              if (choose1 == 1) {                  //进入登录界面                  System.out.println("======请登录======");                  System.out.println("请输入用户名：");//输入用户名                  String username = input.next();                  System.out.println("请输入密码：");//输入密码                  String password = input.next();                        //登录成功                  if ("yangbenkun".equals(username) &amp;&amp; "123456".equals(password)) {                      System.out.println("欢迎用户：" + username);                      System.out.println("-&gt;进入购物系统");                      //打印商品菜单                      System.out.println("商品编号\t商品名称\t\t\t商品单价");                      System.out.println("1\t\t\tJava基础语法\t\t35.4");                      System.out.println("2\t\t\tJava面向对象\t\t87");                      System.out.println("3\t\t\tJava实战项目\t\t76");                         double money1=0;//1的购物车单价                      double money2 = 0;//2的购物车单价                      double money3 =0;//3的购物车单价                      double money = 0;//总金额                            //do...while循环实现先多次购买                      String choose2;                      do {                          System.out.println("请输入你要购买的商品编号：");                          int no = input.nextInt();                          if(no == 1){                              System.out.println("请输入你要购买的数量：");                              int sum1 = input.nextInt();                              money1 = 35.4;                              money1 *= sum1;                              System.out.println("1的金额为："+money1);                             }else if(no == 2){                              System.out.println("请输入你要购买的数量：");                              int sum2 = input.nextInt();                              money2 = 87.0;                              money2 *= sum2;                              System.out.println("2的金额为："+money2);                             }else if(no == 3){                              System.out.println("请输入你要购买的数量：");                              int sum3 = input.nextInt();                              money3 = 76.0;                              money3 *= sum3;                              System.out.println("3的金额为："+money3);                          }else {                              System.out.println("选择有误请重新输入");                          }                          //计算总体金额                           money = money1 + money2 + money3;                          System.out.println("总金额为："+money);                          System.out.println("是否继续购买(n/y)");                           choose2 = input.next();                      }while("y".equals(choose2));                             if(money&gt;=300){                          System.out.println("总金额已经满300打七五折");                          money*=0.75;                      }                      int i;//控制循环的循环变量的                      do {                          System.out.println("请输入你的余额");                          double usermoney = input.nextDouble();                          i = 1;                          if (usermoney&lt;money){                              System.out.println("你的余额不足请");                              i--;                          }else{                              usermoney-=money;                              System.out.println("找零"+usermoney);                      }                      }while (i!=1);                      //z最后一项商城菜单                      System.out.println("========================");                      System.out.println("========谢谢惠顾========");                      System.out.println("======输入0退出系统=====");                      System.out.println("========================");                      int j = input.nextInt();                       if (j==0){                           break;                       }                        } else {//登录失败                      System.out.println("用户名或密码有误，已退出");                      return;                  }              } else if (choose1 == 2) {                 } else {                  System.out.println("输入有误，程序自动退出");                  break;              }              System.out.println("是否要退出系统：(n/y)");               choose3 = input.next();          }while("n".equals(choose3));          System.out.println("欢迎您下次光临");         }  }</pre> </div> <p>这里只列举了些许商品和一些其他的东西，可以继续改进完善把功能做的更加详细。</p> <p>程序运行截图：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220504/ca17772a3fab67f1f39e6c4e9d2d03de.jpg"></p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220504/5cf391f6c3339f4d832e4922ad8402e2.jpg"></p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220504/3ee4600f211184dec3537e773308f7ed.jpg"></p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220504/6836ba2013fe8c6d27f16bf6e6264b5b.jpg"></p> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-417.htm">java笔记之class类定义和名称和屏幕打印（系统输出）</a></p>
+                                                        <p>下一个：<a href="/html/category/article-419.htm">Web支持可暂停的超大文件上传</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-488.htm" title="eslint在vue中如何使用">eslint在vue中如何使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
+                        <li class="py-2"><a href="/html/category/article-475.htm" title="redis持久化概述">redis持久化概述</a></li>
+                        <li class="py-2"><a href="/html/category/article-521.htm" title="typescript的安装运行与自动编译">typescript的安装运行与自动编译</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
+                        <li class="py-2"><a href="/html/category/article-487.htm" title="Go 语言结构体链表详解">Go 语言结构体链表详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-477.htm" title="win11系统hosts文件无法保存怎么办">win11系统hosts文件无法保存怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
+                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-277.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>DataView 过滤、排序、DISTINCT功能 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        DataView 过滤、排序、DISTINCT功能                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>DataView不知道还有这么好用的功能，真是一种享受。</p> <p>多说无益，还是让我们一起去享受下这种快感吧</p> <p>这里首先新建了一个数据集testDataSet，新建一testDataTableDataTable</p> <p>添加了4列字段</p> <p>字段名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 类型</p> <p>stringVar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.String</p> <p>intVar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.Int32</p> <p>boolVar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.Boolean</p> <p>datetimeVar&nbsp;&nbsp;&nbsp;&nbsp; System.DateTime</p> <p>首先声明下，我这里是在WinForm环境下测试的</p> <p>好，进入关键代码区</p> <p>view plaincopy to clipboardprint?<br />private void AddOneRow(testDataSet.testDataTableDataTable dt, string strVar, int intVar,bool boolVar,DateTime datetimeVar)&nbsp;&nbsp; <br />{&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp; // 插入一条新数据记录&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp; dt.AddtestDataTableRow(strVar, intVar, boolVar, datetimeVar);&nbsp;&nbsp; <br />}&nbsp;&nbsp; <br />&nbsp; <br />&nbsp;&nbsp;&nbsp; // 关键代码&nbsp;&nbsp; <br />&nbsp; <br />&nbsp;&nbsp;&nbsp; testDataSet ds = new testDataSet();&nbsp;&nbsp; <br />&nbsp; <br />&nbsp;&nbsp;&nbsp; // 先填充些许数据以便后续测试（没有数据怎么能测呢，呵呵~）&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp; AddOneRow(ds.testDataTable, "20100001", 1, true, DateTime.Now);&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp; AddOneRow(ds.testDataTable, "20100002", 2, true, Convert.ToDateTime("2010-4-25 13:00:36"));&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp; AddOneRow(ds.testDataTable, "20100003", 3, false, Convert.ToDateTime("2008-10-25 12:59:36"));&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp; AddOneRow(ds.testDataTable, "20100001", 1, true, DateTime.Now);&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp; AddOneRow(ds.testDataTable, "20100002", 2, true, Convert.ToDateTime("2010-4-25 13:00:36"));&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp; AddOneRow(ds.testDataTable, "20100003", 3, false, Convert.ToDateTime("2008-10-25 12:59:36"));&nbsp;&nbsp; <br />&nbsp; <br />&nbsp;&nbsp;&nbsp; /* 这句的作用是相当巨大的，可别小瞧了这句Copy，它把表结构及数据拷贝到另一个内存区域，&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp; * 在这里不能用Clone，因为Clone只是把数据结构“克隆”，不包含数据。 */&nbsp; <br />&nbsp;&nbsp;&nbsp; DataTable dt = ds.testDataTable.Copy();&nbsp;&nbsp; <br />&nbsp; <br />&nbsp;&nbsp;&nbsp; /* 这里若把ds.testDataTable.DefaultView直接赋给dv，则意味着下面的dt1与&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp; * ds.testDataTable紧紧的捆绑在了一起，它们共享同一块内存区域，调试的&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp; * 时候可发现dt1与ds.testDataTable的数据已经不一样，但运行后dataGridView1&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp; * 和dataGridView2的显示的数据却是完全一样的。所以我们得事先把ds.testDataTable&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp; * 挪到另一内存区域，这还是前面Copy那句的功能（作用巨大吧~）。这样我们就帮dt1和&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp; * ds.testDataTable给“松绑”了哈~&nbsp;&nbsp; */&nbsp; <br />&nbsp;&nbsp;&nbsp; DataView dv = dt.DefaultView;&nbsp;&nbsp; <br />&nbsp; <br />&nbsp;&nbsp;&nbsp; // 其实本文要说的核心是以下这三句&nbsp;&nbsp; <br />&nbsp; <br />&nbsp;&nbsp;&nbsp; // RowFilter，顾名思义就是一个过滤器，相当于SQL的条件查询，可以多条件过滤，中间用and/or等连接&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp; dv.RowFilter = "stringVar = '20100002'";&nbsp;&nbsp; <br />&nbsp; <br />&nbsp;&nbsp;&nbsp; /* Sort即排序，默认按升序排序（不过我还是习惯手动加上ASC，以便区分），若要降序，则在字段名后面&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp; * 加DESC关键字（如"stringVar DESC"）即可 */&nbsp; <br />&nbsp;&nbsp;&nbsp; dv.Sort = "stringVar ASC";&nbsp;&nbsp; <br />&nbsp; <br />&nbsp;&nbsp;&nbsp; /* ToTable()有4个重载方法，个人认为只有distinct(bool型)和columnNames(params string[]型)这两个&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp; * 参数比较有实用价值，distinct参数置为true时就相当于我们SQL的DISTINCT关键字一样的作用，而&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp; * columnNames参数就给我们提供了具体抽取哪个字段。下面这句其实就相当于&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp; * "SELECT DISTINCT stringVar,intVar from table" */&nbsp; <br />&nbsp;&nbsp;&nbsp; DataTable dt1 = dv.ToTable(true, "stringVar", "intVar");&nbsp;&nbsp; <br />&nbsp; <br />&nbsp;&nbsp;&nbsp; this.dataGridView1.DataSource = ds.testDataTable;&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp; this.dataGridView2.DataSource = dt1;&nbsp;&nbsp; <br />&nbsp; <br />&nbsp; <br />&nbsp;&nbsp;&nbsp; /* 下面这两句也相当重要，若没有这两句，则我们在dataGridView标题栏所设置的颜色就无法显示了&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp; * 当然也可以在属性框里直接设置 */&nbsp; <br />&nbsp;&nbsp;&nbsp; this.dataGridView1.EnableHeadersVisualStyles = false;&nbsp;&nbsp; <br />&nbsp;&nbsp;&nbsp; this.dataGridView2.EnableHeadersVisualStyles = false;&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; private void AddOneRow(testDataSet.testDataTableDataTable dt, string strVar, int intVar,bool boolVar,DateTime datetimeVar)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<!-- --><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 插入一条新数据记录<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dt.AddtestDataTableRow(strVar, intVar, boolVar, datetimeVar);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 关键代码</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; testDataSet ds = new testDataSet();</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 先填充些许数据以便后续测试（没有数据怎么能测呢，呵呵~）<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AddOneRow(ds.testDataTable, "20100001", 1, true, DateTime.Now);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AddOneRow(ds.testDataTable, "20100002", 2, true, Convert.ToDateTime("2010-4-25 13:00:36"));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AddOneRow(ds.testDataTable, "20100003", 3, false, Convert.ToDateTime("2008-10-25 12:59:36"));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AddOneRow(ds.testDataTable, "20100001", 1, true, DateTime.Now);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AddOneRow(ds.testDataTable, "20100002", 2, true, Convert.ToDateTime("2010-4-25 13:00:36"));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AddOneRow(ds.testDataTable, "20100003", 3, false, Convert.ToDateTime("2008-10-25 12:59:36"));</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* 这句的作用是相当巨大的，可别小瞧了这句Copy，它把表结构及数据拷贝到另一个内存区域，<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * 在这里不能用Clone，因为Clone只是把数据结构“克隆”，不包含数据。 */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DataTable dt = ds.testDataTable.Copy();</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* 这里若把ds.testDataTable.DefaultView直接赋给dv，则意味着下面的dt1与<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * ds.testDataTable紧紧的捆绑在了一起，它们共享同一块内存区域，调试的<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * 时候可发现dt1与ds.testDataTable的数据已经不一样，但运行后dataGridView1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * 和dataGridView2的显示的数据却是完全一样的。所以我们得事先把ds.testDataTable<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * 挪到另一内存区域，这还是前面Copy那句的功能（作用巨大吧~）。这样我们就帮dt1和<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * ds.testDataTable给“松绑”了哈~&nbsp;&nbsp; */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DataView dv = dt.DefaultView;</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 其实本文要说的核心是以下这三句</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // RowFilter，顾名思义就是一个过滤器，相当于SQL的条件查询，可以多条件过滤，中间用and/or等连接<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dv.RowFilter = "stringVar = '20100002'";</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Sort即排序，默认按升序排序（不过我还是习惯手动加上ASC，以便区分），若要降序，则在字段名后面<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * 加DESC关键字（如"stringVar DESC"）即可 */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dv.Sort = "stringVar ASC";</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* ToTable()有4个重载方法，个人认为只有distinct(bool型)和columnNames(params string[]型)这两个<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * 参数比较有实用价值，distinct参数置为true时就相当于我们SQL的DISTINCT关键字一样的作用，而<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * columnNames参数就给我们提供了具体抽取哪个字段。下面这句其实就相当于<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * "SELECT DISTINCT stringVar,intVar from table" */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DataTable dt1 = dv.ToTable(true, "stringVar", "intVar");</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.dataGridView1.DataSource = ds.testDataTable;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.dataGridView2.DataSource = dt1;</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* 下面这两句也相当重要，若没有这两句，则我们在dataGridView标题栏所设置的颜色就无法显示了<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * 当然也可以在属性框里直接设置 */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.dataGridView1.EnableHeadersVisualStyles = false;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.dataGridView2.EnableHeadersVisualStyles = false;</p> <p>本就想整理一下DataView这三个功能，没想获得额外的收获，</p> <p>意味的惊喜，呵呵~</p> <p>学习的过程本该就是这么充满乐趣的~ </p> <p>&nbsp;</p> <p>本文来自CSDN博客，转载请标明出处：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://blog.csdn.net/luols/archive/2010/04/28/5539573.aspx"  rel="nofollow">http://blog.csdn.net/luols/archive/2010/04/28/5539573.aspx</a></p> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-276.htm">CentOS 7.5 配置</a></p>
+                                                        <p>下一个：<a href="/html/category/article-278.htm">如何利用pandas处理大数据</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-472.htm" title="Java 实现选择排序">Java 实现选择排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-468.htm" title="C语言井字棋游戏">C语言井字棋游戏</a></li>
+                        <li class="py-2"><a href="/html/category/article-477.htm" title="win11系统hosts文件无法保存怎么办">win11系统hosts文件无法保存怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-481.htm" title="如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？">如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？</a></li>
+                        <li class="py-2"><a href="/html/category/article-484.htm" title="Springboot启动原理详细解析">Springboot启动原理详细解析</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-521.htm" title="typescript的安装运行与自动编译">typescript的安装运行与自动编译</a></li>
+                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
+                        <li class="py-2"><a href="/html/category/article-482.htm" title="Hyperledger Fabric节点的动态添加和删除">Hyperledger Fabric节点的动态添加和删除</a></li>
+                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

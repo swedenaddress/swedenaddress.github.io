@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-390.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>Python数据展示 &#8211; 生成表格图片 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        Python数据展示 &#8211; 生成表格图片                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<h2 id="前言">前言</h2> <p>前一篇文章介绍了推送信息到企业微信群里，其中一个项目推送的信息是使用Python自动生成的表格，本文来讲讲如何用Python生成表格图片。</p> <h2 id="选一个合适库">选一个合适库</h2> <p>Python最大的优点就是第三方库丰富，基本你要什么功能，都能找到别人实现好的库，几行代码一调用就完事了。</p> <h3 id="pytable">Pytable</h3> <p>项目地址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/HiroshiARAKI/pytable"  target="_blank" rel="nofollow">https://github.com/HiroshiARAKI/pytable</a></p> <p>最先找到的是日本人开发的pytab库，它是基于<code>matplotlib</code>来画图的，默认参数下生成的表格外观一般般，而且显示不了中文字符，字体也很小，效果不理想。</p> <p>我一开始还抱着死磕的心态，把这个库的源码下载下来魔改，改了字体和大小，生成的表格终于能看了，但排版还是会出各种奇奇怪怪的问题，比如文字溢出单元格之类的，心累……</p> <h3 id="plotly">Plotly</h3> <p>官网地址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://plotly.com/"  target="_blank" rel="nofollow">https://plotly.com/</a></p> <p>后面找到了一个新的库：plotly，官网的介绍是：</p> <blockquote> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://plotly.com/"  target="_blank" rel="nofollow">The front end for ML and data science models</a></p> </blockquote> <p>专门为机器学习和数据科学设计的前端展示工具，单纯拿来画表格还算大材小用了~ 它是用网页来渲染的，看例子效果还可以，我就换成这个plotly试试，嗯，真的可以，那就这个了。</p> <p>本文会分别介绍这两个库的使用，包括我魔改了pytab的地方。</p> <p>（不过还是推荐plotly，网页渲染就是好）</p> <h2 id="pytab">pytab</h2> <p>首先安装</p> <pre><code class="language-bash">pip install pytab</code></pre> <p>然后我把画表格的代码封装成一个函数</p> <pre><code class="language-python">import uuid from typing import List, Dict, Optional, Tuple  import pytab  def draw_table(data: Dict[str, list]):     """     画表格      :param data: 数据格式 {         'a': [1.0, 2.1, 3.5, 4.0, 2.0, 1.0, 2.1, 3.5, 4.0, 2.0, ],         'b': [5.7, 6.1, 7.2, 8.3, 1.2, 5.7, 6.1, 7.2, 8.3, 1.2, ],         }     :return:     """     # 设置字体，不然显示不了中文     pytab.plt.rcParams["font.sans-serif"] = ["SimHei"]     pytab.table(          data=data,         data_loc='center',         # th_type='dark',         th_c='#aaaaee',  # 设置表头背景颜色         td_c='gray',  # 设置数据行背景颜色         table_type='striped',         figsize=(len(data.keys()), int(len(data.values()) / len(data.keys()) + 1)),         # fontsize=18,     )      # pytab.show()     temp_file = os.path.join(tempfile.gettempdir(), f'{uuid.uuid4().hex}.jpg')     print(temp_file)     pytab.save(temp_file)     return temp_file</code></pre> <p>按照注释的这个数据格式，a和b是表头列名，后面的数组是每一列的数据，很好理解</p> <pre><code class="language-python">{     'a': [1.0, 2.1, 3.5, 4.0, 2.0, 1.0, 2.1, 3.5, 4.0, 2.0, ],     'b': [5.7, 6.1, 7.2, 8.3, 1.2, 5.7, 6.1, 7.2, 8.3, 1.2, ], }</code></pre> <p>画出来的表格是这样的</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e6ddcb3776e959f3903c820f57922fb2.jpg" alt="Python数据展示 - 生成表格图片"></p> <p>再来试试中文显示会怎么样</p> <pre><code class="language-python">{     '列1': [1.0, 2.1, 3.5, 4.0, 2.0, 1.0, 2.1, 3.5, 4.0, 2.0, ],     '列2': [5.7, 6.1, 7.2, 8.3, 1.2, 5.7, 6.1, 7.2, 8.3, 1.2, ], }</code></pre> <p>画出来是这样</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/ced963170a82d9bb4be7aa8f830c913a.jpg" alt="Python数据展示 - 生成表格图片"></p> <p>有点丑吧，勉强能看</p> <p>OK~ 关于pytab的就不多折腾了，毕竟上限就在这了</p> <p>接下来看看plotly</p> <h2 id="plotly-1">plotly</h2> <p>首先安装</p> <pre><code class="language-bash">pip install plotly</code></pre> <p>话不多说，老规矩，我又是写成一个函数</p> <pre><code class="language-python">import uuid from typing import List, Dict, Optional, Tuple  import plotly.graph_objects as go import plotly.io as pio  def draw_table(headers: List[str], cells: List[list]):     """     画表      :param headers: header=dict(values=['A Scores', 'B Scores'])     :param cells: cells=dict(values=[[100, 90, 80, 90], [95, 85, 75, 95]])     :return:     """     pio.kaleido.scope.default_width = len(','.join(headers)) * 20     pio.kaleido.scope.default_height = 250 + len(cells[0]) * 20     fig = go.Figure(data=[go.Table(header=dict(values=headers), cells=dict(values=cells))])     # fig.show()     image_file = os.path.join(tempfile.gettempdir(), f'{uuid.uuid4().hex}.jpg')     print('write image to', image_file)     fig.write_image(image_file)     return image_file</code></pre> <p>这次的参数格式更前面的pytab不一样，要传两个参数，都是数组类型</p> <p>第一个是表头，第二个数组是单元格</p> <p>先来个例子试试</p> <pre><code class="language-python">draw_table(['列A', '列B'], [[100, 90, 80, 90], [95, 85, 75, 95]])</code></pre> <p>然后把上面函数代码里的<code>fig.show()</code>注释去掉，可以看到生成的表格图片效果</p> <p>运行后可以发现自动打开了浏览器，因为这个库是使用网页来渲染表格的，效果如下</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/0de0e20de61732f42bd46c10d3604233.jpg" alt="Python数据展示 - 生成表格图片"></p> <p>效果比前面那个pytab好一些，哈哈~</p> <p>OK，就这样啦。</p> <p>下次分享一些关于最近用Django开发后台的。</p> <h2 id="参考资料">参考资料</h2> <ul> <li>python用prettytable输出漂亮的表格：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://linuxops.org/blog/python/prettytable.html"  target="_blank" rel="nofollow">https://linuxops.org/blog/python/prettytable.html</a></li> <li>Plotly关于表格的文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://plotly.com/python/table/"  target="_blank" rel="nofollow">https://plotly.com/python/table/</a></li> <li>Plotly关于导出图片的文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://plotly.com/python/static-image-export/"  target="_blank" rel="nofollow">https://plotly.com/python/static-image-export/</a></li> <li>python将表格展示的数据生成图片：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.jianshu.com/p/3bfbf1bf0699"  target="_blank" rel="nofollow">https://www.jianshu.com/p/3bfbf1bf0699</a></li> </ul> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-389.htm">React路由传参常见的几种方式</a></p>
+                                                        <p>下一个：<a href="/html/category/article-391.htm">JAVA8-Lambda表达式</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
+                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
+                        <li class="py-2"><a href="/html/category/article-465.htm" title="C语言数据结构、十字链表的分析及实现">C语言数据结构、十字链表的分析及实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-522.htm" title="用字符串中的ASCII值替换所有特殊字符-JavaScript">用字符串中的ASCII值替换所有特殊字符-JavaScript</a></li>
+                        <li class="py-2"><a href="/html/category/article-518.htm" title="使用TreeMap在Java中对用户定义的对象进行排序">使用TreeMap在Java中对用户定义的对象进行排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-500.htm" title="SpringBoot动态定时任务的实现">SpringBoot动态定时任务的实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-508.htm" title="Libco Hook 机制浅析_在线工具">Libco Hook 机制浅析_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

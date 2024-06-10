@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-328.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>python中利用正则表达式匹配ip地址 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        python中利用正则表达式匹配ip地址                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <div id="cnblogs_post_body" class="blogpost-body"> <p><span style="font-family:verdana, geneva;font-size:15px;">现在有一道题目，要求利用python中re模块来匹配ip地址，我们应如何着手？</span></p> <p><span style="font-family:verdana, geneva;font-size:15px;">首先能想到的是ip地址是数字，正则表达式是如何匹配数字的呢？</span></p> <div class="cnblogs_code"> <pre>\d或[0-9]</pre> </p></div> <p><span style="font-family:verdana, geneva;font-size:15px;">对于这个问题，不要一下子上来就写匹配模式，应该一步步分解，把复杂的问题简单化</span></p> <p><span style="font-family:verdana, geneva;font-size:15px;">比如ip地址，我们可以总结一下规律</span></p> <p><span style="font-family:verdana, geneva;font-size:15px;">1. 它是一个字符串</span></p> <p><span style="font-family:verdana, geneva;font-size:15px;">2. 字符串内部是由4个1-3位的数字和3个.组成</span></p> <p><span style="font-family:verdana, geneva;font-size:15px;">3. 数字的范围是0-255</span></p> <p><span style="font-family:verdana, geneva;font-size:15px;">接下来，我们先试一下匹配第1个数字</span></p> <h1><span style="font-family:verdana, geneva;font-size:18px;">第一步：尝试匹配192.168.100.123中的192</span></h1> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; <span style="color:#0000ff;">import</span><span style="color:#000000;"> re </span>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">\d\d\d</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.123</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 3), match=<span style="color:#800000;">'</span><span style="color:#800000;">192</span><span style="color:#800000;">'</span>&gt;</pre> </p></div> <h1><span style="font-family:verdana, geneva;font-size:18px;">第二步：尝试匹配192.168.100.123中的192.</span></h1> <p><span style="font-family:verdana, geneva;font-size:15px;">值得注意的是，由于正则表达式中的元字符 . 表示除了\n之外的任意一个字符，我们需要匹配 . 本身，就需要用 \ 进行转义</span></p> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">\d\d\d\.</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.12</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 4), match=<span style="color:#800000;">'</span><span style="color:#800000;">192.</span><span style="color:#800000;">'</span>&gt;</pre> </p></div> <h1><span style="font-family:verdana, geneva;font-size:18px;">第三步：尝试匹配192.168.100.123的整体</span></h1> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">\d\d\d\.\d\d\d\.\d\d\d\.\d\d\d</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.123</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 15), match=<span style="color:#800000;">'</span><span style="color:#800000;">192.168.100.123</span><span style="color:#800000;">'</span>&gt;</pre> </p></div> <h2><span style="font-family:verdana, geneva;font-size:16px;">这样写有什么问题呢？</span></h2> <h2><span style="font-family:verdana, geneva;font-size:16px;">1. 我们的数字并不都是3位，像192.168.100.1这样的，我们的匹配模式就失效了</span></h2> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">\d\d\d\.\d\d\d\.\d\d\d\.\d\d\d</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&gt;&gt;&gt; </pre> </p></div> <h2><span style="font-family:verdana, geneva;font-size:16px;">2. 不够美观</span></h2> <h1><span style="font-family:verdana, geneva;font-size:18px;">第四步：优化误区一</span></h1> <p><span style="font-family:verdana, geneva;font-size:15px;">很多人一上手，就写成了[0-255]，这不就是数字的范围0-255吗？我们说，这样是不对的</span></p> <p><span style="font-family:verdana, geneva;font-size:15px;">正则表达式中，真正要匹配的永远是字符串，一个字符串内部是由三位的数字构成的，如果需要匹配三位数字的形式，就需要用到[0-9][0-9][0-9]或\d\d\d，用一个[0-9]表示的只能匹配一位，[0-255]这种错误的写法也只能匹配到一位0-9之间的数字</span></p> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">[0-255]</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">255</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 1), match=<span style="color:#800000;">'</span><span style="color:#800000;">2</span><span style="color:#800000;">'</span>&gt;</pre> </p></div> <p><span style="font-family:verdana, geneva;font-size:16px;">如下图，第一个[0-255]匹配到了1， \.匹配到了. </span></p> <p><span style="font-family:verdana, geneva;font-size:16px;">这个ip地址中根本没有 1. 这种形式的，所以返回了None</span></p> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">[0-255]\.[0-255]\.[0-255]\.[0-255]</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&gt;&gt;&gt; </pre> </p></div> <h1><span style="font-family:verdana, geneva;font-size:18px;">优化误区二：</span></h1> <p><span style="font-family:verdana, geneva;font-size:15px;">既然上面的不对，那能不能把255分解成 2, 5, 5， 我们匹配时能否写成[0-2][0-5][0-5]，看似是没问题的，我们来试试</span></p> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">[0-2][0-5][0-5]</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(8, 11), match=<span style="color:#800000;">'</span><span style="color:#800000;">100</span><span style="color:#800000;">'</span>&gt; &gt;&gt;&gt; </pre> </p></div> <p><span style="font-family:verdana, geneva;font-size:15px;">为什么192没有匹配到？168也没有匹配到？因为数字的十位和个位最大只能是5，超过5的肯定没法匹配</span></p> <h1><span style="font-family:verdana, geneva;font-size:18px;">第五步：继续优化</span></h1> <p><span style="font-family:verdana, geneva;font-size:15px;">我们来看下0-255这个范围，当百位是0或者1时，十位和个位可以是[0-9]，也就是\d，当百位是2时，十位是[0-4]时，个位可以是\d，当百位是2时，十位是5时，个位只能是[0-5]，那么，我们是不是可以这样来写，比如匹配192，匹配模式可以写成</span></p> <div class="cnblogs_code"> <pre>[01]\d\d|2[0-4]\d|25[0-5]</pre> </p></div> <p><span style="font-family:verdana, geneva;font-size:15px;">如果有重复的，我们可以给上面的模式加上 {n} 表示重复匹配前面的字符n次</span></p> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">(([01]\d\d|2[0-4]\d|25[0-5]\d)\.){3}([01]\d\d|2[0-4]\d|25[0-5]\d)</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.123</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 15), match=<span style="color:#800000;">'</span><span style="color:#800000;">192.168.100.123</span><span style="color:#800000;">'</span>&gt;</pre> </p></div> <p><span style="font-family:verdana, geneva;font-size:15px;">看似正确了，但是还是匹配不到数字 1 ，因为我们的百位是[01]，意味这如果是 1 的情况下，我们的结果是001，但ip地址是不能写成001， 002的</span></p> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">(([01]\d\d|2[0-4]\d|25[0-5]\d)\.){3}([01]\d\d|2[0-4]\d|25[0-5]\d)</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&gt;&gt;&gt; </pre> </p></div> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">(([01]\d\d|2[0-4]\d|25[0-5]\d)\.){3}([01]\d\d|2[0-4]\d|25[0-5]\d)</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.001</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 15), match=<span style="color:#800000;">'</span><span style="color:#800000;">192.168.100.001</span><span style="color:#800000;">'</span>&gt; &gt;&gt;&gt; </pre> </p></div> <p><span style="font-family:verdana, geneva;font-size:15px;">可以通过{0,1}来优化，表示前面的字符重复0-1次，也可以用 ?</span></p> <div class="cnblogs_code"> <pre>&gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">(([01]{0,1}\d{0,1}\d|2[0-4]\d|25[0-5]\d)\.){3}([01]{0,1}\d{0,1}\d|2[0-4]\d|25[0-5]\d)</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 13), match=<span style="color:#800000;">'</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">'</span>&gt;  &gt;&gt;&gt; re.search(r<span style="color:#800000;">"</span><span style="color:#800000;">(([01]?\d?\d|2[0-4]\d|25[0-5]\d)\.){3}([01]?\d?\d|2[0-4]\d|25[0-5]\d)</span><span style="color:#800000;">"</span>, <span style="color:#800000;">"</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">"</span><span style="color:#000000;">) </span>&lt;_sre.SRE_Match object; span=(0, 13), match=<span style="color:#800000;">'</span><span style="color:#800000;">192.168.100.1</span><span style="color:#800000;">'</span>&gt;</pre> </p></div> <p><span style="font-family:verdana, geneva;font-size:15px;">这样，当数字只有个位时，百位的0匹配0次，十位的0匹配0次，只留下个位数字[0-9]</span></p> <p>&nbsp;</p> </div> <p>转载于:https://www.cnblogs.com/my_captain/p/9210605.html</p> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-327.htm">c#对Datatable数据的处理：DataTable.Select()和DataTable.DefaultView.ToTable()；DataRow转DataTable</a></p>
+                                                        <p>下一个：<a href="/html/category/article-329.htm">MySQL的存储函数与存储过程的区别解析_Mysql</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
+                        <li class="py-2"><a href="/html/category/article-487.htm" title="Go 语言结构体链表详解">Go 语言结构体链表详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
+                        <li class="py-2"><a href="/html/category/article-483.htm" title="vue变更v-for列表多个项目的颜色和选择项目">vue变更v-for列表多个项目的颜色和选择项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
+                        <li class="py-2"><a href="/html/category/article-497.htm" title="HTML5画布 canvas移动">HTML5画布 canvas移动</a></li>
+                        <li class="py-2"><a href="/html/category/article-491.htm" title="我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></li>
+                        <li class="py-2"><a href="/html/category/article-490.htm" title="vue实现简单无缝滚动效果_vue.js">vue实现简单无缝滚动效果_vue.js</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>

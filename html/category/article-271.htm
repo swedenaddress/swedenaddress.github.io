@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-271.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>Linux搭建NFS服务器 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Clash Free
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        Linux搭建NFS服务器                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night-eighties"> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#_1" rel="nofollow">前言</a></li> <li><a href="#NFS__7" rel="nofollow">NFS 的使用</a></li> <li><a href="#_NFS__52" rel="nofollow">搭建一个 NFS 服务器</a></li> </ul> </div> <h1><a id="_1" rel="nofollow"></a>前言</h1> <p><strong>NFS</strong>（Network File System，网络文件系统）是FreeBSD支持的文件系统中的一种，它允许网络中的计算机之间通过<strong>TCP/IP</strong> 网络共享资源，主要在<strong>unix</strong> 系列操作系统上使用。在NFS的应用中，<strong>本地NFS的客户端应用可以透明地读写位于远端NFS服务器上的文件，就像访问本地文件一样。</strong><br /> 由于 NFS 支持的功能比较多，而不同的功能都会使用不同的程序来启动，每启动一个功能就会启用一些端口来传输数据，因此 NFS 的功能所对应的<strong>端口并不固定</strong>，如此一来，客户端需要知道服务器端的相关端口才能够连接。这个时候需要介绍RPC。<br /><strong>RPC</strong>（Remote Procedure Call，远程过程调用）的服务。由于当服务器在启动 NFS 时会随机选取数个端口号，并主动向 RPC<strong>注册</strong>，所以 RPC 知道每个 NFS 功能所对应的端口号，RPC 将端口号通知给客户端，让客户端可以连接到正确的端口上去。RPC采用固定端口号<code>port 111</code> 来监听客户端的需求并向客户端响应正确的端口号。</p> <p><font color="#999AAA">在启动NFS之前，要先启动RPC，否则NFS会无法向RPC注册。另外，RPC若重新启动，原来注册的数据会消失不见，因此RPC重启后，它管理的所有服务都需要重新启动以重新向RPC注册。</font></p> <h1><a id="NFS__7" rel="nofollow"></a>NFS 的使用</h1> <p>RPC 的主程序：<code>rpcbind</code><br /> NFS 的主程序：<code>nfs-utils</code><br /> 安装：</p> <pre><code class="prism language-shell">yum<span class="token function">install</span> rpcbind -y yum<span class="token function">install</span> nfs-utils -y</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221113/a68766f9f6295397caafd60e8085d39c.jpg" alt="Linux搭建NFS服务器"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/c21f29896349ff43b3b7f5737b8dea10.jpg" alt="Linux搭建NFS服务器"><br /><code>nfs-utils</code> 的服务名叫<code>nfs-server</code><br /> 在低版本里需要先启动<code>rpcbind</code> 后启动<code>nfs-server</code>，在高版本里启动<code>nfs-server</code> 后<code>rpcbind</code> 自动被启动<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/4238da0637f838fba6942ec99f47d4b4.jpg" alt="Linux搭建NFS服务器"><br /> 他的主配置文件是<code>/etc/exports</code>（不一定存在，需自己添加）<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/88b0355db814c812c3adb7b3e818e5ed.jpg" alt="Linux搭建NFS服务器"><br /><code>/usr/sbin/exportfs</code> 是维护 NFS 共享资源的命令，可以使用该命令重新共享<code>/etc/exports</code> 更新的目录资源、将 NFS server 共享的目录卸载或重新共享等</p> <hr/> <p>我们先来做一个简单的只读共享<br /> 创建一个<code>/data</code> 目录：<code>mkdir /data</code><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/a2a0d49999ad0be77c1afd169420db9f.jpg" alt="Linux搭建NFS服务器"><br /> 编辑配置文件：<code>vim /etc/exports</code><br /> 语法：<code>文件名 客户端IP(权限)</code></p> <table> <thead> <tr> <th>参数值</th> <th>说明</th> </tr> </thead> <tbody> <tr> <td><code>rw</code>、<code>ro</code></td> <td>该目录共享的权限是可读写还是只读，但最终能否读写，还是与文件系统的<code>rwx</code>有关</td> </tr> <tr> <td><code>sync</code>、<code>async</code></td> <td><code>sync</code>代表数据会同步写入到内存与硬盘中，<code>async</code>则代表数据会先暂存于内存当中，而非直接写入硬盘</td> </tr> <tr> <td><code>no_root_squash</code>、<code>root_squash</code></td> <td>若客户端在共享目录里创建的文件的所属者和所属组是 root 用户和 root 组，那么显示文件的属主和属组时有以下两种情况：<code>no_root_squash</code>表示，文件的所属者和所属组是 root 用户和 root 组；<code>root_squash</code>表示将 root 用户和组映射为匿名用户和组（默认设置）。</td> </tr> <tr> <td><code>all_squash</code>、<code>no_all_squash</code></td> <td><code>all_squash</code>：客户端所有用户创建文件时，客户端会将文件的用户和组映射为匿名用户和组；<code>no_all_squash</code>：客户端普通用户创建的文件的 UID 和 GID 是多少，服务端就显示为多少（默认设置）</td> </tr> <tr> <td><code>anonuid=</code>、<code>anongid=</code></td> <td>将文件的用户和组映射为指定的 UID 和 GID ，若不指定默认为 65534（nfsnobody）</td> </tr> </tbody> </table> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221113/99f63dc9fc06b6e869f9e4b493cf0a18.jpg" alt="Linux搭建NFS服务器"><br /> 在该目录中写入内容：<code>echo this is chi &gt; /data/file</code><br /> 重启服务：<code>systemctl restart nfs-server</code><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/1af177944122f094f4ae53b84af68645.jpg" alt="Linux搭建NFS服务器"><br /> NFS 服务器关闭防火墙：<code>systemstl stop firewalld</code><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/3b4862eebbe6068f4d3a491f0d960c8e.jpg" alt="Linux搭建NFS服务器"><br /> 用另一台主机查看一下该 NFS 服务器：<code>showmount -e 192.168.32.128</code><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/d3d6ac14e13b5bc92fd8455778fbf09c.jpg" alt="Linux搭建NFS服务器"><br /> 在客户端创建挂在点：<code>mkdir -p /client/data1</code><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/d5254afc90d33b979b8536cc64a5b6c8.jpg" alt="Linux搭建NFS服务器"><br /> 挂在：<code>mount 192.168.32.128:/data data1</code> /<code>df -h</code>查看<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/f7138e2ef855da733e62733577c0ff3b.jpg" alt="Linux搭建NFS服务器"><br /> 挂载成功<br /> 由于这是一个只读的共享，所有只能读取，不能创建或编辑<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/275d3be4f1f27e2907b83d3e65a87cb4.jpg" alt="Linux搭建NFS服务器"></p> <h1><a id="_NFS__52" rel="nofollow"></a>搭建一个 NFS 服务器</h1> <p>接下来我们搭建一个 NFS 服务器：</p> <ol> <li>开放<code>/nfs/shared</code> 目录，供所有用户查询资料；</li> <li>开放<code>/nfs/upload</code> 目录，该目录为<code>172.24.8.0/24</code> 网段的主机的数据上传目录，并将所有该网段主机上传文件的所属者和所属组映射为<code>nfs-upload</code> ，其 UID 和 GID 为 2001</li> </ol> <hr/> <ol start="3"> <li> <p>创建目录<br /><code>/nfs/shared</code> 目录只供查询，故不需要其他权限<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/b16bc1b51fda197a976a9197817e911c.jpg" alt="Linux搭建NFS服务器"></p> </li> <li> <p>创建<code>nfs-upload</code> 用户：<code>useradd nfs-upload</code><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/0b2eaa33920e69bb1ad4eaf80fafdd00.jpg" alt="Linux搭建NFS服务器"></p> </li> <li> <p>编写配置文件：<code>vim /etc/exports</code><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/4f9ccac366fca263ab9a4b059fe3c667.jpg" alt="Linux搭建NFS服务器"></p> </li> <li> <p>重启服务：<code>systemctl restart nfs-server</code><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/1c109138b59eb5ce82500c8c5b775f49.jpg" alt="Linux搭建NFS服务器"></p> </li> <li> <p>客户端访问 NFS 服务器：<code>showmount -e 192.168.32.128</code><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/cdf77a25e6da9b531b3f3ffd7b1f0391.jpg" alt="Linux搭建NFS服务器"><br /> 客户端测试<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/d8aedb09a19f758e1cda2dc52f1960f1.jpg" alt="Linux搭建NFS服务器"><br /> 服务端查看用户创建文件<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/39433aefc39c1417bd7894cee3665be7.jpg" alt="Linux搭建NFS服务器"></p> </li> </ol> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-270.htm">事务的隔离级别与MVCC</a></p>
+                                                        <p>下一个：<a href="/html/category/article-272.htm">我们如何从MySQL表中删除所有行？</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-496.htm" title="vue3+elementUI-plus 项目实战登录">vue3+elementUI-plus 项目实战登录</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-486.htm" title="如何使用Copy-Item在PowerShell中复制多个文件？">如何使用Copy-Item在PowerShell中复制多个文件？</a></li>
+                        <li class="py-2"><a href="/html/category/article-500.htm" title="SpringBoot动态定时任务的实现">SpringBoot动态定时任务的实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-472.htm" title="Java 实现选择排序">Java 实现选择排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-469.htm" title="聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响">聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响</a></li>
+                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
+                        <li class="py-2"><a href="/html/category/article-475.htm" title="redis持久化概述">redis持久化概述</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-495.htm" title="python读写hdfs">python读写hdfs</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>
