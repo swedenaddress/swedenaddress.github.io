@@ -5,9 +5,9 @@
     <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-520.htm" />
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-528.htm" />
 <link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
-<title>什么是MySQL ENUM数据类型？使用ENUM数据类型有什么优势？ - SwedenAddress</title>
+<title>我们如何在MySQL返回的结果集的组级别上应用过滤条件？ - SwedenAddress</title>
 <link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@ $(function() {
             <div class="container">
                 <div class="main-titles-head text-center">
                     <h1 class="header-name" style="word-break: break-all;">
-                        什么是MySQL ENUM数据类型？使用ENUM数据类型有什么优势？                    </h1>
+                        我们如何在MySQL返回的结果集的组级别上应用过滤条件？                    </h1>
                     
                 </div>
             </div>
@@ -102,10 +102,9 @@ $(function() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                          				  				  				<p>与标准数据类型不同，ENUM数据类型是1到65,535个字符串的枚举列表，指示字段的允许值。定义ENUM时，您将创建一个项目列表，必须从中选择该值（或者可以为NULL）。</p> <p>例如，如果希望字段包含“ A”，“ B”或“ C”，则可以将ENUM定义为ENUM（“ A”，“ B”，“ C”），并且仅将这些值（或NULL）定义为ENUM可能会填充该字段。</p> <p>以下可能是ENUM数据类型的一些优点-</p> <ul class="list-paddingleft-2"> <li> <p>在列的一组可能值有限的情况下，可以观察到紧凑的数据存储。</p> </li> <li> <p>指定的字符串作为输入值被机械编码为数字。</p> </li> <li> <p>将数字转换回查询结果中的相应字符串</p> </li> <li> <p>通过使用ENUM，我们可以获得可读的查询和输出。</p> </li> </ul> <div></div> 			
+                          				  				  				<p>SELECT语句中的GROUP BY子句可以将MySQL返回的结果集分成几组。现在，如果我们只想返回某些特定的组，则需要在组级别应用过滤条件。可以通过在GROUP BY子句中使用HAVING子句来完成。以下示例将演示它-</p> <h2>示例</h2> <p>假设我们只想返回平均薪水为55000的组，那么我们需要使用HAVING子句中的过滤条件，如下所示：</p> <pre>mysql&gt;&nbsp;Select&nbsp;count(*),AVG(salary),Designation&nbsp;from&nbsp;employees&nbsp;GROUP&nbsp;BY&nbsp;designation&nbsp;having&nbsp;AVG(salary)&nbsp;=&nbsp;55000;  +----------+-------------+-------------+ |&nbsp;count(*)&nbsp;|&nbsp;AVG(salary)&nbsp;|&nbsp;Designation&nbsp;| +----------+-------------+-------------+ |&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;55000.0000&nbsp;&nbsp;|&nbsp;Asst.Prof&nbsp;&nbsp;&nbsp;| +----------+-------------+-------------+  1&nbsp;row&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <div></div> 			
                         <div class="col-md-12 mt-5">
-                                                        <p>上一个：<a href="/html/category/article-519.htm">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></p>
-                                                        <p>下一个：<a href="/html/category/article-521.htm">typescript的安装运行与自动编译</a></p>
+                                                        <p>上一个：<a href="/html/category/article-527.htm">Confluent之Kafka Connector详细分析</a></p>
                                                     </div>
 
                                             </div>
@@ -116,16 +115,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-524.htm" title="数据库四大特性及数据库隔离级别（*）">数据库四大特性及数据库隔离级别（*）</a></li>
-                        <li class="py-2"><a href="/html/category/article-487.htm" title="Go 语言结构体链表详解">Go 语言结构体链表详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-474.htm" title="实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题">实际业务处理 Kafka 消息丢失、重复消费和顺序消费的问题</a></li>
-                        <li class="py-2"><a href="/html/category/article-470.htm" title="encodeURI encodeURIComponent 的区别，和使用场景">encodeURI encodeURIComponent 的区别，和使用场景</a></li>
-                        <li class="py-2"><a href="/html/category/article-508.htm" title="Libco Hook 机制浅析_在线工具">Libco Hook 机制浅析_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-501.htm" title="springboot自定义视图映射">springboot自定义视图映射</a></li>
-                        <li class="py-2"><a href="/html/category/article-484.htm" title="Springboot启动原理详细解析">Springboot启动原理详细解析</a></li>
-                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
-                        <li class="py-2"><a href="/html/category/article-522.htm" title="用字符串中的ASCII值替换所有特殊字符-JavaScript">用字符串中的ASCII值替换所有特殊字符-JavaScript</a></li>
-                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-495.htm" title="python读写hdfs">python读写hdfs</a></li>
+                        <li class="py-2"><a href="/html/category/article-493.htm" title="JavaScript动态操作select下拉框_javascript技巧_">JavaScript动态操作select下拉框_javascript技巧_</a></li>
+                        <li class="py-2"><a href="/html/category/article-471.htm" title="linux清理磁盘文件夹方法">linux清理磁盘文件夹方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-497.htm" title="HTML5画布 canvas移动">HTML5画布 canvas移动</a></li>
+                        <li class="py-2"><a href="/html/category/article-476.htm" title="JavaScript查找数组中的第一个冗余元素方法详解">JavaScript查找数组中的第一个冗余元素方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-477.htm" title="win11系统hosts文件无法保存怎么办">win11系统hosts文件无法保存怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-480.htm" title="JAVA基础小细节——equals()与hashCode()">JAVA基础小细节——equals()与hashCode()</a></li>
+                        <li class="py-2"><a href="/html/category/article-492.htm" title="kafka系列SpringBoot 中使用@KafkaListener详解与使用">kafka系列SpringBoot 中使用@KafkaListener详解与使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
                     </ul>
     </div>
 </div>
