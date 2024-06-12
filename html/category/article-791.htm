@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-791.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>Linux网络——NFS服务 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Sweden Address
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/xcblog/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        Linux网络——NFS服务                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <div class="toc"> <h3>NFS共享服务原理与配置</h3> <ul> <li><a href="#NFS_1" rel="nofollow">一、NFS共享服务</a></li> <li> <ul> <li><a href="#NFS__4" rel="nofollow">NFS 概述：</a></li> <li><a href="#_10" rel="nofollow">特点：</a></li> </ul> </li> <li><a href="#NFS_20" rel="nofollow">二、NFS原理</a></li> <li><a href="#NFS_25" rel="nofollow">三、NFS共享存储服务配置的相关步骤</a></li> <li> <ul> <li><a href="#31__26" rel="nofollow">3.1 服务器端</a></li> <li><a href="#32__67" rel="nofollow">3.2 客户端配置</a></li> </ul> </li> <li><a href="#_118" rel="nofollow">【总结】</a></li> </ul> </div> <h1><a id="NFS_1" rel="nofollow"></a>一、NFS共享服务</h1> <p>NFS是一种基于TCP/IP传输的网络文件系统协议。通过使用NFS协议，客户机可以像访问本地目录一样访问远程服务器中的共享资源。</p> <h2><a id="NFS__4" rel="nofollow"></a>NFS 概述：</h2> <p><strong>NFS（Network File System 网络文件服务）</strong></p> <p><strong>NFS 是一种基于 TCP/IP 传输的网络文件系统协议，最初由 Sun 公司开发。</strong></p> <p>通过使用 NFS 协议，客户机可以像访问本地目录一样访问远程服务器中的共享资源</p> <h2><a id="_10" rel="nofollow"></a>特点：</h2> <p>采用TCP/IP传输网络文件</p> <p>安全性低</p> <p>简单易操作</p> <p>适合局域网环境</p> <h1><a id="NFS_20" rel="nofollow"></a>二、NFS原理</h1> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221113/c1b9189b09b24aefcaf74ad64d9b6acf.jpg" alt="Linux网络——NFS服务"></p> <h1><a id="NFS_25" rel="nofollow"></a>三、NFS共享存储服务配置的相关步骤</h1> <h2><a id="31__26" rel="nofollow"></a>3.1 服务器端</h2> <pre><code class="prism language-bash"><span class="token comment">#关闭防火墙</span><span class="token punctuation">[</span>root@kiro ~<span class="token punctuation">]</span><span class="token comment"># systemctl stop firewalld</span><span class="token punctuation">[</span>root@kiro ~<span class="token punctuation">]</span><span class="token comment"># setenforce 0</span> <span class="token comment">#安装软件包</span><span class="token punctuation">[</span>root@kiro ~<span class="token punctuation">]</span><span class="token comment"># yum install nfs-utils rpcbind -y</span> <span class="token comment">#新建共享目录</span><span class="token punctuation">[</span>root@kiro ~<span class="token punctuation">]</span><span class="token comment"># mkdir /opt/web</span> <span class="token punctuation">[</span>root@kiro ~<span class="token punctuation">]</span><span class="token comment"># cd /opt/web</span> <span class="token comment">#修改权限</span><span class="token punctuation">[</span>root@kiro web<span class="token punctuation">]</span><span class="token comment"># chmod -R 777 /web/</span> <span class="token comment">#编辑NFS配置文件</span><span class="token punctuation">[</span>root@kiro web<span class="token punctuation">]</span><span class="token comment"># vim /etc/exports</span> /opt/web<span class="token number">192.168</span>.61.0/24<span class="token punctuation">(</span>rw,sync,no_root_aquash<span class="token punctuation">)</span><span class="token comment">##中间一定没有空格</span> //共享目录  网段           读写，同步，无root权限<span class="token comment">#启动服务</span><span class="token punctuation">[</span>root@kiro ~<span class="token punctuation">]</span><span class="token comment"># systemctl start rpcbind</span><span class="token punctuation">[</span>root@kiro ~<span class="token punctuation">]</span><span class="token comment"># systemctl start nfs</span> <span class="token punctuation">[</span>root@kiro ~<span class="token punctuation">]</span><span class="token comment"># systemctl start httpd</span><span class="token comment">#查看详细的nfs信息并且刷新一下</span><span class="token punctuation">[</span>root@kiro ~<span class="token punctuation">]</span><span class="token comment">#exportfs -v      ##查看</span><span class="token punctuation">[</span>root@kiro ~<span class="token punctuation">]</span><span class="token comment">#exportfs -r     ##刷新</span> <span class="token comment">#重读配置文件</span><span class="token punctuation">[</span>root@kiro ~<span class="token punctuation">]</span><span class="token comment">#exportfs -r</span> <span class="token comment">#查看本机发布的 NFS 共享目录</span><span class="token punctuation">[</span>root@kiro ~<span class="token punctuation">]</span><span class="token comment"># showmount -e</span></code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221113/3fcf345155dc475c093b74b6d40407fb.jpg" alt="Linux网络——NFS服务"></p> <h2><a id="32__67" rel="nofollow"></a>3.2 客户端配置</h2> <pre><code class="prism language-bash"><span class="token comment">##下载rpcbind nfs-utils安装包并开启</span><span class="token punctuation">[</span>root@Kiro /<span class="token punctuation">]</span><span class="token comment"># yum install -y nfs-utils rpcbind</span><span class="token comment">##打开httpd服务</span> systemctl start httpd  -----手动挂载NFS共享目录-----<span class="token punctuation">(</span>就是将共享文件挂载在/var/www/html<span class="token punctuation">)</span><span class="token punctuation">[</span>root@Kiro /<span class="token punctuation">]</span><span class="token comment"># mount -t nfs 192.168.61.110:/opt/web /var/www/html</span><span class="token comment">##将服务机的共享目录挂载到客户端html目录之下</span><span class="token punctuation">[</span>root@Kiro /<span class="token punctuation">]</span><span class="token comment"># df -Th   ##查看挂载（后边有截屏）</span><span class="token punctuation">[</span>root@Kiro /<span class="token punctuation">]</span><span class="token comment"># systemctl start httpd.service</span><span class="token punctuation">[</span>root@Kiro /<span class="token punctuation">]</span><span class="token comment"># curl 127.0.0.1</span>    **  正向验证： **<span class="token comment">#服务器端在共享文件夹下创建目录</span><span class="token punctuation">[</span>root@localhost /<span class="token punctuation">]</span><span class="token comment"># cd /opt/web/</span><span class="token punctuation">[</span>root@localhost web<span class="token punctuation">]</span><span class="token comment"># touch daociyiyou</span> <span class="token comment">#在客户端的挂载目录下查看是否成功看到文件</span><span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># cd /var/www/html</span><span class="token punctuation">[</span>root@kiro html<span class="token punctuation">]</span><span class="token comment"># ls</span> daociyiyou   ** 反向验证：**<span class="token comment">##在客户端建立文件</span><span class="token punctuation">[</span>root@Kiro opt<span class="token punctuation">]</span><span class="token comment"># echo "woshi pxw" &gt;&gt; /var/www/html/index.html</span><span class="token comment">##在客户端共享文件里查看</span><span class="token punctuation">[</span>root@pxw html<span class="token punctuation">]</span><span class="token comment"># cd /opt/web</span><span class="token punctuation">[</span>root@pxw web<span class="token punctuation">]</span><span class="token comment"># ls</span> daociyiyou  index.html   这个时候不管是客户端还是服务器curl<span class="token number">127.0</span>.0.1 回环地址，都能看到“ondex.html” 文件里的“woshi pxw”</code></pre> <p><strong>正向检验：服务器 &gt;&gt; 客户端</strong><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/d97e3b601e3bcdc9a6a951aacd34afb2.jpg" alt="Linux网络——NFS服务"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/071e40e16d7f3af8554e6ef4c67dfb50.jpg" alt="Linux网络——NFS服务"><br /><strong>反向检验：客户端 &gt;&gt; 服务器</strong><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/19834f8fbdf194dcb137df04fb265cbf.jpg" alt="Linux网络——NFS服务"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/b0413d96e6f0d0a77cde2b135a53c8b7.jpg" alt="Linux网络——NFS服务"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/8e795890d811b6efff4bd66af0adc448.jpg" alt="Linux网络——NFS服务"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221113/2b354c1228a3acae1b02140981fccdce.jpg" alt="Linux网络——NFS服务"></p> <h1><a id="_118" rel="nofollow"></a>【总结】</h1> <ul> <li>编辑NFS配置文件的时候，一定注意格式（不要多空格，不要错字母）</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221113/ca4432c903bbd47412bbad8e5ff83ec1.jpg" alt="Linux网络——NFS服务"></p> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-528.htm">我们如何在MySQL返回的结果集的组级别上应用过滤条件？</a></p>
+                                                        <p>下一个：<a href="/html/category/article-792.htm">SpringMVC+Log4j配置定时生成、删除日志</a></p>
+                                                    </div>
+
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-473.htm" title="VUE前端开发环境版本查看命令方法详解">VUE前端开发环境版本查看命令方法详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-489.htm" title="CSS中文本居中显示">CSS中文本居中显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-528.htm" title="我们如何在MySQL返回的结果集的组级别上应用过滤条件？">我们如何在MySQL返回的结果集的组级别上应用过滤条件？</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-493.htm" title="JavaScript动态操作select下拉框_javascript技巧_">JavaScript动态操作select下拉框_javascript技巧_</a></li>
+                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
+                        <li class="py-2"><a href="/html/category/article-501.htm" title="springboot自定义视图映射">springboot自定义视图映射</a></li>
+                        <li class="py-2"><a href="/html/category/article-480.htm" title="JAVA基础小细节——equals()与hashCode()">JAVA基础小细节——equals()与hashCode()</a></li>
+                        <li class="py-2"><a href="/html/category/article-792.htm" title="SpringMVC+Log4j配置定时生成、删除日志">SpringMVC+Log4j配置定时生成、删除日志</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>
