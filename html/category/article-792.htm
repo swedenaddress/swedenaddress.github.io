@@ -40,7 +40,7 @@ var _hmt = _hmt || [];
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
                                                 <li class="nav-item">
-                            <a class="nav-link" href="/xcblog/">首页</a>
+                            <a class="nav-link" href="/">首页</a>
                         </li>
                                                 <li class="nav-item">
                             <a class="nav-link" href="/html/category/">文章分类</a>
@@ -105,6 +105,7 @@ $(function() {
                           				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> <div class="toc"> <h3>SpringMVC+Log4j配置定时生成、删除日志</h3> <ul> <li><a href="#SpringMVC_2" rel="nofollow">SpringMVC开启定时任务</a></li> <li> <ul> <li><a href="#SpringMVCxml_4" rel="nofollow">配置SpringMVC.xml</a></li> <li><a href="#log4jproperties_19" rel="nofollow">配置log4j.properties</a></li> <li><a href="#_56" rel="nofollow">定时任务执行类</a></li> <li><a href="#shell_98" rel="nofollow">shell脚本</a></li> </ul> </li> </ul> </div> <h1><a id="SpringMVC_2" rel="nofollow"></a>SpringMVC开启定时任务</h1> <blockquote> <p>建议开发者不要养成面向百度编程的习惯，可以参考，但是一定要知道利用官方文档<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://logging.apache.org/log4j/2.x/manual/appenders.html#ConsoleAppender"  rel="nofollow">log4j官方文档</a></p> </blockquote> <h2><a id="SpringMVCxml_4" rel="nofollow"></a>配置SpringMVC.xml</h2> <pre><code>xmlns:task="http://www.springframework.org/schema/task" http://www.springframework.org/schema/task   http://www.springframework.org/schema/task/spring-task-3.2.xsd</code></pre> <pre><code>    // 扫描包配置     &lt;context:component-scan 		base-package="com.carson.test.controller" /&gt; 	&lt;context:component-scan 	// 开启定时任务注解配置 	&lt;task:annotation-driven /&gt;</code></pre> <h2><a id="log4jproperties_19" rel="nofollow"></a>配置log4j.properties</h2> <blockquote></blockquote> <pre><code># rootLogger 第一参数为日志级别, 其后参数为日志载体 # 定义日志级别为INFO，那debug级别的日志将不会被打印出来，stdout、I、E可以任意但必须和后面配置的名称对应 # OFF&gt;FATAL&gt;ERROR&gt;WARN&gt;INFO&gt;DEBUG&gt;ALL log4j.rootLogger=INFO,stdout,I,E   #定义日志输出目的地为控制台 log4j.appender.stdout=org.apache.log4j.ConsoleAppender log4j.appender.stdout.Target=System.out log4j.appender.stdout.Threshold=DEBUG log4j.appender.stdout.layout=org.apache.log4j.PatternLayout log4j.appender.stdout.layout.ConversionPattern=[%-5p] %d{yyyy-MM-dd HH:mm:ss,SSS} method: %l%n%m%n   # 定义日志输出到文件 按时间划分日志文件，超过200MB重新生成另一个文件，原来文件名称由"xxx.log" -&gt; "xxx.log1" # info log4j.appender.I=org.apache.log4j.DailyRollingFileAppender log4j.appender.I.File=/Users/ksmasterasy/Desktop/logs/info/info.log log4j.appender.I.Append=false log4j.appender.I.Threshold=INFO log4j.appender.I.layout=org.apache.log4j.PatternLayout log4j.appender.I.DatePattern ='_'yyyy-MM-dd'.log' log4j.appender.I.MaxFileSize=200MB log4j.appender.I.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss} - [%p]-[%l] %m%n # error log4j.appender.E=org.apache.log4j.DailyRollingFileAppender log4j.appender.E.File=/Users/ksmasterasy/Desktop/logs/error/error.log log4j.appender.E.Append=false log4j.appender.E.Threshold=ERROR log4j.appender.E.layout=org.apache.log4j.PatternLayout log4j.appender.E.DatePattern ='_'yyyy-MM-dd'.log' log4j.appender.E.MaxFileSize=200MB log4j.appender.E.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss} - [%p][%l] %m%n</code></pre> <h2><a id="_56" rel="nofollow"></a>定时任务执行类</h2> <blockquote> <p>该类配在了controller包目录下，原因参考上面配置的springmvc配置文件</p> </blockquote> <pre><code>@Component public class ScheduleTask {  	private static final Logger log = Logger.getLogger(ScheduleTask.class); 	// 脚本路径 	private static String SHELL_FILE_DIR = "/usr/local/shell/"; 	// 脚本名称 	private static String FILE_NAME = "auto_del_log.sh"; 	 	/** 	 * @Description: 每天检查一次，每次删除30天以前产生的日志（待优化，删除时间间隔可以通过代码传参数） 	 */     //	@Scheduled(cron = "0/10 * * * * ?")  开发测试配置10s执行一次 	// 每月10号9点执行任务 	@Scheduled(cron = "0 15 9 10 * ?")   	public void work() throws Exception { 		log.info("执行删除日志shell脚本..."); 		String shellPath = SHELL_FILE_DIR +FILE_NAME; 		LinuxCommandUtil linuxCommandUtil = new LinuxCommandUtil(); 		// 返回值为0，说明命令执行成功，为1删除info日志出现错误，为2说明删除error日志错误 		int res = linuxCommandUtil.executeCommand(shellPath); 		log.info(String.format("执行删除日志shell脚本结果：%d", res));		 	} }</code></pre> <p>LinuxCommandUtil是执行shell脚本命令的封装类，如果想简单省事的话，可以直接在服务器编写脚本，crontab -e配置定时任务，也是一样的，都是一个道理，如果强迫症非要用代码实现，可以用以下代码替代，实质上LinuxCommandUtil就是对这个命令进行的封装</p> <pre><code>// 更改脚本读写执行权限的linux命令 String permissionStr = "chmod 777 " + SHELL_FILE_DIR + FILE_NAME; // 执行上述命令 Process process = Runtime.getRuntime().exec(permissionStr); // 脚本执行之后exit返回的预期值 int status = process.waitFor(); // 执行脚本命令 String cmdStr = "bash  " + SHELL_FILE_DIR + FILE_NAME; // 执行上述命令 Process process = Runtime.getRuntime().exec(cmdStr);</code></pre> <h2><a id="shell_98" rel="nofollow"></a>shell脚本</h2> <blockquote> <p>我编写shell脚本暂时不是很熟练，写的很浅显不规范，虽然能用，但我不能接受,后续优化了之后会改进，至少达到代码规范，灵活变参</p> </blockquote> <pre><code># aoto del xxx day ago logfile # 参数个数是否为3 if [ $# -ne 3 ] then     echo $1     echo $2     echo $3     exit 100 fi # 文件路径、时间限制变量赋值 FILE_PATH_INFO=$1 FILE_PATH_ERROR=$2 TIME_LIMIT=$3 # 删除FILE_PATH_INFO目录下30天以前的、以.out格式结尾的文件 find FILE_PATH_INFO -mtime +30 -name "*.out" -exec rm -rf {} \; # 上述命令执行是否成功 if [ $? -ne 0 ] then         exit 1 fi # 删除FILE_PATH_INFO目录下30天以前的、以.out格式结尾的文件 find FILE_PATH_ERROR -mtime +30 -name "*.out" -exec rm -rf {} \; # 上述命令执行是否成功 if [ $? -ne 0 ] then         exit 2 fi exit 0</code></pre> <p><strong>最后也是希望大家能多提意见，不管的好的意见或者批评的话语都可以的，你如果有什么疑惑可以留言我会在1小时之内尽快为你解答，或者发邮件ksmasterasy@icloud.com我都能及时收到消息，也是希望大家能够多交流意见。</strong></p> </div> 			
                         <div class="col-md-12 mt-5">
                                                         <p>上一个：<a href="/html/category/article-791.htm">Linux网络——NFS服务</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1055.htm">Java 轻松掌握字符缓冲流的使用_java</a></p>
                                                     </div>
 
                                             </div>
@@ -115,16 +116,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-527.htm" title="Confluent之Kafka Connector详细分析">Confluent之Kafka Connector详细分析</a></li>
-                        <li class="py-2"><a href="/html/category/article-481.htm" title="如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？">如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？</a></li>
-                        <li class="py-2"><a href="/html/category/article-504.htm" title="Infrastructure 知识: dnf对module的处理">Infrastructure 知识: dnf对module的处理</a></li>
-                        <li class="py-2"><a href="/html/category/article-486.htm" title="如何使用Copy-Item在PowerShell中复制多个文件？">如何使用Copy-Item在PowerShell中复制多个文件？</a></li>
-                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
-                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
-                        <li class="py-2"><a href="/html/category/article-484.htm" title="Springboot启动原理详细解析">Springboot启动原理详细解析</a></li>
-                        <li class="py-2"><a href="/html/category/article-471.htm" title="linux清理磁盘文件夹方法">linux清理磁盘文件夹方法</a></li>
-                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
-                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
+                        <li class="py-2"><a href="/html/category/article-478.htm" title="JavaScript如何添加用于将案例交换到字符串原型对象的函数">JavaScript如何添加用于将案例交换到字符串原型对象的函数</a></li>
+                        <li class="py-2"><a href="/html/category/article-495.htm" title="python读写hdfs">python读写hdfs</a></li>
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-477.htm" title="win11系统hosts文件无法保存怎么办">win11系统hosts文件无法保存怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-1056.htm" title="vue项目的excel的导入与导出">vue项目的excel的导入与导出</a></li>
+                        <li class="py-2"><a href="/html/category/article-496.htm" title="vue3+elementUI-plus 项目实战登录">vue3+elementUI-plus 项目实战登录</a></li>
+                        <li class="py-2"><a href="/html/category/article-522.htm" title="用字符串中的ASCII值替换所有特殊字符-JavaScript">用字符串中的ASCII值替换所有特殊字符-JavaScript</a></li>
+                        <li class="py-2"><a href="/html/category/article-520.htm" title="什么是MySQL ENUM数据类型？使用ENUM数据类型有什么优势？">什么是MySQL ENUM数据类型？使用ENUM数据类型有什么优势？</a></li>
                     </ul>
     </div>
 </div>
@@ -136,7 +137,7 @@ $(function() {
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">24</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
