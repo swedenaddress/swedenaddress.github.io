@@ -5,9 +5,9 @@
     <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-401.htm" />
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-1333.htm" />
 <link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
-<title>Rancher入门到精通-nginx-ingress配置性能优化 - SwedenAddress</title>
+<title>在vue项目中如何获取视频的时长_vue.js_ - SwedenAddress</title>
 <link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@ $(function() {
             <div class="container">
                 <div class="main-titles-head text-center">
                     <h1 class="header-name" style="word-break: break-all;">
-                        Rancher入门到精通-nginx-ingress配置性能优化                    </h1>
+                        在vue项目中如何获取视频的时长_vue.js_                    </h1>
                     
                 </div>
             </div>
@@ -102,10 +102,10 @@ $(function() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                          				  				  				<div id="content_views" class="htmledit_views"> <pre><code>keep-alive: "75"   keep-alive-requests: "100"   upstream-keepalive-connections: "10000"   upstream-keepalive-requests: "100"   upstream-keepalive-timeout: "60"</code></pre> <p>打开rancher 映射配置</p> <p><img decoding="async" alt="" height="266" src="http://img.555519.xyz/uploads3/20220605/eed77f5a73d86a9c682326404ca4310f.jpg">、</p> <p><img fetchpriority="high" decoding="async" alt="" height="149" src="http://img.555519.xyz/uploads3/20220605/d3ecfe4e1af7385e4e7871df6c601d7f.jpg"></p> <p><img decoding="async" alt="" height="309" src="http://img.555519.xyz/uploads3/20220605/41ba98c317ade6f2ee3214363306df05.jpg"></p> <p>配置</p> <p>查看nginx-ingress</p> </div> 			
+                          				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">vue获取视频时长</a></li> <li><a href="#_label1" rel="nofollow">vue-video-player获取播放时间</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_0" rel="nofollow">全局引用</a></li> <li><a href="#_lab2_1_1" rel="nofollow">局部引用</a></li> <li><a href="#_lab2_1_2" rel="nofollow">html</a></li> <li><a href="#_lab2_1_3" rel="nofollow">methods获取播放时间</a></li> </ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>vue获取视频时长</h2> <p>传入参数为视频文件对象</p> <p><strong>js的代码如下：</strong></p> <div class="ay1code"> <pre class="brush:js;">getVideoDuration(file) {    var url = URL.createObjectURL(file);    var audioElement = new Audio(url);    var self = this;    var result;    audioElement.addEventListener("loadedmetadata", function() {      // 视频时长值的获取要等到这个匿名函数执行完毕才产生      result = audioElement.duration; //得到时长为秒，小数，182.36      self.ruleForm.videoDuration = parseInt(result); //转为int值    });  }</pre> </div> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>vue-video-player获取播放时间</h2> <div class="ay1code"> <pre class="brush:js;">npm install vue-video-player -S</pre> </div> <p class="maodian"><a name="_lab2_1_0" rel="nofollow"></a></p> <h3>全局引用</h3> <div class="ay1code"> <pre class="brush:js;">import VideoPlayer from 'vue-video-player'  import 'vue-video-player/src/custom-theme.css'  import 'video.js/dist/video-js.css'  Vue.use(VideoPlayer)</pre> </div> <p class="maodian"><a name="_lab2_1_1" rel="nofollow"></a></p> <h3>局部引用</h3> <div class="ay1code"> <pre class="brush:js;">  import {      videoPlayer    } from 'vue-video-player'    import 'video.js/dist/video-js.css'    export default {    components: {      videoPlayer    }  }</pre> </div> <p class="maodian"><a name="_lab2_1_2" rel="nofollow"></a></p> <h3>html</h3> <div class="ay1code"> <pre class="brush:xhtml;">   &lt;video-player class="video-player vjs-custom-skin"               ref="videoPlayer"               :playsinline="true"               :options="playerOptions"&gt;        &lt;/video-player&gt;</pre> </div> <p class="maodian"><a name="_lab2_1_3" rel="nofollow"></a></p> <h3>methods获取播放时间</h3> <div class="ay1code"> <pre class="brush:js;">  this.$nextTick(() =&gt; {         setTimeout(() =&gt; {         let du = document.getElementById("vjs_video_3_html5_api") //获取组件下的video         var hour = parseInt((du.duration) / 3600);         var minute = parseInt((du.duration % 3600) / 60);         var second = parseInt(du.duration % 60);         let result = ''         if (hour &gt; 0) {         result = this.formatTimeStr(hour) + ':' + this.formatTimeStr(minute) + ':' + this         .formatTimeStr(second)                   } else {                      result = this.formatTimeStr(minute) + ':' +                     this.formatTimeStr(second)                    }                    return result //转化成分，秒                  }, 200)                })          formatTimeStr(val) {          if (val &gt; 9) {            return val          } else {            return '0' + val          }        },</pre> </div> 			
                         <div class="col-md-12 mt-5">
-                                                        <p>上一个：<a href="/html/category/article-400.htm">超详细讲解JPA查询数据库</a></p>
-                                                        <p>下一个：<a href="/html/category/article-402.htm">纳尼！ROOT修改权限不足？提示Operation not permitted？</a></p>
+                                                        <p>上一个：<a href="/html/category/article-1324.htm">Task提高异步执行效率技巧_C#教程_</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1334.htm">【openstack】cloudkitty组件，入门级安装（快速）_在线工具</a></p>
                                                     </div>
 
                                             </div>
@@ -116,16 +116,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                        <li class="py-2"><a href="/html/category/article-497.htm" title="HTML5画布 canvas移动">HTML5画布 canvas移动</a></li>
                         <li class="py-2"><a href="/html/category/article-524.htm" title="数据库四大特性及数据库隔离级别（*）">数据库四大特性及数据库隔离级别（*）</a></li>
-                        <li class="py-2"><a href="/html/category/article-491.htm" title="我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></li>
-                        <li class="py-2"><a href="/html/category/article-518.htm" title="使用TreeMap在Java中对用户定义的对象进行排序">使用TreeMap在Java中对用户定义的对象进行排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
                         <li class="py-2"><a href="/html/category/article-478.htm" title="JavaScript如何添加用于将案例交换到字符串原型对象的函数">JavaScript如何添加用于将案例交换到字符串原型对象的函数</a></li>
-                        <li class="py-2"><a href="/html/category/article-496.htm" title="vue3+elementUI-plus 项目实战登录">vue3+elementUI-plus 项目实战登录</a></li>
-                        <li class="py-2"><a href="/html/category/article-492.htm" title="kafka系列SpringBoot 中使用@KafkaListener详解与使用">kafka系列SpringBoot 中使用@KafkaListener详解与使用</a></li>
-                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
-                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
-                        <li class="py-2"><a href="/html/category/article-514.htm" title="Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源">Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源</a></li>
-                        <li class="py-2"><a href="/html/category/article-479.htm" title="python多线程编程_2小时玩转python多线程编程">python多线程编程_2小时玩转python多线程编程</a></li>
+                        <li class="py-2"><a href="/html/category/article-488.htm" title="eslint在vue中如何使用">eslint在vue中如何使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
+                        <li class="py-2"><a href="/html/category/article-477.htm" title="win11系统hosts文件无法保存怎么办">win11系统hosts文件无法保存怎么办</a></li>
+                        <li class="py-2"><a href="/html/category/article-500.htm" title="SpringBoot动态定时任务的实现">SpringBoot动态定时任务的实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
                     </ul>
     </div>
 </div>

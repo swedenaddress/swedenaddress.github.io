@@ -105,6 +105,7 @@ $(function() {
                           				  				  				<p>async Task 语法糖出来后，异步编程变得非常简单，适合需要耗费较长时间的任务。</p> <p>有些小伙伴使用后可能会非常疑惑，使用异步和同步，在耗时上几乎没有差别。</p> <p>下面我们看一个例子，场景是需要调用多个第三方的WebApi，分别是获取名称、年龄、性别，由于网络环境等原因，api响应时间可能会接近1秒</p> <div class="ay1code"> <pre class="brush:csharp;">public async Task Test()  {      var sw = new Stopwatch();      sw.Start();        var userName = await GetUserNameAsync();      var userAge = await GetUserAgeAsync();      var userSex = await GetUserSexAsync();        sw.Stop();      var ts = sw.Elapsed;      Console.WriteLine($"总共耗时：{ts.TotalMilliseconds}ms");  }    private async Task&lt;string&gt; GetUserNameAsync()  {      await Task.Delay(500);      return "小明";  }    private async Task&lt;string&gt; GetUserAgeAsync()  {      await Task.Delay(800);      return "11";  }    private async Task&lt;string&gt; GetUserSexAsync()  {      await Task.Delay(900);      return "11";  }</pre> </div> <p>运行后发现，这个时间2秒多，这用户体验肯定是无法忍受的</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220412/8fb645320e0f15c366442a5622f4ab34.jpg"></p> <p>导致这样结果的原因是每次进行异步调用的时候，都在异步函数前加上了 await ，对于单单这个过程来说，其实相当于同步，等待直到结果返回，每个异步函数都await，时间自然就叠加了，为了解决这个问题，使用一个小技巧，可以将代码改成下面这样</p> <div class="ay1code"> <pre class="brush:csharp;">public async Task Test()  {      var sw = new Stopwatch();      sw.Start();        var userNameTask =  GetUserNameAsync();      var userAgeTask =  GetUserAgeAsync();      var userSexTask =  GetUserSexAsync();        var userName = await userNameTask;      var userAge = await userAgeTask;      var userSex = await userSexTask;        sw.Stop();      var ts = sw.Elapsed;      Console.WriteLine($"总共耗时：{ts.TotalMilliseconds}ms");  }    private async Task&lt;string&gt; GetUserNameAsync()  {      await Task.Delay(500);      return "小明";  }    private async Task&lt;string&gt; GetUserAgeAsync()  {      await Task.Delay(800);      return "11";  }    private async Task&lt;string&gt; GetUserSexAsync()  {      await Task.Delay(900);      return "11";  }</pre> </div> <p>这次运行的总耗时，就是3个异步中，耗时最长那个GetUserSexAsync</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220412/5245e55b5f871be4c53c2b6140e8ff1d.jpg"></p> <p>为什么会这样呢，这个小技巧的关键是这里，当执行到异步函数的时候，不加 await，不进行等待，让这些任务乖乖在别的线程的执行，当需要用到他们的时候，再去等待返回值，所以时间上不会进行叠加，哪个最长，总耗时就是哪个</p> <div class="ay1code"> <pre class="brush:csharp;">var userNameTask =  GetUserNameAsync();  var userAgeTask =  GetUserAgeAsync();  var userSexTask =  GetUserSexAsync();    var userName = await userNameTask;  var userAge = await userAgeTask;  var userSex = await userSexTask;</pre> </div> 			
                         <div class="col-md-12 mt-5">
                                                         <p>上一个：<a href="/html/category/article-1323.htm">springcloud  Hystrix 及 Feign与Hystrix结合 使用方法</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1333.htm">在vue项目中如何获取视频的时长_vue.js_</a></p>
                                                     </div>
 
                                             </div>
@@ -115,16 +116,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-484.htm" title="Springboot启动原理详细解析">Springboot启动原理详细解析</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
                         <li class="py-2"><a href="/html/category/article-508.htm" title="Libco Hook 机制浅析_在线工具">Libco Hook 机制浅析_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
-                        <li class="py-2"><a href="/html/category/article-524.htm" title="数据库四大特性及数据库隔离级别（*）">数据库四大特性及数据库隔离级别（*）</a></li>
-                        <li class="py-2"><a href="/html/category/article-500.htm" title="SpringBoot动态定时任务的实现">SpringBoot动态定时任务的实现</a></li>
-                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
-                        <li class="py-2"><a href="/html/category/article-490.htm" title="vue实现简单无缝滚动效果_vue.js">vue实现简单无缝滚动效果_vue.js</a></li>
-                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
-                        <li class="py-2"><a href="/html/category/article-478.htm" title="JavaScript如何添加用于将案例交换到字符串原型对象的函数">JavaScript如何添加用于将案例交换到字符串原型对象的函数</a></li>
-                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-527.htm" title="Confluent之Kafka Connector详细分析">Confluent之Kafka Connector详细分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-489.htm" title="CSS中文本居中显示">CSS中文本居中显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-481.htm" title="如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？">如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1324.htm" title="Task提高异步执行效率技巧_C#教程_">Task提高异步执行效率技巧_C#教程_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1055.htm" title="Java 轻松掌握字符缓冲流的使用_java">Java 轻松掌握字符缓冲流的使用_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-475.htm" title="redis持久化概述">redis持久化概述</a></li>
                     </ul>
     </div>
 </div>
@@ -136,7 +137,7 @@ $(function() {
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">28</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
