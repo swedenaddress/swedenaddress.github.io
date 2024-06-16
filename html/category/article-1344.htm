@@ -5,9 +5,9 @@
     <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-460.htm" />
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-1344.htm" />
 <link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
-<title>java面向对象是什么意思_java什么是面向对象 - SwedenAddress</title>
+<title>Java8新特性之Instant详解 - SwedenAddress</title>
 <link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@ $(function() {
             <div class="container">
                 <div class="main-titles-head text-center">
                     <h1 class="header-name" style="word-break: break-all;">
-                        java面向对象是什么意思_java什么是面向对象                    </h1>
+                        Java8新特性之Instant详解                    </h1>
                     
                 </div>
             </div>
@@ -102,10 +102,9 @@ $(function() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                          				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>java面向对象是指在计算机程序中，模拟现实世界中的概念，借助对象的描述在计算机程序中用类似的实体模拟现实世界中的实体。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221130/a05afa5d16dc23115efb51e6cd8c28f8.jpg" alt="java面向对象是什么意思_java什么是面向对象"></p> <p>什么是对象和面向对象的编程？</p> <p>对象就是存在的具体实体，具有明确定义的状态和行为，是面向对象编程的核心，用来描述现实世界中的实体，为计算机应用程序提供实体基础，也是完成特定任务一个封装。这样描述对象却是有点罗嗦。因为与传统的C语言不通，C语言是过程语言，而java语言是面向对象的语言，所以对象是java语言的核心。</p> <p>那到底什么是对象，能举个例子吗？其实在我们生活中，什么都可以抽象成为对象，比如你有一辆汽车，这辆车就是对象了，这个对象(汽车)，它有颜色，牌子，有产地等等，这些我们也可以称为是它的属性，它也能开动，要维修等等这些操作，我们成为是它的行为。这就是对象了。</p> <p>在面向对象编程中(简称：OOP)，现实世界的所有事物全都被视为对象。OOP的目标是在计算机程序中，模拟现实世界中的概念，我们可以借助对象的描述就能够在计算机程序中用类似的实体模拟现实世界中的实体。同时OOP也是设计和实现软件系统的方法。</p> <p>面向对象思想</p> <p>因为面向对象思想简单概括起来就是三个：封装(Encapsulation)、继承(Inheritance)和多态(Polymorphism)。</p> <p>封装：就是把某些内容封起来，不让别人知道。有些对象自己的属性内部实现细节是不想让其他的对象知晓的，那么我们就可以把它封装起来。这就是封装的基本概念。</p> <p>继承：顾名思义，继承就是儿子对父亲的继承，在类也可以有子类和父类的。子类对父类的继承，但是继承也不是全部继承的，若子类与父类在同一包中。子类继承了父类中所有不是private的成员方法(除构造方法)及不是private的成员变量继承，有关继承的具体我们在后面的会再介绍。继承的目标主要实现重用代码，节省开发时间。</p> <p>多态：同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果。在运行时，可以通过指向父类的指针，来调用实现子类中的方法。在java中多态一般又分为方法的重写和方法的重载。</p> <p>编译时的多态性：编译时的多态性是通过重载来实现的。对于非虚的成员来说，系统在编译时，根据传递的参数、返回的类型等信息决定实现何种操作。</p> <p>运行时的多态性：运行时的多态性就是指直到系统运行时，才根据实际情况决定实现何种操作。编译时的多态性为我们提供了运行速度快的特点，而运行时的多态性则带来了高度灵活和抽象的特点。相</p> </div> </div> 			
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>计算机存储的当前时间，本质上只是一个不断递增的整数。Java提供的<code>System.currentTimeMillis()</code>返回的就是以毫秒表示的当前时间戳。</p> <p>这个当前时间戳在<code>java.time</code>中以<code>Instant</code>类型表示，我们用<code>Instant.now()</code>获取当前时间戳，效果和<code>System.currentTimeMillis()</code>类似：</p> <pre><code class="language-java">public class Main {     public static void main(String[] args) {         Instant now = Instant.now();         System.out.println(now.getEpochSecond()); // 秒  1568568760         System.out.println(now.toEpochMilli()); // 毫秒  1568568760316     } }</code></pre> <p>实际上，<code>Instant</code>内部只有两个核心字段：</p> <pre><code class="language-java">public final class Instant implements ... {     private final long seconds;     private final int nanos; }</code></pre> <p>一个是以秒为单位的时间戳，一个是更精确的纳秒精度。它和<code>System.currentTimeMillis()</code>返回的<code>long</code>相比，只是多了更高精度的纳秒。</p> <p>既然<code>Instant</code>就是时间戳，那么，给它附加上一个时区，就可以创建出<code>ZonedDateTime</code>：</p> <pre><code class="language-java">// 以指定时间戳创建Instant: Instant ins = Instant.ofEpochSecond(1568568760); ZonedDateTime zdt = ins.atZone(ZoneId.systemDefault()); System.out.println(zdt); // 2019-09-16T01:32:40+08:00[Asia/Shanghai]</code></pre> <p>可见，对于某一个时间戳，给它关联上指定的<code>ZoneId</code>，就得到了<code>ZonedDateTime</code>，继而可以获得了对应时区的<code>LocalDateTime</code>。</p> <p>所以，<code>LocalDateTime</code>，<code>ZoneId</code>，<code>Instant</code>，<code>ZonedDateTime</code>和<code>long</code>都可以互相转换：</p> <pre><code class="language-java">┌─────────────┐ │LocalDateTime│────┐ └─────────────┘    │    ┌─────────────┐                    ├───&gt;│ZonedDateTime│ ┌─────────────┐    │    └─────────────┘ │   ZoneId    │────┘           ▲ └─────────────┘      ┌─────────┴─────────┐                      │                   │                      ▼                   ▼               ┌─────────────┐     ┌─────────────┐               │   Instant   │&lt;───&gt;│    long     │               └─────────────┘     └─────────────┘</code></pre> <p>转换的时候，只需要留意<code>long</code>类型以毫秒还是秒为单位即可。</p> <h3>小结</h3> <p><code>Instant</code>表示高精度时间戳，它可以和<code>ZonedDateTime</code>以及<code>long</code>互相转换。</p> </div> 			
                         <div class="col-md-12 mt-5">
-                                                        <p>上一个：<a href="/html/category/article-459.htm">STM8S103F3P6 的开发, 烧录和Debug笔记 &#8211; Milton _在线工具</a></p>
-                                                        <p>下一个：<a href="/html/category/article-461.htm">记一次Spring|项目启动耗时超级长的优化</a></p>
+                                                        <p>上一个：<a href="/html/category/article-1343.htm">HttpClient 设置超时时间</a></p>
                                                     </div>
 
                                             </div>
@@ -116,16 +115,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-481.htm" title="如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？">如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？</a></li>
-                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
-                        <li class="py-2"><a href="/html/category/article-483.htm" title="vue变更v-for列表多个项目的颜色和选择项目">vue变更v-for列表多个项目的颜色和选择项目</a></li>
-                        <li class="py-2"><a href="/html/category/article-477.htm" title="win11系统hosts文件无法保存怎么办">win11系统hosts文件无法保存怎么办</a></li>
-                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
-                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
-                        <li class="py-2"><a href="/html/category/article-496.htm" title="vue3+elementUI-plus 项目实战登录">vue3+elementUI-plus 项目实战登录</a></li>
-                        <li class="py-2"><a href="/html/category/article-480.htm" title="JAVA基础小细节——equals()与hashCode()">JAVA基础小细节——equals()与hashCode()</a></li>
-                        <li class="py-2"><a href="/html/category/article-1055.htm" title="Java 轻松掌握字符缓冲流的使用_java">Java 轻松掌握字符缓冲流的使用_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
+                        <li class="py-2"><a href="/html/category/article-792.htm" title="SpringMVC+Log4j配置定时生成、删除日志">SpringMVC+Log4j配置定时生成、删除日志</a></li>
+                        <li class="py-2"><a href="/html/category/article-520.htm" title="什么是MySQL ENUM数据类型？使用ENUM数据类型有什么优势？">什么是MySQL ENUM数据类型？使用ENUM数据类型有什么优势？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1344.htm" title="Java8新特性之Instant详解">Java8新特性之Instant详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1324.htm" title="Task提高异步执行效率技巧_C#教程_">Task提高异步执行效率技巧_C#教程_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1323.htm" title="springcloud  Hystrix 及 Feign与Hystrix结合 使用方法">springcloud  Hystrix 及 Feign与Hystrix结合 使用方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1333.htm" title="在vue项目中如何获取视频的时长_vue.js_">在vue项目中如何获取视频的时长_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1056.htm" title="vue项目的excel的导入与导出">vue项目的excel的导入与导出</a></li>
                     </ul>
     </div>
 </div>
