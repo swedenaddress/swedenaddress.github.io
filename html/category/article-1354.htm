@@ -5,9 +5,9 @@
     <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-1324.htm" />
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-1354.htm" />
 <link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
-<title>Task提高异步执行效率技巧_C#教程_ - SwedenAddress</title>
+<title>C ++中具有最大金数的路径 - SwedenAddress</title>
 <link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@ $(function() {
             <div class="container">
                 <div class="main-titles-head text-center">
                     <h1 class="header-name" style="word-break: break-all;">
-                        Task提高异步执行效率技巧_C#教程_                    </h1>
+                        C ++中具有最大金数的路径                    </h1>
                     
                 </div>
             </div>
@@ -102,10 +102,9 @@ $(function() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                          				  				  				<p>async Task 语法糖出来后，异步编程变得非常简单，适合需要耗费较长时间的任务。</p> <p>有些小伙伴使用后可能会非常疑惑，使用异步和同步，在耗时上几乎没有差别。</p> <p>下面我们看一个例子，场景是需要调用多个第三方的WebApi，分别是获取名称、年龄、性别，由于网络环境等原因，api响应时间可能会接近1秒</p> <div class="ay1code"> <pre class="brush:csharp;">public async Task Test()  {      var sw = new Stopwatch();      sw.Start();        var userName = await GetUserNameAsync();      var userAge = await GetUserAgeAsync();      var userSex = await GetUserSexAsync();        sw.Stop();      var ts = sw.Elapsed;      Console.WriteLine($"总共耗时：{ts.TotalMilliseconds}ms");  }    private async Task&lt;string&gt; GetUserNameAsync()  {      await Task.Delay(500);      return "小明";  }    private async Task&lt;string&gt; GetUserAgeAsync()  {      await Task.Delay(800);      return "11";  }    private async Task&lt;string&gt; GetUserSexAsync()  {      await Task.Delay(900);      return "11";  }</pre> </div> <p>运行后发现，这个时间2秒多，这用户体验肯定是无法忍受的</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220412/8fb645320e0f15c366442a5622f4ab34.jpg"></p> <p>导致这样结果的原因是每次进行异步调用的时候，都在异步函数前加上了 await ，对于单单这个过程来说，其实相当于同步，等待直到结果返回，每个异步函数都await，时间自然就叠加了，为了解决这个问题，使用一个小技巧，可以将代码改成下面这样</p> <div class="ay1code"> <pre class="brush:csharp;">public async Task Test()  {      var sw = new Stopwatch();      sw.Start();        var userNameTask =  GetUserNameAsync();      var userAgeTask =  GetUserAgeAsync();      var userSexTask =  GetUserSexAsync();        var userName = await userNameTask;      var userAge = await userAgeTask;      var userSex = await userSexTask;        sw.Stop();      var ts = sw.Elapsed;      Console.WriteLine($"总共耗时：{ts.TotalMilliseconds}ms");  }    private async Task&lt;string&gt; GetUserNameAsync()  {      await Task.Delay(500);      return "小明";  }    private async Task&lt;string&gt; GetUserAgeAsync()  {      await Task.Delay(800);      return "11";  }    private async Task&lt;string&gt; GetUserSexAsync()  {      await Task.Delay(900);      return "11";  }</pre> </div> <p>这次运行的总耗时，就是3个异步中，耗时最长那个GetUserSexAsync</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220412/5245e55b5f871be4c53c2b6140e8ff1d.jpg"></p> <p>为什么会这样呢，这个小技巧的关键是这里，当执行到异步函数的时候，不加 await，不进行等待，让这些任务乖乖在别的线程的执行，当需要用到他们的时候，再去等待返回值，所以时间上不会进行叠加，哪个最长，总耗时就是哪个</p> <div class="ay1code"> <pre class="brush:csharp;">var userNameTask =  GetUserNameAsync();  var userAgeTask =  GetUserAgeAsync();  var userSexTask =  GetUserSexAsync();    var userName = await userNameTask;  var userAge = await userAgeTask;  var userSex = await userSexTask;</pre> </div> 			
+                          				  				  				<p>假设在大小为m * n的金矿网格中，该矿中的每个单元格都有一个整数，表示该单元格中的金含量，0表示为空。我们必须找到在以下条件下可以收集的最大数量的黄金-</p> <ul class="list-paddingleft-2"> <li> <p>每次我们指向一个单元格时，我们都会收集该单元格中的所有黄金。</p> </li> <li> <p>从我们的位置，我们可以向左，向右，向上或向下走一步。</p> </li> <li> <p>我们不能多次访问同一个单元。</p> </li> <li> <p>切勿访问0金的单元格。</p> </li> </ul> <p>因此，如果输入类似于[[0,6,0]，[5,8,7]，[0,9,0]]，则结果将为24。获得最大黄金的路径为9-&gt; 8 -&gt; 7</p> <p>为了解决这个问题，我们将遵循以下步骤-</p> <ul class="list-paddingleft-2"> <li> <p>制作一个称为dfs的方法，即采用格网n，m，i和j。这将如下所示</p> </li> <li> <p>如果i&gt; = n或j&gt; = m或i &lt;0或j &lt;0或grid [i，j] = -1或grid [i，j] = 0，则返回0</p> </li> <li> <p>temp：= grid [i，j]，成本：= grid [i，j] and grid [i，j] = -1</p> </li> <li> <p>cost：=成本+ dfs（grid，n，m，i + 1，j），dfs（grid，n，m，i – 1，j）和dfs（grid，n，m，i，j – 1的最大值） ）</p> </li> <li> <p>grid [i，j]：=温度</p> </li> <li> <p>返回成本</p> </li> <li> <p>主要方法是</p> </li> <li> <p>n：=网格行，m：=网格列，ans：= 0</p> </li> <li> <p>对于i，范围为0至n – 1</p> </li> <ul class="list-paddingleft-2" style="list-style-type: square;"> <li> <p>如果grid [i，j]不为0，则ans：= max of ans，dfs(grid,n,m,i,j)</p> </li> <li> <p>对于j，范围从0到m – 1</p> </li> </ul> <ul class="list-paddingleft-2" style="list-style-type: square;"></ul> <li> <p>返回ans</p> </li> </ul> <p>让我们看下面的实现以更好地理解-</p> <h2>示例</h2> <pre>#include&nbsp;&lt;bits/stdc++.h&gt; using&nbsp;namespace&nbsp;std; class&nbsp;Solution&nbsp;{ &nbsp;&nbsp;&nbsp;public: &nbsp;&nbsp;&nbsp;int&nbsp;dfs(vector&lt;vector&lt;int&gt;&gt;&amp;&nbsp;grid,&nbsp;int&nbsp;n,&nbsp;int&nbsp;m,&nbsp;int&nbsp;i,&nbsp;int&nbsp;j){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(i&gt;=n&nbsp;||&nbsp;j&gt;=m&nbsp;||i&lt;0||j&lt;0&nbsp;||&nbsp;grid[i][j]==-1&nbsp;||&nbsp;grid[i][j]&nbsp;==&nbsp;0)return&nbsp;0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;temp&nbsp;=grid[i][j]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;cost&nbsp;=&nbsp;grid[i][j]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grid[i][j]&nbsp;=&nbsp;-1; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cost+=max({dfs(grid,n,m,i+1,j),dfs(grid,n,m,i-1,j),dfs(grid,n,m,i,j+1),dfs(grid,n,m,i,j-1)}); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grid[i][j]&nbsp;=&nbsp;temp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;cost; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;int&nbsp;getMaximumGold(vector&lt;vector&lt;int&gt;&gt;&amp;&nbsp;grid)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;n&nbsp;=&nbsp;grid.size()&nbsp;; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;m&nbsp;=&nbsp;grid[0].size(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;ans&nbsp;=&nbsp;0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(int&nbsp;i&nbsp;=0;i&lt;n;i++){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(int&nbsp;j&nbsp;=0;j&lt;m;j++){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(grid[i][j]){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//cout&nbsp;&lt;&lt;&nbsp;"Start&nbsp;:&nbsp;"&nbsp;&lt;&lt;&nbsp;i&nbsp;&lt;&lt;"&nbsp;"&nbsp;&lt;&lt;&nbsp;j&nbsp;&lt;&lt;&nbsp;endl; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ans&nbsp;=&nbsp;max(ans,dfs(grid,n,m,i,j)); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;ans; &nbsp;&nbsp;&nbsp;} }; main(){ &nbsp;&nbsp;&nbsp;vector&lt;vector&lt;int&gt;&gt;&nbsp;v&nbsp;=&nbsp;{{0,6,0},{5,8,7},{0,9,0}}; &nbsp;&nbsp;&nbsp;Solution&nbsp;ob; &nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;(ob.getMaximumGold(v)); }</pre> <h2>输入项</h2> <pre>[[0,6,0],[5,8,7],[0,9,0]]</pre> <p>输出结果</p> <pre>24</pre> <div></div> 			
                         <div class="col-md-12 mt-5">
-                                                        <p>上一个：<a href="/html/category/article-1323.htm">springcloud  Hystrix 及 Feign与Hystrix结合 使用方法</a></p>
-                                                        <p>下一个：<a href="/html/category/article-1333.htm">在vue项目中如何获取视频的时长_vue.js_</a></p>
+                                                        <p>上一个：<a href="/html/category/article-1353.htm">关于Redis缓存和数据库一致性问题</a></p>
                                                     </div>
 
                                             </div>
@@ -116,16 +115,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-501.htm" title="springboot自定义视图映射">springboot自定义视图映射</a></li>
-                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
-                        <li class="py-2"><a href="/html/category/article-791.htm" title="Linux网络——NFS服务">Linux网络——NFS服务</a></li>
-                        <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
                         <li class="py-2"><a href="/html/category/article-487.htm" title="Go 语言结构体链表详解">Go 语言结构体链表详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-507.htm" title="vue 封装图片路径">vue 封装图片路径</a></li>
-                        <li class="py-2"><a href="/html/category/article-495.htm" title="python读写hdfs">python读写hdfs</a></li>
-                        <li class="py-2"><a href="/html/category/article-522.htm" title="用字符串中的ASCII值替换所有特殊字符-JavaScript">用字符串中的ASCII值替换所有特殊字符-JavaScript</a></li>
-                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
-                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-500.htm" title="SpringBoot动态定时任务的实现">SpringBoot动态定时任务的实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-520.htm" title="什么是MySQL ENUM数据类型？使用ENUM数据类型有什么优势？">什么是MySQL ENUM数据类型？使用ENUM数据类型有什么优势？</a></li>
+                        <li class="py-2"><a href="/html/category/article-483.htm" title="vue变更v-for列表多个项目的颜色和选择项目">vue变更v-for列表多个项目的颜色和选择项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
+                        <li class="py-2"><a href="/html/category/article-528.htm" title="我们如何在MySQL返回的结果集的组级别上应用过滤条件？">我们如何在MySQL返回的结果集的组级别上应用过滤条件？</a></li>
+                        <li class="py-2"><a href="/html/category/article-521.htm" title="typescript的安装运行与自动编译">typescript的安装运行与自动编译</a></li>
+                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
                     </ul>
     </div>
 </div>

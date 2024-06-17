@@ -105,6 +105,7 @@ $(function() {
                           				  				  				<div id="content_views" class="htmledit_views"> <p>计算机存储的当前时间，本质上只是一个不断递增的整数。Java提供的<code>System.currentTimeMillis()</code>返回的就是以毫秒表示的当前时间戳。</p> <p>这个当前时间戳在<code>java.time</code>中以<code>Instant</code>类型表示，我们用<code>Instant.now()</code>获取当前时间戳，效果和<code>System.currentTimeMillis()</code>类似：</p> <pre><code class="language-java">public class Main {     public static void main(String[] args) {         Instant now = Instant.now();         System.out.println(now.getEpochSecond()); // 秒  1568568760         System.out.println(now.toEpochMilli()); // 毫秒  1568568760316     } }</code></pre> <p>实际上，<code>Instant</code>内部只有两个核心字段：</p> <pre><code class="language-java">public final class Instant implements ... {     private final long seconds;     private final int nanos; }</code></pre> <p>一个是以秒为单位的时间戳，一个是更精确的纳秒精度。它和<code>System.currentTimeMillis()</code>返回的<code>long</code>相比，只是多了更高精度的纳秒。</p> <p>既然<code>Instant</code>就是时间戳，那么，给它附加上一个时区，就可以创建出<code>ZonedDateTime</code>：</p> <pre><code class="language-java">// 以指定时间戳创建Instant: Instant ins = Instant.ofEpochSecond(1568568760); ZonedDateTime zdt = ins.atZone(ZoneId.systemDefault()); System.out.println(zdt); // 2019-09-16T01:32:40+08:00[Asia/Shanghai]</code></pre> <p>可见，对于某一个时间戳，给它关联上指定的<code>ZoneId</code>，就得到了<code>ZonedDateTime</code>，继而可以获得了对应时区的<code>LocalDateTime</code>。</p> <p>所以，<code>LocalDateTime</code>，<code>ZoneId</code>，<code>Instant</code>，<code>ZonedDateTime</code>和<code>long</code>都可以互相转换：</p> <pre><code class="language-java">┌─────────────┐ │LocalDateTime│────┐ └─────────────┘    │    ┌─────────────┐                    ├───&gt;│ZonedDateTime│ ┌─────────────┐    │    └─────────────┘ │   ZoneId    │────┘           ▲ └─────────────┘      ┌─────────┴─────────┐                      │                   │                      ▼                   ▼               ┌─────────────┐     ┌─────────────┐               │   Instant   │&lt;───&gt;│    long     │               └─────────────┘     └─────────────┘</code></pre> <p>转换的时候，只需要留意<code>long</code>类型以毫秒还是秒为单位即可。</p> <h3>小结</h3> <p><code>Instant</code>表示高精度时间戳，它可以和<code>ZonedDateTime</code>以及<code>long</code>互相转换。</p> </div> 			
                         <div class="col-md-12 mt-5">
                                                         <p>上一个：<a href="/html/category/article-1343.htm">HttpClient 设置超时时间</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1353.htm">关于Redis缓存和数据库一致性问题</a></p>
                                                     </div>
 
                                             </div>
@@ -115,16 +116,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
-                        <li class="py-2"><a href="/html/category/article-792.htm" title="SpringMVC+Log4j配置定时生成、删除日志">SpringMVC+Log4j配置定时生成、删除日志</a></li>
-                        <li class="py-2"><a href="/html/category/article-520.htm" title="什么是MySQL ENUM数据类型？使用ENUM数据类型有什么优势？">什么是MySQL ENUM数据类型？使用ENUM数据类型有什么优势？</a></li>
-                        <li class="py-2"><a href="/html/category/article-1344.htm" title="Java8新特性之Instant详解">Java8新特性之Instant详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-1324.htm" title="Task提高异步执行效率技巧_C#教程_">Task提高异步执行效率技巧_C#教程_</a></li>
-                        <li class="py-2"><a href="/html/category/article-1323.htm" title="springcloud  Hystrix 及 Feign与Hystrix结合 使用方法">springcloud  Hystrix 及 Feign与Hystrix结合 使用方法</a></li>
-                        <li class="py-2"><a href="/html/category/article-1333.htm" title="在vue项目中如何获取视频的时长_vue.js_">在vue项目中如何获取视频的时长_vue.js_</a></li>
-                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
-                        <li class="py-2"><a href="/html/category/article-499.htm" title="我们如何将值添加到MySQL表的列中？">我们如何将值添加到MySQL表的列中？</a></li>
-                        <li class="py-2"><a href="/html/category/article-1056.htm" title="vue项目的excel的导入与导出">vue项目的excel的导入与导出</a></li>
+                        <li class="py-2"><a href="/html/category/article-483.htm" title="vue变更v-for列表多个项目的颜色和选择项目">vue变更v-for列表多个项目的颜色和选择项目</a></li>
+                        <li class="py-2"><a href="/html/category/article-489.htm" title="CSS中文本居中显示">CSS中文本居中显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-1354.htm" title="C ++中具有最大金数的路径">C ++中具有最大金数的路径</a></li>
+                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
+                        <li class="py-2"><a href="/html/category/article-480.htm" title="JAVA基础小细节——equals()与hashCode()">JAVA基础小细节——equals()与hashCode()</a></li>
+                        <li class="py-2"><a href="/html/category/article-500.htm" title="SpringBoot动态定时任务的实现">SpringBoot动态定时任务的实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-1343.htm" title="HttpClient 设置超时时间">HttpClient 设置超时时间</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
                     </ul>
     </div>
 </div>
@@ -136,7 +137,7 @@ $(function() {
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">32</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+                <h4><span class="badge" style="float: right;">34</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
