@@ -105,6 +105,7 @@ $(function() {
                           				  				  				<p>假设在大小为m * n的金矿网格中，该矿中的每个单元格都有一个整数，表示该单元格中的金含量，0表示为空。我们必须找到在以下条件下可以收集的最大数量的黄金-</p> <ul class="list-paddingleft-2"> <li> <p>每次我们指向一个单元格时，我们都会收集该单元格中的所有黄金。</p> </li> <li> <p>从我们的位置，我们可以向左，向右，向上或向下走一步。</p> </li> <li> <p>我们不能多次访问同一个单元。</p> </li> <li> <p>切勿访问0金的单元格。</p> </li> </ul> <p>因此，如果输入类似于[[0,6,0]，[5,8,7]，[0,9,0]]，则结果将为24。获得最大黄金的路径为9-&gt; 8 -&gt; 7</p> <p>为了解决这个问题，我们将遵循以下步骤-</p> <ul class="list-paddingleft-2"> <li> <p>制作一个称为dfs的方法，即采用格网n，m，i和j。这将如下所示</p> </li> <li> <p>如果i&gt; = n或j&gt; = m或i &lt;0或j &lt;0或grid [i，j] = -1或grid [i，j] = 0，则返回0</p> </li> <li> <p>temp：= grid [i，j]，成本：= grid [i，j] and grid [i，j] = -1</p> </li> <li> <p>cost：=成本+ dfs（grid，n，m，i + 1，j），dfs（grid，n，m，i – 1，j）和dfs（grid，n，m，i，j – 1的最大值） ）</p> </li> <li> <p>grid [i，j]：=温度</p> </li> <li> <p>返回成本</p> </li> <li> <p>主要方法是</p> </li> <li> <p>n：=网格行，m：=网格列，ans：= 0</p> </li> <li> <p>对于i，范围为0至n – 1</p> </li> <ul class="list-paddingleft-2" style="list-style-type: square;"> <li> <p>如果grid [i，j]不为0，则ans：= max of ans，dfs(grid,n,m,i,j)</p> </li> <li> <p>对于j，范围从0到m – 1</p> </li> </ul> <ul class="list-paddingleft-2" style="list-style-type: square;"></ul> <li> <p>返回ans</p> </li> </ul> <p>让我们看下面的实现以更好地理解-</p> <h2>示例</h2> <pre>#include&nbsp;&lt;bits/stdc++.h&gt; using&nbsp;namespace&nbsp;std; class&nbsp;Solution&nbsp;{ &nbsp;&nbsp;&nbsp;public: &nbsp;&nbsp;&nbsp;int&nbsp;dfs(vector&lt;vector&lt;int&gt;&gt;&amp;&nbsp;grid,&nbsp;int&nbsp;n,&nbsp;int&nbsp;m,&nbsp;int&nbsp;i,&nbsp;int&nbsp;j){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(i&gt;=n&nbsp;||&nbsp;j&gt;=m&nbsp;||i&lt;0||j&lt;0&nbsp;||&nbsp;grid[i][j]==-1&nbsp;||&nbsp;grid[i][j]&nbsp;==&nbsp;0)return&nbsp;0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;temp&nbsp;=grid[i][j]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;cost&nbsp;=&nbsp;grid[i][j]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grid[i][j]&nbsp;=&nbsp;-1; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cost+=max({dfs(grid,n,m,i+1,j),dfs(grid,n,m,i-1,j),dfs(grid,n,m,i,j+1),dfs(grid,n,m,i,j-1)}); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grid[i][j]&nbsp;=&nbsp;temp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;cost; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;int&nbsp;getMaximumGold(vector&lt;vector&lt;int&gt;&gt;&amp;&nbsp;grid)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;n&nbsp;=&nbsp;grid.size()&nbsp;; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;m&nbsp;=&nbsp;grid[0].size(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;ans&nbsp;=&nbsp;0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(int&nbsp;i&nbsp;=0;i&lt;n;i++){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(int&nbsp;j&nbsp;=0;j&lt;m;j++){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(grid[i][j]){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//cout&nbsp;&lt;&lt;&nbsp;"Start&nbsp;:&nbsp;"&nbsp;&lt;&lt;&nbsp;i&nbsp;&lt;&lt;"&nbsp;"&nbsp;&lt;&lt;&nbsp;j&nbsp;&lt;&lt;&nbsp;endl; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ans&nbsp;=&nbsp;max(ans,dfs(grid,n,m,i,j)); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;ans; &nbsp;&nbsp;&nbsp;} }; main(){ &nbsp;&nbsp;&nbsp;vector&lt;vector&lt;int&gt;&gt;&nbsp;v&nbsp;=&nbsp;{{0,6,0},{5,8,7},{0,9,0}}; &nbsp;&nbsp;&nbsp;Solution&nbsp;ob; &nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;(ob.getMaximumGold(v)); }</pre> <h2>输入项</h2> <pre>[[0,6,0],[5,8,7],[0,9,0]]</pre> <p>输出结果</p> <pre>24</pre> <div></div> 			
                         <div class="col-md-12 mt-5">
                                                         <p>上一个：<a href="/html/category/article-1353.htm">关于Redis缓存和数据库一致性问题</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1631.htm">Vue动态样式:class用法</a></p>
                                                     </div>
 
                                             </div>
@@ -116,15 +117,15 @@ $(function() {
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2"><a href="/html/category/article-487.htm" title="Go 语言结构体链表详解">Go 语言结构体链表详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
-                        <li class="py-2"><a href="/html/category/article-500.htm" title="SpringBoot动态定时任务的实现">SpringBoot动态定时任务的实现</a></li>
-                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
-                        <li class="py-2"><a href="/html/category/article-520.htm" title="什么是MySQL ENUM数据类型？使用ENUM数据类型有什么优势？">什么是MySQL ENUM数据类型？使用ENUM数据类型有什么优势？</a></li>
-                        <li class="py-2"><a href="/html/category/article-483.htm" title="vue变更v-for列表多个项目的颜色和选择项目">vue变更v-for列表多个项目的颜色和选择项目</a></li>
-                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
-                        <li class="py-2"><a href="/html/category/article-528.htm" title="我们如何在MySQL返回的结果集的组级别上应用过滤条件？">我们如何在MySQL返回的结果集的组级别上应用过滤条件？</a></li>
-                        <li class="py-2"><a href="/html/category/article-521.htm" title="typescript的安装运行与自动编译">typescript的安装运行与自动编译</a></li>
-                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
+                        <li class="py-2"><a href="/html/category/article-481.htm" title="如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？">如何在同一个MySQL表中存储固定长度字符串和可变长度字符串？</a></li>
+                        <li class="py-2"><a href="/html/category/article-501.htm" title="springboot自定义视图映射">springboot自定义视图映射</a></li>
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-490.htm" title="vue实现简单无缝滚动效果_vue.js">vue实现简单无缝滚动效果_vue.js</a></li>
+                        <li class="py-2"><a href="/html/category/article-518.htm" title="使用TreeMap在Java中对用户定义的对象进行排序">使用TreeMap在Java中对用户定义的对象进行排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-1055.htm" title="Java 轻松掌握字符缓冲流的使用_java">Java 轻松掌握字符缓冲流的使用_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1632.htm" title="MongoDB利用oplog恢复数据的方法_MongoDB_">MongoDB利用oplog恢复数据的方法_MongoDB_</a></li>
                     </ul>
     </div>
 </div>
@@ -136,7 +137,7 @@ $(function() {
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+                <h4><span class="badge" style="float: right;">36</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
