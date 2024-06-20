@@ -5,9 +5,9 @@
     <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-1333.htm" />
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-1927.htm" />
 <link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
-<title>在vue项目中如何获取视频的时长_vue.js_ - SwedenAddress</title>
+<title>常用注解使用总结系列: @Order 注解 - SwedenAddress</title>
 <link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@ $(function() {
             <div class="container">
                 <div class="main-titles-head text-center">
                     <h1 class="header-name" style="word-break: break-all;">
-                        在vue项目中如何获取视频的时长_vue.js_                    </h1>
+                        常用注解使用总结系列: @Order 注解                    </h1>
                     
                 </div>
             </div>
@@ -102,12 +102,31 @@ $(function() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                          				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">vue获取视频时长</a></li> <li><a href="#_label1" rel="nofollow">vue-video-player获取播放时间</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_0" rel="nofollow">全局引用</a></li> <li><a href="#_lab2_1_1" rel="nofollow">局部引用</a></li> <li><a href="#_lab2_1_2" rel="nofollow">html</a></li> <li><a href="#_lab2_1_3" rel="nofollow">methods获取播放时间</a></li> </ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>vue获取视频时长</h2> <p>传入参数为视频文件对象</p> <p><strong>js的代码如下：</strong></p> <div class="ay1code"> <pre class="brush:js;">getVideoDuration(file) {    var url = URL.createObjectURL(file);    var audioElement = new Audio(url);    var self = this;    var result;    audioElement.addEventListener("loadedmetadata", function() {      // 视频时长值的获取要等到这个匿名函数执行完毕才产生      result = audioElement.duration; //得到时长为秒，小数，182.36      self.ruleForm.videoDuration = parseInt(result); //转为int值    });  }</pre> </div> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>vue-video-player获取播放时间</h2> <div class="ay1code"> <pre class="brush:js;">npm install vue-video-player -S</pre> </div> <p class="maodian"><a name="_lab2_1_0" rel="nofollow"></a></p> <h3>全局引用</h3> <div class="ay1code"> <pre class="brush:js;">import VideoPlayer from 'vue-video-player'  import 'vue-video-player/src/custom-theme.css'  import 'video.js/dist/video-js.css'  Vue.use(VideoPlayer)</pre> </div> <p class="maodian"><a name="_lab2_1_1" rel="nofollow"></a></p> <h3>局部引用</h3> <div class="ay1code"> <pre class="brush:js;">  import {      videoPlayer    } from 'vue-video-player'    import 'video.js/dist/video-js.css'    export default {    components: {      videoPlayer    }  }</pre> </div> <p class="maodian"><a name="_lab2_1_2" rel="nofollow"></a></p> <h3>html</h3> <div class="ay1code"> <pre class="brush:xhtml;">   &lt;video-player class="video-player vjs-custom-skin"               ref="videoPlayer"               :playsinline="true"               :options="playerOptions"&gt;        &lt;/video-player&gt;</pre> </div> <p class="maodian"><a name="_lab2_1_3" rel="nofollow"></a></p> <h3>methods获取播放时间</h3> <div class="ay1code"> <pre class="brush:js;">  this.$nextTick(() =&gt; {         setTimeout(() =&gt; {         let du = document.getElementById("vjs_video_3_html5_api") //获取组件下的video         var hour = parseInt((du.duration) / 3600);         var minute = parseInt((du.duration % 3600) / 60);         var second = parseInt(du.duration % 60);         let result = ''         if (hour &gt; 0) {         result = this.formatTimeStr(hour) + ':' + this.formatTimeStr(minute) + ':' + this         .formatTimeStr(second)                   } else {                      result = this.formatTimeStr(minute) + ':' +                     this.formatTimeStr(second)                    }                    return result //转化成分，秒                  }, 200)                })          formatTimeStr(val) {          if (val &gt; 9) {            return val          } else {            return '0' + val          }        },</pre> </div> 			
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2 id="order-注解">@Order 注解</h2> <p>@Order注解主要用来控制配置类的加载顺序<br /> 示例代码:</p> <pre class="prettyprint"><code class="hljs cs">package com.runlion.tms.admin.constant;<span class="hljs-keyword">public</span><span class="hljs-keyword">class</span> AService {  } package com.runlion.tms.admin.constant;<span class="hljs-keyword">public</span><span class="hljs-keyword">class</span> BService {  }</code></pre> <pre class="prettyprint"><code class="hljs avrasm">package<span class="hljs-keyword">com</span><span class="hljs-preprocessor">.runlion</span><span class="hljs-preprocessor">.tms</span><span class="hljs-preprocessor">.admin</span><span class="hljs-preprocessor">.constant</span><span class="hljs-comment">;</span>  import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Bean</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Configuration</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.core</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Order</span><span class="hljs-comment">;</span>  @Configuration @Order(<span class="hljs-number">2</span>) public class AConfig {   @Bean   public AService AService() {     System<span class="hljs-preprocessor">.out</span><span class="hljs-preprocessor">.println</span>(<span class="hljs-string">"AService 加载了"</span>)<span class="hljs-comment">;</span>     return new AService()<span class="hljs-comment">;</span>   }  } package<span class="hljs-keyword">com</span><span class="hljs-preprocessor">.runlion</span><span class="hljs-preprocessor">.tms</span><span class="hljs-preprocessor">.admin</span><span class="hljs-preprocessor">.constant</span><span class="hljs-comment">;</span>  import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Bean</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Configuration</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.core</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Order</span><span class="hljs-comment">;</span>  @Configuration @Order(<span class="hljs-number">1</span>) public class BConfig {   @Bean   public BService bService() {     System<span class="hljs-preprocessor">.out</span><span class="hljs-preprocessor">.println</span>(<span class="hljs-string">"BService 加载了"</span>)<span class="hljs-comment">;</span>     return new BService()<span class="hljs-comment">;</span>   } }</code></pre> <p>测试类:</p> <pre class="prettyprint"><code class="hljs java"><span class="hljs-keyword">package</span> com.runlion.tms.admin.constant;<span class="hljs-keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;<span class="hljs-keyword">public</span><span class="hljs-class"><span class="hljs-keyword">class</span><span class="hljs-title">OrderMain</span> {<!-- --></span><span class="hljs-keyword">public</span><span class="hljs-keyword">static</span><span class="hljs-keyword">void</span><span class="hljs-title">main</span>(String[] args) {     AnnotationConfigApplicationContext context =<span class="hljs-keyword">new</span> AnnotationConfigApplicationContext(<span class="hljs-string">"com.runlion.tms.admin.constant"</span>);   } }</code></pre> <p>输出结果:<br /> BService 加载了<br /> AService 加载了</p> <p>因为BService 的@Order(1),所以先打印出来</p> </div> 			
                         <div class="col-md-12 mt-5">
-                                                        <p>上一个：<a href="/html/category/article-1324.htm">Task提高异步执行效率技巧_C#教程_</a></p>
-                                                        <p>下一个：<a href="/html/category/article-1334.htm">【openstack】cloudkitty组件，入门级安装（快速）_在线工具</a></p>
+                                                        <p>上一个：<a href="/html/category/article-1914.htm">VSCode插件离线安装</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1928.htm">Java 9中的JShell中的前向参考是什么？</a></p>
                                                     </div>
 
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-1631.htm">Vue动态样式:class用法</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-507.htm">vue 封装图片路径</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-492.htm">kafka系列SpringBoot 中使用@KafkaListener详解与使用</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-479.htm">python多线程编程_2小时玩转python多线程编程</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-471.htm">linux清理磁盘文件夹方法</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-463.htm">mongodb开发&#8212;GridFS文件存储</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-402.htm">纳尼！ROOT修改权限不足？提示Operation not permitted？</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-359.htm">uniapp中封装一个弹框组件</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-299.htm">smdms超市订单管理系统之登录功能</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-284.htm">Python调用C++程序的几种方法</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
                                             </div>
                     <div class="col-md-3">
                         <div class="panel panel-default">
@@ -116,16 +135,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-490.htm" title="vue实现简单无缝滚动效果_vue.js">vue实现简单无缝滚动效果_vue.js</a></li>
                         <li class="py-2"><a href="/html/category/article-488.htm" title="eslint在vue中如何使用">eslint在vue中如何使用</a></li>
-                        <li class="py-2"><a href="/html/category/article-501.htm" title="springboot自定义视图映射">springboot自定义视图映射</a></li>
+                        <li class="py-2"><a href="/html/category/article-517.htm" title="解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题">解决rancher和k8s集群ingress部署在同一台机器导致的80及443端口占用问题</a></li>
                         <li class="py-2"><a href="/html/category/article-1324.htm" title="Task提高异步执行效率技巧_C#教程_">Task提高异步执行效率技巧_C#教程_</a></li>
-                        <li class="py-2"><a href="/html/category/article-1913.htm" title="Nacos配置管理基础应用">Nacos配置管理基础应用</a></li>
-                        <li class="py-2"><a href="/html/category/article-1354.htm" title="C ++中具有最大金数的路径">C ++中具有最大金数的路径</a></li>
-                        <li class="py-2"><a href="/html/category/article-1334.htm" title="【openstack】cloudkitty组件，入门级安装（快速）_在线工具">【openstack】cloudkitty组件，入门级安装（快速）_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
-                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-528.htm" title="我们如何在MySQL返回的结果集的组级别上应用过滤条件？">我们如何在MySQL返回的结果集的组级别上应用过滤条件？</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
                         <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
+                        <li class="py-2"><a href="/html/category/article-792.htm" title="SpringMVC+Log4j配置定时生成、删除日志">SpringMVC+Log4j配置定时生成、删除日志</a></li>
+                        <li class="py-2"><a href="/html/category/article-527.htm" title="Confluent之Kafka Connector详细分析">Confluent之Kafka Connector详细分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-497.htm" title="HTML5画布 canvas移动">HTML5画布 canvas移动</a></li>
                     </ul>
     </div>
 </div>
