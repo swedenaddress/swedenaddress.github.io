@@ -105,6 +105,7 @@ $(function() {
                           				  				  				<p><strong>JShell</strong>是一个<strong>命令行</strong><strong>工具</strong>，它使我们可以输入Java语句（简单语句，复合语句，甚至完整的方法和类），对其进行评估并打印结果。</p> <p><strong>前向</strong><strong>引用</strong>是指<strong>引用</strong>我们在JShell中键入的任何代码中都不存在的<strong>方法</strong>，<strong>变量</strong>或<strong>类的</strong>命令。在JShell中按顺序输入和评估代码后，这些<strong>前向</strong><strong>引用</strong>已暂时无法解析。JShell支持向前引用<strong>方法</strong><strong>机构</strong>，<strong>返回</strong><strong>类型</strong>，<strong>参数</strong><strong>类型</strong>，<strong>变量</strong><strong>的类型</strong>，以及<strong>内</strong><strong>一</strong><strong>类</strong>。</p> <p>在下面的代码片段中，在<strong>Jshell中</strong>创建了一个方法<strong>forwardReference()</strong>。在声明变量之前，无法调用此方法。如果我们试图尝试调用此方法，它将引发警告消息：“<strong>试图<code>forwardReference()</code>调用在声明了变量notYetDeclared之前无法调用的方法</strong>”</p> <pre>C:\Users\User&gt;jshell |&nbsp;Welcome&nbsp;to&nbsp;JShell&nbsp;--&nbsp;Version&nbsp;9.0.4 |&nbsp;For&nbsp;an&nbsp;introduction&nbsp;type:&nbsp;/help&nbsp;intro  jshell&gt;&nbsp;void&nbsp;forwardReference()&nbsp;{ ...&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(notYetDeclared); ...&gt;&nbsp;&nbsp;&nbsp;&nbsp;} |&nbsp;created&nbsp;method&nbsp;forwardReference(),&nbsp;however,&nbsp;it&nbsp;cannot&nbsp;be&nbsp;invoked&nbsp;until&nbsp;variable&nbsp;notYetDeclared&nbsp;is&nbsp;declared  jshell&gt;&nbsp;forwardReference()|&nbsp;attempted&nbsp;to&nbsp;call&nbsp;method&nbsp;forwardReference()&nbsp;which&nbsp;cannot&nbsp;be&nbsp;invoked&nbsp;until&nbsp;variable&nbsp;notYetDeclared&nbsp;is&nbsp;declared</pre> <p></p> <p>在下面的代码片段中，我们声明了返回字符串的“<strong>notYetDeclared</strong> ”变量。最后，如果我们在JShell中调用<strong>forwardReference()</strong>，则它会显示<strong>“ variable is</strong> defined<strong>”</strong>。</p> <pre>jshell&gt;&nbsp;String&nbsp;notYetDeclared&nbsp;=&nbsp;"variable&nbsp;is&nbsp;declared" notYetDeclared&nbsp;==&gt;&nbsp;"variable&nbsp;is&nbsp;declared"  jshell&gt;&nbsp;forwardReference()variable&nbsp;is&nbsp;declared</pre> <div></div> 			
                         <div class="col-md-12 mt-5">
                                                         <p>上一个：<a href="/html/category/article-1927.htm">常用注解使用总结系列: @Order 注解</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1941.htm">Vue中的路由守卫</a></p>
                                                     </div>
 
                                                 <div class="panel panel-default mt-5">
@@ -134,16 +135,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-496.htm" title="vue3+elementUI-plus 项目实战登录">vue3+elementUI-plus 项目实战登录</a></li>
-                        <li class="py-2"><a href="/html/category/article-503.htm" title="Vue.js 3.x 双向绑定原理_在线工具">Vue.js 3.x 双向绑定原理_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-519.htm" title="Springboot 整合 xxljob 动态API调度任务(进阶篇)">Springboot 整合 xxljob 动态API调度任务(进阶篇)</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                        <li class="py-2"><a href="/html/category/article-1324.htm" title="Task提高异步执行效率技巧_C#教程_">Task提高异步执行效率技巧_C#教程_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1913.htm" title="Nacos配置管理基础应用">Nacos配置管理基础应用</a></li>
+                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
+                        <li class="py-2"><a href="/html/category/article-524.htm" title="数据库四大特性及数据库隔离级别（*）">数据库四大特性及数据库隔离级别（*）</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-1343.htm" title="HttpClient 设置超时时间">HttpClient 设置超时时间</a></li>
                         <li class="py-2"><a href="/html/category/article-791.htm" title="Linux网络——NFS服务">Linux网络——NFS服务</a></li>
-                        <li class="py-2"><a href="/html/category/article-485.htm" title="mysql索引失效的常见9种原因详解">mysql索引失效的常见9种原因详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-504.htm" title="Infrastructure 知识: dnf对module的处理">Infrastructure 知识: dnf对module的处理</a></li>
-                        <li class="py-2"><a href="/html/category/article-1334.htm" title="【openstack】cloudkitty组件，入门级安装（快速）_在线工具">【openstack】cloudkitty组件，入门级安装（快速）_在线工具</a></li>
-                        <li class="py-2"><a href="/html/category/article-491.htm" title="我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></li>
-                        <li class="py-2"><a href="/html/category/article-514.htm" title="Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源">Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源</a></li>
-                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-1323.htm" title="springcloud  Hystrix 及 Feign与Hystrix结合 使用方法">springcloud  Hystrix 及 Feign与Hystrix结合 使用方法</a></li>
                     </ul>
     </div>
 </div>
@@ -155,7 +156,7 @@ $(function() {
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">40</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+                <h4><span class="badge" style="float: right;">42</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
