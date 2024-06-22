@@ -5,9 +5,9 @@
     <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-1927.htm" />
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-1955.htm" />
 <link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
-<title>常用注解使用总结系列: @Order 注解 - SwedenAddress</title>
+<title>@DateTimeFormat 和 @JsonFormat 注解 - SwedenAddress</title>
 <link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@ $(function() {
             <div class="container">
                 <div class="main-titles-head text-center">
                     <h1 class="header-name" style="word-break: break-all;">
-                        常用注解使用总结系列: @Order 注解                    </h1>
+                        @DateTimeFormat 和 @JsonFormat 注解                    </h1>
                     
                 </div>
             </div>
@@ -102,10 +102,10 @@ $(function() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2 id="order-注解">@Order 注解</h2> <p>@Order注解主要用来控制配置类的加载顺序<br /> 示例代码:</p> <pre class="prettyprint"><code class="hljs cs">package com.runlion.tms.admin.constant;<span class="hljs-keyword">public</span><span class="hljs-keyword">class</span> AService {  } package com.runlion.tms.admin.constant;<span class="hljs-keyword">public</span><span class="hljs-keyword">class</span> BService {  }</code></pre> <pre class="prettyprint"><code class="hljs avrasm">package<span class="hljs-keyword">com</span><span class="hljs-preprocessor">.runlion</span><span class="hljs-preprocessor">.tms</span><span class="hljs-preprocessor">.admin</span><span class="hljs-preprocessor">.constant</span><span class="hljs-comment">;</span>  import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Bean</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Configuration</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.core</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Order</span><span class="hljs-comment">;</span>  @Configuration @Order(<span class="hljs-number">2</span>) public class AConfig {   @Bean   public AService AService() {     System<span class="hljs-preprocessor">.out</span><span class="hljs-preprocessor">.println</span>(<span class="hljs-string">"AService 加载了"</span>)<span class="hljs-comment">;</span>     return new AService()<span class="hljs-comment">;</span>   }  } package<span class="hljs-keyword">com</span><span class="hljs-preprocessor">.runlion</span><span class="hljs-preprocessor">.tms</span><span class="hljs-preprocessor">.admin</span><span class="hljs-preprocessor">.constant</span><span class="hljs-comment">;</span>  import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Bean</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Configuration</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.core</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Order</span><span class="hljs-comment">;</span>  @Configuration @Order(<span class="hljs-number">1</span>) public class BConfig {   @Bean   public BService bService() {     System<span class="hljs-preprocessor">.out</span><span class="hljs-preprocessor">.println</span>(<span class="hljs-string">"BService 加载了"</span>)<span class="hljs-comment">;</span>     return new BService()<span class="hljs-comment">;</span>   } }</code></pre> <p>测试类:</p> <pre class="prettyprint"><code class="hljs java"><span class="hljs-keyword">package</span> com.runlion.tms.admin.constant;<span class="hljs-keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;<span class="hljs-keyword">public</span><span class="hljs-class"><span class="hljs-keyword">class</span><span class="hljs-title">OrderMain</span> {<!-- --></span><span class="hljs-keyword">public</span><span class="hljs-keyword">static</span><span class="hljs-keyword">void</span><span class="hljs-title">main</span>(String[] args) {     AnnotationConfigApplicationContext context =<span class="hljs-keyword">new</span> AnnotationConfigApplicationContext(<span class="hljs-string">"com.runlion.tms.admin.constant"</span>);   } }</code></pre> <p>输出结果:<br /> BService 加载了<br /> AService 加载了</p> <p>因为BService 的@Order(1),所以先打印出来</p> </div> 			
+                          				  				  				<div id="content_views" class="htmledit_views"> <h3>1. 准备</h3> <p>定义一个pojo，它有一个 java.util.Date 类型的属性 date。</p> <pre class="has"><code class="language-java">import java.util.Date;  public class DateVo {     private Date date;      public void setDate(Date date){         this.date = date;     }     public Date getDate(){         return date;     } }</code></pre> <p>定义一个Controller</p> <pre class="has"><code class="language-java">@RestController @RequestMapping("/date/") public class DateController {      @RequestMapping("test")     public DateVo getDate(DateVo vo){         System.out.println("date1:"+vo.getDate());          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");         String date = sdf.format(vo.getDate());         System.out.println("date2:"+date);          DateVo vo2 = new DateVo();         vo2.setDate(new Date());         return vo2;     } }</code></pre> <p>访问 /date/test ，并传入参数：2018-08-02 22:05:55</p> <p>发现并不能访问成功，会抛出异常：</p> <p><img decoding="async" alt="" class="has" src="http://img.555519.xyz/uploads/20221201/5e86ebc14dcfb9bc7fbcee5149523586.jpg"></p> <p style="text-indent:0;">因为传入的参数是 String 类型的，而用来接收参数的 DateVo 的 date 属性是 java.util.Date 类型的，类型无法转换。</p> <h3>2. 入参格式化</h3> <p style="text-indent:0;">这时，就可以使用 Spring 的 @DateTimeFormat 注解格式化参数，来解决上述问题。</p> <p style="text-indent:0;">改造 DateVo：</p> <pre class="has"><code class="language-java">public class DateVo {     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")     private Date date;      public void setDate(Date date){         this.date = date;     }     public Date getDate(){         return date;     } }</code></pre> <p>再像上面一样访问 /date/test ，并传入参数：2018-08-02 22:05:55，将在控制台上打印：</p> <p style="text-indent:50px;">date1:Thu Aug 02 22:05:55 CST 2018</p> <p style="text-indent:50px;">date2:2018-08-02 22:05:55</p> <p>可以看到，加入 @DateTimeFormat 注解后参数可以被接收到了，但日期时间的格式还是需要自己再手动转换一下。</p> <p>因为&nbsp;@DateTimeFormat 注解的 pattern 属性值指定的日期时间格式并不是将要转换成的日期格式，这个指定的格式是和传入的参数对应的，假如注解为：</p> <p style="text-indent:50px;">@DateTimeFormat(pattern="yyyy/MM/dd HH:mm:ss")</p> <p style="text-indent:0;">则传入的参数应该是这样的：</p> <p style="text-indent:50px;">2018/08/02 22:05:55</p> <p style="text-indent:0;">否则会抛出异常。</p> <h3>3. 出参格式化</h3> <p style="text-indent:0;">在上述示例中，调用接口的返回结果为：</p> <p style="text-indent:50px;">"date": "2018-08-01T14:25:31.296+0000"</p> <p style="text-indent:0;">这个格式并不是我们想要的，那么如何将其进行格式化？这时就需要用到 jackson 的&nbsp;@JsonFormat 注解。</p> <p style="text-indent:0;">改造 DateVo：</p> <pre class="has"><code class="language-java">public class DateVo {     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")     @JsonFormat(             pattern = "yyyy-MM-dd HH:mm:ss"     )     private Date date;      public void setDate(Date date){         this.date = date;     }     public Date getDate(){         return date;     } }</code></pre> <p>继续访问&nbsp;/date/test ，并传入参数：2018-08-02 22:05:55，可以看到接口返回的结果为：</p> <p style="text-indent:50px;">"date": "2018-08-01 14:32:57"</p> <p style="text-indent:0;">虽然时间格式正确了，但实际上当前时间是 “2018-08-01 22:32:57” ，早了8个小时。因为，jackson在序列化时间时是按照国际标准时间GMT进行格式化的，而在国内默认时区使用的是CST时区，两者相差8小时。</p> <p style="text-indent:0;">所以，@JsonFormat 注解还要再加一个属性：</p> <pre class="has"><code class="language-java">@JsonFormat(     pattern = "yyyy-MM-dd HH:mm:ss"，     timezone = "GMT+8" ) private Date date;</code></pre> <p>这样，结果就正确了。</p> <p>因为 @JsonFormat 注解不是 Spring 自带的注解，所以使用该注解前需要添加 jackson 相关的依赖包。当然，如果是 SpringBoot 项目就不需要自己手动添加依赖了，因为在 spring-boot-start-web 下已经包含了 jackson 相关依赖。</p> <p><img decoding="async" alt="" class="has" src="http://img.555519.xyz/uploads/20221201/c9adcfb1768d0f5306633dc7f35cd99d.jpg"></p> </div> 			
                         <div class="col-md-12 mt-5">
-                                                        <p>上一个：<a href="/html/category/article-1914.htm">VSCode插件离线安装</a></p>
-                                                        <p>下一个：<a href="/html/category/article-1928.htm">Java 9中的JShell中的前向参考是什么？</a></p>
+                                                        <p>上一个：<a href="/html/category/article-1942.htm">如何在MySQL中添加两个或多个字符串？</a></p>
+                                                        <p>下一个：<a href="/html/category/article-1956.htm">企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4</a></p>
                                                     </div>
 
                                                 <div class="panel panel-default mt-5">
@@ -114,16 +114,16 @@ $(function() {
                             </div>
                             <div class="panel-body">
                                 <ul class="p-0 x-0">
-                                                                        <li class="py-2"><a href="/html/category/article-1631.htm">Vue动态样式:class用法</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-507.htm">vue 封装图片路径</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-492.htm">kafka系列SpringBoot 中使用@KafkaListener详解与使用</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-479.htm">python多线程编程_2小时玩转python多线程编程</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-471.htm">linux清理磁盘文件夹方法</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-463.htm">mongodb开发&#8212;GridFS文件存储</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-504.htm">Infrastructure 知识: dnf对module的处理</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-489.htm">CSS中文本居中显示</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-464.htm">Python技法：实现简单的递归下降Parser_在线工具</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-413.htm">如果我们使用不带参数的UNIX_TIMESTAMP()函数，MySQL将返回什么？</a></li>
                                                                         <li class="py-2"><a href="/html/category/article-402.htm">纳尼！ROOT修改权限不足？提示Operation not permitted？</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-359.htm">uniapp中封装一个弹框组件</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-299.htm">smdms超市订单管理系统之登录功能</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-284.htm">Python调用C++程序的几种方法</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-347.htm">手写Mybatis第5章：数据源的解析、创建和使用</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-336.htm">创建线程方式三实现Callable接口</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-329.htm">MySQL的存储函数与存储过程的区别解析_Mysql</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-323.htm">从一个基础的socket服务说起</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-307.htm">MySQL索引分类及相关概念辨析</a></li>
                                                                     </ul>
                             </div>
                         </div>
@@ -135,16 +135,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1632.htm" title="MongoDB利用oplog恢复数据的方法_MongoDB_">MongoDB利用oplog恢复数据的方法_MongoDB_</a></li>
-                        <li class="py-2"><a href="/html/category/article-791.htm" title="Linux网络——NFS服务">Linux网络——NFS服务</a></li>
-                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
-                        <li class="py-2"><a href="/html/category/article-1956.htm" title="企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4">企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4</a></li>
-                        <li class="py-2"><a href="/html/category/article-1343.htm" title="HttpClient 设置超时时间">HttpClient 设置超时时间</a></li>
-                        <li class="py-2"><a href="/html/category/article-1913.htm" title="Nacos配置管理基础应用">Nacos配置管理基础应用</a></li>
-                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
-                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
-                        <li class="py-2"><a href="/html/category/article-491.htm" title="我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></li>
-                        <li class="py-2"><a href="/html/category/article-507.htm" title="vue 封装图片路径">vue 封装图片路径</a></li>
+                        <li class="py-2"><a href="/html/category/article-506.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/html/category/article-521.htm" title="typescript的安装运行与自动编译">typescript的安装运行与自动编译</a></li>
+                        <li class="py-2"><a href="/html/category/article-1941.htm" title="Vue中的路由守卫">Vue中的路由守卫</a></li>
+                        <li class="py-2"><a href="/html/category/article-1942.htm" title="如何在MySQL中添加两个或多个字符串？">如何在MySQL中添加两个或多个字符串？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1334.htm" title="【openstack】cloudkitty组件，入门级安装（快速）_在线工具">【openstack】cloudkitty组件，入门级安装（快速）_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-492.htm" title="kafka系列SpringBoot 中使用@KafkaListener详解与使用">kafka系列SpringBoot 中使用@KafkaListener详解与使用</a></li>
+                        <li class="py-2"><a href="/html/category/article-1631.htm" title="Vue动态样式:class用法">Vue动态样式:class用法</a></li>
+                        <li class="py-2"><a href="/html/category/article-508.htm" title="Libco Hook 机制浅析_在线工具">Libco Hook 机制浅析_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
+                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
                     </ul>
     </div>
 </div>

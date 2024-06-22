@@ -5,9 +5,9 @@
     <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-1927.htm" />
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-1956.htm" />
 <link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
-<title>常用注解使用总结系列: @Order 注解 - SwedenAddress</title>
+<title>企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4 - SwedenAddress</title>
 <link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@ $(function() {
             <div class="container">
                 <div class="main-titles-head text-center">
                     <h1 class="header-name" style="word-break: break-all;">
-                        常用注解使用总结系列: @Order 注解                    </h1>
+                        企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4                    </h1>
                     
                 </div>
             </div>
@@ -102,10 +102,9 @@ $(function() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2 id="order-注解">@Order 注解</h2> <p>@Order注解主要用来控制配置类的加载顺序<br /> 示例代码:</p> <pre class="prettyprint"><code class="hljs cs">package com.runlion.tms.admin.constant;<span class="hljs-keyword">public</span><span class="hljs-keyword">class</span> AService {  } package com.runlion.tms.admin.constant;<span class="hljs-keyword">public</span><span class="hljs-keyword">class</span> BService {  }</code></pre> <pre class="prettyprint"><code class="hljs avrasm">package<span class="hljs-keyword">com</span><span class="hljs-preprocessor">.runlion</span><span class="hljs-preprocessor">.tms</span><span class="hljs-preprocessor">.admin</span><span class="hljs-preprocessor">.constant</span><span class="hljs-comment">;</span>  import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Bean</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Configuration</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.core</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Order</span><span class="hljs-comment">;</span>  @Configuration @Order(<span class="hljs-number">2</span>) public class AConfig {   @Bean   public AService AService() {     System<span class="hljs-preprocessor">.out</span><span class="hljs-preprocessor">.println</span>(<span class="hljs-string">"AService 加载了"</span>)<span class="hljs-comment">;</span>     return new AService()<span class="hljs-comment">;</span>   }  } package<span class="hljs-keyword">com</span><span class="hljs-preprocessor">.runlion</span><span class="hljs-preprocessor">.tms</span><span class="hljs-preprocessor">.admin</span><span class="hljs-preprocessor">.constant</span><span class="hljs-comment">;</span>  import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Bean</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Configuration</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.core</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Order</span><span class="hljs-comment">;</span>  @Configuration @Order(<span class="hljs-number">1</span>) public class BConfig {   @Bean   public BService bService() {     System<span class="hljs-preprocessor">.out</span><span class="hljs-preprocessor">.println</span>(<span class="hljs-string">"BService 加载了"</span>)<span class="hljs-comment">;</span>     return new BService()<span class="hljs-comment">;</span>   } }</code></pre> <p>测试类:</p> <pre class="prettyprint"><code class="hljs java"><span class="hljs-keyword">package</span> com.runlion.tms.admin.constant;<span class="hljs-keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;<span class="hljs-keyword">public</span><span class="hljs-class"><span class="hljs-keyword">class</span><span class="hljs-title">OrderMain</span> {<!-- --></span><span class="hljs-keyword">public</span><span class="hljs-keyword">static</span><span class="hljs-keyword">void</span><span class="hljs-title">main</span>(String[] args) {     AnnotationConfigApplicationContext context =<span class="hljs-keyword">new</span> AnnotationConfigApplicationContext(<span class="hljs-string">"com.runlion.tms.admin.constant"</span>);   } }</code></pre> <p>输出结果:<br /> BService 加载了<br /> AService 加载了</p> <p>因为BService 的@Order(1),所以先打印出来</p> </div> 			
+                          				  				  				<p>　　在.Netcore 技术栈中，一直在使用了开源组件IdentityService4进行身份管理，其功能的强大和易用性的确很受开发者喜欢，但是最近其开源组织<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/duendesoftware"  rel="nofollow">Duende Software</a>&nbsp;开始对其进行商业收费，不得不探索其它的解决方案。个人认为，其实在.NetCore 本身是提供一套基<span class="pl-en"><span class="pl-en">AspNetCore.<span class="pl-en">Identity</span></span></span>解决方案的，我们只需按照自己的架构意图进行封装，就可以满足我们各种类型的需求。</p> <p>　　现在动起手来（Beginning Out With IdentityServer4），开发一个满足自己业务系统的Identity 服务替换IdentityServer4。开发一套基于Microsoft.AspNetCore.Identity的<span class="pl-en">Identity 的框架，需要设计一下IdentityUser、IdentityRole和 用于生成JWT 的 Claim。已即对应的验证逻辑和序列化Provider。我们首先看一下Microsoft.AspNetCore.Identity 的设计架构图，如下图所示，它是一个分层次的架构，每个层次有自己的职责。基于这个架构，可以从网上下载很多的开源框架和源码。<br /></span></p> <p><span class="pl-en"><img fetchpriority="high" decoding="async" src="http://img.555519.xyz/uploads3/20220509/469e6ac8964c431f6d12aa40836db42b.jpg" alt="企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4"></span></p> <p>　　但是，今天我们挑战的是一套自己的一套简易的，高适配的框架，因为在项目开发过程中，人员和角色很多情况下，可能已经在现有的第三方平台上都预定义了，我们的系统需要能够更快、更容易的适配这些系统。一个可持续发展的社会需要包容的秩序，软件行业也是如此，我认为一个好的软件架构设计，要有更高的包容性。所以，我们今天设计的Identity 是一个开放的架构，允许适配现有的人员和角色的框架。</p> <p>　　所以，基于职能分离原则，认证组件只负责Token的业务逻辑处理，包括Token 的生成，验证，销毁，以及用RefreshToken进行更新accessToken等功能，而对于持续的Token的序列化工作通过订阅事件的方式由其它模块进行完成，也可以通过接口定义服务，通过注册服务的方式进行分离这块业务。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/a6e0eadcd905bed9673d4fc53d3d87b4.jpg" alt="企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4"></p> <p>　　由于这部分代码比较多，我就把核心的代码和运行测试的效果贴图出来，如果有需要源码的化，可以联系我。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/8cc130f06b09b8ad2688881c2a9e5144.jpg" alt="企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4"></p> <p>　　运行效果如下图，生成了目标的JWT格式的token和refreshtoken信息。</p> <p><img loading="lazy" decoding="async" src="http://img.555519.xyz/uploads3/20220509/cc2bca93ec1228d353ca6ea105a56323.jpg" alt="企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4"></p> <p><img loading="lazy" decoding="async" src="http://img.555519.xyz/uploads3/20220509/3ddc5b66efc7b1d7967d50d64e19f335.jpg" alt="企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4"></p> <p>　　通过生成的Token，我们调用测试接口，我们就可以进行了认证的验证，同时，由于Token中基于声明式的策略，我们定义了Role，还可以对接口进行基于声明式Role的权限管理，如下图所示，只有包含该角色的Token才能访问该接口。实现了基于netcore 原生的认证和鉴权。后续将继续增加基于netcore 原生的OpenID的支持。</p> <p><img loading="lazy" decoding="async" src="http://img.555519.xyz/uploads3/20220509/4b64c047d316aa6e924b05b338165e82.jpg" alt="企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4"></p> <p>　　发布完后，有圈内朋友问我，针对于微服务化怎么实现，昨天想了一下，我有做了一些调整，请看下图，通过事件总线将序列化工作与组件进行脱藕，并实现针对高并发的情况进行方案的整合，实现横向扩展。通过一个API数据服务代理，提供Token数据的反向加载。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/f083b3bda084959e9fab16ab5750b3cb.jpg" alt="企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4"></p> 			
                         <div class="col-md-12 mt-5">
-                                                        <p>上一个：<a href="/html/category/article-1914.htm">VSCode插件离线安装</a></p>
-                                                        <p>下一个：<a href="/html/category/article-1928.htm">Java 9中的JShell中的前向参考是什么？</a></p>
+                                                        <p>上一个：<a href="/html/category/article-1955.htm">@DateTimeFormat 和 @JsonFormat 注解</a></p>
                                                     </div>
 
                                                 <div class="panel panel-default mt-5">
@@ -114,15 +113,15 @@ $(function() {
                             </div>
                             <div class="panel-body">
                                 <ul class="p-0 x-0">
-                                                                        <li class="py-2"><a href="/html/category/article-1631.htm">Vue动态样式:class用法</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-507.htm">vue 封装图片路径</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-492.htm">kafka系列SpringBoot 中使用@KafkaListener详解与使用</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-479.htm">python多线程编程_2小时玩转python多线程编程</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-471.htm">linux清理磁盘文件夹方法</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-463.htm">mongodb开发&#8212;GridFS文件存储</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-402.htm">纳尼！ROOT修改权限不足？提示Operation not permitted？</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-359.htm">uniapp中封装一个弹框组件</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-299.htm">smdms超市订单管理系统之登录功能</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-509.htm">OpenPose环境搭建的经历</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-504.htm">Infrastructure 知识: dnf对module的处理</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-469.htm">聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-449.htm">feign实现微服务之间的远程调用</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-399.htm">基于Ansible实现Apache Doris快速部署运维指南</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-395.htm">springMvc+spring security 注解方式实现权限控制</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-327.htm">c#对Datatable数据的处理：DataTable.Select()和DataTable.DefaultView.ToTable()；DataRow转DataTable</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-321.htm">简单实现JS浅拷贝和深拷贝</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-309.htm">深度解析javaScript常见数据类型检查校验_在线工具</a></li>
                                                                         <li class="py-2"><a href="/html/category/article-284.htm">Python调用C++程序的几种方法</a></li>
                                                                     </ul>
                             </div>
@@ -135,16 +134,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1632.htm" title="MongoDB利用oplog恢复数据的方法_MongoDB_">MongoDB利用oplog恢复数据的方法_MongoDB_</a></li>
-                        <li class="py-2"><a href="/html/category/article-791.htm" title="Linux网络——NFS服务">Linux网络——NFS服务</a></li>
-                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
-                        <li class="py-2"><a href="/html/category/article-1956.htm" title="企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4">企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4</a></li>
-                        <li class="py-2"><a href="/html/category/article-1343.htm" title="HttpClient 设置超时时间">HttpClient 设置超时时间</a></li>
-                        <li class="py-2"><a href="/html/category/article-1913.htm" title="Nacos配置管理基础应用">Nacos配置管理基础应用</a></li>
-                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
-                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                        <li class="py-2"><a href="/html/category/article-514.htm" title="Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源">Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源</a></li>
+                        <li class="py-2"><a href="/html/category/article-1631.htm" title="Vue动态样式:class用法">Vue动态样式:class用法</a></li>
+                        <li class="py-2"><a href="/html/category/article-496.htm" title="vue3+elementUI-plus 项目实战登录">vue3+elementUI-plus 项目实战登录</a></li>
+                        <li class="py-2"><a href="/html/category/article-1942.htm" title="如何在MySQL中添加两个或多个字符串？">如何在MySQL中添加两个或多个字符串？</a></li>
                         <li class="py-2"><a href="/html/category/article-491.htm" title="我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></li>
-                        <li class="py-2"><a href="/html/category/article-507.htm" title="vue 封装图片路径">vue 封装图片路径</a></li>
+                        <li class="py-2"><a href="/html/category/article-1632.htm" title="MongoDB利用oplog恢复数据的方法_MongoDB_">MongoDB利用oplog恢复数据的方法_MongoDB_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1055.htm" title="Java 轻松掌握字符缓冲流的使用_java">Java 轻松掌握字符缓冲流的使用_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-792.htm" title="SpringMVC+Log4j配置定时生成、删除日志">SpringMVC+Log4j配置定时生成、删除日志</a></li>
+                        <li class="py-2"><a href="/html/category/article-1941.htm" title="Vue中的路由守卫">Vue中的路由守卫</a></li>
+                        <li class="py-2"><a href="/html/category/article-497.htm" title="HTML5画布 canvas移动">HTML5画布 canvas移动</a></li>
                     </ul>
     </div>
 </div>
