@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-2242.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>Spring中的Ant路径匹配工具组件AntPathMatcher - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Sweden Address
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        Spring中的Ant路径匹配工具组件AntPathMatcher                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="htmledit_views"> <h3>Spring中的绝大多数的路径匹配规则是依照Ant的标准来的</h3> <p>实际上不只是SpringMVC，整个Spring框架的路径解析都是按照Ant的风格来的，在Spring中的具体实现,详情参见 org.springframework.util.AntPathMatcher，具体规则如下</p> <pre><code>/**  * {@link PathMatcher} implementation for Ant-style path patterns.  *  * &lt;p&gt;Part of this mapping code has been kindly borrowed from &lt;a href="http://ant.apache.org"&gt;Apache Ant&lt;/a&gt;.  *  * &lt;p&gt;The mapping matches URLs using the following rules:&lt;br&gt;  * &lt;ul&gt;  * &lt;li&gt;{@code ?} matches one character&lt;/li&gt;  * &lt;li&gt;{@code *} matches zero or more characters&lt;/li&gt;  * &lt;li&gt;{@code **} matches zero or more &lt;em&gt;directories&lt;/em&gt; in a path&lt;/li&gt;  * &lt;li&gt;{@code {spring:[a-z]+}} matches the regexp {@code [a-z]+} as a path variable named "spring"&lt;/li&gt;  * &lt;/ul&gt;  *  * &lt;h3&gt;Examples&lt;/h3&gt;  * &lt;ul&gt;  * &lt;li&gt;{@code com/t?st.jsp} &amp;mdash; matches {@code com/test.jsp} but also  * {@code com/tast.jsp} or {@code com/txst.jsp}&lt;/li&gt;  * &lt;li&gt;{@code com/*.jsp} &amp;mdash; matches all {@code .jsp} files in the  * {@code com} directory&lt;/li&gt;  * &lt;li&gt;&lt;code&gt;com/&amp;#42;&amp;#42;/test.jsp&lt;/code&gt; &amp;mdash; matches all {@code test.jsp}  * files underneath the {@code com} path&lt;/li&gt;  * &lt;li&gt;&lt;code&gt;org/springframework/&amp;#42;&amp;#42;/*.jsp&lt;/code&gt; &amp;mdash; matches all  * {@code .jsp} files underneath the {@code org/springframework} path&lt;/li&gt;  * &lt;li&gt;&lt;code&gt;org/&amp;#42;&amp;#42;/servlet/bla.jsp&lt;/code&gt; &amp;mdash; matches  * {@code org/springframework/servlet/bla.jsp} but also  * {@code org/springframework/testing/servlet/bla.jsp} and {@code org/servlet/bla.jsp}&lt;/li&gt;  * &lt;li&gt;{@code com/{filename:\\w+}.jsp} will match {@code com/test.jsp} and assign the value {@code test}  * to the {@code filename} variable&lt;/li&gt;  * &lt;/ul&gt;  *  * &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; a pattern and a path must both be absolute or must  * both be relative in order for the two to match. Therefore it is recommended  * that users of this implementation to sanitize patterns in order to prefix  * them with "/" as it makes sense in the context in which they're used.  * / 复制代码</code></pre> <p>符号的规则定义标准</p> <ul> <li>? 匹配1个字符</li> <li> <ul> <li>匹配0个或多个字符</li> </ul> </li> <li>** 匹配路径中的0个或多个目录</li> <li>{spring:[a-z]+} 将正则表达式[a-z]+匹配到的值，赋值给名为spring的路径变量。</li> </ul> <p>必须是完全匹配才行，在SpringMVC中只有完全匹配才会进入controller层的方法</p> <p>符号 ?</p> <p>和其它几个不一样的是? 要求必须为一个字符，并且不能是代表路径分隔符的/。</p> <pre><code>@RequestMapping("/index?") @ResponseBody public String index(){     return "index.html";  } 复制代码</code></pre> <p>结果</p> <pre><code>index           false 404错误(必须要有一个字符) index/          false 404错误(不能为"/") indexab         false 404错误(不能是多个字符) indexa          true  输出页面index.html 复制代码</code></pre> <p>符号 *</p> <ul> <li>，虽然可以匹配多个任意的字符，但是，无法用 * 可以替代 ** ，因为 * 代表的多个任意字符组成的字符串不能是个目录或者说路径.也就是说，* 并不能拿来替代 **.</li> </ul> <p>示例代码:</p> <pre><code>@RequestMapping("/index*") @ResponseBody public String index(){     return "index.html"; } 复制代码</code></pre> <p>结果:</p> <pre><code>index           true  输出index.html(可以为0字符) index/          true  输出 index.html(可以为"/") indexa          true  输出 index.html(可以为1个字符) indexabc        true  输出 index.html(可以为多个字符) index/a         false 404错误("/a"是一个路径) 复制代码</code></pre> <p>符号 **</p> <p>0个或多个目录.** 代表的字符串本身不一定要包含 /</p> <pre><code>@RequestMapping("/index/**/a") @ResponseBody public String index(){     return "index.html"; } 复制代码</code></pre> <p>结果:</p> <pre><code>index/a         true  输出 index.html(可以为0个目录) index/x/a       true  输出 index.html(可以为一个目录) index/x/z/c/a   true  输出 index.html(可以为多个目录) 复制代码</code></pre> <p>符号 {spring:[a-z]+}</p> <p>其它的关于 AntPathMatcher 的文章里,对 {spring:[a-z]+} 的匹配大多是只字未提.这里补充下.</p> <p>示例代码:</p> <p>@RequestMapping("/index/{username:[a-b]+}") @ResponseBody public String index(@PathVariable("username") String username){ System.out.println(username); return username; }</p> <p>结果:</p> <p>index/ab true 输出 ab index/abbaaa true 输出 abbaaa index/a false 404错误 index/ac false 404错误</p> <p>需求：我在做rbac权限校验的时候，设置管理员的访问路径为/admin/**,希望所有的开头为/admin/的uri操作地址都能进行匹配判断。</p> <p>手动使用方式</p> <ul> <li>AntPathMatcher不仅可以匹配Spring的@RequestMapping路径，也可以用来匹配各种字符串，包括文件路径等。</li> <li>AntPathMatcher默认路径分隔符为“/”，而在匹配文件路径时，需要注意Windows下路径分隔符为“\”，Linux下为“/”，写法即为：</li> </ul> <p>初始化创建操作</p> <p>匹配文件路径，使用AntPathMatcher创建一个对象时，需要注意AntPathMatcher也有有参构造，传递路径分隔符参数pathSeparator，对于文件路径的匹配来说，则需要根据不同的操作系统来传递各自的文件分隔符，以此防止匹配文件路径错误。</p> <pre><code>AntPathMatcher matcher = new AntPathMatcher(File.separator)； AntPathMatcher matcher = new AntPathMatcher(System.getProperty("file.separator"))； 复制代码</code></pre> <p>执行匹配操作</p> <pre><code>import org.springframework.util.AntPathMatcher; String content = "/admin/acuff"; String pattern = "/admin/**"; System.out.println(antPathMatcher.match(pattern, content)); 复制代码</code></pre> <p>最长匹配原则(has more characters)</p> <p>最长匹配规则（has more characters），即越精确的模式越会被优先匹配到。例如，URL请求/app/dir/file.jsp，现在存在两个路径匹配模式/**/<em>.jsp和/app/dir/</em>.jsp，那么会根据模式/app/dir/*.jsp来匹配。</p> <p>当然如果觉得这个工具还不够强大，还可以使用RegexRequestMatcher ，它支持使用正则表达式对URL地址进行匹配。如果你觉得这些都不够强大可以自己重写 RequestMatcher接口来进行定制的路由匹配规则</p> <p>摘取网上的案例参考Sample</p> <pre><code>    // test exact matching     assertTrue(pathMatcher.match("test", "test"));     assertTrue(pathMatcher.match("/test", "/test"));     assertTrue(pathMatcher.match("http://example.org", "http://example.org")); // SPR-14141     assertFalse(pathMatcher.match("/test.jpg", "test.jpg"));     assertFalse(pathMatcher.match("test", "/test"));     assertFalse(pathMatcher.match("/test", "test"));       // test matching with ?'s     assertTrue(pathMatcher.match("t?st", "test"));     assertTrue(pathMatcher.match("??st", "test"));     assertTrue(pathMatcher.match("tes?", "test"));     assertTrue(pathMatcher.match("te??", "test"));     assertTrue(pathMatcher.match("?es?", "test"));     assertFalse(pathMatcher.match("tes?", "tes"));     assertFalse(pathMatcher.match("tes?", "testt"));     assertFalse(pathMatcher.match("tes?", "tsst"));       // test matching with *'s     assertTrue(pathMatcher.match("*", "test"));     assertTrue(pathMatcher.match("test*", "test"));     assertTrue(pathMatcher.match("test*", "testTest"));     assertTrue(pathMatcher.match("test/*", "test/Test"));     assertTrue(pathMatcher.match("test/*", "test/t"));     assertTrue(pathMatcher.match("test/*", "test/"));     assertTrue(pathMatcher.match("*test*", "AnothertestTest"));     assertTrue(pathMatcher.match("*test", "Anothertest"));     assertTrue(pathMatcher.match("*.*", "test."));     assertTrue(pathMatcher.match("*.*", "test.test"));     assertTrue(pathMatcher.match("*.*", "test.test.test"));     assertTrue(pathMatcher.match("test*aaa", "testblaaaa"));     assertFalse(pathMatcher.match("test*", "tst"));     assertFalse(pathMatcher.match("test*", "tsttest"));     assertFalse(pathMatcher.match("test*", "test/"));     assertFalse(pathMatcher.match("test*", "test/t"));     assertFalse(pathMatcher.match("test/*", "test"));     assertFalse(pathMatcher.match("*test*", "tsttst"));     assertFalse(pathMatcher.match("*test", "tsttst"));     assertFalse(pathMatcher.match("*.*", "tsttst"));     assertFalse(pathMatcher.match("test*aaa", "test"));     assertFalse(pathMatcher.match("test*aaa", "testblaaab"));       // test matching with ?'s and /'s     assertTrue(pathMatcher.match("/?", "/a"));     assertTrue(pathMatcher.match("/?/a", "/a/a"));     assertTrue(pathMatcher.match("/a/?", "/a/b"));     assertTrue(pathMatcher.match("/??/a", "/aa/a"));     assertTrue(pathMatcher.match("/a/??", "/a/bb"));     assertTrue(pathMatcher.match("/?", "/a"));       // test matching with **'s     assertTrue(pathMatcher.match("/**", "/testing/testing"));     assertTrue(pathMatcher.match("/*/**", "/testing/testing"));     assertTrue(pathMatcher.match("/**/*", "/testing/testing"));     assertTrue(pathMatcher.match("/bla/**/bla", "/bla/testing/testing/bla"));     assertTrue(pathMatcher.match("/bla/**/bla", "/bla/testing/testing/bla/bla"));     assertTrue(pathMatcher.match("/**/test", "/bla/bla/test"));     assertTrue(pathMatcher.match("/bla/**/**/bla", "/bla/bla/bla/bla/bla/bla"));     assertTrue(pathMatcher.match("/bla*bla/test", "/blaXXXbla/test"));     assertTrue(pathMatcher.match("/*bla/test", "/XXXbla/test"));     assertFalse(pathMatcher.match("/bla*bla/test", "/blaXXXbl/test"));     assertFalse(pathMatcher.match("/*bla/test", "XXXblab/test"));     assertFalse(pathMatcher.match("/*bla/test", "XXXbl/test"));       assertFalse(pathMatcher.match("/????", "/bala/bla"));     assertFalse(pathMatcher.match("/**/*bla", "/bla/bla/bla/bbb"));       assertTrue(pathMatcher.match("/*bla*/**/bla/**", "/XXXblaXXXX/testing/testing/bla/testing/testing/"));     assertTrue(pathMatcher.match("/*bla*/**/bla/*", "/XXXblaXXXX/testing/testing/bla/testing"));     assertTrue(pathMatcher.match("/*bla*/**/bla/**", "/XXXblaXXXX/testing/testing/bla/testing/testing"));     assertTrue(pathMatcher.match("/*bla*/**/bla/**", "/XXXblaXXXX/testing/testing/bla/testing/testing.jpg"));       assertTrue(pathMatcher.match("*bla*/**/bla/**", "XXXblaXXXX/testing/testing/bla/testing/testing/"));     assertTrue(pathMatcher.match("*bla*/**/bla/*", "XXXblaXXXX/testing/testing/bla/testing"));     assertTrue(pathMatcher.match("*bla*/**/bla/**", "XXXblaXXXX/testing/testing/bla/testing/testing"));     assertFalse(pathMatcher.match("*bla*/**/bla/*", "XXXblaXXXX/testing/testing/bla/testing/testing"));       assertFalse(pathMatcher.match("/x/x/**/bla", "/x/x/x/"));       assertTrue(pathMatcher.match("/foo/bar/**", "/foo/bar")) ;       assertTrue(pathMatcher.match("", ""));       assertTrue(pathMatcher.match("/{bla}.*", "/testing.html")); 复制代码</code></pre> <h3>spring mvc url地址匹配工具类</h3> <p>AntPathRequestMatcher</p> <p>在spring mvc 中我们会经常使用//<em>.jsp、/app//dir/file.、/**/example 、/app/</em>.x 类似于这样语法而负责真正判断是否匹配的工具类就是AntPathRequestMatcher</p> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2241.htm">高并发下redis缓存常见问题</a></p>
+                                                    </div>
+
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-476.htm">JavaScript查找数组中的第一个冗余元素方法详解</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-447.htm">Redis 缓存击穿（失效）、缓存穿透、缓存雪崩怎么解决？</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-391.htm">JAVA8-Lambda表达式</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-377.htm">Eureka的配置项详解</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-340.htm">kafka踩坑java找不到kafka-run-class.sh: line 309: exec: java: not found</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-335.htm">利用QEMU+GDB搭建Linux内核调试环境</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-328.htm">python中利用正则表达式匹配ip地址</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-304.htm">MySQL 连接的基本操作：交叉、内和外连接</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-302.htm">PHP静态属性和方法详解</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-264.htm">Vue异步更新机制以及$nextTick原理</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-498.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                        <li class="py-2"><a href="/html/category/article-1913.htm" title="Nacos配置管理基础应用">Nacos配置管理基础应用</a></li>
+                        <li class="py-2"><a href="/html/category/article-508.htm" title="Libco Hook 机制浅析_在线工具">Libco Hook 机制浅析_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-504.htm" title="Infrastructure 知识: dnf对module的处理">Infrastructure 知识: dnf对module的处理</a></li>
+                        <li class="py-2"><a href="/html/category/article-1942.htm" title="如何在MySQL中添加两个或多个字符串？">如何在MySQL中添加两个或多个字符串？</a></li>
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-1927.htm" title="常用注解使用总结系列: @Order 注解">常用注解使用总结系列: @Order 注解</a></li>
+                        <li class="py-2"><a href="/html/category/article-524.htm" title="数据库四大特性及数据库隔离级别（*）">数据库四大特性及数据库隔离级别（*）</a></li>
+                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">46</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>
