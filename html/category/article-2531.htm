@@ -5,9 +5,9 @@
     <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-504.htm" />
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-2531.htm" />
 <link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
-<title>Infrastructure 知识: dnf对module的处理 - SwedenAddress</title>
+<title>自动化加载Express的路由设置 - SwedenAddress</title>
 <link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@ $(function() {
             <div class="container">
                 <div class="main-titles-head text-center">
                     <h1 class="header-name" style="word-break: break-all;">
-                        Infrastructure 知识: dnf对module的处理                    </h1>
+                        自动化加载Express的路由设置                    </h1>
                     
                 </div>
             </div>
@@ -102,12 +102,31 @@ $(function() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                          				  				  				<h1 id="引言">引言</h1> <p>从RHEL8/CentOS8开始，dnf取代yum作为rpm 包管理工具。与之而来的还有模块（module）这个东西。 有了它们的加持，让在同一个OS上安装不同版本的软件或者开发语言的工作比之前容易多了。</p> <h1 id="简介">简介</h1> <p><strong>Modules</strong>&nbsp;are special package groups usually representing an application, a language runtime, or a set of tools. They are available in one or<strong>multiple streams</strong>&nbsp;which usually represent a major version of a piece of software, giving you an option to choose what versions of packages you want to consume.</p> <p>To simplify installation, modules usually define one or more<strong>installation profiles</strong>&nbsp;that represent a specific use case. For example a<code>server</code>&nbsp;or a<code>client</code>&nbsp;profile in a database module.</p> <p>也就是说：</p> <p>一个软件可以有多个版本，每个版本对应一个stream. 在每个stream内部，又分为proile对应到安装场景（比如开发， server， client）。</p> <h2 id="实际dnf使用中的要点"><strong>实际dnf使用中的要点</strong></h2> <p>如果module有多个stream(版本)，会有一个是默认的, 在dnf命令输出里面在stream name后用[d]表示</p> <p>如果某个stream有多个profiles, 会有一个默认的，在dnf命令输出里面在profile name后用[d]表示</p> <h1 id="module-install">Module install</h1> <p>语法</p> <pre><code class="language-csharp">    $ dnf module install NAME     $ dnf module install NAME:STREAM     $ dnf module install NAME/PROFILE     $ dnf module install NAME:STREAM/PROFILE</code></pre> <h1 id="下面以nginx举例">下面以nginx举例</h1> <pre><code class="language-csharp">$ sudo dnf module list nginx Red Hat Enterprise Linux 8 for x86_64 - AppStream (RPMs) Name                     Stream                      Profiles                      Summary                           nginx                    1.14 [d]                    common [d]                    nginx webserver                   nginx                    1.16                        common [d]                    nginx webserver                   nginx                    1.18                        common [d]                    nginx webserver                   nginx                    1.20                        common [d]                    nginx webserver                    Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled</code></pre> <p><strong>解读output：</strong></p> <p>nginx module 有4个stream(对应4个版本），默认安装的是1.14，1.14这个stream只有一个profile “common”, 它也是默认安装的profile</p> <h1 id="例子-查看已经安装的module">例子： 查看已经安装的module</h1> <pre><code class="language-csharp">$ dnf module list --installed Name      Stream       Profiles                                   Summary                                                        nodejs    14 [e]       common [d] [i], development, minimal, s2i  Javascript runtime                                             python39  3.9 [d][e]   build, common [d] [i]                      Python programming language, version 3.9                        Hint: [d]efault, [e]nabled, [x]disabled, [i]nstalled</code></pre> <p><code>dnf module list --installed</code> 显示已经安装的module</p> <p><strong>查看输出 nodejs这一行表示：</strong></p> <p><code>14 [e]:</code> 表示14这个版本(stream)已经启用了，用[e]表示. 这里[e]就肯定说明已经安装了</p> <p><code>common [d] [i], development, minimal, s2i</code>  : 共4个profiles： common, devleopment, mininal, s2i。 其中common 是默认的Profile,用[d]表示，而且它已经安装在本机了，用[i]表示</p> <p><strong>查看输出 python39这一行表示：</strong></p> <p>3.9 [d] [3]: 3.9这个版本(stream)是这个module的缺省版本，用[d]表示；而且是已经启用了，用[e]表示。 这里[e]就肯定说明已经安装了</p> <h1 id="refer">Refer</h1> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.fedoraproject.org/en-US/modularity/using-modules/"  target="_blank" rel="nofollow">https://docs.fedoraproject.org/en-US/modularity/using-modules/</a></p> 			
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>在使用node + express进行后台开发时，对路由进行配置时，往往需要现在routes文件夹下创建对应的路由，然后在app.js里逐个的<span style="color:#ff6666;">require</span>进来，然后使用 <span style="color:#ff6666;">app.use('/path', route)</span>逐个配置，当网站比较简单路由文件较少是还好，但是在路由文件逐渐增加的时候就显得代码有点冗杂且笨。对于配置路由这种机械化的工作当然是交给代码来实现比较好，如下代码，我提供了一个可以帮我们自动配置路由的方法。</p> <p>&nbsp;</p> <p><span style="color:#ff6666;">首先是 untils/getRouters.js</span></p> <pre class="has"><code class="hljs">const fs = require('fs'); var exp = {}; let files = fs.readdirSync(__dirname+'/../routes'); let reg = /([\S]+)\.js$/i; files.forEach(function(val){         let matchs = reg.exec(val);         if(matchs &amp;&amp; matchs.index &gt;= 0){         exp[matchs[1]] = require('../routes/'+ val);     } }); module.exports = exp;&nbsp;</code></pre> <p>代码大致效果就是读取routes下的路由文件，然后逐个require进来，用路由文件名做key值放进exports对象里。</p> <p>&nbsp;</p> <p><span style="color:#ff6666;">然后是app.js</span>//配置路由</p> <pre class="has"><code class="hljs">!function(){     var routes = require('./untils/getRouters');     var keys = Object.keys(routes);     keys.forEach(function(k){         let cPath = '';         if(!!routes[k].cPath){             cPath = routes[k].cPath; &nbsp; //cPath为路由对应的路径，在路由文件里配置，默认为路由文件名         }else{             cPath = k; &nbsp;&nbsp;         }         app.use('/'+cPath,routes[k]);     }); }();</code></pre> <p>在app.js里require getRouters.js模块，获得路由对象，然后逐个添加到app里。</p> </p></div> 			
                         <div class="col-md-12 mt-5">
-                                                        <p>上一个：<a href="/html/category/article-503.htm">Vue.js 3.x 双向绑定原理_在线工具</a></p>
-                                                        <p>下一个：<a href="/html/category/article-505.htm">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></p>
+                                                        <p>上一个：<a href="/html/category/article-2242.htm">Spring中的Ant路径匹配工具组件AntPathMatcher</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2532.htm">面向对象编程-终结篇 es6新增语法</a></p>
                                                     </div>
 
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-462.htm">java之Arrays工具类的使用</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-461.htm">记一次Spring|项目启动耗时超级长的优化</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-460.htm">java面向对象是什么意思_java什么是面向对象</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-451.htm">vue实现右键菜单栏_vue.js_</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-439.htm">我们如何检查服务器上所有MySQL数据库的默认字符集？</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-422.htm">3.7&#8211;Kotlin 课堂：标准函数和静态方法</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-399.htm">基于Ansible实现Apache Doris快速部署运维指南</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-386.htm">Python 树表查找_千树万树梨花开，忽如一夜春风来（二叉排序树、平衡二叉树）</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-378.htm">Python中print和字符格式化的小结（Python2.7.5）</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-356.htm">Java中的hashcode方法</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
                                             </div>
                     <div class="col-md-3">
                         <div class="panel panel-default">
@@ -116,16 +135,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-493.htm" title="JavaScript动态操作select下拉框_javascript技巧_">JavaScript动态操作select下拉框_javascript技巧_</a></li>
-                        <li class="py-2"><a href="/html/category/article-1333.htm" title="在vue项目中如何获取视频的时长_vue.js_">在vue项目中如何获取视频的时长_vue.js_</a></li>
-                        <li class="py-2"><a href="/html/category/article-527.htm" title="Confluent之Kafka Connector详细分析">Confluent之Kafka Connector详细分析</a></li>
-                        <li class="py-2"><a href="/html/category/article-1631.htm" title="Vue动态样式:class用法">Vue动态样式:class用法</a></li>
-                        <li class="py-2"><a href="/html/category/article-1928.htm" title="Java 9中的JShell中的前向参考是什么？">Java 9中的JShell中的前向参考是什么？</a></li>
-                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
-                        <li class="py-2"><a href="/html/category/article-792.htm" title="SpringMVC+Log4j配置定时生成、删除日志">SpringMVC+Log4j配置定时生成、删除日志</a></li>
-                        <li class="py-2"><a href="/html/category/article-1324.htm" title="Task提高异步执行效率技巧_C#教程_">Task提高异步执行效率技巧_C#教程_</a></li>
-                        <li class="py-2"><a href="/html/category/article-1055.htm" title="Java 轻松掌握字符缓冲流的使用_java">Java 轻松掌握字符缓冲流的使用_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-1323.htm" title="springcloud  Hystrix 及 Feign与Hystrix结合 使用方法">springcloud  Hystrix 及 Feign与Hystrix结合 使用方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-497.htm" title="HTML5画布 canvas移动">HTML5画布 canvas移动</a></li>
                         <li class="py-2"><a href="/html/category/article-501.htm" title="springboot自定义视图映射">springboot自定义视图映射</a></li>
+                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
+                        <li class="py-2"><a href="/html/category/article-496.htm" title="vue3+elementUI-plus 项目实战登录">vue3+elementUI-plus 项目实战登录</a></li>
+                        <li class="py-2"><a href="/html/category/article-502.htm" title="python开发HDFS">python开发HDFS</a></li>
+                        <li class="py-2"><a href="/html/category/article-1343.htm" title="HttpClient 设置超时时间">HttpClient 设置超时时间</a></li>
+                        <li class="py-2"><a href="/html/category/article-523.htm" title="vue &#8211; 如何实现导入excel功能">vue &#8211; 如何实现导入excel功能</a></li>
+                        <li class="py-2"><a href="/html/category/article-1056.htm" title="vue项目的excel的导入与导出">vue项目的excel的导入与导出</a></li>
+                        <li class="py-2"><a href="/html/category/article-1344.htm" title="Java8新特性之Instant详解">Java8新特性之Instant详解</a></li>
                     </ul>
     </div>
 </div>

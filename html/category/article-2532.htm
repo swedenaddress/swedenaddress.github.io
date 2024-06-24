@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-2532.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>面向对象编程-终结篇 es6新增语法 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Sweden Address
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        面向对象编程-终结篇 es6新增语法                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<p>各位，各位，终于把js完成了一个段落了，这次的章节一过我还没确定下面要学的内容可能是vue也可能是前后端交互，但无论是哪个都挺兴奋的，因为面临着终于可以做点看得过去的大点的案例项目了，先憋住激动地情绪，看看今天的一个内容，今天是es6新增的一些语法，简单也是真的简单，但是我要是没学今天这一天那看到了也是真的看不懂，就跟昨天的正则表达式一样一样的，今天的案例我都没怎么做，而且也都是一些比较简单的案例，我先把今天的一些有代表性的案例传上来吧，是一些面试题之类的，然后我就说下我今天学了些啥子语法，今天着重采取说的方式来换个方式，不像原来全是代码</p> <p>1.</p> <p>首先第一个案例，是一个关于let的经典面试题，既然碰到了我就先把let说了吧，这个案例主要是用来比较var和let两个在不同的作用域各自的表现，这个我要是没听讲解我还真不知道居然是输出些这些个结果，第一个是var声明的for循环</p> <div> <div>首先全程是用的var来声明的值，然后循环现在主栈道跑到上先执行完，结束过后再来调用数组里面的元素也就是函数，里面存放的i就要向上级一级一级查找，这个时候找到i，是循环结束过后i结束循环的值，也就是2</div> <div>第二个是let声明的for循环，这里又是输出什么 首先我们要知道，这里全程是用的let来声明的变量，所以就要有一个很关键的印象，每一个let过后都会创造一个属于自己的块级作用域。所以这里的每个i都是在循环往数组里面放元素的时候单独保存的，所以下面的数组访问值就会进入到单独的块级作用域里面访问到属于自己的那个值</div> <div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">&lt;!</span><span style="color: rgba(255, 0, 255, 1)">DOCTYPE html</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">html</span><span style="color: rgba(255, 0, 0, 1)">lang</span><span style="color: rgba(0, 0, 255, 1)">="en"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">head</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">meta</span><span style="color: rgba(255, 0, 0, 1)">charset</span><span style="color: rgba(0, 0, 255, 1)">="UTF-8"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">meta</span><span style="color: rgba(255, 0, 0, 1)">http-equiv</span><span style="color: rgba(0, 0, 255, 1)">="X-UA-Compatible"</span><span style="color: rgba(255, 0, 0, 1)"> content</span><span style="color: rgba(0, 0, 255, 1)">="IE=edge"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">meta</span><span style="color: rgba(255, 0, 0, 1)">name</span><span style="color: rgba(0, 0, 255, 1)">="viewport"</span><span style="color: rgba(255, 0, 0, 1)"> content</span><span style="color: rgba(0, 0, 255, 1)">="width=device-width, initial-scale=1.0"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">title</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span>Document<span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">title</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">head</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">body</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">script</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)">/*</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)"> var arr = []         for (var i = 0; i &lt; 2; i++) {             arr[i] = function() {                 console.log(i);             }         }         arr[0]()         arr[1]()</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)">*/</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)">/*</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)"> 这个输出的是什么？这个输出的是两个二为什么呢？首先全程是用的var来声明的值，然后循环现在主栈道跑到上先执行完，结束过后再来调用         数组里面的元素也就是函数，里面存放的i就要向上级一级一级查找，这个时候找到i，是循环结束过后i结束循环的值，也就是2</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)">*/</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">         let arr</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> []</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 255, 1)">for</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> (let i</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">0</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">; i</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">2</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">; i</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">++</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">) {             arr[i]</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 255, 1)">function</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">() {                 console.log(i);             }         }         arr[</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">0</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">]()         arr[</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">1</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">]()</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)">/*</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)"> 这里又是输出什么 首先我们要知道，这里全程是用的let来声明的变量，所以就要有一个很关键的印象，每一个let过后都会创造一个属于自己的块级作用域。         所以这里的每个i都是在循环往数组里面放元素的时候单独保存的，所以下面的数组访问值就会进入到单独的块级作用域里面访问到属于自己的那个值</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)">*/</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">script</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">body</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">html</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span></pre> </div> <p>2.</p> <p>第二个我想说一下const的一些注意点，const我们是拿来声明常量的，也就是声明了之后值不能变化，但是这里的值不能变化其实是分两种情况的，如果说const声明的是数值型或者字符串类型，那确实不能变化，如果说是复杂数据类型如数组、对象等，那么就可以通过下标或者属性的方式对修改单个值，但是对整体数组赋值是不行的。</p> <p>3.</p> <p>继续是解构赋值，解构赋值就是可以将数组或者对象的值通过顺序依次结构给前面的变量声明并赋值，解构赋值中有一点我需要说一下，就是对对象解构赋值，他有两种写法，一种是前面的变量名与属性名对应，二个就是前面也来个键值对的形式，属性名对应属性名，后面的值就是我们变量的名字</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">&lt;!</span><span style="color: rgba(255, 0, 255, 1)">DOCTYPE html</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">html</span><span style="color: rgba(255, 0, 0, 1)">lang</span><span style="color: rgba(0, 0, 255, 1)">="en"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">head</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">meta</span><span style="color: rgba(255, 0, 0, 1)">charset</span><span style="color: rgba(0, 0, 255, 1)">="UTF-8"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">meta</span><span style="color: rgba(255, 0, 0, 1)">http-equiv</span><span style="color: rgba(0, 0, 255, 1)">="X-UA-Compatible"</span><span style="color: rgba(255, 0, 0, 1)"> content</span><span style="color: rgba(0, 0, 255, 1)">="IE=edge"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">meta</span><span style="color: rgba(255, 0, 0, 1)">name</span><span style="color: rgba(0, 0, 255, 1)">="viewport"</span><span style="color: rgba(255, 0, 0, 1)"> content</span><span style="color: rgba(0, 0, 255, 1)">="width=device-width, initial-scale=1.0"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">title</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span>Document<span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">title</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">head</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">body</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">script</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)">/*</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)"> let person = {name : '张三', age : 14}         let {name, age} = person         console.log(name);         console.log(age);</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)">*/</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">         let person</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> {name :</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">张三</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">, age :</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">14</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">}         let {name:a, age:b}</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> person         console.log(a);         console.log(b);</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">script</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">body</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">html</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span></pre> </div> <p>4.</p> <p>然后是箭头函数，箭头函数是函数的一种简写形式，（）=》｛｝然后参数这里如果只有一个参数，那么这个小括号可以省略，后面函数体如果只有一句代码且这句代码就是输出结果，那么后面的花括号也可以省略，return也可以省略，箭头函数的关键点其实是里面的this，箭头函数是没有this的，如果在箭头函数里面使用了this，那这个this就是定义箭头函数位置的this，一般是他的父级的this，注意是他父级的this并非父级，这里有一个箭头函数的经典面试题可以看一看</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">&lt;!</span><span style="color: rgba(255, 0, 255, 1)">DOCTYPE html</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">html</span><span style="color: rgba(255, 0, 0, 1)">lang</span><span style="color: rgba(0, 0, 255, 1)">="en"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">head</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">meta</span><span style="color: rgba(255, 0, 0, 1)">charset</span><span style="color: rgba(0, 0, 255, 1)">="UTF-8"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">meta</span><span style="color: rgba(255, 0, 0, 1)">http-equiv</span><span style="color: rgba(0, 0, 255, 1)">="X-UA-Compatible"</span><span style="color: rgba(255, 0, 0, 1)"> content</span><span style="color: rgba(0, 0, 255, 1)">="IE=edge"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">meta</span><span style="color: rgba(255, 0, 0, 1)">name</span><span style="color: rgba(0, 0, 255, 1)">="viewport"</span><span style="color: rgba(255, 0, 0, 1)"> content</span><span style="color: rgba(0, 0, 255, 1)">="width=device-width, initial-scale=1.0"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">title</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span>Document<span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">title</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">head</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">body</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">script</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)">/*</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)"> var obj = {             this : this         }         console.log(obj.this);</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)">*/</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 255, 1)">var</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> obj</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> {             age :</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">20</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">,             say : ()</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> {                 console.log(</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 255, 1)">this</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">.age);             }         }         obj.say()</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)">/*</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)"> 这个案例主要是考察对箭头函数this的熟悉程度，大家应该知道箭头函数是没有this的他的this指向的是定义它位置中的this，所以这里的this         应该是obj的this而并非obj，而obj的this是window所以这里就会报错</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 128, 0, 1)">*/</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">script</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">body</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">html</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span></pre> </div> <p>5.</p> <p>接下来是剩余参数，剩余参数就是当我们不知道要传多少实参进来的时候就额可以用到剩余参数，像我们以前是用的函数的内置对象arguments，但是箭头函数没有arg所以就要用到剩余参数，剩余参数就是在形参这里写上。。。arg，arg是你的数组名，三个点是必须要写上的，然后剩余参数可以和解构来一个配合，我们知道解构前面是变量，那如果我们不知道数组有多少元素的时候，这个时候变量可以来一个剩余参数。。。，来接受数组的值</p> <p>6.</p> <p>接下来是扩展运算符，扩展运算符可以算作是剩余参数的内容，扩展运算符就是三个点，只是说他其实还有其他的一些用途的</p> <p>首先他可以将数组或对象拆分为以，分割的参数序列，也就是分割数组后数组就是一个以逗号分割的几个参数，没有了外面的中括号，这点要先明确</p> <p>然后他第一个应用是可以合并数组，想一想是不是这个道理坝上一句话结合起来</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">&lt;!</span><span style="color: rgba(255, 0, 255, 1)">DOCTYPE html</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">html</span><span style="color: rgba(255, 0, 0, 1)">lang</span><span style="color: rgba(0, 0, 255, 1)">="en"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">head</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">meta</span><span style="color: rgba(255, 0, 0, 1)">charset</span><span style="color: rgba(0, 0, 255, 1)">="UTF-8"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">meta</span><span style="color: rgba(255, 0, 0, 1)">http-equiv</span><span style="color: rgba(0, 0, 255, 1)">="X-UA-Compatible"</span><span style="color: rgba(255, 0, 0, 1)"> content</span><span style="color: rgba(0, 0, 255, 1)">="IE=edge"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">meta</span><span style="color: rgba(255, 0, 0, 1)">name</span><span style="color: rgba(0, 0, 255, 1)">="viewport"</span><span style="color: rgba(255, 0, 0, 1)"> content</span><span style="color: rgba(0, 0, 255, 1)">="width=device-width, initial-scale=1.0"</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">title</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span>Document<span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">title</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">head</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">body</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">script</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 255, 1)">var</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> arr1</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> [</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">1</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">,</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">2</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">,</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">3</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">]</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 255, 1)">var</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> arr2</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> [</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">4</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">,</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">55</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">,</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">6</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">]</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 255, 1)">var</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> arr3</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> [...arr1, ...arr2]</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">script</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">body</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">html</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span></pre> </div> <p>合并数组还有一个方法直接，arr1.push（...arr2）</p> <p>除了合并数组，它还可以将伪数组转换为真数组，直接将一个维数组添加三个点是不是变成了参数序列，那我直接将这个序列来一个数组字面量赋给一个变量</p> <p>7.</p> <p>接下来看到es6新增的一些数组array的方法，第一个是用方法实现将伪数组转换为真数组，Array.form（）括号里面两个参数，第一个是你要转换的数组，第二个为可选，可以写一个箭头函数，类似于foreach可以传值和下标，相当于可以在转换过程中对每一个值进行修改再变为真数组</p> <p>&nbsp;第二个方法查找数组中第一个满足条件的值未找到返回undefined，Array.find（）里面是一个箭头函数可以输入你的条件与之对应的还有一个.fingIndex（）是返回的满足第一个条件的索引号</p> <p>第四个方法是检测该数组是否包含这个元素.includes()</p> <p>8.</p> <p>模板字符串,很久之前就看到过但那是一直没有去学过,其实也并不难，就跟普通字符串一样只是他的引号是反引号，它的特点就是可以很方便的添加变量、对象、甚至函数，${name()}类似于这种形式，然后就是它里面的内容可以换行，这点也非常可以，之前复制过来的内容总是报错字符串。</p> <p>然后是es6新增的一些string的一些方法，.starsWith()endsWith()分别是查看参数在字符串的头部还是尾部，.repeat()是将这个字符串重复n次</p> <p>9.</p> <p>今天的最后一个新增语法，set数据结构，他也是复杂数据类型，类似数组，但他里面的值都是唯一的不重复的</p> <p>创建的话 直接new创建 let s = new Set() 可以在里面放数组，然后有一个属性。size可以查看这个set有多少个值在俩面</p> <p>他的一个应用是做数组去重，首先我们可以把重复的数组放进set数据结构，因为她的特性 所以这里面，现在也没有重复的了，然后通过扩展运算符在通过【】将其转回数组</p> <p>他也有四个方法 .add（）是添加数据返回的是这个set数据结构所以这个可以像连式编程一样一只添加，第二个delete（）删除数据，这个返回的是布尔值，看你删没删成功，第三个是has（）检测有咩有这个数据也是一个布尔值，</p> <p>最后一个是clear（）清空所有数据无返回值</p> <p>最后set也可以遍历，可以通过forEach来遍历，里面来一个箭头函数</p> </div> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2531.htm">自动化加载Express的路由设置</a></p>
+                                                    </div>
+
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-478.htm">JavaScript如何添加用于将案例交换到字符串原型对象的函数</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-459.htm">STM8S103F3P6 的开发, 烧录和Debug笔记 &#8211; Milton _在线工具</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-418.htm">Java实现简易购物系统_java</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-414.htm">如何用pycharm来查看PyTorch，CUDA版本</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-402.htm">纳尼！ROOT修改权限不足？提示Operation not permitted？</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-374.htm">k8s入门之ConfigMap(九)_在线工具</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-366.htm">react实战系列 —— 我的仪表盘（bizcharts、antd、moment）_在线工具</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-356.htm">Java中的hashcode方法</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-346.htm">React中事件的写法总结</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-275.htm">java时间相关类详解（Date类，Calendar类，LocalDate类，时间格式化，时间戳）</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                        <li class="py-2"><a href="/html/category/article-1927.htm" title="常用注解使用总结系列: @Order 注解">常用注解使用总结系列: @Order 注解</a></li>
+                        <li class="py-2"><a href="/html/category/article-527.htm" title="Confluent之Kafka Connector详细分析">Confluent之Kafka Connector详细分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-2241.htm" title="高并发下redis缓存常见问题">高并发下redis缓存常见问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-1928.htm" title="Java 9中的JShell中的前向参考是什么？">Java 9中的JShell中的前向参考是什么？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1324.htm" title="Task提高异步执行效率技巧_C#教程_">Task提高异步执行效率技巧_C#教程_</a></li>
+                        <li class="py-2"><a href="/html/category/article-516.htm" title="PHP特质">PHP特质</a></li>
+                        <li class="py-2"><a href="/html/category/article-792.htm" title="SpringMVC+Log4j配置定时生成、删除日志">SpringMVC+Log4j配置定时生成、删除日志</a></li>
+                        <li class="py-2"><a href="/html/category/article-508.htm" title="Libco Hook 机制浅析_在线工具">Libco Hook 机制浅析_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-494.htm" title="python列表添加数据">python列表添加数据</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>
