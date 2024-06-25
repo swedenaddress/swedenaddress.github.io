@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-2825.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>MySQL VARCHAR列的最大长度是多少？ - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Sweden Address
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        MySQL VARCHAR列的最大长度是多少？                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<p>VARCHAR数据类型将可变长度字符数据存储在单字节和多字节字符中。此数据类型的语法为VARCHAR(n)，其中n是最大字符数，并且必须在创建表时指定。在MySQL 5.03之前，n的值可以在0到255之间，但是在MySQL 5.03之前和之后，n的值可以在0到65,535之间。</p> <p>VARCHAR中存储的最大字符数取决于最大行大小和使用的字符集。如果我们使用的是ASCII字符集，那么它可以存储65,535个字符，因为ASCII每个字符使用1字节。另一方面，如果我们使用utf8字符集，则字符限制为21,844，因为utf8每个字符使用3个字节。最大行大小限制为65,535字节，这意味着包括所有列在内，其最大长度不能超过65,535字节。</p> <h2>示例</h2> <pre>mysql&gt;&nbsp;Create&nbsp;Table&nbsp;var_test(FName&nbsp;Varchar(32765)&nbsp;NOT&nbsp;NULL,&nbsp;LName&nbsp;Varchar(32766) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOT&nbsp;NULL);</pre> <p>上面的查询创建了一个包含两列的表，即FName Varchar(32765)和LName Varchar(32766)。总长度为32765 + 2 + 32766 + 2 = 65535（每列使用2个字节来存储长度）。</p> <pre>mysql&gt;&nbsp;Create&nbsp;Table&nbsp;var_test1(FName&nbsp;varchar(32766)&nbsp;NOT&nbsp;NULL,&nbsp;LName&nbsp;Varchar(32766) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOT&nbsp;NULL); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ERROR&nbsp;1118&nbsp;(42000):&nbsp;Row&nbsp;size&nbsp;too&nbsp;large.&nbsp;The&nbsp;maximum&nbsp;row&nbsp;size&nbsp;for&nbsp;the&nbsp;used &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;table &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type,&nbsp;not&nbsp;counting&nbsp;BLOBs,&nbsp;is&nbsp;65535.&nbsp;You&nbsp;have&nbsp;to&nbsp;change&nbsp;some&nbsp;columns&nbsp;to&nbsp;TEXT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;BLOBs</pre> <p>将长度增加1字节，MySQL就会返回一个错误，如上面的查询所示。</p> <div></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2532.htm">面向对象编程-终结篇 es6新增语法</a></p>
+                                                        <p>下一个：<a href="/html/category/article-2826.htm">Python生成迷宫</a></p>
+                                                    </div>
+
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-1927.htm">常用注解使用总结系列: @Order 注解</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-502.htm">python开发HDFS</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-456.htm">Java程序扩展给范围的数字</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-377.htm">Eureka的配置项详解</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-351.htm">Windows查看连接过的WiFi列表和密码</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-346.htm">React中事件的写法总结</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-318.htm">彻底搞定kubernetes远程访问</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-316.htm">Java日期相关_LocalDate&amp;LocalTime&amp;LocalDateTime</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-300.htm">手写RPC-整合Spring、SpringBoot</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-280.htm">Vue3学习之旅&#8211;Vue3组件化开发(二)-非父子组件通信及组件插槽&#8211;细节太多建议反复观看</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-507.htm" title="vue 封装图片路径">vue 封装图片路径</a></li>
+                        <li class="py-2"><a href="/html/category/article-1354.htm" title="C ++中具有最大金数的路径">C ++中具有最大金数的路径</a></li>
+                        <li class="py-2"><a href="/html/category/article-2242.htm" title="Spring中的Ant路径匹配工具组件AntPathMatcher">Spring中的Ant路径匹配工具组件AntPathMatcher</a></li>
+                        <li class="py-2"><a href="/html/category/article-2241.htm" title="高并发下redis缓存常见问题">高并发下redis缓存常见问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-527.htm" title="Confluent之Kafka Connector详细分析">Confluent之Kafka Connector详细分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                        <li class="py-2"><a href="/html/category/article-2531.htm" title="自动化加载Express的路由设置">自动化加载Express的路由设置</a></li>
+                        <li class="py-2"><a href="/html/category/article-1956.htm" title="企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4">企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4</a></li>
+                        <li class="py-2"><a href="/html/category/article-497.htm" title="HTML5画布 canvas移动">HTML5画布 canvas移动</a></li>
+                        <li class="py-2"><a href="/html/category/article-512.htm" title="VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手">VUE3 之 使用 Mixin 实现代码的复用 &#8211; 这个系列的教程通俗易懂，适合新手</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">50</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>
