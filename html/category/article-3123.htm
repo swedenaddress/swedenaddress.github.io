@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-3123.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>Python调用C语言方法 - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Sweden Address
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        Python调用C语言方法                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> <h2><span style="font-size: 18.72px;">1、为什么要使用Python调用C语言</span><br /></h2> <p>可以将一些耗时的操作的函数使用C语言编写，然后主题代码是python，这样使用python去调用C语言，就可以做既能有python语言的简单性，有可以利用C语言的高性能，从而达到整体既简单又高效的目的</p> <h3> <a id="2CPython_4" rel="nofollow"></a>2、C语言与Python语言的区别</h3> <p>（1）Python不擅长大量运算任务<br /> （2）Python程序的优势在于，适合IO密集型作业，比如打开文件，下载图片，运行脚本等，python作为知名的胶水语言，快速实现“计算密集型作业”的方法就是“把C的代码拿过来直接使用”</p> <h3> <a id="3PythonC_8" rel="nofollow"></a>3、Python调用C语言的步骤</h3> <p>（1）将.c文件编译为动态库文件，即.so文件</p> <pre><code class="prism language-bash"><span class="token comment"># 将C源码文件demo.c编译为动态库文件 demo.so</span> gcc demo.c -shared -o demo.so </code></pre> <p>（2）在python文件中导入cdll</p> <pre><code class="prism language-bash">from ctypes <span class="token function">import</span> cdll </code></pre> <p>（3）然后通过cdll的LoadLibrary加载动态库文件</p> <pre><code class="prism language-bash"><span class="token assign-left variable">result</span><span class="token operator">=</span>cdll.LoadLibrary<span class="token punctuation">(</span><span class="token string">"./demo.so"</span><span class="token punctuation">)</span> </code></pre> <p>（4）然后即可通过上述result调用C文件中的函数了</p> <h3> <a id="4PythonC_31" rel="nofollow"></a>4、Python调用C语言实例演示</h3> <p>（1）编写 demo.c文件，实现一个求1-100的和的函数，代码如下：</p> <pre><code class="prism language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>  <span class="token keyword">int</span>  <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">int</span> sum<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>     <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>     <span class="token keyword">for</span><span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">100</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>     <span class="token punctuation">{<!-- --></span>         sum<span class="token operator">+=</span>i<span class="token punctuation">;</span>     <span class="token punctuation">}</span>     <span class="token keyword">return</span> sum<span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <p>（2）将demo.c源码文件编译为动态库文件demo.so</p> <pre><code class="prism language-bash">gcc demo.c -shared -o demo.so </code></pre> <p>（3）编写Python文件</p> <pre><code class="prism language-python"><span class="token keyword">from</span> ctypes <span class="token keyword">import</span> cdll  <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>     result<span class="token operator">=</span>cdll<span class="token punctuation">.</span>LoadLibrary<span class="token punctuation">(</span><span class="token string">"./demo.so"</span><span class="token punctuation">)</span>     <span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>add<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">"__main__"</span><span class="token punctuation">:</span>     main<span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre> <p>（4）执行 python3 demo.py 这里在python文件中也同样可以拿到C源码函数的返回值<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221207/eeb02ed4d660db8e5b637e19e4a7a0a3.jpg" alt="Python调用C语言方法"></p> </p></div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-2826.htm">Python生成迷宫</a></p>
+                                                        <p>下一个：<a href="/html/category/article-3124.htm">[JVM]java虚拟机运行时数据区域&#8211;程序计数器、虚拟机栈和本地方法栈</a></p>
+                                                    </div>
+
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-1333.htm">在vue项目中如何获取视频的时长_vue.js_</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-489.htm">CSS中文本居中显示</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-482.htm">Hyperledger Fabric节点的动态添加和删除</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-462.htm">java之Arrays工具类的使用</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-455.htm">并发同时访问_实践篇（09）Redis如何应对并发访问？</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-454.htm">设计模式——原型模式</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-418.htm">Java实现简易购物系统_java</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-397.htm">HCNP Routing&amp;Switching之端口隔离</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-369.htm">JavaScript在嵌套数组中查找最大值方法详解</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-341.htm">数据库基础知识详解五：MySQL中的索引和其两种引擎、主从复制以及关系型/非关系型数据库</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-792.htm" title="SpringMVC+Log4j配置定时生成、删除日志">SpringMVC+Log4j配置定时生成、删除日志</a></li>
+                        <li class="py-2"><a href="/html/category/article-1343.htm" title="HttpClient 设置超时时间">HttpClient 设置超时时间</a></li>
+                        <li class="py-2"><a href="/html/category/article-3124.htm" title="[JVM]java虚拟机运行时数据区域&#8211;程序计数器、虚拟机栈和本地方法栈">[JVM]java虚拟机运行时数据区域&#8211;程序计数器、虚拟机栈和本地方法栈</a></li>
+                        <li class="py-2"><a href="/html/category/article-504.htm" title="Infrastructure 知识: dnf对module的处理">Infrastructure 知识: dnf对module的处理</a></li>
+                        <li class="py-2"><a href="/html/category/article-509.htm" title="OpenPose环境搭建的经历">OpenPose环境搭建的经历</a></li>
+                        <li class="py-2"><a href="/html/category/article-1942.htm" title="如何在MySQL中添加两个或多个字符串？">如何在MySQL中添加两个或多个字符串？</a></li>
+                        <li class="py-2"><a href="/html/category/article-518.htm" title="使用TreeMap在Java中对用户定义的对象进行排序">使用TreeMap在Java中对用户定义的对象进行排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-497.htm" title="HTML5画布 canvas移动">HTML5画布 canvas移动</a></li>
+                        <li class="py-2"><a href="/html/category/article-505.htm" title="Springboot2 集成Swagger2，解决配置完成后不显示的坑">Springboot2 集成Swagger2，解决配置完成后不显示的坑</a></li>
+                        <li class="py-2"><a href="/html/category/article-1055.htm" title="Java 轻松掌握字符缓冲流的使用_java">Java 轻松掌握字符缓冲流的使用_java</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">52</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>
