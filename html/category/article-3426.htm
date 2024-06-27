@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-3426.htm" />
+<link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
+<title>springboot 使用 ActiveMQ - SwedenAddress</title>
+<link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ff0c66a832e6568df61664f01ded8b73";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <section class=" w3l-header-4 header-sticky">
+    <header class="absolute-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="/">
+                        Sweden Address
+                    </a>
+                                <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/html/category/">文章分类</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        </nav>
+        </div>
+    </header>
+</section>
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="/assets/addons/xcblog/js/frontend/swedenaddress/bootstrap.min.js"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function() {
+    $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+    })
+});
+</script>
+    <!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">
+                <div class="main-titles-head text-center">
+                    <h1 class="header-name" style="word-break: break-all;">
+                        springboot 使用 ActiveMQ                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumbs-sub">
+            <div class="container">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side propClone"><a href="/" class="">首页 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="right-side propClone"><a href="/html/category/" class="">文章分类 <span class="fa fa-angle-right" aria-hidden="true"></span></a>
+                        <p>
+                    </li>
+                    <li class="active ">正文</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- breadcrumbs //-->
+    <section class="w3l-content-with-photo-4" id="about">
+        <div class="content-with-photo4-block ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>pom文件添加依赖</p> <pre><code class="prism language-java"><span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span><span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span><span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>spring<span class="token operator">-</span>boot<span class="token operator">-</span>starter<span class="token operator">-</span>activemq<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span><span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span><span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>activemq<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span><span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>activemq<span class="token operator">-</span>pool<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span><span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">5.17</span><span class="token number">.1</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span></code></pre> <p>配置 application.yml</p> <pre><code class="prism language-bash">server:   port:<span class="token number">8080</span><span class="token comment">#springBoot项目访问端口</span>   spring:   activemq:     broker-url: tcp://192.168.140.xx:30005<span class="token comment">#你activeMQ的ip和端口号</span>     user: admin<span class="token comment">#activeMq账号</span>     password: admin<span class="token comment">#activeMq密码</span>     pool:       enabled:<span class="token boolean">true</span><span class="token comment">#连接池启动</span>       max-connections:<span class="token number">10</span><span class="token comment">#最大连接数</span></code></pre> <p>SpringBoot 的启动类添加解 @EnableJms</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@SpringBootApplication</span><span class="token annotation punctuation">@EnableJms</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">MqconverterApplication</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token keyword">static</span><span class="token keyword">void</span><span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">MqconverterApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p>创建 activeMQ 配置类</p> <pre><code class="prism language-java">mport<span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>activemq<span class="token punctuation">.</span></span>ActiveMQConnectionFactory</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>activemq<span class="token punctuation">.</span>command<span class="token punctuation">.</span></span><span class="token class-name">ActiveMQQueue</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Value</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Bean</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Configuration</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>jms<span class="token punctuation">.</span>config<span class="token punctuation">.</span></span><span class="token class-name">JmsListenerContainerFactory</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>jms<span class="token punctuation">.</span>config<span class="token punctuation">.</span></span><span class="token class-name">SimpleJmsListenerContainerFactory</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token namespace">javax<span class="token punctuation">.</span>jms<span class="token punctuation">.</span></span><span class="token class-name">ConnectionFactory</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token namespace">javax<span class="token punctuation">.</span>jms<span class="token punctuation">.</span></span><span class="token class-name">Queue</span><span class="token punctuation">;</span><span class="token comment">/**  * 配置类  */</span><span class="token annotation punctuation">@Configuration</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">ActiveMQConfig</span><span class="token punctuation">{<!-- --></span><span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${spring.activemq.broker-url}"</span><span class="token punctuation">)</span><span class="token keyword">private</span><span class="token class-name">String</span> brokerUrl<span class="token punctuation">;</span><span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${spring.activemq.user}"</span><span class="token punctuation">)</span><span class="token keyword">private</span><span class="token class-name">String</span> userName<span class="token punctuation">;</span><span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${spring.activemq.password}"</span><span class="token punctuation">)</span><span class="token keyword">private</span><span class="token class-name">String</span> password<span class="token punctuation">;</span><span class="token annotation punctuation">@Bean</span><span class="token keyword">public</span><span class="token class-name">ConnectionFactory</span><span class="token function">connectionFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token keyword">new</span><span class="token class-name">ActiveMQConnectionFactory</span><span class="token punctuation">(</span>userName<span class="token punctuation">,</span> password<span class="token punctuation">,</span> brokerUrl<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">/**      * 在 Queue 模式中，对消息的监听需要对containerFactory进行配置      */</span><span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span><span class="token string">"queueListener"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">JmsListenerContainerFactory</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span><span class="token function">queueJmsListenerContainerFactory</span><span class="token punctuation">(</span><span class="token class-name">ConnectionFactory</span> connectionFactory<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token class-name">SimpleJmsListenerContainerFactory</span> factory<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">SimpleJmsListenerContainerFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         factory<span class="token punctuation">.</span><span class="token function">setConnectionFactory</span><span class="token punctuation">(</span>connectionFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>         factory<span class="token punctuation">.</span><span class="token function">setPubSubDomain</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> factory<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">/**      * 在 topic 模式中，对消息的监听需要对containerFactory进行配置      */</span><span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span><span class="token string">"topicListener"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">JmsListenerContainerFactory</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span><span class="token function">topicJmsListenerContainerFactory</span><span class="token punctuation">(</span><span class="token class-name">ConnectionFactory</span> connectionFactory<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token class-name">SimpleJmsListenerContainerFactory</span> factory<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">SimpleJmsListenerContainerFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         factory<span class="token punctuation">.</span><span class="token function">setConnectionFactory</span><span class="token punctuation">(</span>connectionFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>         factory<span class="token punctuation">.</span><span class="token function">setPubSubDomain</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> factory<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <blockquote> <p>pubSubDomain：为true 代表 topic 模式，false 代表队列模式，默认是false</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221117/e1ca2120a7fac5b7d22142c62978eb15.jpg" alt="springboot 使用 ActiveMQ"></p> <p>生产者</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@RestController</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">ActiveMQProducerController</span><span class="token punctuation">{<!-- --></span><span class="token comment">/**      * 队列模式      * @param msg 消息      * @return      */</span><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/queue/{msg}"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">String</span><span class="token function">sendQueue</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"msg"</span><span class="token punctuation">)</span><span class="token class-name">String</span> msg<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token class-name">ActiveMQQueue</span> queue<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">ActiveMQQueue</span><span class="token punctuation">(</span><span class="token string">"testq"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         jmsMessagingTemplate<span class="token punctuation">.</span><span class="token function">convertAndSend</span><span class="token punctuation">(</span>queue<span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span><span class="token string">"success"</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">/**      * topic 模式      * @param msg 消息      * @return      */</span><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/topic/{msg}"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token class-name">String</span><span class="token function">sendTopic</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"msg"</span><span class="token punctuation">)</span><span class="token class-name">String</span> msg<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token class-name">ActiveMQTopic</span> topic<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">ActiveMQTopic</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         jmsMessagingTemplate<span class="token punctuation">.</span><span class="token function">convertAndSend</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span><span class="token string">"success"</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p>消费者</p> <pre><code class="prism language-java"><span class="token keyword">import</span><span class="token namespace">com<span class="token punctuation">.</span>njc<span class="token punctuation">.</span>mqconverter<span class="token punctuation">.</span>property<span class="token punctuation">.</span></span><span class="token class-name">KafkaTopicProperty</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>jms<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">JmsListener</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>kafka<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span><span class="token class-name">KafkaTemplate</span><span class="token punctuation">;</span><span class="token keyword">import</span><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span><span class="token punctuation">;</span><span class="token annotation punctuation">@Component</span><span class="token annotation punctuation">@Slf4j</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">ActiveMQConsumer</span><span class="token punctuation">{<!-- --></span><span class="token annotation punctuation">@Autowired</span><span class="token class-name">KafkaTemplate</span> kafkaTemplate<span class="token punctuation">;</span><span class="token comment">/**      * queue模式的消费者      */</span><span class="token annotation punctuation">@JmsListener</span><span class="token punctuation">(</span>destination<span class="token operator">=</span><span class="token string">"testq"</span><span class="token punctuation">,</span> containerFactory<span class="token operator">=</span><span class="token string">"queueListener"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">readActiveQueue</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token class-name">String</span> topic<span class="token operator">=</span><span class="token class-name">KafkaTopicProperty</span><span class="token punctuation">.</span><span class="token function">getSap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         kafkaTemplate<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"activeMQ 消费者接收：{}"</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">/**      * topic 模式的消费者      */</span><span class="token annotation punctuation">@JmsListener</span><span class="token punctuation">(</span>destination<span class="token operator">=</span><span class="token string">"test"</span><span class="token punctuation">,</span> containerFactory<span class="token operator">=</span><span class="token string">"topicListener"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">readActivTopic1</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"activeMQ topic 消费者1接收：{}"</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">/**      * topic 模式的消费者      */</span><span class="token annotation punctuation">@JmsListener</span><span class="token punctuation">(</span>destination<span class="token operator">=</span><span class="token string">"test"</span><span class="token punctuation">,</span> containerFactory<span class="token operator">=</span><span class="token string">"topicListener"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">readActivTopic2</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"activeMQ topic 消费者2接收：{}"</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <blockquote> <p>监听者的队列模式可以不配 containerFactory ，但topic的需要配置</p> </blockquote> </div> 			
+                        <div class="col-md-12 mt-5">
+                                                        <p>上一个：<a href="/html/category/article-3425.htm">【UWP】实现一个波浪进度条</a></p>
+                                                    </div>
+
+                                                <div class="panel panel-default mt-5">
+                            <div class="panel-heading">
+                                <h3 class="m-0">推荐文章</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="p-0 x-0">
+                                                                        <li class="py-2"><a href="/html/category/article-1334.htm">【openstack】cloudkitty组件，入门级安装（快速）_在线工具</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-527.htm">Confluent之Kafka Connector详细分析</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-518.htm">使用TreeMap在Java中对用户定义的对象进行排序</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-510.htm">PHP对象序列化</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-504.htm">Infrastructure 知识: dnf对module的处理</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-426.htm">比较爽的导航查询 功能  .NET ORM  / SqlSugar</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-388.htm">Docker Compose编排工具</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-369.htm">JavaScript在嵌套数组中查找最大值方法详解</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-358.htm">js删除数组指定元素</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-263.htm">在小程序当中渲染树</a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
+                                            </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-527.htm" title="Confluent之Kafka Connector详细分析">Confluent之Kafka Connector详细分析</a></li>
+                        <li class="py-2"><a href="/html/category/article-500.htm" title="SpringBoot动态定时任务的实现">SpringBoot动态定时任务的实现</a></li>
+                        <li class="py-2"><a href="/html/category/article-1632.htm" title="MongoDB利用oplog恢复数据的方法_MongoDB_">MongoDB利用oplog恢复数据的方法_MongoDB_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1056.htm" title="vue项目的excel的导入与导出">vue项目的excel的导入与导出</a></li>
+                        <li class="py-2"><a href="/html/category/article-1323.htm" title="springcloud  Hystrix 及 Feign与Hystrix结合 使用方法">springcloud  Hystrix 及 Feign与Hystrix结合 使用方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1055.htm" title="Java 轻松掌握字符缓冲流的使用_java">Java 轻松掌握字符缓冲流的使用_java</a></li>
+                        <li class="py-2"><a href="/html/category/article-524.htm" title="数据库四大特性及数据库隔离级别（*）">数据库四大特性及数据库隔离级别（*）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2825.htm" title="MySQL VARCHAR列的最大长度是多少？">MySQL VARCHAR列的最大长度是多少？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1334.htm" title="【openstack】cloudkitty组件，入门级安装（快速）_在线工具">【openstack】cloudkitty组件，入门级安装（快速）_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-1343.htm" title="HttpClient 设置超时时间">HttpClient 设置超时时间</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">54</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/html/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">58</span> <a href="/html/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    
+        <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">
+                    SwedenAddress 版权所有
+                    <br />
+                    Powered by WordPress
+                </p>
+                <div class="col-lg-4 main-social-footer-29">
+                    <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                    <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                    <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                    <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-long-arrow-up"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- /move top -->
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
+</body>
+
+</html>
