@@ -5,9 +5,9 @@
     <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-4070.htm" />
+<link rel="canonical" href="https://swedenaddress.github.io/html/category/article-4125.htm" />
 <link rel="icon" href="/assets/addons/xcblog/img/swedenaddress/favicon.ico" type="image/x-icon"/>
-<title>taro跳转到tabBar报错问题 - SwedenAddress</title>
+<title>基于vue-seamless-scroll实现无缝滚动效果_vue.js - SwedenAddress</title>
 <link rel="stylesheet" href="/assets/addons/xcblog/css/swedenaddress/style-starter.css">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,700i&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@ $(function() {
             <div class="container">
                 <div class="main-titles-head text-center">
                     <h1 class="header-name" style="word-break: break-all;">
-                        taro跳转到tabBar报错问题                    </h1>
+                        基于vue-seamless-scroll实现无缝滚动效果_vue.js                    </h1>
                     
                 </div>
             </div>
@@ -102,10 +102,10 @@ $(function() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <blockquote> <p>{errMsg: “redirectTo:fail can not redirectTo a tabbar page”}<br /> 改用解决<br /> Taro.switchTab(option)<br /> 跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面</p> </blockquote> <pre><code class="prism language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>res<span class="token punctuation">.</span>code <span class="token operator">===</span> <span class="token number">30000</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         Taro<span class="token punctuation">.</span><span class="token function">showToast</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>           title<span class="token operator">:</span> <span class="token string">"登录成功"</span><span class="token punctuation">,</span>           icon<span class="token operator">:</span> <span class="token string">"success"</span><span class="token punctuation">,</span>         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         Taro<span class="token punctuation">.</span><span class="token function">switchTab</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>           url<span class="token operator">:</span> <span class="token string">"../message/index"</span><span class="token punctuation">,</span>         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{<!-- --></span>         Taro<span class="token punctuation">.</span><span class="token function">showToast</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>           title<span class="token operator">:</span> <span class="token string">"登录失败"</span><span class="token punctuation">,</span>           icon<span class="token operator">:</span> <span class="token string">"none"</span><span class="token punctuation">,</span>         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token punctuation">}</span> </code></pre> </p></div> 			
+                          				  				  				<p>vue中，基于vue-seamless-scroll无缝滚动，供大家参考，具体内容如下</p> <p>1、安装vue-seamless-scroll</p> <div class="ay1code"> <pre class="brush:js;">npm install vue-seamless-scroll --save　</pre> </div> <p>2、引入组件</p> <p>全局引入在main.js中添加</p> <div class="ay1code"> <pre class="brush:js;">import scroll from 'vue-seamless-scroll'  Vue.use(scroll)</pre> </div> <p>组件局部引入</p> <div class="ay1code"> <pre class="brush:js;">&lt;vue-seamless-scroll&gt;&lt;/vue-seamless-scroll&gt;  import vueSeamlessScroll from 'vue-seamless-scroll'  components: {          vueSeamlessScroll  },</pre> </div> <p>3、配置参数</p> <div class="ay1code"> <pre class="brush:js;">// 监听属性 类似于data概念  computed: {          defaultOption () {                  return {                      step: 0.2, // 数值越大速度滚动越快                      limitMoveNum: 2, // 开始无缝滚动的数据量 this.dataList.length                      hoverStop: true, // 是否开启鼠标悬停stop                      direction: 1, // 0向下 1向上 2向左 3向右                      openWatch: true, // 开启数据实时监控刷新dom                      singleHeight: 0, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction =&gt; 0/1                      singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction =&gt; 2/3                      waitTime: 1000 // 单步运动停止的时间(默认值1000ms)                  }              }             },　</pre> </div> <p>4、完整实例代码</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;      &lt;div class="" style="padding: 50px;"&gt;          &lt;div class="page-example3" style=""&gt;              &lt;vue-seamless-scroll :data="listData" :class-option="defaultOption" &gt;                  &lt;ul class="ul-scoll"&gt;                      &lt;li v-for="(item, index) in listData" :key='index'&gt;                          &lt;span class="title"&gt;{{item.title}}：&lt;/span&gt;&lt;span class="date"&gt;{{item.time}}&lt;/span&gt;                      &lt;/li&gt;                  &lt;/ul&gt;              &lt;/vue-seamless-scroll&gt;          &lt;/div&gt;      &lt;/div&gt;  &lt;/template&gt;     &lt;script&gt;      import vueSeamlessScroll from 'vue-seamless-scroll'      export default {          name: 'Example3',          data() {              // 这里存放数据              return {                  listData: []              }          },          // import引入的组件需要注入到对象中才能使用          components: {              vueSeamlessScroll          },          // 监听属性 类似于data概念          computed: {              defaultOption () {                  return {                      step: 1, // 数值越大速度滚动越快                      limitMoveNum: 2, // 开始无缝滚动的数据量 this.dataList.length                      hoverStop: true, // 是否开启鼠标悬停stop                      direction: 1, // 0向下 1向上 2向左 3向右                      openWatch: true, // 开启数据实时监控刷新dom                      singleHeight: 0, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction =&gt; 0/1                      singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction =&gt; 2/3                      waitTime: 1000 // 单步运动停止的时间(默认值1000ms)                  }              }             },          // 方法集合          methods: {},          // 监控data中的数据变化          watch: {},          // 生命周期 - 创建完成（可以访问当前this实例）          created() {             },          // 生命周期 - 挂载完成（可以访问DOM元素）          mounted() {              for(let i = 0 ; i &lt; 15 ; i++){                  let j = {                      title:'无缝滚动第几条啊啊啊-'+i,                      time: '2020-04-10'                  }                  this.listData.push(j)              }          }      }  &lt;/script&gt;     &lt;style scoped lang="scss"&gt;      //@import url(); 引入公共css类      .page-example3{          width: 400px;          height: 200px;          overflow: hidden;          border: 1px solid #283dff;          .ul-scoll{              li{                  margin: 6px;                  padding: 5px;                  background: rgba(198, 142, 226, 0.4);              }          }      }  &lt;/style&gt;</pre> </div> 			
                         <div class="col-md-12 mt-5">
-                                                        <p>上一个：<a href="/html/category/article-4069.htm">Rust如何开发eBPF应用</a></p>
-                                                        <p>下一个：<a href="/html/category/article-4097.htm">Java程序整数的位运算</a></p>
+                                                        <p>上一个：<a href="/html/category/article-4098.htm">python-模块（random模块、time模块）</a></p>
+                                                        <p>下一个：<a href="/html/category/article-4126.htm">vue 配置全局模块、SASS（自动引入模块）</a></p>
                                                     </div>
 
                                                 <div class="panel panel-default mt-5">
@@ -114,16 +114,16 @@ $(function() {
                             </div>
                             <div class="panel-body">
                                 <ul class="p-0 x-0">
-                                                                        <li class="py-2"><a href="/html/category/article-1055.htm">Java 轻松掌握字符缓冲流的使用_java</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-418.htm">Java实现简易购物系统_java</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-414.htm">如何用pycharm来查看PyTorch，CUDA版本</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-404.htm">字符串逆序(递归实现)</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-383.htm">SQL | limit | 分页查询employees表，每5行一页，返回第2页的数据</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-351.htm">Windows查看连接过的WiFi列表和密码</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-316.htm">Java日期相关_LocalDate&amp;LocalTime&amp;LocalDateTime</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-315.htm">vue 安装sass_vue 中 node-sass  如何安装。安装sass</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-291.htm">pip 和 Conda 镜像站配置</a></li>
-                                                                        <li class="py-2"><a href="/html/category/article-290.htm">java开发对controller返回数据统一封装结果集</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-1956.htm">企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-499.htm">我们如何将值添加到MySQL表的列中？</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-491.htm">我们可以作为参数传递给MySQL UNIX_TIMESTAMP函数的日期时间值的范围是多少？</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-421.htm">Web前端：JavaScript和Nodejs有什么不同?</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-416.htm">Python自学笔记（三）深入理解Python变量的数据类型和存储</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-412.htm">简历准备及面试技巧，你应该知道的一切</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-382.htm">【mq】从零开始实现 mq-03-引入 broker 中间人_在线工具</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-372.htm">脚本如何加入html文件中,html中加载JavaScript脚本文件的常用方式总结</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-325.htm">idea社区版中使用tomcat部署Maven搭建的web项目</a></li>
+                                                                        <li class="py-2"><a href="/html/category/article-299.htm">smdms超市订单管理系统之登录功能</a></li>
                                                                     </ul>
                             </div>
                         </div>
@@ -135,16 +135,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
-                        <li class="py-2"><a href="/html/category/article-510.htm" title="PHP对象序列化">PHP对象序列化</a></li>
-                        <li class="py-2"><a href="/html/category/article-524.htm" title="数据库四大特性及数据库隔离级别（*）">数据库四大特性及数据库隔离级别（*）</a></li>
-                        <li class="py-2"><a href="/html/category/article-3731.htm" title="夯实基础图解作用域链和闭包">夯实基础图解作用域链和闭包</a></li>
                         <li class="py-2"><a href="/html/category/article-514.htm" title="Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源">Windows 系统电脑如何下载安装并运行 Kubectl 查看云服务器 k8s 集群资源</a></li>
-                        <li class="py-2"><a href="/html/category/article-2532.htm" title="面向对象编程-终结篇 es6新增语法">面向对象编程-终结篇 es6新增语法</a></li>
-                        <li class="py-2"><a href="/html/category/article-513.htm" title="springboot整合log4j的踩坑实战记录_java">springboot整合log4j的踩坑实战记录_java</a></li>
-                        <li class="py-2"><a href="/html/category/article-518.htm" title="使用TreeMap在Java中对用户定义的对象进行排序">使用TreeMap在Java中对用户定义的对象进行排序</a></li>
+                        <li class="py-2"><a href="/html/category/article-4070.htm" title="taro跳转到tabBar报错问题">taro跳转到tabBar报错问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-1344.htm" title="Java8新特性之Instant详解">Java8新特性之Instant详解</a></li>
                         <li class="py-2"><a href="/html/category/article-4125.htm" title="基于vue-seamless-scroll实现无缝滚动效果_vue.js">基于vue-seamless-scroll实现无缝滚动效果_vue.js</a></li>
-                        <li class="py-2"><a href="/html/category/article-1928.htm" title="Java 9中的JShell中的前向参考是什么？">Java 9中的JShell中的前向参考是什么？</a></li>
+                        <li class="py-2"><a href="/html/category/article-528.htm" title="我们如何在MySQL返回的结果集的组级别上应用过滤条件？">我们如何在MySQL返回的结果集的组级别上应用过滤条件？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1353.htm" title="关于Redis缓存和数据库一致性问题">关于Redis缓存和数据库一致性问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-1927.htm" title="常用注解使用总结系列: @Order 注解">常用注解使用总结系列: @Order 注解</a></li>
+                        <li class="py-2"><a href="/html/category/article-3426.htm" title="springboot 使用 ActiveMQ">springboot 使用 ActiveMQ</a></li>
+                        <li class="py-2"><a href="/html/category/article-511.htm" title="Java中的多线程你只要看这一篇就够了">Java中的多线程你只要看这一篇就够了</a></li>
+                        <li class="py-2"><a href="/html/category/article-515.htm" title="css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示">css文字在图片下方_web前端入门到实战：CSS让文字环绕图片显示</a></li>
                     </ul>
     </div>
 </div>
