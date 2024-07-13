@@ -102,7 +102,7 @@ $(function() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                          				  				  				<div id="content_views" class="htmledit_views"> <p>一、项目的搭建</p> <p>1.新建项目，参考<a class="link-info" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/m0_61472704/article/details/122810506?spm=1001.2014.3001.5502"  title="新建一个vue3.0项目" rel="nofollow">新建一个vue3.0项目</a></p> <p>2.添加配置</p> <table border="1" cellpadding="1" cellspacing="1" style="width:500px;"> <tbody> <tr> <td>名称</td> <td>安装命令</td> <td>作用</td> </tr> <tr> <td><strong>element-plus</strong></td> <td><span style="background-color:#fef2f0;">npm install element-plus --save</span></td> <td>UI组件库，使界面更美观</td> </tr> <tr> <td><strong>axios</strong></td> <td><span style="background-color:#fef2f0;">cnpm i --save axios</span></td> <td>向后台发起请求，get和post数据，类似jquery的ajax</td> </tr> </tbody> </table> <p><span style="color:#4d4d4d;">二、详细步骤</span></p> <p><span style="color:#4d4d4d;">我是看b站up【</span><span style="color:#4d4d4d;">米修在线</span><span style="color:#4d4d4d;">】老师的讲解来一步步写的，具体代码和细节可参考<a class="link-info" href="" rel="nofollow">【Vue3+TS+element-plus实战后台管理系统-哔哩哔哩】</a></span></p> <p>项目下载地址：<a class="link-info" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gitlab.com/hemiahwu/vue3-ts-element-plus/"  title="https://gitlab.com/hemiahwu/vue3-ts-element-plus/" rel="nofollow">https://gitlab.com/hemiahwu/vue3-ts-element-plus/</a></p> <p>1、新建出首页、登录注册页、404页，并配置相应的路由</p> <p>2、布局左右切换动画</p> <p>核心在于css的巧用、以及绑定了点击事件和样式，通过改变signUpMode的值来实现左右滑动</p> <p><img decoding="async" alt="" height="22" src="http://img.555519.xyz/uploads3/20220608/9a1d8e62851e1daa9223ecdc4c259bee.jpg"></p> <p><strong>getCurrentInstance()方法</strong>：setup的执行时组件对象还没有创建，此时不能使用this来访问data/computed/methods/props</p> <p>我们可以通过 getCurrentInstance这个函数来返回当前组件的实例对象，也就是当前vue这个实例对象</p> <p>&nbsp;3、引入element-plus表单组件</p> <p>在main.ts里引入elementUI，然后对照着<a class="link-info" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://element-plus.gitee.io/zh-CN/"  title="elementUI-plus官网" rel="nofollow">elementUI-plus官网</a>找要用的组件就行</p> <p>其中我遇到一个问题，老是提醒我下载element，但我已经安装过，结果发现main.ts里的引用语句不对，注意现在官网的引用地址已经改了，不要和视频里写一样，版本不同。</p> <p><strong>注意</strong>：可以把自己写的项目上传到自己的gitHub,参考<a class="link-info" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/zamamiro/article/details/70172900"  title="git的使用" rel="nofollow">git的使用</a>&nbsp;；当你有多个git账号，下载项目需要切换账号时，可在clone的http://后面加上用户名+@，即可弹出登录框，重新登录。</p> <p>效果：</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220608/8989c125bf28d869d661e182082bfe95.jpg"></p> </div> 			
+                          				  				  				<div id="content_views" class="htmledit_views"> <p>一、项目的搭建</p> <p>1.新建项目，参考新建一个vue3.0项目</p> <p>2.添加配置</p> <table border="1" cellpadding="1" cellspacing="1" style="width:500px;"> <tbody> <tr> <td>名称</td> <td>安装命令</td> <td>作用</td> </tr> <tr> <td><strong>element-plus</strong></td> <td><span style="background-color:#fef2f0;">npm install element-plus --save</span></td> <td>UI组件库，使界面更美观</td> </tr> <tr> <td><strong>axios</strong></td> <td><span style="background-color:#fef2f0;">cnpm i --save axios</span></td> <td>向后台发起请求，get和post数据，类似jquery的ajax</td> </tr> </tbody> </table> <p><span style="color:#4d4d4d;">二、详细步骤</span></p> <p><span style="color:#4d4d4d;">我是看b站up【</span><span style="color:#4d4d4d;">米修在线</span><span style="color:#4d4d4d;">】老师的讲解来一步步写的，具体代码和细节可参考【Vue3+TS+element-plus实战后台管理系统-哔哩哔哩】</span></p> <p>项目下载地址：https://gitlab.com/hemiahwu/vue3-ts-element-plus/</p> <p>1、新建出首页、登录注册页、404页，并配置相应的路由</p> <p>2、布局左右切换动画</p> <p>核心在于css的巧用、以及绑定了点击事件和样式，通过改变signUpMode的值来实现左右滑动</p> <p><img decoding="async" alt="" height="22" src="http://img.555519.xyz/uploads3/20220608/9a1d8e62851e1daa9223ecdc4c259bee.jpg"></p> <p><strong>getCurrentInstance()方法</strong>：setup的执行时组件对象还没有创建，此时不能使用this来访问data/computed/methods/props</p> <p>我们可以通过 getCurrentInstance这个函数来返回当前组件的实例对象，也就是当前vue这个实例对象</p> <p>&nbsp;3、引入element-plus表单组件</p> <p>在main.ts里引入elementUI，然后对照着elementUI-plus官网找要用的组件就行</p> <p>其中我遇到一个问题，老是提醒我下载element，但我已经安装过，结果发现main.ts里的引用语句不对，注意现在官网的引用地址已经改了，不要和视频里写一样，版本不同。</p> <p><strong>注意</strong>：可以把自己写的项目上传到自己的gitHub,参考git的使用&nbsp;；当你有多个git账号，下载项目需要切换账号时，可在clone的http://后面加上用户名+@，即可弹出登录框，重新登录。</p> <p>效果：</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220608/8989c125bf28d869d661e182082bfe95.jpg"></p> </div> 			
                         <div class="col-md-12 mt-5">
                                                         <p>上一个：<a href="/html/category/article-495.htm">python读写hdfs</a></p>
                                                         <p>下一个：<a href="/html/category/article-497.htm">HTML5画布 canvas移动</a></p>
@@ -116,16 +116,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1942.htm" title="如何在MySQL中添加两个或多个字符串？">如何在MySQL中添加两个或多个字符串？</a></li>
-                        <li class="py-2"><a href="/html/category/article-3425.htm" title="【UWP】实现一个波浪进度条">【UWP】实现一个波浪进度条</a></li>
-                        <li class="py-2"><a href="/html/category/article-527.htm" title="Confluent之Kafka Connector详细分析">Confluent之Kafka Connector详细分析</a></li>
-                        <li class="py-2"><a href="/html/category/article-1955.htm" title="@DateTimeFormat 和 @JsonFormat 注解">@DateTimeFormat 和 @JsonFormat 注解</a></li>
-                        <li class="py-2"><a href="/html/category/article-1631.htm" title="Vue动态样式:class用法">Vue动态样式:class用法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1344.htm" title="Java8新特性之Instant详解">Java8新特性之Instant详解</a></li>
+                        <li class="py-2"><a href="/html/category/article-1333.htm" title="在vue项目中如何获取视频的时长_vue.js_">在vue项目中如何获取视频的时长_vue.js_</a></li>
+                        <li class="py-2"><a href="/html/category/article-1956.htm" title="企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4">企业应用架构研究系列二十八：身份认证 Beginning Out With IdentityServer4</a></li>
+                        <li class="py-2"><a href="/html/category/article-4588.htm" title="动物疫苗多长时间内打一次 动物疫苗多长时间内打一次最好">动物疫苗多长时间内打一次 动物疫苗多长时间内打一次最好</a></li>
+                        <li class="py-2"><a href="/html/category/article-4480.htm" title="一岁的猫还用打猫三联吗（一岁的猫还打疫苗吗）">一岁的猫还用打猫三联吗（一岁的猫还打疫苗吗）</a></li>
+                        <li class="py-2"><a href="/html/category/article-4445.htm" title="三国杀特殊技能说明书（三国杀特殊技能说明书图片）">三国杀特殊技能说明书（三国杀特殊技能说明书图片）</a></li>
                         <li class="py-2"><a href="/html/category/article-1055.htm" title="Java 轻松掌握字符缓冲流的使用_java">Java 轻松掌握字符缓冲流的使用_java</a></li>
-                        <li class="py-2"><a href="/html/category/article-3123.htm" title="Python调用C语言方法">Python调用C语言方法</a></li>
+                        <li class="py-2"><a href="/html/category/article-1334.htm" title="【openstack】cloudkitty组件，入门级安装（快速）_在线工具">【openstack】cloudkitty组件，入门级安装（快速）_在线工具</a></li>
                         <li class="py-2"><a href="/html/category/article-4295.htm" title="妙三多接种注意事项（妙三多接种间隔时间）">妙三多接种注意事项（妙三多接种间隔时间）</a></li>
-                        <li class="py-2"><a href="/html/category/article-4070.htm" title="taro跳转到tabBar报错问题">taro跳转到tabBar报错问题</a></li>
-                        <li class="py-2"><a href="/html/category/article-1913.htm" title="Nacos配置管理基础应用">Nacos配置管理基础应用</a></li>
+                        <li class="py-2"><a href="/html/category/article-2825.htm" title="MySQL VARCHAR列的最大长度是多少？">MySQL VARCHAR列的最大长度是多少？</a></li>
                     </ul>
     </div>
 </div>
@@ -137,7 +137,7 @@ $(function() {
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>

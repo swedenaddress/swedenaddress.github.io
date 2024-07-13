@@ -102,7 +102,7 @@ $(function() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h1><a id="encodeURI_encodeURIComponent__0" rel="nofollow"></a>encodeURI encodeURIComponent 的区别，和使用场景</h1> <h2><a id="_ncodeURI_encodeURIComponent_3" rel="nofollow"></a>一、 ncodeURI encodeURIComponent</h2> <p>之前一直不了解这两个的区别，现在知道了：</p> <p>-<code>encodeURI</code> 是对可以对整个请求地址进行转义</p> <ul> <li><code>encodeURIComponent</code> 只可用于转义单个参数</li> </ul> <p>例子如下：</p> <p>比如有这样一个地址需要转义并通过 js 请求，这里面的一些符号需要转义成对应的 URL 形式，比如一些标点<code>,</code> 汉字等都需要转义成域名地址那种</p> <pre><code class="prism language-js"><span class="token keyword">let</span> str<span class="token operator">=</span><span class="token string">'../../course/exportStatisticsUserByCourse?courseId=12&amp;regionId=2,52,2596,2597,2609&amp;title=体育-北京-统计报表'</span><span class="token punctuation">;</span></code></pre> <h2><a id="_19" rel="nofollow"></a>二、来看下区别，</h2> <p><strong>encodeURIComponent</strong></p> <p><code>encodeURIComponent</code> 是把输入的字符串作为一个整体，就是参数的实体，并不是 URL，所以所有<code>/</code> 都会被转义，成为单纯的字符串，失去任何域名的语义。<br /> 这个方法在处理单个参数时使用，如需要处理<code>title</code> 参数<code>encodeURIComponent(体育-北京-统计报表')</code></p> <pre><code class="prism language-js"><span class="token function">encodeURIComponent</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 结果是这样的</span><span class="token comment">// ..%2F..%2Fcourse%2FexportStatisticsUserByCourse%3FcourseId%3D12%26regionId%3D2%2C52%2C2596%2C2597%2C2609%26title%3D%E4%BD%93%E8%82%B2-%E5%8C%97%E4%BA%AC-%E7%BB%9F%E8%AE%A1%E6%8A%A5%E8%A1%A8</span></code></pre> <p>而<code>encodeURI</code> 会保留其URL的原本语义，只处理参数中需要处理的<br /><strong>encodeURI</strong></p> <pre><code class="prism language-js"><span class="token function">encodeURI</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 结果是这样的</span><span class="token comment">// ../../course/exportStatisticsUserByCourse?courseId=12&amp;regionId=2,52,2596,2597,2609&amp;title=%E4%BD%93%E8%82%B2-%E5%8C%97%E4%BA%AC-%E7%BB%9F%E8%AE%A1%E6%8A%A5%E8%A1%A8</span></code></pre> <h2><a id="_41" rel="nofollow"></a>三、总结</h2> <p>这两个都是用于处理域名地址的，根据自己需要使用即可。</p> </div> 			
+                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h1>encodeURI encodeURIComponent 的区别，和使用场景</h1> <h2>一、 ncodeURI encodeURIComponent</h2> <p>之前一直不了解这两个的区别，现在知道了：</p> <p>-<code>encodeURI</code> 是对可以对整个请求地址进行转义</p> <ul> <li><code>encodeURIComponent</code> 只可用于转义单个参数</li> </ul> <p>例子如下：</p> <p>比如有这样一个地址需要转义并通过 js 请求，这里面的一些符号需要转义成对应的 URL 形式，比如一些标点<code>,</code> 汉字等都需要转义成域名地址那种</p> <pre><code class="prism language-js"><span class="token keyword">let</span> str<span class="token operator">=</span><span class="token string">'../../course/exportStatisticsUserByCourse?courseId=12&regionId=2,52,2596,2597,2609&title=体育-北京-统计报表'</span><span class="token punctuation">;</span></code></pre> <h2>二、来看下区别，</h2> <p><strong>encodeURIComponent</strong></p> <p><code>encodeURIComponent</code> 是把输入的字符串作为一个整体，就是参数的实体，并不是 URL，所以所有<code>/</code> 都会被转义，成为单纯的字符串，失去任何域名的语义。<br /> 这个方法在处理单个参数时使用，如需要处理<code>title</code> 参数<code>encodeURIComponent(体育-北京-统计报表')</code></p> <pre><code class="prism language-js"><span class="token function">encodeURIComponent</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 结果是这样的</span><span class="token comment">// ..%2F..%2Fcourse%2FexportStatisticsUserByCourse%3FcourseId%3D12%26regionId%3D2%2C52%2C2596%2C2597%2C2609%26title%3D%E4%BD%93%E8%82%B2-%E5%8C%97%E4%BA%AC-%E7%BB%9F%E8%AE%A1%E6%8A%A5%E8%A1%A8</span></code></pre> <p>而<code>encodeURI</code> 会保留其URL的原本语义，只处理参数中需要处理的<br /><strong>encodeURI</strong></p> <pre><code class="prism language-js"><span class="token function">encodeURI</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 结果是这样的</span><span class="token comment">// ../../course/exportStatisticsUserByCourse?courseId=12&regionId=2,52,2596,2597,2609&title=%E4%BD%93%E8%82%B2-%E5%8C%97%E4%BA%AC-%E7%BB%9F%E8%AE%A1%E6%8A%A5%E8%A1%A8</span></code></pre> <h2>三、总结</h2> <p>这两个都是用于处理域名地址的，根据自己需要使用即可。</p> </div> 			
                         <div class="col-md-12 mt-5">
                                                         <p>上一个：<a href="/html/category/article-469.htm">聊聊系统看门狗WDOG1在i.MXRT1xxx系统启动中的应用及影响</a></p>
                                                         <p>下一个：<a href="/html/category/article-471.htm">linux清理磁盘文件夹方法</a></p>
@@ -116,16 +116,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/html/category/article-1941.htm" title="Vue中的路由守卫">Vue中的路由守卫</a></li>
-                        <li class="py-2"><a href="/html/category/article-3425.htm" title="【UWP】实现一个波浪进度条">【UWP】实现一个波浪进度条</a></li>
-                        <li class="py-2"><a href="/html/category/article-4370.htm" title="女生学动物医学好吗专科生（女生学动物医学专业好吗）">女生学动物医学好吗专科生（女生学动物医学专业好吗）</a></li>
-                        <li class="py-2"><a href="/html/category/article-2826.htm" title="Python生成迷宫">Python生成迷宫</a></li>
-                        <li class="py-2"><a href="/html/category/article-4517.htm" title="味蕾工坊（味蕾工坊蛋糕）">味蕾工坊（味蕾工坊蛋糕）</a></li>
-                        <li class="py-2"><a href="/html/category/article-4481.htm" title="动物接种疫苗的方法有几种呢（动物接种疫苗的方法有几种呢图片）">动物接种疫苗的方法有几种呢（动物接种疫苗的方法有几种呢图片）</a></li>
-                        <li class="py-2"><a href="/html/category/article-2241.htm" title="高并发下redis缓存常见问题">高并发下redis缓存常见问题</a></li>
-                        <li class="py-2"><a href="/html/category/article-527.htm" title="Confluent之Kafka Connector详细分析">Confluent之Kafka Connector详细分析</a></li>
-                        <li class="py-2"><a href="/html/category/article-1914.htm" title="VSCode插件离线安装">VSCode插件离线安装</a></li>
+                        <li class="py-2"><a href="/html/category/article-1927.htm" title="常用注解使用总结系列: @Order 注解">常用注解使用总结系列: @Order 注解</a></li>
+                        <li class="py-2"><a href="/html/category/article-4294.htm" title="开宠物店的方案（开宠物店的方案有哪些）">开宠物店的方案（开宠物店的方案有哪些）</a></li>
                         <li class="py-2"><a href="/html/category/article-4325.htm" title="都挺好苏明玉人物前史（苏明玉）干货满满，">都挺好苏明玉人物前史（苏明玉）干货满满，</a></li>
+                        <li class="py-2"><a href="/html/category/article-4324.htm" title="动物疫苗证明怎么写（动物疫苗证明怎么写的）">动物疫苗证明怎么写（动物疫苗证明怎么写的）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2241.htm" title="高并发下redis缓存常见问题">高并发下redis缓存常见问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-3757.htm" title="Python 图_系列之纵横对比  Bellman-Ford 和  Dijkstra 最短路径算法">Python 图_系列之纵横对比  Bellman-Ford 和  Dijkstra 最短路径算法</a></li>
+                        <li class="py-2"><a href="/html/category/article-4444.htm" title="国产狗粮性价比（国产狗粮性价比排行榜）">国产狗粮性价比（国产狗粮性价比排行榜）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1928.htm" title="Java 9中的JShell中的前向参考是什么？">Java 9中的JShell中的前向参考是什么？</a></li>
+                        <li class="py-2"><a href="/html/category/article-1334.htm" title="【openstack】cloudkitty组件，入门级安装（快速）_在线工具">【openstack】cloudkitty组件，入门级安装（快速）_在线工具</a></li>
+                        <li class="py-2"><a href="/html/category/article-3124.htm" title="[JVM]java虚拟机运行时数据区域&#8211;程序计数器、虚拟机栈和本地方法栈">[JVM]java虚拟机运行时数据区域&#8211;程序计数器、虚拟机栈和本地方法栈</a></li>
                     </ul>
     </div>
 </div>
@@ -137,7 +137,7 @@ $(function() {
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>

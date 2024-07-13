@@ -102,7 +102,7 @@ $(function() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                          				  				  				<div id="content_views" class="htmledit_views"> <div id="js_content"> <p>众所周知，在DB-Engines的排行榜，一直占据前两位的数据库，就是Oracle和MySQL，Oracle作为关系型数据库的老大，在这个生态圈中，占据着绝对优势，MySQL作为一款面向“开源"的软件，虽然被Oracle曲线收购，相比之下，还是存在着“开源”的血统，而且有很多分支，无论是国外的MariaDB，还是国内的AliSQL，都在发挥着各自的作用，</p> <p style="text-align: center"><img decoding="async" src="http://img.555519.xyz/uploads/20230207/01e21e6b03e916c3a9006bea436a075c.jpg" alt="小白学习MySQL - 闲聊聊"/></p> <p>对我来说，从大学做课设到现在工作将近11年了，零零散散地用过几次MySQL数据库，而且不夸张地说，就是当作黑盒来操作(所谓的CRUD)，有些知识，不知其然，更不知其所以然，我就是个地地道道的小白。</p> <p>其实，对任何的一门技术学习来说，如果仅仅是用，无论是从书本上，还是网络上，都是有很多学习的资源，了解一些基本的理论，结合一些实操，就可以快速入门。但是如果我们想在某个技术领域研究更深入一些，或者说对于一些知其然的问题，更想知其所以然，就会对我们提出更高的要求，理论基础、实践操作，可以说是一个都不能少，更是需要积累，从量变到质变，不是件容易的事，有句话说得好，“努力不一定成功，但是不努力，一定不会成功”，对我们每个技术人来说，选择就在眼前。</p> <p>扯的有些远了，我会站在小白的角度，将自己从0开始学习MySQL的过程记录下来，可能是基础理论，可能是实验操作，可能是故障案例，结合实际的工作，或典型的知识点，尽量系统一些，当然先得解决“知其然"的问题，逐步再解决”知其所以然"的问题，循序渐进，算是对自己工作学习过程的一种见证，没准什么时候，碰到个问题，我就能从杂货铺得到参考。</p> <p>当然既然我是个小白，文章中的内容就可能存在错误，欢迎各位读者朋友们，随时“拨乱反正”，纠正我的错误，给其他人指引，功德无量。</p> <p>我们都知道，Oracle是一款“最开放”的商业数据库软件，其中一个重要的因素，就是他的任何可以公开的资料都可以在官网找到，每个Oracle发布的版本，对应的都会带着一套官方文档(参考《<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://mp.weixin.qq.com/s?__biz=MzI2NzM1OTM4OA%3D%3D&amp;chksm=ea814f93ddf6c685d0f9422d858ed3983caf417712183393bf4fc5a06fa2d2c5b223c93db5d7&amp;idx=1&amp;mid=2247486048&amp;scene=21&amp;sn=98778810e1bcf0e8955faefe16210dcf#wechat_redirect"  rel="nofollow">Oracle Conecpt&nbsp;- 初步认识</a>》)，对学习者来说，这是非常方便的，而当前的MySQL，同样具备所谓的“官方文档万花筒”，https://dev.mysql.com/doc/，而且通过红框的内容，能得出两个信息，一是当前官方推荐的MySQL数据库的版本主要是5.6、5.7和8.0，二是对日语的支持，这个和Oracle在某种程度上倒是有些如出一辙，毕竟都是嫡系，</p> <p style="text-align: center"><img decoding="async" src="http://img.555519.xyz/uploads/20230207/311bea65eaaaf33414bc2d5d96adc289.jpg" alt="小白学习MySQL - 闲聊聊"/></p> <p style="text-align: left">之所以提到官方文档，是因为除了图书、博客的资料外，官方文档肯定是我们在学习过程中最常用到的参考资源，对于一些基础理论的知识，从官方文档得到的肯定是最权威的，而对一些疑难杂症的问题，有时候从官方文档能得到些端倪。</p> <p style="text-align: left">当然，很多事情，说起来容易，做起来可不简单，就让我们一起，在MySQL浩瀚的知识海洋中，寻找自己的目标和方向。</p> </div></div> 			
+                          				  				  				<div id="content_views" class="htmledit_views"> <div id="js_content"> <p>众所周知，在DB-Engines的排行榜，一直占据前两位的数据库，就是Oracle和MySQL，Oracle作为关系型数据库的老大，在这个生态圈中，占据着绝对优势，MySQL作为一款面向“开源"的软件，虽然被Oracle曲线收购，相比之下，还是存在着“开源”的血统，而且有很多分支，无论是国外的MariaDB，还是国内的AliSQL，都在发挥着各自的作用，</p> <p style="text-align: center"><img decoding="async" src="http://img.555519.xyz/uploads/20230207/01e21e6b03e916c3a9006bea436a075c.jpg" alt="小白学习MySQL - 闲聊聊"/></p> <p>对我来说，从大学做课设到现在工作将近11年了，零零散散地用过几次MySQL数据库，而且不夸张地说，就是当作黑盒来操作(所谓的CRUD)，有些知识，不知其然，更不知其所以然，我就是个地地道道的小白。</p> <p>其实，对任何的一门技术学习来说，如果仅仅是用，无论是从书本上，还是网络上，都是有很多学习的资源，了解一些基本的理论，结合一些实操，就可以快速入门。但是如果我们想在某个技术领域研究更深入一些，或者说对于一些知其然的问题，更想知其所以然，就会对我们提出更高的要求，理论基础、实践操作，可以说是一个都不能少，更是需要积累，从量变到质变，不是件容易的事，有句话说得好，“努力不一定成功，但是不努力，一定不会成功”，对我们每个技术人来说，选择就在眼前。</p> <p>扯的有些远了，我会站在小白的角度，将自己从0开始学习MySQL的过程记录下来，可能是基础理论，可能是实验操作，可能是故障案例，结合实际的工作，或典型的知识点，尽量系统一些，当然先得解决“知其然"的问题，逐步再解决”知其所以然"的问题，循序渐进，算是对自己工作学习过程的一种见证，没准什么时候，碰到个问题，我就能从杂货铺得到参考。</p> <p>当然既然我是个小白，文章中的内容就可能存在错误，欢迎各位读者朋友们，随时“拨乱反正”，纠正我的错误，给其他人指引，功德无量。</p> <p>我们都知道，Oracle是一款“最开放”的商业数据库软件，其中一个重要的因素，就是他的任何可以公开的资料都可以在官网找到，每个Oracle发布的版本，对应的都会带着一套官方文档(参考《Oracle Conecpt&nbsp;- 初步认识》)，对学习者来说，这是非常方便的，而当前的MySQL，同样具备所谓的“官方文档万花筒”，https://dev.mysql.com/doc/，而且通过红框的内容，能得出两个信息，一是当前官方推荐的MySQL数据库的版本主要是5.6、5.7和8.0，二是对日语的支持，这个和Oracle在某种程度上倒是有些如出一辙，毕竟都是嫡系，</p> <p style="text-align: center"><img decoding="async" src="http://img.555519.xyz/uploads/20230207/311bea65eaaaf33414bc2d5d96adc289.jpg" alt="小白学习MySQL - 闲聊聊"/></p> <p style="text-align: left">之所以提到官方文档，是因为除了图书、博客的资料外，官方文档肯定是我们在学习过程中最常用到的参考资源，对于一些基础理论的知识，从官方文档得到的肯定是最权威的，而对一些疑难杂症的问题，有时候从官方文档能得到些端倪。</p> <p style="text-align: left">当然，很多事情，说起来容易，做起来可不简单，就让我们一起，在MySQL浩瀚的知识海洋中，寻找自己的目标和方向。</p> </div></div> 			
                         <div class="col-md-12 mt-5">
                                                         <p>上一个：<a href="/html/category/article-351.htm">Windows查看连接过的WiFi列表和密码</a></p>
                                                         <p>下一个：<a href="/html/category/article-353.htm">TypeScript与JavaScript的区别</a></p>
@@ -116,16 +116,16 @@ $(function() {
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/html/category/article-1955.htm" title="@DateTimeFormat 和 @JsonFormat 注解">@DateTimeFormat 和 @JsonFormat 注解</a></li>
+                        <li class="py-2"><a href="/html/category/article-5930.htm" title="厦门领养宠物猫中心电话地址（厦门领养宠物猫中心电话地址）">厦门领养宠物猫中心电话地址（厦门领养宠物猫中心电话地址）</a></li>
+                        <li class="py-2"><a href="/html/category/article-2241.htm" title="高并发下redis缓存常见问题">高并发下redis缓存常见问题</a></li>
+                        <li class="py-2"><a href="/html/category/article-4481.htm" title="动物接种疫苗的方法有几种呢（动物接种疫苗的方法有几种呢图片）">动物接种疫苗的方法有几种呢（动物接种疫苗的方法有几种呢图片）</a></li>
+                        <li class="py-2"><a href="/html/category/article-4294.htm" title="开宠物店的方案（开宠物店的方案有哪些）">开宠物店的方案（开宠物店的方案有哪些）</a></li>
+                        <li class="py-2"><a href="/html/category/article-4516.htm" title="公务员国考考试报名入口官网（国家公务员国考报名入口）">公务员国考考试报名入口官网（国家公务员国考报名入口）</a></li>
+                        <li class="py-2"><a href="/html/category/article-1334.htm" title="【openstack】cloudkitty组件，入门级安装（快速）_在线工具">【openstack】cloudkitty组件，入门级安装（快速）_在线工具</a></li>
                         <li class="py-2"><a href="/html/category/article-2242.htm" title="Spring中的Ant路径匹配工具组件AntPathMatcher">Spring中的Ant路径匹配工具组件AntPathMatcher</a></li>
-                        <li class="py-2"><a href="/html/category/article-1344.htm" title="Java8新特性之Instant详解">Java8新特性之Instant详解</a></li>
-                        <li class="py-2"><a href="/html/category/article-4126.htm" title="vue 配置全局模块、SASS（自动引入模块）">vue 配置全局模块、SASS（自动引入模块）</a></li>
-                        <li class="py-2"><a href="/html/category/article-1333.htm" title="在vue项目中如何获取视频的时长_vue.js_">在vue项目中如何获取视频的时长_vue.js_</a></li>
-                        <li class="py-2"><a href="/html/category/article-4552.htm" title="济南领养宠物的地方 济南领养宠物的地方有哪些">济南领养宠物的地方 济南领养宠物的地方有哪些</a></li>
-                        <li class="py-2"><a href="/html/category/article-1632.htm" title="MongoDB利用oplog恢复数据的方法_MongoDB_">MongoDB利用oplog恢复数据的方法_MongoDB_</a></li>
-                        <li class="py-2"><a href="/html/category/article-1056.htm" title="vue项目的excel的导入与导出">vue项目的excel的导入与导出</a></li>
-                        <li class="py-2"><a href="/html/category/article-1942.htm" title="如何在MySQL中添加两个或多个字符串？">如何在MySQL中添加两个或多个字符串？</a></li>
-                        <li class="py-2"><a href="/html/category/article-528.htm" title="我们如何在MySQL返回的结果集的组级别上应用过滤条件？">我们如何在MySQL返回的结果集的组级别上应用过滤条件？</a></li>
-                        <li class="py-2"><a href="/html/category/article-4069.htm" title="Rust如何开发eBPF应用">Rust如何开发eBPF应用</a></li>
+                        <li class="py-2"><a href="/html/category/article-5931.htm" title="厦门宠物寄养哪里好 厦门宠物寄养哪里好点">厦门宠物寄养哪里好 厦门宠物寄养哪里好点</a></li>
+                        <li class="py-2"><a href="/html/category/article-1353.htm" title="关于Redis缓存和数据库一致性问题">关于Redis缓存和数据库一致性问题</a></li>
                     </ul>
     </div>
 </div>
@@ -137,7 +137,7 @@ $(function() {
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/html/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">60</span> <a href="/html/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
